@@ -1,0 +1,342 @@
+/* FUENTES Y BASE */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap');
+
+body {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  background-color: #121212;
+  color: #f5f5f5;
+}
+
+/* HEADER */
+header {
+  background-image: url('../img/header-bg.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.overlay {
+  background: rgba(0, 0, 0, 0.6);
+  padding: 50px;
+  border-radius: 10px;
+  text-align: center;
+  color: white;
+}
+
+header h1 {
+  font-size: 3em;
+  font-weight: 700;
+}
+
+header p {
+  font-size: 1.2em;
+  font-weight: 300;
+}
+
+/* BOTÓN PRINCIPAL Y GENÉRICO */
+.btn,
+button {
+  background-color: #c99c33;
+  color: #111;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.btn:hover,
+button:hover {
+  background-color: #e6b800;
+}
+
+/* SECCIÓN SERVICIOS */
+#servicios {
+  background: #1e1e1e;
+  padding: 60px 20px;
+}
+
+#servicios h2 {
+  font-size: 2.5em;
+  margin-bottom: 20px;
+}
+
+.servicios-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.servicio {
+  background: #2a2a2a;
+  color: #f5f5f5;
+  padding: 20px;
+  width: 300px;
+  border-radius: 8px;
+  text-align: center;
+  transition: transform 0.3s;
+  border-bottom: 4px solid #c99c33;
+}
+
+.servicio:hover {
+  transform: scale(1.05);
+}
+
+.servicio i {
+  font-size: 60px;
+  color: #c99c33;
+  margin-bottom: 15px;
+  transition: transform 0.3s ease-in-out, color 0.3s;
+}
+
+.servicio:hover i {
+  transform: scale(1.2);
+  color: #e6b800;
+}
+
+/* SECCIÓN DE CONTACTO / CHAT */
+#contacto {
+  padding: 50px 20px;
+}
+
+/* CONTENEDOR DE CHAT */
+.chat-container {
+  max-width: 600px;
+  margin: 0 auto 20px;
+  background-color: #1a1a1a;
+  padding: 20px;
+  height: 400px;
+  overflow-y: auto;
+  border-radius: 10px;
+  border: 1px solid #333;
+  box-shadow: 0 0 10px rgba(0,0,0,0.4);
+}
+
+.chat-container::-webkit-scrollbar {
+  width: 6px;
+}
+.chat-container::-webkit-scrollbar-thumb {
+  background-color: #c99c33;
+  border-radius: 5px;
+}
+
+/* BURBUJAS DE MENSAJE */
+.message {
+  background-color: #2a2a2a;
+  color: #eee;
+  padding: 12px 15px;
+  border-radius: 8px;
+  margin: 10px 0;
+  white-space: pre-wrap;
+  font-family: 'Courier New', monospace;
+  line-height: 1.5;
+  max-width: 90%;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  overflow-x: hidden;
+}
+
+.message.user {
+  background-color: #3a3a3a;
+  text-align: right;
+  margin-left: auto;
+}
+
+.message.assistant {
+  background-color: #202020;
+  text-align: left;
+  margin-right: auto;
+}
+
+.message pre {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  overflow-x: hidden;
+  margin: 10px 0 0;
+  font-family: 'Courier New', monospace;
+  color: #f0f0f0;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+/* GRUPO INPUT */
+.input-group {
+  display: flex;
+  gap: 10px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+textarea {
+  flex: 1;
+  resize: none;
+  padding: 12px;
+  font-size: 16px;
+  background-color: #2a2a2a;
+  color: #f5f5f5;
+  border-radius: 8px;
+  border: none;
+  height: 60px;
+}
+
+/* BOTÓN RESET */
+#reset-btn {
+  margin-top: 15px;
+  background-color: #444;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+#reset-btn:hover {
+  background-color: #666;
+}
+
+/* BOTÓN DESCARGA */
+#download-btn {
+  margin-top: 10px;
+  background-color: #2e7d32;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+#download-btn:hover {
+  background-color: #4caf50;
+}
+
+/* FOOTER */
+footer {
+  background: #121212;
+  color: #c99c33;
+  padding: 20px;
+  font-size: 14px;
+}
+
+/* RESPUESTAS FORMATEADAS DEL ASISTENTE */
+.respuesta-formateada {
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+    color: #f5f5f5;
+    padding: 8px;
+    white-space: normal;
+    text-align: left;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+  
+  .respuesta-formateada h1,
+  .respuesta-formateada h2,
+  .respuesta-formateada h3 {
+    color: #ffd700;
+    font-weight: 700;
+    margin: 10px 0 5px;
+  }
+  
+  .respuesta-formateada h1 {
+    font-size: 1.8em;
+    border-bottom: 1px solid #444;
+    padding-bottom: 5px;
+  }
+  
+  .respuesta-formateada h2 {
+    font-size: 1.4em;
+    border-bottom: 1px dashed #333;
+  }
+  
+  .respuesta-formateada h3 {
+    font-size: 1.2em;
+  }
+  
+  .respuesta-formateada strong {
+    color: #ffffff;
+    font-weight: 700;
+  }
+  
+  .respuesta-formateada em {
+    color: #cfcfcf;
+    font-style: italic;
+  }
+  
+  .respuesta-formateada code {
+    background-color: #2d2d2d;
+    color: #c99c33;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: 'Courier New', monospace;
+    font-size: 15px;
+    white-space: pre-wrap;
+  }
+  
+  .respuesta-formateada ul {
+    padding-left: 20px;
+    margin: 10px 0;
+  }
+  
+  .respuesta-formateada li {
+    margin-bottom: 6px;
+  }
+  
+  .respuesta-formateada a {
+    color: #8ec8ff;
+    text-decoration: underline;
+  }
+  
+  .respuesta-formateada a:hover {
+    color: #b3d9ff;
+  }
+  
+  .idioma-selector {
+    text-align: center;
+    margin: 20px auto -30px;
+  }
+  
+  .idioma-selector label {
+    font-weight: bold;
+    margin-right: 10px;
+  }
+  
+  #language {
+    background-color: #2a2a2a;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 12px;
+    font-size: 16px;
+  }
+  
+  .copy-btn {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: #c99c33;
+    color: #121212;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    padding: 4px 8px;
+    cursor: pointer;
+    z-index: 10;
+    transition: background 0.3s ease;
+  }
+  
+  .copy-btn:hover {
+    background-color: #e6b800;
+  }
+  
