@@ -3,41 +3,78 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Tu asistente web inteligente</title>
+  <title>CodeConnect - Tu asistente web inteligente</title>
   <link rel="stylesheet" href="./assets/css/styles.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
 <body>
 
+  <!-- ✅ HEADER -->
   <header>
     <div class="overlay">
-      <h1>Tu Asistente Web Inteligente</h1>
-      <p>Recibe orientación profesional para crear, mejorar o lanzar tu sitio web.</p>
-      <a href="#contacto" class="btn">Habla con el Asistente</a>
+      <h1>Convierte tu idea en una web profesional</h1>
+      <p>
+        Recibe propuestas personalizadas, consejos de diseño, SEO y mucho más.<br>
+        Un asistente experto que piensa como un desarrollador... ¡pero habla tu idioma!
+      </p>
+      <button class="btn" id="probar-gratis-btn" type="button">Probar gratis</button>
     </div>
   </header>
 
-  <section id="servicios">
-    <h2>¿En qué puede ayudarte el asistente?</h2>
-    <div class="servicios-container">
-      <div class="servicio">
-        <i class="fas fa-paint-brush"></i>
-        <h3>Ideas de Diseño</h3>
-        <p>Te sugiere cómo estructurar y diseñar tu web según tu negocio.</p>
+  <!-- ✅ SECCIÓN PLANES -->
+  <section id="planes">
+    <h2>Elige cómo quieres mejorar tu presencia online</h2>
+    <div class="planes-container">
+      <div class="plan free">
+        <h3>👤 Gratuito</h3>
+        <ul>
+          <li>✅ Chat básico con IA</li>
+          <li>✅ Ideas iniciales para tu web</li>
+          <li>✅ Uso ilimitado</li>
+        </ul>
+        <p><strong>0€ / mes</strong></p>
+        <button class="btn" id="probar-gratis-btn">Probar gratis</button>
       </div>
-      <div class="servicio">
-        <i class="fas fa-chart-line"></i>
-        <h3>SEO y Rendimiento</h3>
-        <p>Recomienda cómo posicionarte mejor en Google y cargar más rápido.</p>
+
+      <div class="plan premium">
+        <h3>🚀 Premium</h3>
+        <ul>
+          <li>✅ Modelos avanzados (GPT-4, Claude...)</li>
+          <li>✅ Descarga de propuestas en PDF</li>
+          <li>✅ Historial de sesiones</li>
+          <li>✅ Soporte prioritario</li>
+        </ul>
+        <p><strong>5€ / mes</strong></p>
+        <a href="https://tu-pasarela.com" class="btn">Suscribirme</a>
       </div>
-      <div class="servicio">
-        <i class="fas fa-headset"></i>
-        <h3>Soporte Técnico</h3>
-        <p>Resuelve tus dudas sobre tecnología web, alojamiento o mantenimiento.</p>
+
+      <div class="plan personalizado">
+        <h3>💼 Creamos tu Web</h3>
+        <ul>
+          <li>✅ Web 100% a medida</li>
+          <li>✅ Diseño + SEO + Dominio</li>
+          <li>✅ Hecho por expertos</li>
+        </ul>
+        <p><strong>A consultar</strong></p>
+        <a href="#solicitar" class="btn">Solicitar presupuesto</a>
       </div>
     </div>
   </section>
 
+  <!-- ✅ CONSEJOS -->
+  <section class="tips-container">
+    <h3>💡 Consejos para usar el asistente</h3>
+    <ul>
+      <li>🔍 Describe tu problema o idea con claridad.</li>
+      <li>🎯 Indica el objetivo de tu web (vender, mostrar, informar...).</li>
+      <li>🧱 Si ya tienes una web, pega la URL o explica cómo es.</li>
+      <li>📎 Puedes subir un archivo con detalles para que el asistente lo lea.</li>
+      <li>🌍 Elige el idioma de la conversación desde el selector superior.</li>
+    </ul>
+  </section>
+
+  <!-- ✅ SECCIÓN CHAT -->
   <section id="contacto">
     <h2>Habla con tu Asistente Web</h2>
     <p>Escribe tu idea, pregunta o problema, y recibe una respuesta útil al instante.</p>
@@ -50,6 +87,13 @@
 
     <div class="chat-container" id="chat-container"></div>
 
+    <h3 style="margin-top:30px;">📎 Cargar documento como contexto</h3>
+    <form id="upload-form" onsubmit="return false;">
+      <input type="file" id="file" name="file" accept=".txt,.pdf" />
+      <button type="button" id="upload-btn">📤 Subir documento</button>
+    </form>
+    <p id="file-status" style="margin-top: 10px; font-size: 0.9em;"></p>
+
     <form id="contact-form">
       <div class="input-group">
         <textarea name="message" placeholder="Escribe tu mensaje..." required></textarea>
@@ -58,13 +102,26 @@
     </form>
 
     <button id="reset-btn">🗑 Nueva conversación</button>
-    <button id="download-btn">📥 Descargar resumen</button>
+    <button id="download-btn">📥 Descargar conversación</button>
   </section>
 
+  <!-- ✅ MODAL DE REGISTRO -->
+  <div id="auth-modal" class="modal" style="display: none;">
+    <div class="modal-content">
+      <h3>👤 Registro rápido</h3>
+      <input type="text" id="auth-name" placeholder="Tu nombre" />
+      <input type="email" id="auth-email" placeholder="Correo electrónico" />
+      <input type="password" id="auth-password" placeholder="Contraseña" />
+      <button id="auth-submit">Registrarme</button>
+    </div>
+  </div>
+
+  <!-- ✅ FOOTER -->
   <footer>
     <p>&copy; 2025 CodeConnect · Asistente Web para Emprendedores</p>
   </footer>
 
-  <script src="script.js"></script>
+  <!-- ✅ JS MÓDULOS -->
+  <script type="module" src="./assets/js/script.js"></script>
 </body>
 </html>
