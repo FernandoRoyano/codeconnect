@@ -1,0 +1,93 @@
+@import "tailwindcss";
+
+:root {
+  /* Colores corporativos CodeConnect */
+  --cc-blue: #194973;
+  --cc-green: #71C648;
+  --cc-gray: #5A6D6D;
+  --cc-white: #ffffff;
+  --cc-light-gray: #f8f9fa;
+
+  --background: #ffffff;
+  --foreground: #194973;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-cc-blue: var(--cc-blue);
+  --color-cc-green: var(--cc-green);
+  --color-cc-gray: var(--cc-gray);
+  --color-cc-light: var(--cc-light-gray);
+  --font-sans: var(--font-roboto);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: 'Roboto', Arial, Helvetica, sans-serif;
+}
+
+/* Animaciones personalizadas */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-50px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(50px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.6s ease-out forwards;
+}
+
+.animate-slide-left {
+  animation: slideInLeft 0.6s ease-out forwards;
+}
+
+.animate-slide-right {
+  animation: slideInRight 0.6s ease-out forwards;
+}
+
+.animate-pulse-subtle {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+/* Delay utilities */
+.delay-100 { animation-delay: 100ms; }
+.delay-200 { animation-delay: 200ms; }
+.delay-300 { animation-delay: 300ms; }
+.delay-400 { animation-delay: 400ms; }
+.delay-500 { animation-delay: 500ms; }
+
+/* Gradientes corporativos */
+.gradient-blue-green {
+  background: linear-gradient(135deg, var(--cc-blue) 0%, var(--cc-green) 100%);
+}
+
+.gradient-green-blue {
+  background: linear-gradient(135deg, var(--cc-green) 0%, var(--cc-blue) 100%);
+}
+
+/* Scroll suave */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Selección de texto */
+::selection {
+  background-color: var(--cc-green);
+  color: white;
+}
