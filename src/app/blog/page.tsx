@@ -102,16 +102,16 @@ export default function BlogPage() {
   return (
     <>
       {/* Hero Section */}
-      <section className="pt-32 pb-16 bg-gradient-to-br from-[#194973] to-[#0f3150]">
+      <section className="pt-28 sm:pt-32 pb-12 sm:pb-16 bg-gradient-to-br from-[#194973] to-[#0f3150]">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <span className="inline-block bg-[#71C648]/20 text-[#71C648] px-4 py-2 rounded-full text-sm font-medium mb-6">
+            <span className="inline-block bg-[#71C648]/20 text-[#71C648] px-4 py-2 rounded-full text-sm font-medium mb-4 sm:mb-6">
               Noticias y Articulos
             </span>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 sm:mb-6">
               Blog
             </h1>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+            <p className="text-base sm:text-xl text-gray-300 max-w-3xl mx-auto">
               Articulos, guias y tendencias sobre tecnologia aplicada al sector salud.
               Mantente al dia con las ultimas novedades.
             </p>
@@ -120,15 +120,15 @@ export default function BlogPage() {
       </section>
 
       {/* Featured Post */}
-      <section className="py-16 bg-white">
+      <section className="py-8 sm:py-16 bg-white">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <h2 className="text-sm font-semibold text-[#71C648] uppercase tracking-wider mb-6">
+          <h2 className="text-sm font-semibold text-[#71C648] uppercase tracking-wider mb-4 sm:mb-6">
             Articulo Destacado
           </h2>
           <Link href={`/blog/${featuredPost.slug}`} className="group block">
-            <article className="grid lg:grid-cols-2 gap-8 items-center bg-[#f8f9fa] rounded-3xl overflow-hidden hover:shadow-xl transition-all duration-300">
+            <article className="grid lg:grid-cols-2 gap-0 lg:gap-8 items-center bg-[#f8f9fa] rounded-2xl sm:rounded-3xl overflow-hidden hover:shadow-xl transition-all duration-300">
               {/* Image */}
-              <div className="h-64 lg:h-full min-h-[300px] bg-gradient-to-br from-[#194973] to-[#71C648] relative">
+              <div className="h-48 sm:h-64 lg:h-full lg:min-h-[300px] bg-gradient-to-br from-[#194973] to-[#71C648] relative">
                 <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors" />
                 <div className="absolute bottom-6 left-6">
                   <span className="bg-[#71C648] text-white px-3 py-1 rounded-full text-sm font-medium">
@@ -138,16 +138,16 @@ export default function BlogPage() {
               </div>
 
               {/* Content */}
-              <div className="p-8 lg:pr-12">
-                <div className="flex items-center gap-4 text-sm text-[#5A6D6D] mb-4">
+              <div className="p-5 sm:p-8 lg:pr-12">
+                <div className="flex items-center gap-4 text-sm text-[#5A6D6D] mb-3 sm:mb-4">
                   <span>{featuredPost.date}</span>
                   <span>•</span>
                   <span>{featuredPost.readTime} lectura</span>
                 </div>
-                <h3 className="text-2xl md:text-3xl font-bold text-[#194973] mb-4 group-hover:text-[#71C648] transition-colors">
+                <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-[#194973] mb-3 sm:mb-4 group-hover:text-[#71C648] transition-colors">
                   {featuredPost.title}
                 </h3>
-                <p className="text-lg text-[#5A6D6D] mb-6 leading-relaxed">
+                <p className="text-base sm:text-lg text-[#5A6D6D] mb-4 sm:mb-6 leading-relaxed">
                   {featuredPost.excerpt}
                 </p>
                 <div className="flex items-center gap-4">
@@ -170,9 +170,9 @@ export default function BlogPage() {
       </section>
 
       {/* Main Content */}
-      <section className="py-16 bg-[#f8f9fa]">
+      <section className="py-8 sm:py-16 bg-[#f8f9fa]">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-4 gap-12">
+          <div className="grid lg:grid-cols-4 gap-8 lg:gap-12">
             {/* Posts Grid */}
             <div className="lg:col-span-3">
               <h2 className="text-2xl font-bold text-[#194973] mb-8">

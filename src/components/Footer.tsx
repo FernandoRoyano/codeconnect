@@ -137,12 +137,12 @@ export default function Footer() {
         </div>
 
         {/* Separador y copyright */}
-        <div className="mt-12 pt-8 border-t border-gray-600">
+        <div className="mt-8 sm:mt-12 pt-6 sm:pt-8 border-t border-gray-600">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <p className="text-gray-400 text-sm">
+            <p className="text-gray-400 text-sm text-center md:text-left">
               &copy; {new Date().getFullYear()} CodeConnect. Todos los derechos reservados.
             </p>
-            <div className="flex space-x-6">
+            <div className="flex flex-wrap justify-center gap-4 sm:gap-6">
               {footerNavigation.legal.map((item) => (
                 <Link
                   key={item.name}

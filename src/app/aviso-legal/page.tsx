@@ -1,10 +1,10 @@
 export default function AvisoLegalPage() {
   return (
     <>
-      <section className="pt-32 pb-16 bg-gradient-to-br from-[#194973] to-[#0f3150]">
+      <section className="pt-28 sm:pt-32 pb-12 sm:pb-16 bg-gradient-to-br from-[#194973] to-[#0f3150]">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4">
               Aviso Legal
             </h1>
             <p className="text-gray-300">

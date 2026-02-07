@@ -665,7 +665,7 @@ export default function PresupuestoPage() {
 
     return (
       <>
-        <section className="pt-32 pb-16 bg-gradient-to-br from-[#194973] to-[#0f3150] min-h-screen">
+        <section className="pt-28 sm:pt-32 pb-16 bg-gradient-to-br from-[#194973] to-[#0f3150] min-h-screen">
           <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
             {/* Header */}
             <div className="text-center mb-8">
@@ -685,15 +685,15 @@ export default function PresupuestoPage() {
             {/* Presupuesto Card */}
             <div className="bg-white rounded-3xl shadow-2xl overflow-hidden">
               {/* Card Header */}
-              <div className="bg-gradient-to-r from-[#194973] to-[#0f3150] p-6 text-white">
-                <div className="flex justify-between items-start">
+              <div className="bg-gradient-to-r from-[#194973] to-[#0f3150] p-4 sm:p-6 text-white">
+                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2 sm:gap-4">
                   <div>
-                    <h2 className="text-xl font-bold">{tipoProyectoData?.title}</h2>
+                    <h2 className="text-lg sm:text-xl font-bold">{tipoProyectoData?.title}</h2>
                     <p className="text-gray-300 text-sm">{tipoProyectoData?.description}</p>
                   </div>
-                  <div className="text-right">
+                  <div className="sm:text-right">
                     <span className="text-sm text-gray-300">Precio base</span>
-                    <div className="text-2xl font-bold">
+                    <div className="text-xl sm:text-2xl font-bold">
                       {presupuesto.precioBase > 0 ? formatearPrecio(presupuesto.precioBase) : 'A consultar'}
                     </div>
                   </div>
@@ -785,9 +785,9 @@ export default function PresupuestoPage() {
 
                 {/* Total */}
                 <div className="border-t-2 border-[#194973] pt-4 mt-6">
-                  <div className="flex justify-between items-center">
-                    <span className="text-lg font-bold text-[#194973]">Total estimado</span>
-                    <span className="text-3xl font-bold text-[#71C648]">
+                  <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-1">
+                    <span className="text-base sm:text-lg font-bold text-[#194973]">Total estimado</span>
+                    <span className="text-2xl sm:text-3xl font-bold text-[#71C648]">
                       {formData.tipoProyecto === 'otro' ? 'A consultar' : formatearPrecio(presupuesto.total)}
                     </span>
                   </div>
@@ -844,16 +844,16 @@ export default function PresupuestoPage() {
   return (
     <>
       {/* Hero Section */}
-      <section className="pt-32 pb-8 bg-gradient-to-br from-[#194973] to-[#0f3150]">
+      <section className="pt-28 sm:pt-32 pb-6 sm:pb-8 bg-gradient-to-br from-[#194973] to-[#0f3150]">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <span className="inline-block bg-[#71C648]/20 text-[#71C648] px-4 py-2 rounded-full text-sm font-medium mb-6">
+            <span className="inline-block bg-[#71C648]/20 text-[#71C648] px-4 py-2 rounded-full text-sm font-medium mb-4 sm:mb-6">
               Sin compromiso
             </span>
-            <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-3 sm:mb-4">
               Calcula tu presupuesto
             </h1>
-            <p className="text-xl text-gray-300 max-w-2xl mx-auto">
+            <p className="text-base sm:text-xl text-gray-300 max-w-2xl mx-auto">
               Responde unas preguntas sencillas y te preparamos una propuesta
               personalizada en menos de 24 horas.
             </p>
@@ -862,13 +862,13 @@ export default function PresupuestoPage() {
       </section>
 
       {/* Progress Bar */}
-      <section className="bg-[#194973] pb-12">
+      <section className="bg-[#194973] pb-8 sm:pb-12">
         <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center">
             {[1, 2, 3, 4, 5].map((step) => (
               <div key={step} className="flex items-center">
                 <div
-                  className={`w-10 h-10 rounded-full flex items-center justify-center font-bold transition-all ${
+                  className={`w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center font-bold text-sm sm:text-base transition-all ${
                     step < currentStep
                       ? "bg-[#71C648] text-white"
                       : step === currentStep
@@ -877,7 +877,7 @@ export default function PresupuestoPage() {
                   }`}
                 >
                   {step < currentStep ? (
-                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
+                    <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
                     </svg>
                   ) : (
@@ -886,7 +886,7 @@ export default function PresupuestoPage() {
                 </div>
                 {step < 5 && (
                   <div
-                    className={`w-12 sm:w-20 h-1 mx-2 rounded ${
+                    className={`w-8 sm:w-20 h-1 mx-1 sm:mx-2 rounded ${
                       step < currentStep ? "bg-[#71C648]" : "bg-white/20"
                     }`}
                   />
@@ -894,7 +894,7 @@ export default function PresupuestoPage() {
               </div>
             ))}
           </div>
-          <div className="flex justify-between mt-2 text-xs sm:text-sm text-gray-400">
+          <div className="hidden sm:flex justify-between mt-2 text-xs sm:text-sm text-gray-400">
             <span>Proyecto</span>
             <span>Funciones</span>
             <span>Integraciones</span>
@@ -905,7 +905,7 @@ export default function PresupuestoPage() {
       </section>
 
       {/* Form Steps */}
-      <section className="py-16 bg-[#f8f9fa] min-h-[60vh]">
+      <section className="py-8 sm:py-16 bg-[#f8f9fa] min-h-[60vh]">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
           {/* Step 1: Tipo de proyecto */}
           {currentStep === 1 && (
@@ -1340,20 +1340,20 @@ export default function PresupuestoPage() {
       </section>
 
       {/* Trust Section */}
-      <section className="py-12 bg-white border-t">
+      <section className="py-8 sm:py-12 bg-white border-t">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-3 gap-8 text-center">
+          <div className="grid grid-cols-3 gap-4 sm:gap-8 text-center">
             <div>
-              <div className="text-3xl font-bold text-[#71C648] mb-1">24h</div>
-              <div className="text-sm text-[#5A6D6D]">Respuesta garantizada</div>
+              <div className="text-2xl sm:text-3xl font-bold text-[#71C648] mb-1">24h</div>
+              <div className="text-xs sm:text-sm text-[#5A6D6D]">Respuesta garantizada</div>
             </div>
             <div>
-              <div className="text-3xl font-bold text-[#71C648] mb-1">100%</div>
-              <div className="text-sm text-[#5A6D6D]">Sin compromiso</div>
+              <div className="text-2xl sm:text-3xl font-bold text-[#71C648] mb-1">100%</div>
+              <div className="text-xs sm:text-sm text-[#5A6D6D]">Sin compromiso</div>
             </div>
             <div>
-              <div className="text-3xl font-bold text-[#71C648] mb-1">Gratis</div>
-              <div className="text-sm text-[#5A6D6D]">Presupuesto detallado</div>
+              <div className="text-2xl sm:text-3xl font-bold text-[#71C648] mb-1">Gratis</div>
+              <div className="text-xs sm:text-sm text-[#5A6D6D]">Presupuesto detallado</div>
             </div>
           </div>
         </div>

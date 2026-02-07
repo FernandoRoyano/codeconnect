@@ -129,31 +129,31 @@ export default function CookieBanner() {
                 </button>
               </div>
 
-              <div className="space-y-4 mb-6">
+              <div className="space-y-3 sm:space-y-4 mb-6">
                 {/* Cookies necesarias */}
-                <div className="flex items-center justify-between p-4 bg-gray-50 rounded-xl">
-                  <div>
-                    <h4 className="font-semibold text-[#194973]">Cookies necesarias</h4>
-                    <p className="text-sm text-[#5A6D6D]">
+                <div className="flex items-center justify-between gap-3 p-3 sm:p-4 bg-gray-50 rounded-xl">
+                  <div className="min-w-0">
+                    <h4 className="font-semibold text-[#194973] text-sm sm:text-base">Cookies necesarias</h4>
+                    <p className="text-xs sm:text-sm text-[#5A6D6D]">
                       Esenciales para el funcionamiento del sitio. No se pueden desactivar.
                     </p>
                   </div>
-                  <div className="w-12 h-6 bg-[#71C648] rounded-full flex items-center justify-end px-1">
+                  <div className="w-12 h-6 bg-[#71C648] rounded-full flex items-center justify-end px-1 flex-shrink-0">
                     <div className="w-4 h-4 bg-white rounded-full" />
                   </div>
                 </div>
 
                 {/* Cookies analiticas */}
-                <div className="flex items-center justify-between p-4 bg-gray-50 rounded-xl">
-                  <div>
-                    <h4 className="font-semibold text-[#194973]">Cookies analiticas</h4>
-                    <p className="text-sm text-[#5A6D6D]">
+                <div className="flex items-center justify-between gap-3 p-3 sm:p-4 bg-gray-50 rounded-xl">
+                  <div className="min-w-0">
+                    <h4 className="font-semibold text-[#194973] text-sm sm:text-base">Cookies analiticas</h4>
+                    <p className="text-xs sm:text-sm text-[#5A6D6D]">
                       Nos ayudan a entender como usas el sitio para mejorarlo.
                     </p>
                   </div>
                   <button
                     onClick={() => setPreferences(p => ({ ...p, analytics: !p.analytics }))}
-                    className={`w-12 h-6 rounded-full flex items-center px-1 transition-colors ${
+                    className={`w-12 h-6 rounded-full flex items-center px-1 transition-colors flex-shrink-0 ${
                       preferences.analytics ? "bg-[#71C648] justify-end" : "bg-gray-300 justify-start"
                     }`}
                   >
@@ -162,16 +162,16 @@ export default function CookieBanner() {
                 </div>
 
                 {/* Cookies de marketing */}
-                <div className="flex items-center justify-between p-4 bg-gray-50 rounded-xl">
-                  <div>
-                    <h4 className="font-semibold text-[#194973]">Cookies de marketing</h4>
-                    <p className="text-sm text-[#5A6D6D]">
+                <div className="flex items-center justify-between gap-3 p-3 sm:p-4 bg-gray-50 rounded-xl">
+                  <div className="min-w-0">
+                    <h4 className="font-semibold text-[#194973] text-sm sm:text-base">Cookies de marketing</h4>
+                    <p className="text-xs sm:text-sm text-[#5A6D6D]">
                       Permiten mostrarte anuncios relevantes y medir su efectividad.
                     </p>
                   </div>
                   <button
                     onClick={() => setPreferences(p => ({ ...p, marketing: !p.marketing }))}
-                    className={`w-12 h-6 rounded-full flex items-center px-1 transition-colors ${
+                    className={`w-12 h-6 rounded-full flex items-center px-1 transition-colors flex-shrink-0 ${
                       preferences.marketing ? "bg-[#71C648] justify-end" : "bg-gray-300 justify-start"
                     }`}
                   >

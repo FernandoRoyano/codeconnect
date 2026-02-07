@@ -189,7 +189,7 @@ function ProposalForm({ form, setForm, onGenerate }: {
       </div>
 
       {/* Seccion 1: Tu negocio */}
-      <div className="bg-white rounded-2xl p-7 border border-gray-200 flex flex-col gap-5">
+      <div className="bg-white rounded-2xl p-5 sm:p-7 border border-gray-200 flex flex-col gap-5">
         <h3 className="text-lg font-bold text-[#194973] flex items-center gap-2 m-0">
           <span className="bg-[#71C648] text-white w-7 h-7 rounded-lg inline-flex items-center justify-center text-sm font-extrabold">1</span>
           Tu negocio
@@ -201,7 +201,7 @@ function ProposalForm({ form, setForm, onGenerate }: {
       </div>
 
       {/* Seccion 2: Cliente */}
-      <div className="bg-white rounded-2xl p-7 border border-gray-200 flex flex-col gap-5">
+      <div className="bg-white rounded-2xl p-5 sm:p-7 border border-gray-200 flex flex-col gap-5">
         <h3 className="text-lg font-bold text-[#194973] flex items-center gap-2 m-0">
           <span className="bg-[#71C648] text-white w-7 h-7 rounded-lg inline-flex items-center justify-center text-sm font-extrabold">2</span>
           Datos del cliente
@@ -223,7 +223,7 @@ function ProposalForm({ form, setForm, onGenerate }: {
       </div>
 
       {/* Seccion 3: Proyecto */}
-      <div className="bg-white rounded-2xl p-7 border border-gray-200 flex flex-col gap-5">
+      <div className="bg-white rounded-2xl p-5 sm:p-7 border border-gray-200 flex flex-col gap-5">
         <h3 className="text-lg font-bold text-[#194973] flex items-center gap-2 m-0">
           <span className="bg-[#71C648] text-white w-7 h-7 rounded-lg inline-flex items-center justify-center text-sm font-extrabold">3</span>
           Detalles del proyecto
@@ -280,7 +280,7 @@ function ProposalForm({ form, setForm, onGenerate }: {
       </div>
 
       {/* Seccion 4: Economico */}
-      <div className="bg-white rounded-2xl p-7 border border-gray-200 flex flex-col gap-5">
+      <div className="bg-white rounded-2xl p-5 sm:p-7 border border-gray-200 flex flex-col gap-5">
         <h3 className="text-lg font-bold text-[#194973] flex items-center gap-2 m-0">
           <span className="bg-[#71C648] text-white w-7 h-7 rounded-lg inline-flex items-center justify-center text-sm font-extrabold">4</span>
           Condiciones economicas
@@ -370,18 +370,18 @@ function ProposalView({ form, onBack }: { form: FormState; onBack: () => void })
   return (
     <div className="flex flex-col">
       {/* Header */}
-      <div className="bg-gradient-to-br from-[#194973] to-[#0f3150] rounded-t-2xl px-9 pt-10 pb-8 text-white relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-[200px] h-[200px] bg-[radial-gradient(circle,rgba(113,198,72,0.15)_0%,transparent_70%)] rounded-bl-full" />
-        <div className="flex justify-between items-start relative">
+      <div className="bg-gradient-to-br from-[#194973] to-[#0f3150] rounded-t-2xl px-5 sm:px-9 pt-8 sm:pt-10 pb-6 sm:pb-8 text-white relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-[150px] h-[150px] sm:w-[200px] sm:h-[200px] bg-[radial-gradient(circle,rgba(113,198,72,0.15)_0%,transparent_70%)] rounded-bl-full" />
+        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start relative gap-3">
           <div>
-            <div className="flex items-center gap-2 mb-4">
+            <div className="flex items-center gap-2 mb-3 sm:mb-4">
               <div className="w-6 h-6 rounded-full bg-[#71C648]" />
               <div className="w-6 h-6 rounded-full bg-white/30 -ml-3" />
-              <span className="text-xl font-extrabold ml-1">{form.businessName || "CodeConnect"}</span>
+              <span className="text-lg sm:text-xl font-extrabold ml-1">{form.businessName || "CodeConnect"}</span>
             </div>
             <div className="text-xs text-[#71C648] font-semibold tracking-[0.1em] uppercase">Propuesta de servicios</div>
           </div>
-          <div className="text-right text-sm text-white/50">
+          <div className="sm:text-right text-sm text-white/50">
             <div className="font-bold text-[#71C648] text-sm mb-1">{proposalId}</div>
             <div>{proposalDate}</div>
           </div>
@@ -389,7 +389,7 @@ function ProposalView({ form, onBack }: { form: FormState; onBack: () => void })
       </div>
 
       {/* Body */}
-      <div className="bg-white px-9 py-8 rounded-b-2xl border border-gray-200 border-t-0 flex flex-col gap-8">
+      <div className="bg-white px-5 sm:px-9 py-6 sm:py-8 rounded-b-2xl border border-gray-200 border-t-0 flex flex-col gap-6 sm:gap-8">
 
         {/* Info cliente */}
         <div className="bg-[#f8f9fa] rounded-2xl p-5 flex flex-col sm:flex-row justify-between gap-4">
@@ -449,10 +449,10 @@ function ProposalView({ form, onBack }: { form: FormState; onBack: () => void })
         </div>
 
         {/* Revisiones */}
-        <div className="bg-gradient-to-br from-[#f8f9fa] to-gray-100 rounded-2xl p-6 border border-gray-200">
+        <div className="bg-gradient-to-br from-[#f8f9fa] to-gray-100 rounded-2xl p-4 sm:p-6 border border-gray-200">
           <div className="flex justify-between items-center flex-wrap gap-3">
             <div>
-              <div className="font-extrabold text-[#194973] text-lg">Rondas de revision incluidas</div>
+              <div className="font-extrabold text-[#194973] text-base sm:text-lg">Rondas de revision incluidas</div>
               <div className="text-[#5A6D6D] text-sm mt-1">
                 Revisiones adicionales: {form.extraRevisionPrice ? `${curr}${form.extraRevisionPrice}/revision` : "a consultar"}
               </div>
@@ -467,20 +467,20 @@ function ProposalView({ form, onBack }: { form: FormState; onBack: () => void })
         {/* Inversion */}
         <div>
           <div className={sectionTitleClass}>Inversion</div>
-          <div className="text-center py-6">
+          <div className="text-center py-4 sm:py-6">
             <div className="text-xs text-[#5A6D6D] font-semibold uppercase tracking-[0.1em]">Precio total</div>
-            <div className="text-5xl font-black text-[#194973] mt-1">{curr}{total.toLocaleString("es-ES")}</div>
+            <div className="text-3xl sm:text-5xl font-black text-[#194973] mt-1">{curr}{total.toLocaleString("es-ES")}</div>
             <div className="text-sm text-[#5A6D6D] mt-1">IVA no incluido</div>
           </div>
-          <div className={`grid gap-3 mt-4`} style={{ gridTemplateColumns: `repeat(${payment.splits.length}, 1fr)` }}>
+          <div className={`grid grid-cols-1 gap-3 mt-4 ${payment.splits.length === 2 ? "sm:grid-cols-2" : "sm:grid-cols-3"}`}>
             {payment.splits.map((s, i) => (
-              <div key={i} className={`rounded-2xl p-5 text-center ${
+              <div key={i} className={`rounded-xl sm:rounded-2xl p-4 sm:p-5 text-center ${
                 i === 0 ? "bg-[#194973] text-white" : "bg-[#f8f9fa] text-[#194973]"
               }`}>
-                <div className={`text-xs font-bold uppercase tracking-[0.1em] mb-2 ${
+                <div className={`text-xs font-bold uppercase tracking-[0.1em] mb-1 sm:mb-2 ${
                   i === 0 ? "text-[#71C648]" : "text-[#5A6D6D]"
                 }`}>{s.label}</div>
-                <div className="text-2xl font-black">{curr}{((total * s.pct) / 100).toLocaleString("es-ES")}</div>
+                <div className="text-xl sm:text-2xl font-black">{curr}{((total * s.pct) / 100).toLocaleString("es-ES")}</div>
                 <div className={`text-xs mt-1 ${i === 0 ? "text-white/50" : "text-[#5A6D6D]"}`}>{s.pct}% del total</div>
               </div>
             ))}
@@ -530,7 +530,7 @@ function ProposalView({ form, onBack }: { form: FormState; onBack: () => void })
 
         {/* Firma */}
         {!accepted ? (
-          <div className="bg-[#f8f9fa] rounded-2xl p-7 border-2 border-gray-200">
+          <div className="bg-[#f8f9fa] rounded-2xl p-5 sm:p-7 border-2 border-gray-200">
             <div className="text-lg font-extrabold text-[#194973] mb-4">Aceptacion del presupuesto</div>
             <label className="flex gap-3 items-start cursor-pointer mb-5">
               <input
