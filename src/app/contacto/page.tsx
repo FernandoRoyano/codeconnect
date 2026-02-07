@@ -89,16 +89,16 @@ export default function ContactoPage() {
   return (
     <>
       {/* Hero Section */}
-      <section className="pt-32 pb-16 bg-gradient-to-br from-[#194973] to-[#0f3150]">
+      <section className="pt-28 sm:pt-32 pb-12 sm:pb-16 bg-gradient-to-br from-[#194973] to-[#0f3150]">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <span className="inline-block bg-[#71C648]/20 text-[#71C648] px-4 py-2 rounded-full text-sm font-medium mb-6">
+            <span className="inline-block bg-[#71C648]/20 text-[#71C648] px-4 py-2 rounded-full text-sm font-medium mb-4 sm:mb-6">
               Hablemos
             </span>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 sm:mb-6">
               Contacto
             </h1>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+            <p className="text-base sm:text-xl text-gray-300 max-w-3xl mx-auto">
               Tienes un proyecto en mente? Cuentanos y te ayudaremos a hacerlo realidad.
               Sin compromiso.
             </p>
@@ -107,9 +107,9 @@ export default function ContactoPage() {
       </section>
 
       {/* Contact Info */}
-      <section className="py-12 bg-white border-b">
+      <section className="py-8 sm:py-12 bg-white border-b">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8">
             {contactInfo.map((info, index) => (
               <div key={index} className="flex items-center gap-4">
                 <div className="w-14 h-14 bg-[#71C648]/10 rounded-xl flex items-center justify-center text-[#71C648]">
@@ -135,9 +135,9 @@ export default function ContactoPage() {
       </section>
 
       {/* Form Section */}
-      <section className="py-24 bg-[#f8f9fa]">
+      <section className="py-12 sm:py-24 bg-[#f8f9fa]">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-16">
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-16">
             {/* Form */}
             <div>
               <h2 className="text-3xl font-bold text-[#194973] mb-2">

@@ -82,20 +82,20 @@ export default function Home() {
     <>
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center bg-gradient-to-br from-[#194973] to-[#0f3150] overflow-hidden">
-        <div className="absolute top-20 right-0 w-96 h-96 bg-[#71C648]/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-20 left-0 w-96 h-96 bg-[#71C648]/5 rounded-full blur-3xl" />
+        <div className="absolute top-20 right-0 w-48 h-48 sm:w-72 sm:h-72 lg:w-96 lg:h-96 bg-[#71C648]/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-20 left-0 w-48 h-48 sm:w-72 sm:h-72 lg:w-96 lg:h-96 bg-[#71C648]/5 rounded-full blur-3xl" />
 
-        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-32">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-24 pb-16 sm:py-32">
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             <div>
-              <span className="inline-block bg-[#71C648]/20 text-[#71C648] px-4 py-2 rounded-full text-sm font-medium mb-6">
+              <span className="inline-block bg-[#71C648]/20 text-[#71C648] px-3 py-1.5 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm font-medium mb-4 sm:mb-6">
                 Webs, CRMs y facturacion para salud y fitness
               </span>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-4 sm:mb-6">
                 Tu negocio merece herramientas que{" "}
                 <span className="text-[#71C648]">funcionen de verdad</span>
               </h1>
-              <p className="text-xl text-gray-300 mb-8 leading-relaxed">
+              <p className="text-base sm:text-xl text-gray-300 mb-6 sm:mb-8 leading-relaxed">
                 Hacemos webs, sistemas de gestion y facturacion a medida para clinicas, centros de salud y centros de entrenamiento.
                 <br /><br />
                 Si estas empezando, te lo montamos todo bien desde el dia uno.
@@ -153,9 +153,9 @@ export default function Home() {
       </section>
 
       {/* Problem/Solution Section */}
-      <section className="py-20 bg-white">
+      <section className="py-12 sm:py-20 bg-white">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             <div>
               <h2 className="text-3xl md:text-4xl font-bold text-[#194973] mb-6">
                 Sabemos lo que es montar un negocio
@@ -205,14 +205,14 @@ export default function Home() {
       </section>
 
       {/* Services Section */}
-      <section id="servicios" className="py-20 bg-[#f8f9fa]">
+      <section id="servicios" className="py-12 sm:py-20 bg-[#f8f9fa]">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionHeading
             title="Que hacemos"
             subtitle="Herramientas sencillas que resuelven problemas reales"
           />
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8">
             {services.map((service, index) => (
               <ServiceCard
                 key={index}
@@ -228,7 +228,7 @@ export default function Home() {
       </section>
 
       {/* Why Choose Us Section */}
-      <section className="py-20 bg-white">
+      <section className="py-12 sm:py-20 bg-white">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionHeading
             title="Por que trabajar con nosotros"
@@ -259,7 +259,7 @@ export default function Home() {
       </section>
 
       {/* How it works */}
-      <section className="py-20 bg-[#194973]">
+      <section className="py-12 sm:py-20 bg-[#194973]">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionHeading
             title="Como funciona"
@@ -267,7 +267,7 @@ export default function Home() {
             light
           />
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid sm:grid-cols-3 gap-8">
             {[
               {
                 step: "1",
@@ -298,7 +298,7 @@ export default function Home() {
       </section>
 
       {/* Brand Section - Company Presence */}
-      <section className="py-20 bg-white overflow-hidden">
+      <section className="py-12 sm:py-20 bg-white overflow-hidden">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
@@ -316,18 +316,18 @@ export default function Home() {
                 Llevamos anos trabajando con clinicas, gimnasios y centros de bienestar.
                 Conocemos sus problemas reales y sabemos como resolverlos con tecnologia que se adapta a ellos.
               </p>
-              <div className="flex gap-8">
+              <div className="grid grid-cols-3 gap-4 sm:gap-8">
                 <div>
-                  <div className="text-3xl font-bold text-[#71C648]">50+</div>
-                  <div className="text-sm text-[#5A6D6D]">Proyectos entregados</div>
+                  <div className="text-2xl sm:text-3xl font-bold text-[#71C648]">50+</div>
+                  <div className="text-xs sm:text-sm text-[#5A6D6D]">Proyectos entregados</div>
                 </div>
                 <div>
-                  <div className="text-3xl font-bold text-[#71C648]">98%</div>
-                  <div className="text-sm text-[#5A6D6D]">Clientes satisfechos</div>
+                  <div className="text-2xl sm:text-3xl font-bold text-[#71C648]">98%</div>
+                  <div className="text-xs sm:text-sm text-[#5A6D6D]">Clientes satisfechos</div>
                 </div>
                 <div>
-                  <div className="text-3xl font-bold text-[#71C648]">15+</div>
-                  <div className="text-sm text-[#5A6D6D]">Anos de experiencia</div>
+                  <div className="text-2xl sm:text-3xl font-bold text-[#71C648]">15+</div>
+                  <div className="text-xs sm:text-sm text-[#5A6D6D]">Anos de experiencia</div>
                 </div>
               </div>
             </div>
@@ -341,29 +341,29 @@ export default function Home() {
                 />
                 {/* Overlay with branding */}
                 <div className="absolute inset-0 bg-gradient-to-t from-[#194973]/80 via-transparent to-transparent flex items-end">
-                  <div className="p-6 text-white">
+                  <div className="p-4 sm:p-6 text-white">
                     <div className="flex items-center gap-2 mb-2">
-                      <span className="text-2xl font-bold">Code</span>
+                      <span className="text-xl sm:text-2xl font-bold">Code</span>
                       <div className="flex">
-                        <div className="w-5 h-5 bg-[#71C648] rounded-full"></div>
-                        <div className="w-5 h-5 bg-[#194973] border-2 border-white rounded-full -ml-2"></div>
+                        <div className="w-4 h-4 sm:w-5 sm:h-5 bg-[#71C648] rounded-full"></div>
+                        <div className="w-4 h-4 sm:w-5 sm:h-5 bg-[#194973] border-2 border-white rounded-full -ml-2"></div>
                       </div>
-                      <span className="text-2xl font-bold">nnect</span>
+                      <span className="text-xl sm:text-2xl font-bold">nnect</span>
                     </div>
-                    <p className="text-sm text-gray-200">Conectando ideas, creando soluciones</p>
+                    <p className="text-xs sm:text-sm text-gray-200">Conectando ideas, creando soluciones</p>
                   </div>
                 </div>
               </div>
-              {/* Decorative elements */}
-              <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-[#71C648]/20 rounded-2xl -z-10"></div>
-              <div className="absolute -top-6 -left-6 w-24 h-24 bg-[#194973]/10 rounded-2xl -z-10"></div>
+              {/* Decorative elements - hidden on mobile to prevent overflow */}
+              <div className="hidden sm:block absolute -bottom-6 -right-6 w-32 h-32 bg-[#71C648]/20 rounded-2xl -z-10"></div>
+              <div className="hidden sm:block absolute -top-6 -left-6 w-24 h-24 bg-[#194973]/10 rounded-2xl -z-10"></div>
             </div>
           </div>
         </div>
       </section>
 
       {/* CTA Section with background */}
-      <section className="py-24 relative overflow-hidden">
+      <section className="py-16 sm:py-24 relative overflow-hidden">
         {/* Background with overlay */}
         <div className="absolute inset-0">
           <img
@@ -375,7 +375,7 @@ export default function Home() {
         </div>
 
         <div className="relative mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-6">
             Tienes un proyecto en mente?
           </h2>
           <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">

@@ -124,16 +124,16 @@ export default function PortfolioPage() {
   return (
     <>
       {/* Hero Section */}
-      <section className="pt-32 pb-16 bg-gradient-to-br from-[#194973] to-[#0f3150]">
+      <section className="pt-28 sm:pt-32 pb-12 sm:pb-16 bg-gradient-to-br from-[#194973] to-[#0f3150]">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <span className="inline-block bg-[#71C648]/20 text-[#71C648] px-4 py-2 rounded-full text-sm font-medium mb-6">
+            <span className="inline-block bg-[#71C648]/20 text-[#71C648] px-4 py-2 rounded-full text-sm font-medium mb-4 sm:mb-6">
               Casos de Exito
             </span>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 sm:mb-6">
               Nuestro Portfolio
             </h1>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+            <p className="text-base sm:text-xl text-gray-300 max-w-3xl mx-auto">
               Proyectos reales que han transformado la operativa de clinicas, gimnasios y centros de bienestar.
               Cada solucion es unica y esta disenada para resolver retos especificos.
             </p>
@@ -142,13 +142,13 @@ export default function PortfolioPage() {
       </section>
 
       {/* Filter (visual only - would need client component for functionality) */}
-      <section className="py-8 bg-white border-b">
+      <section className="py-6 sm:py-8 bg-white border-b">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-wrap justify-center gap-4">
+          <div className="flex flex-wrap justify-center gap-2 sm:gap-4">
             {categories.map((category, index) => (
               <button
                 key={index}
-                className={`px-6 py-2 rounded-full font-medium transition-colors ${
+                className={`px-4 sm:px-6 py-2 rounded-full text-sm sm:text-base font-medium transition-colors ${
                   index === 0
                     ? "bg-[#194973] text-white"
                     : "bg-gray-100 text-[#5A6D6D] hover:bg-[#71C648] hover:text-white"
@@ -162,9 +162,9 @@ export default function PortfolioPage() {
       </section>
 
       {/* Projects Grid */}
-      <section className="py-24 bg-[#f8f9fa]">
+      <section className="py-12 sm:py-24 bg-[#f8f9fa]">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {projects.map((project) => (
               <article
                 key={project.id}
@@ -243,31 +243,31 @@ export default function PortfolioPage() {
       </section>
 
       {/* Stats Section */}
-      <section className="py-16 bg-[#194973]">
+      <section className="py-12 sm:py-16 bg-[#194973]">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 text-center">
             <div>
-              <div className="text-4xl md:text-5xl font-bold text-[#71C648] mb-2">12+</div>
-              <div className="text-gray-300">Proyectos Entregados</div>
+              <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#71C648] mb-1 sm:mb-2">12+</div>
+              <div className="text-sm sm:text-base text-gray-300">Proyectos Entregados</div>
             </div>
             <div>
-              <div className="text-4xl md:text-5xl font-bold text-[#71C648] mb-2">10+</div>
-              <div className="text-gray-300">Clientes Activos</div>
+              <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#71C648] mb-1 sm:mb-2">10+</div>
+              <div className="text-sm sm:text-base text-gray-300">Clientes Activos</div>
             </div>
             <div>
-              <div className="text-4xl md:text-5xl font-bold text-[#71C648] mb-2">100%</div>
-              <div className="text-gray-300">Satisfaccion</div>
+              <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#71C648] mb-1 sm:mb-2">100%</div>
+              <div className="text-sm sm:text-base text-gray-300">Satisfaccion</div>
             </div>
             <div>
-              <div className="text-4xl md:text-5xl font-bold text-[#71C648] mb-2">5+</div>
-              <div className="text-gray-300">Anos Experiencia</div>
+              <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#71C648] mb-1 sm:mb-2">5+</div>
+              <div className="text-sm sm:text-base text-gray-300">Anos Experiencia</div>
             </div>
           </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="py-24 bg-white">
+      <section className="py-12 sm:py-24 bg-white">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center">
           <SectionHeading
             title="Tu proyecto puede ser el siguiente"

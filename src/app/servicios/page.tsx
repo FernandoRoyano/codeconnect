@@ -97,16 +97,16 @@ export default function ServiciosPage() {
   return (
     <>
       {/* Hero Section */}
-      <section className="pt-32 pb-16 bg-gradient-to-br from-[#194973] to-[#0f3150]">
+      <section className="pt-28 sm:pt-32 pb-12 sm:pb-16 bg-gradient-to-br from-[#194973] to-[#0f3150]">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <span className="inline-block bg-[#71C648]/20 text-[#71C648] px-4 py-2 rounded-full text-sm font-medium mb-6">
+            <span className="inline-block bg-[#71C648]/20 text-[#71C648] px-4 py-2 rounded-full text-sm font-medium mb-4 sm:mb-6">
               Lo que hacemos
             </span>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 sm:mb-6">
               Servicios
             </h1>
-            <p className="text-xl text-gray-300 max-w-2xl mx-auto">
+            <p className="text-base sm:text-xl text-gray-300 max-w-2xl mx-auto">
               Webs, gestion de clientes y facturacion. Todo a medida, sin funciones
               que no necesitas y sin complicaciones.
             </p>
@@ -119,10 +119,10 @@ export default function ServiciosPage() {
         <section
           key={service.id}
           id={service.id}
-          className={`py-20 ${index % 2 === 0 ? "bg-white" : "bg-[#f8f9fa]"}`}
+          className={`py-12 sm:py-20 ${index % 2 === 0 ? "bg-white" : "bg-[#f8f9fa]"}`}
         >
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className={`grid lg:grid-cols-2 gap-12 items-center`}>
+            <div className={`grid lg:grid-cols-2 gap-8 lg:gap-12 items-center`}>
               {/* Content */}
               <div className={index % 2 === 1 ? "lg:order-2" : ""}>
                 <span className="inline-block bg-[#71C648]/10 text-[#71C648] px-3 py-1 rounded-full text-sm font-medium mb-4">
@@ -171,8 +171,8 @@ export default function ServiciosPage() {
 
               {/* Visual */}
               <div className={`${index % 2 === 1 ? "lg:order-1" : ""}`}>
-                <div className="bg-gradient-to-br from-[#194973] to-[#71C648] rounded-3xl p-8 aspect-square flex items-center justify-center">
-                  <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 w-full h-full flex items-center justify-center text-white/80">
+                <div className="bg-gradient-to-br from-[#194973] to-[#71C648] rounded-2xl sm:rounded-3xl p-6 sm:p-8 aspect-[3/2] sm:aspect-[4/3] lg:aspect-square flex items-center justify-center">
+                  <div className="bg-white/10 backdrop-blur-sm rounded-xl sm:rounded-2xl p-6 sm:p-8 w-full h-full flex items-center justify-center text-white/80">
                     {service.icon}
                   </div>
                 </div>
@@ -183,9 +183,9 @@ export default function ServiciosPage() {
       ))}
 
       {/* Extras */}
-      <section className="py-20 bg-white">
+      <section className="py-12 sm:py-20 bg-white">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
+          <div className="text-center mb-8 sm:mb-12">
             <h2 className="text-3xl font-bold text-[#194973] mb-4">
               Tambien te ayudamos con...
             </h2>
@@ -194,7 +194,7 @@ export default function ServiciosPage() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-8">
             {[
               {
                 title: "Reserva de citas online",
@@ -231,9 +231,9 @@ export default function ServiciosPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-[#194973]">
+      <section className="py-12 sm:py-20 bg-[#194973]">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4 sm:mb-6">
             No sabes por donde empezar?
           </h2>
           <p className="text-xl text-gray-300 mb-8">

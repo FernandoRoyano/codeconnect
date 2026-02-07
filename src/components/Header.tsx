@@ -24,6 +24,16 @@ export default function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Bloquear scroll del body cuando el menu movil esta abierto
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => { document.body.style.overflow = ""; };
+  }, [mobileMenuOpen]);
+
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
@@ -88,15 +98,15 @@ export default function Header() {
         {/* Mobile Navigation */}
         <div
           className={`md:hidden transition-all duration-300 overflow-hidden ${
-            mobileMenuOpen ? "max-h-96 pb-4" : "max-h-0"
-          } ${!scrolled && mobileMenuOpen ? "bg-[#194973]/95 backdrop-blur-md rounded-b-2xl" : ""}`}
+            mobileMenuOpen ? "max-h-[calc(100vh-5rem)] pb-4" : "max-h-0"
+          } ${mobileMenuOpen ? (scrolled ? "bg-white/95 backdrop-blur-md" : "bg-[#194973]/95 backdrop-blur-md rounded-b-2xl") : ""}`}
         >
-          <div className="space-y-2 pt-2">
+          <div className="space-y-1 pt-2 px-2">
             {navigation.map((item) => (
               <Link
                 key={item.name}
                 href={item.href}
-                className={`block px-4 py-2 rounded-lg font-medium transition-colors ${
+                className={`block px-4 py-3 rounded-lg font-medium transition-colors text-base ${
                   scrolled
                     ? "text-[#194973] hover:text-[#71C648] hover:bg-gray-50"
                     : "text-white hover:text-[#71C648] hover:bg-white/10"
@@ -108,7 +118,7 @@ export default function Header() {
             ))}
             <Link
               href="/presupuesto"
-              className="block mx-4 mt-4 text-center bg-[#71C648] hover:bg-[#5db33a] text-white px-6 py-3 rounded-full font-medium transition-all"
+              className="block mx-2 mt-4 text-center bg-[#71C648] hover:bg-[#5db33a] text-white px-6 py-3.5 rounded-full font-medium transition-all text-base"
               onClick={() => setMobileMenuOpen(false)}
             >
               Solicitar Presupuesto
