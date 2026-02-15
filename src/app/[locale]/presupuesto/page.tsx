@@ -37,8 +37,8 @@ const precioAppAdicional = 6000;
 const tiposProyecto = [
   {
     id: "web",
-    title: "Solo pagina web",
-    description: "Una web profesional para mostrar tu negocio, servicios y contacto. Sin sistema de gestion.",
+    title: "Solo página web",
+    description: "Una web profesional para mostrar tu negocio, servicios y contacto. Sin sistema de gestión.",
     benefit: "Ideal para empezar",
     badge: null,
     complexity: 1,
@@ -51,8 +51,8 @@ const tiposProyecto = [
   },
   {
     id: "crm",
-    title: "Sistema de gestion (CRM)",
-    description: "Para gestionar clientes, citas, historiales y seguimientos. Con o sin web publica.",
+    title: "Sistema de gestión (CRM)",
+    description: "Para gestionar clientes, citas, historiales y seguimientos. Con o sin web pública.",
     benefit: "Organiza tu negocio",
     badge: "Popular",
     complexity: 2,
@@ -65,8 +65,8 @@ const tiposProyecto = [
   },
   {
     id: "crm-facturacion",
-    title: "Gestion + Facturacion",
-    description: "CRM completo mas facturacion, control de cobros e informes financieros.",
+    title: "Gestión + Facturación",
+    description: "CRM completo más facturación, control de cobros e informes financieros.",
     benefit: "Control total de cuentas",
     badge: null,
     complexity: 3,
@@ -80,7 +80,7 @@ const tiposProyecto = [
   {
     id: "app-clientes",
     title: "App para tus clientes",
-    description: "App movil donde tus clientes reservan, ven su historial y se comunican contigo.",
+    description: "App móvil donde tus clientes reservan, ven su historial y se comunican contigo.",
     benefit: "Fideliza clientes",
     badge: null,
     complexity: 3,
@@ -94,8 +94,8 @@ const tiposProyecto = [
   {
     id: "proyecto-completo",
     title: "Proyecto completo",
-    description: "Web + CRM + Facturacion + App. La solucion integral para digitalizar tu negocio.",
-    benefit: "Maxima eficiencia",
+    description: "Web + CRM + Facturación + App. La solución integral para digitalizar tu negocio.",
+    benefit: "Máxima eficiencia",
     badge: "Recomendado",
     complexity: 5,
     precio: 15000,
@@ -108,7 +108,7 @@ const tiposProyecto = [
   {
     id: "otro",
     title: "Otro proyecto",
-    description: "Tienes una idea diferente? Cuentanos y la hacemos realidad.",
+    description: "¿Tienes una idea diferente? Cuéntanos y la hacemos realidad.",
     benefit: "A tu medida",
     badge: null,
     complexity: 0,
@@ -124,21 +124,21 @@ const tiposProyecto = [
 // Funcionalidades específicas por tipo de proyecto (con precios)
 const funcionalidadesPorTipo: Record<string, { id: string; label: string; description: string; precio: number }[]> = {
   web: [
-    { id: "paginas-info", label: "Paginas informativas", description: "Inicio, servicios, equipo, ubicacion...", precio: 0 },
-    { id: "galeria", label: "Galeria de fotos", description: "Muestra tu local, equipo o trabajos realizados", precio: 200 },
+    { id: "paginas-info", label: "Páginas informativas", description: "Inicio, servicios, equipo, ubicación...", precio: 0 },
+    { id: "galeria", label: "Galería de fotos", description: "Muestra tu local, equipo o trabajos realizados", precio: 200 },
     { id: "formulario-contacto", label: "Formulario de contacto", description: "Que los visitantes te escriban desde la web", precio: 0 },
     { id: "reserva-online", label: "Reserva de citas online", description: "Calendario para que reserven directamente", precio: 600 },
     { id: "blog", label: "Blog / Noticias", description: "Publica contenido y mejora tu posicionamiento", precio: 400 },
-    { id: "testimonios", label: "Testimonios y resenas", description: "Muestra opiniones de tus clientes", precio: 150 },
-    { id: "chat-whatsapp", label: "Boton de WhatsApp", description: "Contacto directo desde la web", precio: 50 },
-    { id: "redes-sociales", label: "Integracion redes sociales", description: "Enlaces e Instagram feed", precio: 150 },
+    { id: "testimonios", label: "Testimonios y reseñas", description: "Muestra opiniones de tus clientes", precio: 150 },
+    { id: "chat-whatsapp", label: "Botón de WhatsApp", description: "Contacto directo desde la web", precio: 50 },
+    { id: "redes-sociales", label: "Integración redes sociales", description: "Enlaces e Instagram feed", precio: 150 },
   ],
   crm: [
     { id: "fichas-clientes", label: "Fichas de clientes", description: "Datos personales, historial, notas...", precio: 0 },
     { id: "agenda-citas", label: "Agenda de citas", description: "Calendario visual para gestionar reservas", precio: 0 },
-    { id: "historial-visitas", label: "Historial de visitas", description: "Registro de cada interaccion con el cliente", precio: 300 },
-    { id: "recordatorios", label: "Recordatorios automaticos", description: "SMS/Email para citas y seguimientos", precio: 400 },
-    { id: "busqueda-filtros", label: "Busqueda y filtros", description: "Encuentra clientes rapidamente", precio: 0 },
+    { id: "historial-visitas", label: "Historial de visitas", description: "Registro de cada interacción con el cliente", precio: 300 },
+    { id: "recordatorios", label: "Recordatorios automáticos", description: "SMS/Email para citas y seguimientos", precio: 400 },
+    { id: "busqueda-filtros", label: "Búsqueda y filtros", description: "Encuentra clientes rápidamente", precio: 0 },
     { id: "notas-internas", label: "Notas internas", description: "Apuntes privados sobre cada cliente", precio: 0 },
     { id: "multiusuario", label: "Varios usuarios", description: "Acceso para todo el equipo con permisos", precio: 500 },
     { id: "exportar-datos", label: "Exportar datos", description: "Descarga listados en Excel o PDF", precio: 250 },
@@ -146,43 +146,43 @@ const funcionalidadesPorTipo: Record<string, { id: string; label: string; descri
   "crm-facturacion": [
     { id: "fichas-clientes", label: "Fichas de clientes", description: "Datos personales, historial, notas...", precio: 0 },
     { id: "agenda-citas", label: "Agenda de citas", description: "Calendario visual para gestionar reservas", precio: 0 },
-    { id: "facturas", label: "Emision de facturas", description: "Crea facturas en segundos", precio: 0 },
+    { id: "facturas", label: "Emisión de facturas", description: "Crea facturas en segundos", precio: 0 },
     { id: "control-cobros", label: "Control de cobros", description: "Ve quien te debe y quien ha pagado", precio: 0 },
-    { id: "cuotas-recurrentes", label: "Cuotas recurrentes", description: "Facturacion automatica mensual", precio: 400 },
+    { id: "cuotas-recurrentes", label: "Cuotas recurrentes", description: "Facturación automática mensual", precio: 400 },
     { id: "informes-financieros", label: "Informes financieros", description: "Resumen de ingresos por periodo", precio: 350 },
     { id: "recordatorios-pago", label: "Recordatorios de pago", description: "Avisa a clientes con pagos pendientes", precio: 300 },
     { id: "exportar-gestor", label: "Exportar para gestor", description: "Datos listos para tu asesor fiscal", precio: 200 },
   ],
   "app-clientes": [
-    { id: "reserva-movil", label: "Reserva desde el movil", description: "Tus clientes reservan cuando quieran", precio: 0 },
+    { id: "reserva-movil", label: "Reserva desde el móvil", description: "Tus clientes reservan cuando quieran", precio: 0 },
     { id: "ver-historial", label: "Ver su historial", description: "El cliente ve sus visitas y tratamientos", precio: 0 },
     { id: "notificaciones-push", label: "Notificaciones push", description: "Avisos de citas y promociones", precio: 500 },
-    { id: "chat-interno", label: "Chat con el centro", description: "Mensajeria directa cliente-profesional", precio: 800 },
-    { id: "pagos-app", label: "Pagos desde la app", description: "Pagar citas o cuotas desde el movil", precio: 600 },
-    { id: "valoraciones", label: "Valoraciones", description: "Los clientes puntuan su experiencia", precio: 300 },
+    { id: "chat-interno", label: "Chat con el centro", description: "Mensajería directa cliente-profesional", precio: 800 },
+    { id: "pagos-app", label: "Pagos desde la app", description: "Pagar citas o cuotas desde el móvil", precio: 600 },
+    { id: "valoraciones", label: "Valoraciones", description: "Los clientes puntúan su experiencia", precio: 300 },
     { id: "programa-fidelidad", label: "Programa de fidelidad", description: "Puntos, descuentos, recompensas", precio: 700 },
     { id: "perfil-cliente", label: "Perfil del cliente", description: "Datos personales y preferencias", precio: 0 },
   ],
   "proyecto-completo": [
     { id: "web-completa", label: "Web profesional completa", description: "Todas las secciones que necesites", precio: 0 },
-    { id: "crm-completo", label: "CRM de gestion", description: "Clientes, citas, historial, notas...", precio: 0 },
-    { id: "facturacion-completa", label: "Facturacion integrada", description: "Facturas, cobros, informes...", precio: 0 },
-    { id: "app-ios-android", label: "App iOS y Android", description: "Aplicacion nativa para tus clientes", precio: 0 },
-    { id: "panel-admin", label: "Panel de administracion", description: "Controla todo desde un solo sitio", precio: 0 },
-    { id: "analiticas", label: "Analiticas avanzadas", description: "Metricas de negocio en tiempo real", precio: 800 },
+    { id: "crm-completo", label: "CRM de gestión", description: "Clientes, citas, historial, notas...", precio: 0 },
+    { id: "facturacion-completa", label: "Facturación integrada", description: "Facturas, cobros, informes...", precio: 0 },
+    { id: "app-ios-android", label: "App iOS y Android", description: "Aplicación nativa para tus clientes", precio: 0 },
+    { id: "panel-admin", label: "Panel de administración", description: "Controla todo desde un solo sitio", precio: 0 },
+    { id: "analiticas", label: "Analíticas avanzadas", description: "Métricas de negocio en tiempo real", precio: 800 },
     { id: "automatizaciones", label: "Automatizaciones", description: "Tareas que se hacen solas", precio: 1200 },
-    { id: "soporte-prioritario", label: "Soporte prioritario", description: "Atencion preferente post-lanzamiento", precio: 500 },
+    { id: "soporte-prioritario", label: "Soporte prioritario", description: "Atención preferente post-lanzamiento", precio: 500 },
   ],
   otro: [
-    { id: "personalizado", label: "Funcionalidad personalizada", description: "Describela en el campo de abajo", precio: 0 },
+    { id: "personalizado", label: "Funcionalidad personalizada", description: "Descríbela en el campo de abajo", precio: 0 },
   ],
 };
 
 // Integraciones específicas por tipo de proyecto (con precios)
 const integracionesPorTipo: Record<string, { id: string; label: string; description: string; precio: number }[]> = {
   web: [
-    { id: "google-analytics", label: "Google Analytics", description: "Estadisticas de visitas y comportamiento", precio: 100 },
-    { id: "google-maps", label: "Google Maps", description: "Mapa con tu ubicacion en la web", precio: 50 },
+    { id: "google-analytics", label: "Google Analytics", description: "Estadísticas de visitas y comportamiento", precio: 100 },
+    { id: "google-maps", label: "Google Maps", description: "Mapa con tu ubicación en la web", precio: 50 },
     { id: "redes-sociales", label: "Redes sociales", description: "Instagram, Facebook, TikTok...", precio: 100 },
     { id: "mailchimp", label: "Email marketing", description: "Mailchimp, Brevo, ActiveCampaign...", precio: 250 },
     { id: "calendly", label: "Calendario externo", description: "Calendly, Cal.com o similar", precio: 200 },
@@ -191,18 +191,18 @@ const integracionesPorTipo: Record<string, { id: string; label: string; descript
   ],
   crm: [
     { id: "google-calendar", label: "Google Calendar", description: "Sincroniza citas con tu calendario", precio: 200 },
-    { id: "email-proveedor", label: "Email automatico", description: "Gmail, Outlook, SMTP propio...", precio: 150 },
-    { id: "sms", label: "SMS", description: "Envio de mensajes de texto", precio: 300 },
-    { id: "whatsapp-api", label: "WhatsApp Business API", description: "Mensajes automaticos por WhatsApp", precio: 500 },
-    { id: "firma-digital", label: "Firma electronica", description: "Signaturit, DocuSign...", precio: 400 },
-    { id: "importar-excel", label: "Importar desde Excel", description: "Migrar datos de hojas de calculo", precio: 200 },
+    { id: "email-proveedor", label: "Email automático", description: "Gmail, Outlook, SMTP propio...", precio: 150 },
+    { id: "sms", label: "SMS", description: "Envío de mensajes de texto", precio: 300 },
+    { id: "whatsapp-api", label: "WhatsApp Business API", description: "Mensajes automáticos por WhatsApp", precio: 500 },
+    { id: "firma-digital", label: "Firma electrónica", description: "Signaturit, DocuSign...", precio: 400 },
+    { id: "importar-excel", label: "Importar desde Excel", description: "Migrar datos de hojas de cálculo", precio: 200 },
     { id: "ninguna", label: "Ninguna por ahora", description: "No necesito integraciones", precio: 0 },
   ],
   "crm-facturacion": [
     { id: "pasarela-pagos", label: "Pasarela de pagos", description: "Stripe, Redsys, PayPal...", precio: 400 },
     { id: "contabilidad", label: "Software contable", description: "A3, Sage, Holded, Factorial...", precio: 600 },
-    { id: "banco", label: "Conciliacion bancaria", description: "Conexion con tu banco", precio: 800 },
-    { id: "facturae", label: "Factura electronica", description: "FacturaE, Veri*factu...", precio: 350 },
+    { id: "banco", label: "Conciliación bancaria", description: "Conexión con tu banco", precio: 800 },
+    { id: "facturae", label: "Factura electrónica", description: "FacturaE, Veri*factu...", precio: 350 },
     { id: "google-calendar", label: "Google Calendar", description: "Sincroniza citas con tu calendario", precio: 200 },
     { id: "sms", label: "SMS / WhatsApp", description: "Recordatorios de pago", precio: 300 },
     { id: "ninguna", label: "Ninguna por ahora", description: "No necesito integraciones", precio: 0 },
@@ -210,7 +210,7 @@ const integracionesPorTipo: Record<string, { id: string; label: string; descript
   "app-clientes": [
     { id: "notificaciones-push", label: "Notificaciones push", description: "Firebase, OneSignal...", precio: 300 },
     { id: "pasarela-pagos", label: "Pagos en app", description: "Stripe, Apple Pay, Google Pay...", precio: 500 },
-    { id: "calendario-nativo", label: "Calendario del movil", description: "Anadir citas al calendario", precio: 200 },
+    { id: "calendario-nativo", label: "Calendario del móvil", description: "Añadir citas al calendario", precio: 200 },
     { id: "healthkit", label: "Datos de salud", description: "Apple Health, Google Fit", precio: 600 },
     { id: "wearables", label: "Wearables", description: "Smartwatch, pulseras de actividad", precio: 800 },
     { id: "crm-existente", label: "Tu CRM actual", description: "Conectar con sistema que ya usas", precio: 500 },
@@ -220,23 +220,23 @@ const integracionesPorTipo: Record<string, { id: string; label: string; descript
     { id: "pasarela-pagos", label: "Pasarela de pagos", description: "Stripe, Redsys, PayPal...", precio: 400 },
     { id: "contabilidad", label: "Software contable", description: "A3, Sage, Holded, Factorial...", precio: 600 },
     { id: "google-workspace", label: "Google Workspace", description: "Calendar, Gmail, Drive...", precio: 300 },
-    { id: "sms-whatsapp", label: "SMS y WhatsApp", description: "Comunicacion multicanal", precio: 400 },
-    { id: "firma-digital", label: "Firma electronica", description: "Signaturit, DocuSign...", precio: 400 },
-    { id: "analiticas", label: "Analiticas avanzadas", description: "Google Analytics, Mixpanel...", precio: 350 },
-    { id: "api-externa", label: "APIs de terceros", description: "Otras integraciones especificas", precio: 500 },
+    { id: "sms-whatsapp", label: "SMS y WhatsApp", description: "Comunicación multicanal", precio: 400 },
+    { id: "firma-digital", label: "Firma electrónica", description: "Signaturit, DocuSign...", precio: 400 },
+    { id: "analiticas", label: "Analíticas avanzadas", description: "Google Analytics, Mixpanel...", precio: 350 },
+    { id: "api-externa", label: "APIs de terceros", description: "Otras integraciones específicas", precio: 500 },
     { id: "ninguna", label: "Ninguna por ahora", description: "No necesito integraciones", precio: 0 },
   ],
   otro: [
-    { id: "personalizado", label: "Integracion personalizada", description: "Describela en el campo de abajo", precio: 0 },
+    { id: "personalizado", label: "Integración personalizada", description: "Descríbela en el campo de abajo", precio: 0 },
     { id: "ninguna", label: "Ninguna por ahora", description: "No necesito integraciones", precio: 0 },
   ],
 };
 
 const usuariosOptions = [
-  { id: "pequeno", label: "Pequeno", description: "Hasta 50 usuarios", value: "< 50 usuarios" },
+  { id: "pequeno", label: "Pequeño", description: "Hasta 50 usuarios", value: "< 50 usuarios" },
   { id: "mediano", label: "Mediano", description: "50 - 200 usuarios", value: "50-200 usuarios" },
   { id: "grande", label: "Grande", description: "200 - 1000 usuarios", value: "200-1000 usuarios" },
-  { id: "enterprise", label: "Enterprise", description: "Mas de 1000 usuarios", value: "> 1000 usuarios" },
+  { id: "enterprise", label: "Enterprise", description: "Más de 1000 usuarios", value: "> 1000 usuarios" },
 ];
 
 export default function PresupuestoPage() {
@@ -296,7 +296,7 @@ export default function PresupuestoPage() {
 
   const handleSubmit = async () => {
     setIsSubmitting(true);
-    // Simular envio
+    // Simular envío
     await new Promise(resolve => setTimeout(resolve, 1500));
     setIsSubmitting(false);
     setSubmitted(true);
@@ -476,7 +476,7 @@ export default function PresupuestoPage() {
             </div>` : ''}
             ${formData.telefono ? `
             <div class="info-item">
-              <div class="info-label">Telefono</div>
+              <div class="info-label">Teléfono</div>
               <div class="info-value">${formData.telefono}</div>
             </div>` : ''}
           </div>
@@ -520,7 +520,7 @@ export default function PresupuestoPage() {
           <table class="table">
             <thead>
               <tr>
-                <th>Integracion</th>
+                <th>Integración</th>
                 <th style="text-align: right;">Precio</th>
               </tr>
             </thead>
@@ -565,7 +565,7 @@ export default function PresupuestoPage() {
           ` : ''}
           ${presupuesto.precioApp > 0 ? `
           <div class="total-row">
-            <span class="label">App movil adicional (iOS + Android)</span>
+            <span class="label">App móvil adicional (iOS + Android)</span>
             <span>+${formatearPrecio(presupuesto.precioApp)}</span>
           </div>
           ` : ''}
@@ -579,13 +579,13 @@ export default function PresupuestoPage() {
         <div class="notes">
           <div class="notes-title">Notas adicionales</div>
           ${formData.otraFuncionalidad ? `<p><strong>Funcionalidad personalizada:</strong> ${formData.otraFuncionalidad}</p>` : ''}
-          ${formData.otraIntegracion ? `<p><strong>Integracion personalizada:</strong> ${formData.otraIntegracion}</p>` : ''}
+          ${formData.otraIntegracion ? `<p><strong>Integración personalizada:</strong> ${formData.otraIntegracion}</p>` : ''}
           ${formData.comentarios ? `<p><strong>Comentarios:</strong> ${formData.comentarios}</p>` : ''}
         </div>
         ` : ''}
 
         <div class="validity">
-          Este presupuesto tiene una validez de 30 dias desde la fecha de emision
+          Este presupuesto tiene una validez de 30 días desde la fecha de emisión
         </div>
       </div>
 
@@ -675,10 +675,10 @@ export default function PresupuestoPage() {
                 </svg>
               </div>
               <h1 className="text-3xl font-bold text-white mb-2">
-                Tu presupuesto esta listo!
+                ¡Tu presupuesto está listo!
               </h1>
               <p className="text-gray-300">
-                Revisa el detalle y descargalo o imprimelo
+                Revisa el detalle y descárgalo o imprímelo
               </p>
             </div>
 
@@ -757,7 +757,7 @@ export default function PresupuestoPage() {
                       )}
                       {presupuesto.precioApp > 0 && (
                         <div className="flex justify-between text-sm">
-                          <span className="text-[#5A6D6D]">App movil iOS + Android</span>
+                          <span className="text-[#5A6D6D]">App móvil iOS + Android</span>
                           <span className="font-medium text-[#194973]">+{formatearPrecio(presupuesto.precioApp)}</span>
                         </div>
                       )}
@@ -776,10 +776,10 @@ export default function PresupuestoPage() {
                     )}
                     {formData.otraIntegracion && (
                       <p className="text-sm text-amber-600">
-                        <strong>Integracion:</strong> {formData.otraIntegracion}
+                        <strong>Integración:</strong> {formData.otraIntegracion}
                       </p>
                     )}
-                    <p className="text-xs text-amber-500 mt-2">* Estos elementos se valoraran personalmente</p>
+                    <p className="text-xs text-amber-500 mt-2">* Estos elementos se valorarán personalmente</p>
                   </div>
                 )}
 
@@ -792,7 +792,7 @@ export default function PresupuestoPage() {
                     </span>
                   </div>
                   <p className="text-xs text-[#5A6D6D] mt-2">
-                    * IVA no incluido. Presupuesto orientativo valido 30 dias.
+                    * IVA no incluido. Presupuesto orientativo válido 30 días.
                   </p>
                 </div>
               </div>
@@ -911,10 +911,10 @@ export default function PresupuestoPage() {
           {currentStep === 1 && (
             <div className="animate-fade-in">
               <h2 className="text-2xl font-bold text-[#194973] mb-2 text-center">
-                Que tipo de proyecto necesitas?
+                ¿Qué tipo de proyecto necesitas?
               </h2>
               <p className="text-[#5A6D6D] mb-8 text-center">
-                Selecciona la opcion que mejor se ajuste a tu idea
+                Selecciona la opción que mejor se ajuste a tu idea
               </p>
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
                 {tiposProyecto.map((tipo) => (
@@ -1019,7 +1019,7 @@ export default function PresupuestoPage() {
           {currentStep === 2 && (
             <div className="animate-fade-in">
               <h2 className="text-2xl font-bold text-[#194973] mb-2 text-center">
-                Que funcionalidades necesitas?
+                ¿Qué funcionalidades necesitas?
               </h2>
               <p className="text-[#5A6D6D] mb-8 text-center">
                 Selecciona las que apliquen a tu{" "}
@@ -1072,7 +1072,7 @@ export default function PresupuestoPage() {
                     <svg className="w-5 h-5 text-[#71C648]" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
                     </svg>
-                    Necesitas algo mas?
+                    ¿Necesitas algo más?
                   </span>
                   <span className="text-sm text-[#5A6D6D]">
                     Describe cualquier funcionalidad adicional que no aparezca en la lista
@@ -1084,7 +1084,7 @@ export default function PresupuestoPage() {
                   onChange={handleInputChange}
                   rows={3}
                   className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#71C648] resize-none"
-                  placeholder="Ej: Quiero que los clientes puedan subir documentos, necesito un sistema de puntos de fidelidad, integracion con mi software actual..."
+                  placeholder="Ej: Quiero que los clientes puedan subir documentos, necesito un sistema de puntos de fidelidad, integración con mi software actual..."
                 />
               </div>
             </div>
@@ -1094,7 +1094,7 @@ export default function PresupuestoPage() {
           {currentStep === 3 && (
             <div className="animate-fade-in">
               <h2 className="text-2xl font-bold text-[#194973] mb-2 text-center">
-                Necesitas integraciones?
+                ¿Necesitas integraciones?
               </h2>
               <p className="text-[#5A6D6D] mb-8 text-center">
                 Conecta tu{" "}
@@ -1148,7 +1148,7 @@ export default function PresupuestoPage() {
                     <svg className="w-5 h-5 text-[#71C648]" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244" />
                     </svg>
-                    Otra integracion?
+                    ¿Otra integración?
                   </span>
                   <span className="text-sm text-[#5A6D6D]">
                     Describe cualquier sistema o herramienta con la que necesites conectar
@@ -1160,7 +1160,7 @@ export default function PresupuestoPage() {
                   onChange={handleInputChange}
                   rows={3}
                   className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#71C648] resize-none"
-                  placeholder="Ej: Necesito conectar con mi software de contabilidad actual, quiero sincronizar con Notion, integracion con mi CRM de HubSpot..."
+                  placeholder="Ej: Necesito conectar con mi software de contabilidad actual, quiero sincronizar con Notion, integración con mi CRM de HubSpot..."
                 />
               </div>
             </div>
@@ -1170,7 +1170,7 @@ export default function PresupuestoPage() {
           {currentStep === 4 && (
             <div className="animate-fade-in">
               <h2 className="text-2xl font-bold text-[#194973] mb-2 text-center">
-                Cuantos usuarios tendra la plataforma?
+                ¿Cuántos usuarios tendrá la plataforma?
               </h2>
               <p className="text-[#5A6D6D] mb-8 text-center">
                 Esto nos ayuda a dimensionar la infraestructura necesaria
@@ -1209,8 +1209,8 @@ export default function PresupuestoPage() {
                     className="w-5 h-5 rounded text-[#71C648] focus:ring-[#71C648]"
                   />
                   <div>
-                    <span className="font-semibold text-[#194973]">Necesito tambien una app movil</span>
-                    <p className="text-sm text-[#5A6D6D]">App nativa para iOS y Android ademas de la web</p>
+                    <span className="font-semibold text-[#194973]">Necesito también una app móvil</span>
+                    <p className="text-sm text-[#5A6D6D]">App nativa para iOS y Android además de la web</p>
                   </div>
                 </label>
               </div>
@@ -1221,7 +1221,7 @@ export default function PresupuestoPage() {
           {currentStep === 5 && (
             <div className="animate-fade-in">
               <h2 className="text-2xl font-bold text-[#194973] mb-2 text-center">
-                Como te contactamos?
+                ¿Cómo te contactamos?
               </h2>
               <p className="text-[#5A6D6D] mb-8 text-center">
                 Te enviaremos la propuesta personalizada
@@ -1259,7 +1259,7 @@ export default function PresupuestoPage() {
                   <div className="grid md:grid-cols-2 gap-4">
                     <div>
                       <label className="block text-sm font-medium text-[#194973] mb-2">
-                        Telefono
+                        Teléfono
                       </label>
                       <input
                         type="tel"
@@ -1280,13 +1280,13 @@ export default function PresupuestoPage() {
                         value={formData.empresa}
                         onChange={handleInputChange}
                         className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#71C648]"
-                        placeholder="Nombre de tu organizacion"
+                        placeholder="Nombre de tu organización"
                       />
                     </div>
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-[#194973] mb-2">
-                      Algo mas que quieras contarnos?
+                      ¿Algo más que quieras contarnos?
                     </label>
                     <textarea
                       name="comentarios"
@@ -1312,7 +1312,7 @@ export default function PresupuestoPage() {
                   : "bg-white text-[#194973] hover:bg-gray-100"
               }`}
             >
-              Atras
+              Atrás
             </button>
 
             {currentStep < totalSteps ? (
