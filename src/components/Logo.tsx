@@ -5,14 +5,15 @@ import { useTranslations } from "next-intl";
 interface LogoProps {
   className?: string;
   showTagline?: boolean;
-  variant?: "default" | "white" | "icon";
+  variant?: "default" | "white" | "on-dark" | "icon";
 }
 
 export default function Logo({ className = "", showTagline = true, variant = "default" }: LogoProps) {
   const t = useTranslations("logo");
-  const blueColor = variant === "white" ? "#ffffff" : "#194973";
+  const textColor = variant === "white" || variant === "on-dark" ? "#ffffff" : "#194973";
   const greenColor = variant === "white" ? "#ffffff" : "#71C648";
-  const grayColor = variant === "white" ? "#ffffff" : "#5A6D6D";
+  const blueColor = variant === "white" ? "#ffffff" : "#194973";
+  const grayColor = variant === "white" || variant === "on-dark" ? "#ffffff" : "#5A6D6D";
 
   if (variant === "icon") {
     return (
@@ -26,12 +27,12 @@ export default function Logo({ className = "", showTagline = true, variant = "de
   return (
     <div className={`flex flex-col ${className}`}>
       <div className="flex items-center">
-        <span className="text-2xl md:text-3xl font-bold tracking-tight" style={{ color: blueColor, fontFamily: "Helvetica, Arial, sans-serif" }}>Code</span>
+        <span className="text-2xl md:text-3xl font-bold tracking-tight" style={{ color: textColor, fontFamily: "Helvetica, Arial, sans-serif" }}>Code</span>
         <svg viewBox="0 0 50 30" className="h-6 md:h-7 mx-0.5" xmlns="http://www.w3.org/2000/svg">
           <rect x="0" y="0" width="50" height="30" rx="15" fill={greenColor} />
           <circle cx="36" cy="15" r="11" fill={blueColor} />
         </svg>
-        <span className="text-2xl md:text-3xl font-bold tracking-tight" style={{ color: blueColor, fontFamily: "Helvetica, Arial, sans-serif" }}>nnect</span>
+        <span className="text-2xl md:text-3xl font-bold tracking-tight" style={{ color: textColor, fontFamily: "Helvetica, Arial, sans-serif" }}>nnect</span>
       </div>
       {showTagline && (
         <span className="text-sm md:text-base tracking-wide mt-1" style={{ color: grayColor }}>{t("tagline")}</span>
