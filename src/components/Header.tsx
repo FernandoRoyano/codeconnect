@@ -45,7 +45,7 @@ export default function Header() {
       <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-20 items-center justify-between">
           <Link href="/" className="flex-shrink-0">
-            <Logo showTagline={false} variant={scrolled ? "default" : "white"} className="h-10" />
+            <Logo showTagline={false} variant={scrolled ? "default" : "on-dark"} className="h-10" />
           </Link>
 
           <div className="hidden md:flex md:items-center md:space-x-8">

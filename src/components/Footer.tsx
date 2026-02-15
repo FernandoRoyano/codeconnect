@@ -32,7 +32,7 @@ export default function Footer() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
           <div className="lg:col-span-1">
-            <Logo variant="white" showTagline={true} />
+            <Logo variant="on-dark" showTagline={true} />
             <p className="mt-6 text-gray-300 text-sm leading-relaxed">{t("description")}</p>
             <div className="flex space-x-4 mt-6">
               <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-[#71C648] transition-colors">
