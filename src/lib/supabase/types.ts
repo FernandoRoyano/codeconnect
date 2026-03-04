@@ -63,6 +63,8 @@ export type Database = {
           sent_at: string | null;
           first_viewed_at: string | null;
           user_id: string;
+          rejection_reason: string | null;
+          rejected_at: string | null;
         };
         Insert: {
           id?: string;
@@ -90,6 +92,8 @@ export type Database = {
           sent_at?: string | null;
           first_viewed_at?: string | null;
           user_id: string;
+          rejection_reason?: string | null;
+          rejected_at?: string | null;
         };
         Update: {
           id?: string;
@@ -117,6 +121,8 @@ export type Database = {
           sent_at?: string | null;
           first_viewed_at?: string | null;
           user_id?: string;
+          rejection_reason?: string | null;
+          rejected_at?: string | null;
         };
       };
       payments: {

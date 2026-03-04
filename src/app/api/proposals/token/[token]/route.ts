@@ -12,7 +12,7 @@ export async function GET(
     .from("proposals")
     .select("*, client:clients(name, email, company), payments(id, label, percentage, amount, currency, sort_order)")
     .eq("token", token)
-    .in("status", ["enviada", "vista", "aceptada"])
+    .in("status", ["enviada", "vista", "aceptada", "rechazada"])
     .single();
 
   if (error || !data) {

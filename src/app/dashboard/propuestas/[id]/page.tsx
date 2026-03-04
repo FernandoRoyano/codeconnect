@@ -30,6 +30,8 @@ interface ProposalDetail {
   signature_data: string | null;
   signed_at: string | null;
   terms_accepted: boolean;
+  rejection_reason: string | null;
+  rejected_at: string | null;
   created_at: string;
   sent_at: string | null;
   first_viewed_at: string | null;
@@ -117,6 +119,9 @@ export default function ProposalDetailPage() {
           proposalDate={new Date(proposal.created_at).toLocaleDateString("es-ES", { day: "numeric", month: "long", year: "numeric" })}
           readOnly
           alreadyAccepted={proposal.status === "aceptada"}
+          alreadyRejected={proposal.status === "rechazada"}
+          rejectionReason={proposal.rejection_reason}
+          rejectedDate={proposal.rejected_at ? new Date(proposal.rejected_at).toLocaleDateString("es-ES", { day: "numeric", month: "long", year: "numeric" }) : null}
           existingSignature={proposal.signature_data}
           acceptedDate={proposal.signed_at ? new Date(proposal.signed_at).toLocaleDateString("es-ES", { day: "numeric", month: "long", year: "numeric" }) : null}
         />
@@ -180,6 +185,12 @@ export default function ProposalDetailPage() {
                 <div className="text-sm font-medium text-[#194973]">{proposal.estimated_days ? `${proposal.estimated_days} dias` : "-"}</div>
               </div>
             </div>
+            {proposal.rejection_reason && (
+              <div className="col-span-2 mt-2">
+                <div className="text-xs text-[#5A6D6D]">Motivo de rechazo</div>
+                <div className="text-sm text-red-600 mt-1 p-3 bg-red-50 rounded-lg">{proposal.rejection_reason}</div>
+              </div>
+            )}
           </div>
 
           {/* Pagos */}
@@ -245,6 +256,15 @@ export default function ProposalDetailPage() {
                   <div>
                     <div className="text-xs text-[#5A6D6D]">Firmada</div>
                     <div className="text-sm text-[#194973]">{new Date(proposal.signed_at).toLocaleDateString("es-ES", { day: "numeric", month: "short", year: "numeric" })}</div>
+                  </div>
+                </div>
+              )}
+              {proposal.rejected_at && (
+                <div className="flex gap-3 items-start">
+                  <div className="w-2 h-2 rounded-full bg-red-500 mt-1.5 flex-shrink-0" />
+                  <div>
+                    <div className="text-xs text-[#5A6D6D]">Rechazada</div>
+                    <div className="text-sm text-[#194973]">{new Date(proposal.rejected_at).toLocaleDateString("es-ES", { day: "numeric", month: "short", year: "numeric" })}</div>
                   </div>
                 </div>
               )}

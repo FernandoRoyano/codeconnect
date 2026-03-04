@@ -24,6 +24,8 @@ interface PublicProposal {
   notes: string | null;
   signature_data: string | null;
   signed_at: string | null;
+  rejection_reason: string | null;
+  rejected_at: string | null;
   created_at: string;
   client: { name: string; email: string; company: string | null } | null;
 }
@@ -34,6 +36,10 @@ export default function PublicProposalPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [signed, setSigned] = useState(false);
+  const [rejected, setRejected] = useState(false);
+  const [showRejectForm, setShowRejectForm] = useState(false);
+  const [rejectionReason, setRejectionReason] = useState("");
+  const [rejecting, setRejecting] = useState(false);
 
   useEffect(() => {
     fetchProposal();
@@ -50,6 +56,7 @@ export default function PublicProposalPage() {
       const data = await res.json();
       setProposal(data);
       setSigned(data.status === "aceptada");
+      setRejected(data.status === "rechazada");
 
       // Record view
       fetch(`/api/proposals/token/${token}/view`, { method: "POST" });
@@ -68,6 +75,20 @@ export default function PublicProposalPage() {
     if (res.ok) {
       setSigned(true);
     }
+  };
+
+  const handleReject = async () => {
+    setRejecting(true);
+    const res = await fetch(`/api/proposals/token/${token}/reject`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ rejectionReason: rejectionReason.trim() || null }),
+    });
+    if (res.ok) {
+      setRejected(true);
+      setShowRejectForm(false);
+    }
+    setRejecting(false);
   };
 
   if (loading) {
@@ -116,13 +137,51 @@ export default function PublicProposalPage() {
           form={formState}
           proposalId={proposal.reference_code}
           proposalDate={new Date(proposal.created_at).toLocaleDateString("es-ES", { day: "numeric", month: "long", year: "numeric" })}
-          readOnly={signed}
+          readOnly={signed || rejected}
           alreadyAccepted={signed}
+          alreadyRejected={rejected}
+          rejectionReason={proposal.rejection_reason}
+          rejectedDate={proposal.rejected_at ? new Date(proposal.rejected_at).toLocaleDateString("es-ES", { day: "numeric", month: "long", year: "numeric" }) : null}
           existingSignature={proposal.signature_data}
           acceptedDate={proposal.signed_at ? new Date(proposal.signed_at).toLocaleDateString("es-ES", { day: "numeric", month: "long", year: "numeric" }) : null}
           onSign={handleSign}
+          onReject={() => setShowRejectForm(true)}
         />
       </div>
+
+      {/* Modal de rechazo */}
+      {showRejectForm && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-2xl p-6 sm:p-8 max-w-md w-full">
+            <h3 className="text-xl font-extrabold text-[#194973] mb-2">Rechazar propuesta</h3>
+            <p className="text-sm text-[#5A6D6D] mb-4">
+              ¿Estas seguro de que deseas rechazar esta propuesta? Esta accion no se puede deshacer.
+            </p>
+            <textarea
+              value={rejectionReason}
+              onChange={(e) => setRejectionReason(e.target.value)}
+              placeholder="Motivo del rechazo (opcional)"
+              rows={3}
+              className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl text-sm text-[#194973] outline-none focus:border-red-400 resize-none mb-4"
+            />
+            <div className="flex gap-3">
+              <button
+                onClick={() => setShowRejectForm(false)}
+                className="flex-1 py-3 bg-gray-100 text-[#5A6D6D] rounded-xl font-semibold text-sm hover:bg-gray-200 transition-colors"
+              >
+                Cancelar
+              </button>
+              <button
+                onClick={handleReject}
+                disabled={rejecting}
+                className="flex-1 py-3 bg-red-500 text-white rounded-xl font-semibold text-sm hover:bg-red-600 transition-colors disabled:opacity-50"
+              >
+                {rejecting ? "Rechazando..." : "Confirmar rechazo"}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
