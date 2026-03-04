@@ -11,9 +11,13 @@ interface ProposalViewProps {
   proposalDate?: string;
   readOnly?: boolean;
   alreadyAccepted?: boolean;
+  alreadyRejected?: boolean;
+  rejectionReason?: string | null;
+  rejectedDate?: string | null;
   existingSignature?: string | null;
   acceptedDate?: string | null;
   onSign?: (signatureData: string) => void;
+  onReject?: () => void;
 }
 
 export default function ProposalView({
@@ -23,9 +27,13 @@ export default function ProposalView({
   proposalDate,
   readOnly = false,
   alreadyAccepted = false,
+  alreadyRejected = false,
+  rejectionReason = null,
+  rejectedDate = null,
   existingSignature = null,
   acceptedDate: existingAcceptedDate = null,
   onSign,
+  onReject,
 }: ProposalViewProps) {
   const [signature, setSignature] = useState<string | null>(existingSignature);
   const [accepted, setAccepted] = useState(alreadyAccepted);
@@ -211,8 +219,25 @@ export default function ProposalView({
           </div>
         </div>
 
+        {/* Rechazo */}
+        {alreadyRejected && (
+          <div className="bg-red-50 rounded-2xl p-7 border-2 border-red-300 text-center">
+            <div className="text-5xl mb-2">&#10060;</div>
+            <div className="text-xl font-extrabold text-[#194973]">Propuesta rechazada</div>
+            {rejectedDate && (
+              <div className="text-[#5A6D6D] text-sm mt-2">Rechazada el {rejectedDate}</div>
+            )}
+            {rejectionReason && (
+              <div className="mt-4 p-4 bg-white rounded-xl text-left">
+                <div className="text-xs font-bold text-[#5A6D6D] uppercase tracking-wider mb-1">Motivo</div>
+                <p className="text-sm text-[#194973] leading-relaxed">{rejectionReason}</p>
+              </div>
+            )}
+          </div>
+        )}
+
         {/* Firma */}
-        {!readOnly && (
+        {!readOnly && !alreadyRejected && (
           <>
             {!accepted ? (
               <div className="bg-[#f8f9fa] rounded-2xl p-5 sm:p-7 border-2 border-gray-200">
@@ -241,6 +266,14 @@ export default function ProposalView({
                 >
                   Aceptar y firmar presupuesto
                 </button>
+                {onReject && (
+                  <button
+                    onClick={onReject}
+                    className="w-full mt-3 py-3 bg-white border-2 border-red-300 text-red-500 rounded-xl font-semibold text-sm hover:bg-red-50 transition-colors"
+                  >
+                    Rechazar propuesta
+                  </button>
+                )}
               </div>
             ) : (
               <div className="bg-green-50 rounded-2xl p-7 border-2 border-[#71C648] text-center">
