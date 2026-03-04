@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { Roboto, Roboto_Slab } from "next/font/google";
 import { notFound } from "next/navigation";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { getTranslations } from "next-intl/server";
@@ -7,19 +6,6 @@ import { routing } from "@/i18n/routing";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import CookieBanner from "@/components/CookieBanner";
-import "../globals.css";
-
-const roboto = Roboto({
-  variable: "--font-roboto",
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "700"],
-});
-
-const robotoSlab = Roboto_Slab({
-  variable: "--font-roboto-slab",
-  subsets: ["latin"],
-  weight: ["400", "700"],
-});
 
 export async function generateMetadata({
   params,
@@ -100,17 +86,11 @@ export default async function LocaleLayout({
   const messages = (await import(`../../../messages/${locale}.json`)).default;
 
   return (
-    <html lang={locale}>
-      <body
-        className={`${roboto.variable} ${robotoSlab.variable} antialiased`}
-      >
-        <NextIntlClientProvider locale={locale} messages={messages}>
-          <Header />
-          <main>{children}</main>
-          <Footer />
-          <CookieBanner />
-        </NextIntlClientProvider>
-      </body>
-    </html>
+    <NextIntlClientProvider locale={locale} messages={messages}>
+      <Header />
+      <main>{children}</main>
+      <Footer />
+      <CookieBanner />
+    </NextIntlClientProvider>
   );
 }
