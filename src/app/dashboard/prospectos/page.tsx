@@ -68,7 +68,7 @@ export default function ProspectosPage() {
             onClick={() => setShowImport(true)}
             className="px-4 py-2.5 bg-white border border-gray-200 text-[#194973] rounded-xl text-sm font-semibold hover:bg-gray-50 transition-colors"
           >
-            Importar Excel
+            Importar
           </button>
           <Link
             href="/dashboard/prospectos/nuevo"
