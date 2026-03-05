@@ -41,23 +41,31 @@ export async function POST(request: NextRequest) {
 
   // Find or create client
   let clientId: string | null = null;
-  if (body.clientEmail) {
-    const { data: existing } = await supabase
-      .from("clients")
-      .select("id")
-      .eq("email", body.clientEmail)
-      .single();
+  if (body.clientName || body.clientEmail) {
+    if (body.clientEmail) {
+      const { data: existing } = await supabase
+        .from("clients")
+        .select("id")
+        .eq("email", body.clientEmail)
+        .single();
 
-    if (existing) {
-      clientId = existing.id;
-      await supabase.from("clients").update({
-        name: body.clientName,
-        company: body.clientCompany || null,
-      }).eq("id", clientId);
+      if (existing) {
+        clientId = existing.id;
+        await supabase.from("clients").update({
+          name: body.clientName,
+          company: body.clientCompany || null,
+        }).eq("id", clientId);
+      } else {
+        const { data: newClient } = await supabase.from("clients").insert({
+          name: body.clientName,
+          email: body.clientEmail,
+          company: body.clientCompany || null,
+        }).select("id").single();
+        clientId = newClient?.id || null;
+      }
     } else {
       const { data: newClient } = await supabase.from("clients").insert({
         name: body.clientName,
-        email: body.clientEmail,
         company: body.clientCompany || null,
       }).select("id").single();
       clientId = newClient?.id || null;
