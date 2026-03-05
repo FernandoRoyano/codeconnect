@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import ProspectCard from "@/components/dashboard/ProspectCard";
+import ImportProspectsModal from "@/components/dashboard/ImportProspectsModal";
 import { PIPELINE_TABS, type ProspectPipelineStatus } from "@/lib/constants/prospect";
 
 interface Prospect {
@@ -26,6 +27,7 @@ export default function ProspectosPage() {
   const [loading, setLoading] = useState(true);
   const [activeTab, setActiveTab] = useState("all");
   const [search, setSearch] = useState("");
+  const [showImport, setShowImport] = useState(false);
 
   useEffect(() => {
     fetchProspects();
@@ -61,12 +63,20 @@ export default function ProspectosPage() {
           <h1 className="text-2xl font-extrabold text-[#194973]">Prospectos</h1>
           <p className="text-[#5A6D6D] text-sm mt-1">Gestiona tus potenciales clientes</p>
         </div>
-        <Link
-          href="/dashboard/prospectos/nuevo"
-          className="bg-gradient-to-r from-[#71C648] to-[#5db33a] text-white px-5 py-2.5 rounded-xl text-sm font-semibold hover:shadow-lg hover:shadow-[#71C648]/30 transition-all text-center"
-        >
-          + Nuevo prospecto
-        </Link>
+        <div className="flex gap-2">
+          <button
+            onClick={() => setShowImport(true)}
+            className="px-4 py-2.5 bg-white border border-gray-200 text-[#194973] rounded-xl text-sm font-semibold hover:bg-gray-50 transition-colors"
+          >
+            Importar Excel
+          </button>
+          <Link
+            href="/dashboard/prospectos/nuevo"
+            className="bg-gradient-to-r from-[#71C648] to-[#5db33a] text-white px-5 py-2.5 rounded-xl text-sm font-semibold hover:shadow-lg hover:shadow-[#71C648]/30 transition-all text-center"
+          >
+            + Nuevo prospecto
+          </Link>
+        </div>
       </div>
 
       {/* Search */}
@@ -118,6 +128,14 @@ export default function ProspectosPage() {
             <ProspectCard key={prospect.id} prospect={prospect} />
           ))}
         </div>
+      )}
+
+      {/* Import modal */}
+      {showImport && (
+        <ImportProspectsModal
+          onClose={() => setShowImport(false)}
+          onImported={() => fetchProspects()}
+        />
       )}
     </div>
   );
