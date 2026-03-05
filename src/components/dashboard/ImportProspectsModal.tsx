@@ -1,162 +1,62 @@
 "use client";
 
-import { useState, useCallback } from "react";
-
-// Column mapping: Excel column name → prospect field
-const FIELD_OPTIONS = [
-  { value: "", label: "-- Ignorar --" },
-  { value: "name", label: "Nombre" },
-  { value: "position", label: "Cargo / Posicion" },
-  { value: "company", label: "Empresa" },
-  { value: "email", label: "Email" },
-  { value: "phone", label: "Telefono" },
-  { value: "city", label: "Ciudad" },
-  { value: "country", label: "Pais" },
-  { value: "segment", label: "Segmento" },
-  { value: "websiteUrl", label: "Sitio web" },
-  { value: "hasOnlineBooking", label: "Reserva online" },
-  { value: "hasApp", label: "Tiene App" },
-  { value: "websiteQuality", label: "Calidad web (1-5)" },
-  { value: "whyGoodProspect", label: "Por que es buen prospecto" },
-  { value: "contactNotes", label: "Notas de contacto" },
-];
-
-// Auto-detect mapping based on common column names
-const AUTO_MAP: Record<string, string> = {
-  nombre: "name",
-  name: "name",
-  cargo: "position",
-  posicion: "position",
-  position: "position",
-  puesto: "position",
-  empresa: "company",
-  company: "company",
-  email: "email",
-  correo: "email",
-  "e-mail": "email",
-  telefono: "phone",
-  phone: "phone",
-  tel: "phone",
-  movil: "phone",
-  ciudad: "city",
-  city: "city",
-  pais: "country",
-  country: "country",
-  segmento: "segment",
-  segment: "segment",
-  sector: "segment",
-  web: "websiteUrl",
-  website: "websiteUrl",
-  "sitio web": "websiteUrl",
-  url: "websiteUrl",
-  pagina: "websiteUrl",
-  "pagina web": "websiteUrl",
-  reserva: "hasOnlineBooking",
-  "reserva online": "hasOnlineBooking",
-  booking: "hasOnlineBooking",
-  app: "hasApp",
-  aplicacion: "hasApp",
-  "calidad web": "websiteQuality",
-  calidad: "websiteQuality",
-  "quality": "websiteQuality",
-  "por que": "whyGoodProspect",
-  "porque es buen prospecto": "whyGoodProspect",
-  prospecto: "whyGoodProspect",
-  notas: "contactNotes",
-  notes: "contactNotes",
-  "nota de contacto": "contactNotes",
-  observaciones: "contactNotes",
-  comentarios: "contactNotes",
-};
+import { useState } from "react";
 
 interface Props {
   onClose: () => void;
   onImported: () => void;
 }
 
-type Step = "upload" | "mapping" | "preview" | "importing" | "done";
+type Step = "input" | "preview" | "importing" | "done";
+
+const EXAMPLE = `[
+  {
+    "name": "Juan Garcia",
+    "position": "CEO",
+    "company": "Restaurante El Sol",
+    "city": "Madrid",
+    "country": "Espana",
+    "segment": "restauracion",
+    "websiteUrl": "https://ejemplo.com",
+    "hasOnlineBooking": false,
+    "hasApp": false,
+    "websiteQuality": 2,
+    "whyGoodProspect": "Web antigua, necesita renovacion",
+    "contactNotes": "",
+    "email": "juan@ejemplo.com",
+    "phone": "+34 600 000 000"
+  }
+]`;
 
 export default function ImportProspectsModal({ onClose, onImported }: Props) {
-  const [step, setStep] = useState<Step>("upload");
-  const [fileName, setFileName] = useState("");
-  const [rawRows, setRawRows] = useState<Record<string, unknown>[]>([]);
-  const [columns, setColumns] = useState<string[]>([]);
-  const [mapping, setMapping] = useState<Record<string, string>>({});
+  const [step, setStep] = useState<Step>("input");
+  const [jsonText, setJsonText] = useState("");
+  const [prospects, setProspects] = useState<Record<string, unknown>[]>([]);
   const [importedCount, setImportedCount] = useState(0);
   const [error, setError] = useState("");
 
-  const handleFile = useCallback(async (file: File) => {
-    setFileName(file.name);
+  const handleParse = () => {
     setError("");
-
     try {
-      const XLSX = await import("xlsx");
-      const buffer = await file.arrayBuffer();
-      const workbook = XLSX.read(buffer, { type: "array" });
-      const sheetName = workbook.SheetNames[0];
-      const sheet = workbook.Sheets[sheetName];
-      const json = XLSX.utils.sheet_to_json<Record<string, unknown>>(sheet);
+      const parsed = JSON.parse(jsonText.trim());
+      const arr = Array.isArray(parsed) ? parsed : [parsed];
+      const valid = arr.filter((p: Record<string, unknown>) => p.name && String(p.name).trim());
 
-      if (json.length === 0) {
-        setError("El archivo esta vacio");
+      if (valid.length === 0) {
+        setError("No se encontraron prospectos validos. Cada prospecto necesita al menos el campo \"name\".");
         return;
       }
 
-      const cols = Object.keys(json[0]);
-      setColumns(cols);
-      setRawRows(json);
-
-      // Auto-map columns
-      const autoMapping: Record<string, string> = {};
-      cols.forEach((col) => {
-        const normalized = col.toLowerCase().trim();
-        if (AUTO_MAP[normalized]) {
-          autoMapping[col] = AUTO_MAP[normalized];
-        }
-      });
-      setMapping(autoMapping);
-      setStep("mapping");
+      setProspects(valid);
+      setStep("preview");
     } catch {
-      setError("Error al leer el archivo. Asegurate de que es un archivo Excel valido (.xlsx, .xls)");
+      setError("JSON no valido. Asegurate de que el formato es correcto.");
     }
-  }, []);
-
-  const handleDrop = useCallback(
-    (e: React.DragEvent) => {
-      e.preventDefault();
-      const file = e.dataTransfer.files[0];
-      if (file) handleFile(file);
-    },
-    [handleFile]
-  );
-
-  const handleFileInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) handleFile(file);
-  };
-
-  const getMappedProspects = () => {
-    return rawRows.map((row) => {
-      const prospect: Record<string, unknown> = {};
-      Object.entries(mapping).forEach(([col, field]) => {
-        if (field && row[col] !== undefined && row[col] !== null && row[col] !== "") {
-          prospect[field] = row[col];
-        }
-      });
-      return prospect;
-    }).filter((p) => p.name);
   };
 
   const handleImport = async () => {
     setStep("importing");
     setError("");
-
-    const prospects = getMappedProspects();
-    if (prospects.length === 0) {
-      setError("No hay prospectos validos para importar (se necesita al menos el nombre)");
-      setStep("preview");
-      return;
-    }
 
     try {
       const res = await fetch("/api/prospects/import", {
@@ -181,9 +81,6 @@ export default function ImportProspectsModal({ onClose, onImported }: Props) {
     }
   };
 
-  const mappedPreview = getMappedProspects();
-  const hasNameMapping = Object.values(mapping).includes("name");
-
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
       <div className="bg-white rounded-2xl p-6 sm:p-8 max-w-3xl w-full max-h-[90vh] overflow-y-auto">
@@ -197,68 +94,45 @@ export default function ImportProspectsModal({ onClose, onImported }: Props) {
           </button>
         </div>
 
-        {/* Step: Upload */}
-        {step === "upload" && (
-          <div
-            onDrop={handleDrop}
-            onDragOver={(e) => e.preventDefault()}
-            className="border-2 border-dashed border-gray-300 rounded-2xl p-12 text-center hover:border-[#71C648] transition-colors cursor-pointer"
-            onClick={() => document.getElementById("excel-input")?.click()}
-          >
-            <div className="text-4xl mb-3">&#128196;</div>
-            <p className="text-[#194973] font-bold mb-1">Arrastra tu archivo Excel aqui</p>
-            <p className="text-sm text-[#5A6D6D] mb-4">o haz click para seleccionar</p>
-            <p className="text-xs text-[#5A6D6D]">Formatos: .xlsx, .xls, .csv</p>
-            <input
-              id="excel-input"
-              type="file"
-              accept=".xlsx,.xls,.csv"
-              onChange={handleFileInput}
-              className="hidden"
-            />
-          </div>
-        )}
-
-        {/* Step: Mapping */}
-        {step === "mapping" && (
+        {/* Step: Input */}
+        {step === "input" && (
           <div>
-            <p className="text-sm text-[#5A6D6D] mb-1">Archivo: <span className="font-medium text-[#194973]">{fileName}</span></p>
-            <p className="text-sm text-[#5A6D6D] mb-4">{rawRows.length} filas encontradas. Mapea las columnas de tu Excel a los campos de prospecto:</p>
+            <p className="text-sm text-[#5A6D6D] mb-3">
+              Pega aqui un JSON con los prospectos. Puedes usar Claude para convertir tus datos a este formato.
+            </p>
 
-            <div className="flex flex-col gap-3 mb-6">
-              {columns.map((col) => (
-                <div key={col} className="flex items-center gap-3">
-                  <div className="w-1/3 text-sm font-medium text-[#194973] truncate" title={col}>{col}</div>
-                  <svg className="w-4 h-4 text-[#5A6D6D] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                  </svg>
-                  <select
-                    value={mapping[col] || ""}
-                    onChange={(e) => setMapping((prev) => ({ ...prev, [col]: e.target.value }))}
-                    className="flex-1 px-3 py-2 border-2 border-gray-200 rounded-xl text-sm text-[#194973] outline-none focus:border-[#71C648]"
-                  >
-                    {FIELD_OPTIONS.map((opt) => (
-                      <option key={opt.value} value={opt.value}>{opt.label}</option>
-                    ))}
-                  </select>
-                </div>
-              ))}
+            <div className="mb-3">
+              <button
+                type="button"
+                onClick={() => setJsonText(EXAMPLE)}
+                className="text-xs text-[#71C648] hover:underline"
+              >
+                Ver ejemplo de formato
+              </button>
             </div>
 
-            {!hasNameMapping && (
-              <p className="text-sm text-red-500 mb-4">Debes mapear al menos la columna &quot;Nombre&quot;</p>
+            <textarea
+              value={jsonText}
+              onChange={(e) => setJsonText(e.target.value)}
+              rows={14}
+              className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl text-sm text-[#194973] outline-none focus:border-[#71C648] font-mono resize-none bg-[#f8f9fa]"
+              placeholder={`Pega tu JSON aqui...\n\nCampos disponibles:\nname, position, company, city, country, segment,\nwebsiteUrl, hasOnlineBooking, hasApp, websiteQuality (1-5),\nwhyGoodProspect, contactNotes, email, phone`}
+            />
+
+            {error && (
+              <div className="bg-red-50 text-red-600 rounded-xl p-3 text-sm mt-3">{error}</div>
             )}
 
-            <div className="flex justify-end gap-3">
-              <button onClick={() => setStep("upload")} className="px-4 py-2 bg-gray-100 text-[#5A6D6D] rounded-xl text-sm font-semibold hover:bg-gray-200 transition-colors">
-                Atras
+            <div className="flex justify-end gap-3 mt-4">
+              <button onClick={onClose} className="px-4 py-2 bg-gray-100 text-[#5A6D6D] rounded-xl text-sm font-semibold hover:bg-gray-200 transition-colors">
+                Cancelar
               </button>
               <button
-                onClick={() => setStep("preview")}
-                disabled={!hasNameMapping}
+                onClick={handleParse}
+                disabled={!jsonText.trim()}
                 className="px-6 py-2 bg-[#194973] text-white rounded-xl text-sm font-semibold hover:bg-[#0f3150] transition-colors disabled:opacity-50"
               >
-                Vista previa
+                Validar JSON
               </button>
             </div>
           </div>
@@ -268,7 +142,7 @@ export default function ImportProspectsModal({ onClose, onImported }: Props) {
         {step === "preview" && (
           <div>
             <p className="text-sm text-[#5A6D6D] mb-4">
-              <span className="font-bold text-[#194973]">{mappedPreview.length}</span> prospectos listos para importar (de {rawRows.length} filas):
+              <span className="font-bold text-[#194973]">{prospects.length}</span> prospectos listos para importar:
             </p>
 
             {error && (
@@ -283,35 +157,35 @@ export default function ImportProspectsModal({ onClose, onImported }: Props) {
                     <th className="text-left text-xs font-bold text-[#5A6D6D] uppercase px-3 py-2">Nombre</th>
                     <th className="text-left text-xs font-bold text-[#5A6D6D] uppercase px-3 py-2">Empresa</th>
                     <th className="text-left text-xs font-bold text-[#5A6D6D] uppercase px-3 py-2">Ciudad</th>
-                    <th className="text-left text-xs font-bold text-[#5A6D6D] uppercase px-3 py-2">Segmento</th>
+                    <th className="text-left text-xs font-bold text-[#5A6D6D] uppercase px-3 py-2">Web</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {mappedPreview.slice(0, 10).map((p, i) => (
+                  {prospects.slice(0, 15).map((p, i) => (
                     <tr key={i} className="border-b border-gray-50">
                       <td className="px-3 py-2 text-[#5A6D6D]">{i + 1}</td>
                       <td className="px-3 py-2 text-[#194973] font-medium">{String(p.name || "")}</td>
                       <td className="px-3 py-2 text-[#194973]">{String(p.company || "-")}</td>
                       <td className="px-3 py-2 text-[#194973]">{String(p.city || "-")}</td>
-                      <td className="px-3 py-2 text-[#194973]">{String(p.segment || "-")}</td>
+                      <td className="px-3 py-2 text-[#194973] truncate max-w-[150px]">{String(p.websiteUrl || "-")}</td>
                     </tr>
                   ))}
                 </tbody>
               </table>
-              {mappedPreview.length > 10 && (
-                <p className="text-xs text-[#5A6D6D] mt-2 px-3">...y {mappedPreview.length - 10} mas</p>
+              {prospects.length > 15 && (
+                <p className="text-xs text-[#5A6D6D] mt-2 px-3">...y {prospects.length - 15} mas</p>
               )}
             </div>
 
             <div className="flex justify-end gap-3">
-              <button onClick={() => setStep("mapping")} className="px-4 py-2 bg-gray-100 text-[#5A6D6D] rounded-xl text-sm font-semibold hover:bg-gray-200 transition-colors">
+              <button onClick={() => setStep("input")} className="px-4 py-2 bg-gray-100 text-[#5A6D6D] rounded-xl text-sm font-semibold hover:bg-gray-200 transition-colors">
                 Atras
               </button>
               <button
                 onClick={handleImport}
                 className="px-6 py-2 bg-gradient-to-r from-[#71C648] to-[#5db33a] text-white rounded-xl text-sm font-semibold hover:shadow-lg hover:shadow-[#71C648]/30 transition-all"
               >
-                Importar {mappedPreview.length} prospectos
+                Importar {prospects.length} prospectos
               </button>
             </div>
           </div>
