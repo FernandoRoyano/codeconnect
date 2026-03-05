@@ -1,5 +1,14 @@
 export type ProposalStatus = "borrador" | "enviada" | "vista" | "aceptada" | "rechazada" | "descartada";
 
+export type ProspectPipelineStatus =
+  | "identificado"
+  | "contactado"
+  | "respondido"
+  | "interesado"
+  | "negociando"
+  | "convertido"
+  | "descartado";
+
 export type Database = {
   public: {
     Tables: {
@@ -191,9 +200,74 @@ export type Database = {
           user_agent?: string | null;
         };
       };
+      prospects: {
+        Row: {
+          id: string;
+          user_id: string;
+          name: string;
+          position: string | null;
+          company: string | null;
+          city: string | null;
+          country: string | null;
+          segment: string | null;
+          why_good_prospect: string | null;
+          contact_notes: string | null;
+          website_url: string | null;
+          has_online_booking: boolean;
+          has_app: boolean;
+          website_quality: number | null;
+          pipeline_status: ProspectPipelineStatus;
+          email: string | null;
+          phone: string | null;
+          contacted_at: string | null;
+          created_at: string;
+          updated_at: string;
+        };
+        Insert: {
+          id?: string;
+          user_id: string;
+          name: string;
+          position?: string | null;
+          company?: string | null;
+          city?: string | null;
+          country?: string | null;
+          segment?: string | null;
+          why_good_prospect?: string | null;
+          contact_notes?: string | null;
+          website_url?: string | null;
+          has_online_booking?: boolean;
+          has_app?: boolean;
+          website_quality?: number | null;
+          pipeline_status?: ProspectPipelineStatus;
+          email?: string | null;
+          phone?: string | null;
+          contacted_at?: string | null;
+        };
+        Update: {
+          id?: string;
+          user_id?: string;
+          name?: string;
+          position?: string | null;
+          company?: string | null;
+          city?: string | null;
+          country?: string | null;
+          segment?: string | null;
+          why_good_prospect?: string | null;
+          contact_notes?: string | null;
+          website_url?: string | null;
+          has_online_booking?: boolean;
+          has_app?: boolean;
+          website_quality?: number | null;
+          pipeline_status?: ProspectPipelineStatus;
+          email?: string | null;
+          phone?: string | null;
+          contacted_at?: string | null;
+        };
+      };
     };
     Enums: {
       proposal_status: ProposalStatus;
+      prospect_pipeline_status: ProspectPipelineStatus;
     };
   };
 };
