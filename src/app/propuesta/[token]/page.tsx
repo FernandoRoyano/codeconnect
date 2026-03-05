@@ -3,6 +3,8 @@
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import ProposalView from "@/components/dashboard/ProposalView";
+import DownloadProposalPDF from "@/components/pdf/DownloadProposalPDF";
+import { buildProposalDisplayData } from "@/lib/utils/proposalData";
 import type { ProposalFormState } from "@/lib/constants/proposal";
 
 interface PublicProposal {
@@ -130,6 +132,17 @@ export default function PublicProposalPage() {
     notes: proposal.notes || "",
   };
 
+  const pdfData = buildProposalDisplayData(formState, {
+    proposalId: proposal.reference_code,
+    proposalDate: new Date(proposal.created_at).toLocaleDateString("es-ES", { day: "numeric", month: "long", year: "numeric" }),
+    alreadyAccepted: signed,
+    alreadyRejected: rejected,
+    rejectionReason: proposal.rejection_reason,
+    rejectedDate: proposal.rejected_at ? new Date(proposal.rejected_at).toLocaleDateString("es-ES", { day: "numeric", month: "long", year: "numeric" }) : null,
+    existingSignature: proposal.signature_data,
+    acceptedDate: proposal.signed_at ? new Date(proposal.signed_at).toLocaleDateString("es-ES", { day: "numeric", month: "long", year: "numeric" }) : null,
+  });
+
   return (
     <div className="min-h-screen bg-[#f8f9fa] py-8 sm:py-12">
       <div className="max-w-3xl mx-auto px-4 sm:px-6">
@@ -147,6 +160,15 @@ export default function PublicProposalPage() {
           onSign={handleSign}
           onReject={() => setShowRejectForm(true)}
         />
+        {signed && (
+          <div className="mt-6 text-center">
+            <DownloadProposalPDF
+              data={pdfData}
+              fileName={`Propuesta-${proposal.reference_code}.pdf`}
+              className="px-6 py-3 bg-[#194973] text-white rounded-xl text-sm font-semibold hover:bg-[#0f3150] transition-colors disabled:opacity-50"
+            />
+          </div>
+        )}
       </div>
 
       {/* Modal de rechazo */}

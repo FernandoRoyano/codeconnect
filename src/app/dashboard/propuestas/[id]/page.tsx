@@ -8,6 +8,8 @@ import ProposalStatusBadge from "@/components/dashboard/ProposalStatusBadge";
 import type { ProposalFormState } from "@/lib/constants/proposal";
 import type { ProposalStatus } from "@/lib/supabase/types";
 import { formatCurrency } from "@/lib/utils/currency";
+import DownloadProposalPDF from "@/components/pdf/DownloadProposalPDF";
+import { buildProposalDisplayData } from "@/lib/utils/proposalData";
 
 interface ProposalDetail {
   id: string;
@@ -109,6 +111,17 @@ export default function ProposalDetailPage() {
     notes: proposal.notes || "",
   };
 
+  const pdfData = buildProposalDisplayData(formState, {
+    proposalId: proposal.reference_code,
+    proposalDate: new Date(proposal.created_at).toLocaleDateString("es-ES", { day: "numeric", month: "long", year: "numeric" }),
+    alreadyAccepted: proposal.status === "aceptada",
+    alreadyRejected: proposal.status === "rechazada",
+    rejectionReason: proposal.rejection_reason,
+    rejectedDate: proposal.rejected_at ? new Date(proposal.rejected_at).toLocaleDateString("es-ES", { day: "numeric", month: "long", year: "numeric" }) : null,
+    existingSignature: proposal.signature_data,
+    acceptedDate: proposal.signed_at ? new Date(proposal.signed_at).toLocaleDateString("es-ES", { day: "numeric", month: "long", year: "numeric" }) : null,
+  });
+
   if (showPreview) {
     return (
       <div className="max-w-3xl mx-auto">
@@ -148,6 +161,11 @@ export default function ProposalDetailPage() {
           <button onClick={() => setShowPreview(true)} className="px-4 py-2 bg-white border border-gray-200 text-[#194973] rounded-xl text-sm font-semibold hover:bg-gray-50 transition-colors">
             Ver propuesta
           </button>
+          <DownloadProposalPDF
+            data={pdfData}
+            fileName={`Propuesta-${proposal.reference_code}.pdf`}
+            className="px-4 py-2 bg-white border border-gray-200 text-[#194973] rounded-xl text-sm font-semibold hover:bg-gray-50 transition-colors disabled:opacity-50"
+          />
           {proposal.status === "borrador" && (
             <button onClick={handleSend} disabled={sending} className="px-4 py-2 bg-[#194973] text-white rounded-xl text-sm font-semibold hover:bg-[#0f3150] transition-colors disabled:opacity-50">
               {sending ? "Enviando..." : "Marcar como enviada"}
