@@ -11,22 +11,88 @@ type Step = "input" | "preview" | "importing" | "done";
 
 const EXAMPLE = `[
   {
-    "name": "Juan Garcia",
-    "position": "CEO",
-    "company": "Restaurante El Sol",
-    "city": "Madrid",
-    "country": "Espana",
-    "segment": "restauracion",
-    "websiteUrl": "https://ejemplo.com",
-    "hasOnlineBooking": false,
-    "hasApp": false,
-    "websiteQuality": 2,
-    "whyGoodProspect": "Web antigua, necesita renovacion",
-    "contactNotes": "",
+    "nombre": "Juan Garcia",
+    "cargo": "CEO",
+    "empresa": "Restaurante El Sol",
+    "ciudad": "Madrid",
+    "pais": "Espana",
+    "segmento": "restauracion",
+    "web": "https://ejemplo.com",
+    "reserva online": false,
+    "app": false,
+    "calidad web": 2,
+    "notas": "Web antigua, necesita renovacion",
     "email": "juan@ejemplo.com",
-    "phone": "+34 600 000 000"
+    "telefono": "+34 600 000 000"
   }
 ]`;
+
+// Map Spanish/alternative field names to the expected English keys
+const FIELD_ALIASES: Record<string, string> = {
+  nombre: "name",
+  name: "name",
+  cargo: "position",
+  posicion: "position",
+  position: "position",
+  puesto: "position",
+  empresa: "company",
+  company: "company",
+  email: "email",
+  correo: "email",
+  telefono: "phone",
+  phone: "phone",
+  tel: "phone",
+  movil: "phone",
+  ciudad: "city",
+  city: "city",
+  pais: "country",
+  country: "country",
+  segmento: "segment",
+  segment: "segment",
+  sector: "segment",
+  web: "websiteUrl",
+  website: "websiteUrl",
+  websiteurl: "websiteUrl",
+  "sitio web": "websiteUrl",
+  "sitio_web": "websiteUrl",
+  url: "websiteUrl",
+  pagina: "websiteUrl",
+  reserva: "hasOnlineBooking",
+  "reserva online": "hasOnlineBooking",
+  "reserva_online": "hasOnlineBooking",
+  hasonlinebooking: "hasOnlineBooking",
+  booking: "hasOnlineBooking",
+  app: "hasApp",
+  hasapp: "hasApp",
+  aplicacion: "hasApp",
+  "calidad web": "websiteQuality",
+  "calidad_web": "websiteQuality",
+  calidad: "websiteQuality",
+  websitequality: "websiteQuality",
+  "por que": "whyGoodProspect",
+  "por_que": "whyGoodProspect",
+  "porque buen prospecto": "whyGoodProspect",
+  whygoodprospect: "whyGoodProspect",
+  prospecto: "whyGoodProspect",
+  notas: "contactNotes",
+  "notas de contacto": "contactNotes",
+  "notas_de_contacto": "contactNotes",
+  contactnotes: "contactNotes",
+  observaciones: "contactNotes",
+  comentarios: "contactNotes",
+};
+
+function normalizeProspect(raw: Record<string, unknown>): Record<string, unknown> {
+  const normalized: Record<string, unknown> = {};
+  for (const [key, value] of Object.entries(raw)) {
+    const lowerKey = key.toLowerCase().trim();
+    const mappedKey = FIELD_ALIASES[lowerKey] || key;
+    if (value !== undefined && value !== null && value !== "") {
+      normalized[mappedKey] = value;
+    }
+  }
+  return normalized;
+}
 
 export default function ImportProspectsModal({ onClose, onImported }: Props) {
   const [step, setStep] = useState<Step>("input");
@@ -40,10 +106,10 @@ export default function ImportProspectsModal({ onClose, onImported }: Props) {
     try {
       const parsed = JSON.parse(jsonText.trim());
       const arr = Array.isArray(parsed) ? parsed : [parsed];
-      const valid = arr.filter((p: Record<string, unknown>) => p.name && String(p.name).trim());
+      const valid = arr.map(normalizeProspect).filter((p) => p.name && String(p.name).trim());
 
       if (valid.length === 0) {
-        setError("No se encontraron prospectos validos. Cada prospecto necesita al menos el campo \"name\".");
+        setError("No se encontraron prospectos validos. Cada prospecto necesita al menos el campo \"name\" o \"nombre\".");
         return;
       }
 
@@ -116,7 +182,7 @@ export default function ImportProspectsModal({ onClose, onImported }: Props) {
               onChange={(e) => setJsonText(e.target.value)}
               rows={14}
               className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl text-sm text-[#194973] outline-none focus:border-[#71C648] font-mono resize-none bg-[#f8f9fa]"
-              placeholder={`Pega tu JSON aqui...\n\nCampos disponibles:\nname, position, company, city, country, segment,\nwebsiteUrl, hasOnlineBooking, hasApp, websiteQuality (1-5),\nwhyGoodProspect, contactNotes, email, phone`}
+              placeholder={`Pega tu JSON aqui...\n\nCampos disponibles (espanol o ingles):\nnombre, cargo, empresa, ciudad, pais, segmento,\nweb, reserva online, app, calidad web (1-5),\nnotas, email, telefono`}
             />
 
             {error && (
