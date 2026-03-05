@@ -50,6 +50,7 @@ export default function ProposalDetailPage() {
   const [showPreview, setShowPreview] = useState(false);
   const [copied, setCopied] = useState(false);
   const [sending, setSending] = useState(false);
+  const [deleting, setDeleting] = useState(false);
 
   useEffect(() => {
     fetchProposal();
@@ -79,6 +80,16 @@ export default function ProposalDetailPage() {
       body: JSON.stringify({ status: newStatus }),
     });
     if (res.ok) await fetchProposal();
+  };
+
+  const handleDelete = async () => {
+    if (!confirm("¿Seguro que quieres eliminar esta propuesta? Esta accion no se puede deshacer.")) return;
+    setDeleting(true);
+    const res = await fetch(`/api/proposals/${id}`, { method: "DELETE" });
+    if (res.ok) {
+      router.push("/dashboard/propuestas");
+    }
+    setDeleting(false);
   };
 
   const copyLink = () => {
@@ -322,6 +333,13 @@ export default function ProposalDetailPage() {
                   Ver cliente
                 </Link>
               )}
+              <button
+                onClick={handleDelete}
+                disabled={deleting}
+                className="w-full py-2 px-3 bg-red-50 text-red-600 rounded-lg text-sm font-medium hover:bg-red-100 transition-colors mt-2 border-t border-gray-100 pt-3 disabled:opacity-50"
+              >
+                {deleting ? "Eliminando..." : "Eliminar propuesta"}
+              </button>
             </div>
           </div>
 
