@@ -9,25 +9,7 @@ interface Props {
 
 type Step = "input" | "preview" | "importing" | "done";
 
-const EXAMPLE = `[
-  {
-    "nombre": "Juan Garcia",
-    "cargo": "CEO",
-    "empresa": "Restaurante El Sol",
-    "ciudad": "Madrid",
-    "pais": "Espana",
-    "segmento": "restauracion",
-    "web": "https://ejemplo.com",
-    "reserva online": false,
-    "app": false,
-    "calidad web": 2,
-    "notas": "Web antigua, necesita renovacion",
-    "email": "juan@ejemplo.com",
-    "telefono": "+34 600 000 000"
-  }
-]`;
-
-// Map Spanish/alternative field names to the expected English keys
+// Map Spanish/alternative column names to internal field keys
 const FIELD_ALIASES: Record<string, string> = {
   nombre: "name",
   name: "name",
@@ -54,70 +36,67 @@ const FIELD_ALIASES: Record<string, string> = {
   website: "websiteUrl",
   websiteurl: "websiteUrl",
   "sitio web": "websiteUrl",
-  "sitio_web": "websiteUrl",
   url: "websiteUrl",
   pagina: "websiteUrl",
   reserva: "hasOnlineBooking",
   "reserva online": "hasOnlineBooking",
-  "reserva_online": "hasOnlineBooking",
-  hasonlinebooking: "hasOnlineBooking",
   booking: "hasOnlineBooking",
   app: "hasApp",
-  hasapp: "hasApp",
   aplicacion: "hasApp",
   "calidad web": "websiteQuality",
-  "calidad_web": "websiteQuality",
   calidad: "websiteQuality",
-  websitequality: "websiteQuality",
   "por que": "whyGoodProspect",
-  "por_que": "whyGoodProspect",
-  "porque buen prospecto": "whyGoodProspect",
-  whygoodprospect: "whyGoodProspect",
   prospecto: "whyGoodProspect",
   notas: "contactNotes",
-  "notas de contacto": "contactNotes",
-  "notas_de_contacto": "contactNotes",
-  contactnotes: "contactNotes",
+  notes: "contactNotes",
   observaciones: "contactNotes",
   comentarios: "contactNotes",
 };
 
-function normalizeProspect(raw: Record<string, unknown>): Record<string, unknown> {
-  const normalized: Record<string, unknown> = {};
-  for (const [key, value] of Object.entries(raw)) {
-    const lowerKey = key.toLowerCase().trim();
-    const mappedKey = FIELD_ALIASES[lowerKey] || key;
-    if (value !== undefined && value !== null && value !== "") {
-      normalized[mappedKey] = value;
-    }
+function parseTabData(text: string): Record<string, unknown>[] {
+  const lines = text.trim().split(/\r?\n/).filter((l) => l.trim());
+  if (lines.length < 2) return [];
+
+  // Detect separator: tab or semicolon
+  const sep = lines[0].includes("\t") ? "\t" : ";";
+
+  const headers = lines[0].split(sep).map((h) => {
+    const normalized = h.trim().toLowerCase();
+    return FIELD_ALIASES[normalized] || normalized;
+  });
+
+  const rows: Record<string, unknown>[] = [];
+  for (let i = 1; i < lines.length; i++) {
+    const values = lines[i].split(sep);
+    const row: Record<string, unknown> = {};
+    headers.forEach((key, j) => {
+      const val = values[j]?.trim();
+      if (val) row[key] = val;
+    });
+    if (row.name) rows.push(row);
   }
-  return normalized;
+
+  return rows;
 }
 
 export default function ImportProspectsModal({ onClose, onImported }: Props) {
   const [step, setStep] = useState<Step>("input");
-  const [jsonText, setJsonText] = useState("");
+  const [pastedText, setPastedText] = useState("");
   const [prospects, setProspects] = useState<Record<string, unknown>[]>([]);
   const [importedCount, setImportedCount] = useState(0);
   const [error, setError] = useState("");
 
   const handleParse = () => {
     setError("");
-    try {
-      const parsed = JSON.parse(jsonText.trim());
-      const arr = Array.isArray(parsed) ? parsed : [parsed];
-      const valid = arr.map(normalizeProspect).filter((p) => p.name && String(p.name).trim());
+    const parsed = parseTabData(pastedText);
 
-      if (valid.length === 0) {
-        setError("No se encontraron prospectos validos. Cada prospecto necesita al menos el campo \"name\" o \"nombre\".");
-        return;
-      }
-
-      setProspects(valid);
-      setStep("preview");
-    } catch {
-      setError("JSON no valido. Asegurate de que el formato es correcto.");
+    if (parsed.length === 0) {
+      setError("No se encontraron prospectos. Asegurate de que la primera fila tiene los encabezados (nombre, empresa, etc.) y que hay al menos una fila de datos.");
+      return;
     }
+
+    setProspects(parsed);
+    setStep("preview");
   };
 
   const handleImport = async () => {
@@ -163,26 +142,27 @@ export default function ImportProspectsModal({ onClose, onImported }: Props) {
         {/* Step: Input */}
         {step === "input" && (
           <div>
-            <p className="text-sm text-[#5A6D6D] mb-3">
-              Pega aqui un JSON con los prospectos. Puedes usar Claude para convertir tus datos a este formato.
-            </p>
+            <div className="bg-[#f8f9fa] rounded-xl p-4 mb-4">
+              <p className="text-sm font-bold text-[#194973] mb-2">Como importar:</p>
+              <ol className="text-sm text-[#5A6D6D] list-decimal list-inside flex flex-col gap-1">
+                <li>Abre tu Excel o Google Sheets</li>
+                <li>Asegurate de que la <span className="font-semibold text-[#194973]">primera fila</span> tiene los encabezados (nombre, empresa, ciudad, web...)</li>
+                <li>Selecciona todas las celdas (encabezados + datos)</li>
+                <li>Copia con <span className="font-semibold text-[#194973]">Ctrl+C</span></li>
+                <li>Pega aqui abajo con <span className="font-semibold text-[#194973]">Ctrl+V</span></li>
+              </ol>
+            </div>
 
-            <div className="mb-3">
-              <button
-                type="button"
-                onClick={() => setJsonText(EXAMPLE)}
-                className="text-xs text-[#71C648] hover:underline"
-              >
-                Ver ejemplo de formato
-              </button>
+            <div className="mb-2 text-xs text-[#5A6D6D]">
+              Encabezados reconocidos: nombre, cargo, empresa, email, telefono, ciudad, pais, segmento, web, reserva online, app, calidad web, notas
             </div>
 
             <textarea
-              value={jsonText}
-              onChange={(e) => setJsonText(e.target.value)}
-              rows={14}
-              className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl text-sm text-[#194973] outline-none focus:border-[#71C648] font-mono resize-none bg-[#f8f9fa]"
-              placeholder={`Pega tu JSON aqui...\n\nCampos disponibles (espanol o ingles):\nnombre, cargo, empresa, ciudad, pais, segmento,\nweb, reserva online, app, calidad web (1-5),\nnotas, email, telefono`}
+              value={pastedText}
+              onChange={(e) => setPastedText(e.target.value)}
+              rows={12}
+              className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl text-sm text-[#194973] outline-none focus:border-[#71C648] font-mono resize-none bg-white"
+              placeholder={"nombre\tempresa\tciudad\tweb\tnotas\nJuan Garcia\tRestaurante El Sol\tMadrid\thttps://ejemplo.com\tWeb antigua"}
             />
 
             {error && (
@@ -195,10 +175,10 @@ export default function ImportProspectsModal({ onClose, onImported }: Props) {
               </button>
               <button
                 onClick={handleParse}
-                disabled={!jsonText.trim()}
+                disabled={!pastedText.trim()}
                 className="px-6 py-2 bg-[#194973] text-white rounded-xl text-sm font-semibold hover:bg-[#0f3150] transition-colors disabled:opacity-50"
               >
-                Validar JSON
+                Ver vista previa
               </button>
             </div>
           </div>
@@ -227,7 +207,7 @@ export default function ImportProspectsModal({ onClose, onImported }: Props) {
                   </tr>
                 </thead>
                 <tbody>
-                  {prospects.slice(0, 15).map((p, i) => (
+                  {prospects.slice(0, 20).map((p, i) => (
                     <tr key={i} className="border-b border-gray-50">
                       <td className="px-3 py-2 text-[#5A6D6D]">{i + 1}</td>
                       <td className="px-3 py-2 text-[#194973] font-medium">{String(p.name || "")}</td>
@@ -238,8 +218,8 @@ export default function ImportProspectsModal({ onClose, onImported }: Props) {
                   ))}
                 </tbody>
               </table>
-              {prospects.length > 15 && (
-                <p className="text-xs text-[#5A6D6D] mt-2 px-3">...y {prospects.length - 15} mas</p>
+              {prospects.length > 20 && (
+                <p className="text-xs text-[#5A6D6D] mt-2 px-3">...y {prospects.length - 20} mas</p>
               )}
             </div>
 
