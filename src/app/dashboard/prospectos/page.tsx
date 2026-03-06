@@ -3,8 +3,9 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import ProspectCard from "@/components/dashboard/ProspectCard";
+import ProspectPipelineBadge from "@/components/dashboard/ProspectPipelineBadge";
 import ImportProspectsModal from "@/components/dashboard/ImportProspectsModal";
-import { PIPELINE_TABS, type ProspectPipelineStatus } from "@/lib/constants/prospect";
+import { PIPELINE_TABS, SEGMENTS, type ProspectPipelineStatus } from "@/lib/constants/prospect";
 
 interface Prospect {
   id: string;
@@ -28,6 +29,7 @@ export default function ProspectosPage() {
   const [activeTab, setActiveTab] = useState("all");
   const [search, setSearch] = useState("");
   const [showImport, setShowImport] = useState(false);
+  const [viewMode, setViewMode] = useState<"list" | "grid">("list");
 
   useEffect(() => {
     fetchProspects();
@@ -90,7 +92,32 @@ export default function ProspectosPage() {
         />
       </form>
 
-      {/* Pipeline tabs */}
+      {/* View toggle + Pipeline tabs */}
+      <div className="flex items-center gap-3 mb-4">
+        <div className="flex bg-gray-200 rounded-lg p-0.5">
+          <button
+            onClick={() => setViewMode("list")}
+            className={`px-3 py-1.5 rounded-md text-xs font-semibold transition-all ${
+              viewMode === "list" ? "bg-white text-[#194973] shadow-sm" : "text-[#5A6D6D]"
+            }`}
+          >
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 10h16M4 14h16M4 18h16" />
+            </svg>
+          </button>
+          <button
+            onClick={() => setViewMode("grid")}
+            className={`px-3 py-1.5 rounded-md text-xs font-semibold transition-all ${
+              viewMode === "grid" ? "bg-white text-[#194973] shadow-sm" : "text-[#5A6D6D]"
+            }`}
+          >
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 5a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1H5a1 1 0 01-1-1V5zm10 0a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1h-4a1 1 0 01-1-1V5zM4 15a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1H5a1 1 0 01-1-1v-4zm10 0a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1h-4a1 1 0 01-1-1v-4z" />
+            </svg>
+          </button>
+        </div>
+      </div>
+
       <div className="flex gap-1 mb-6 overflow-x-auto pb-1">
         {PIPELINE_TABS.map((tab) => (
           <button
@@ -113,7 +140,7 @@ export default function ProspectosPage() {
         ))}
       </div>
 
-      {/* Grid */}
+      {/* Content */}
       {loading ? (
         <div className="p-12 text-center text-[#5A6D6D]">Cargando...</div>
       ) : prospects.length === 0 ? (
@@ -121,6 +148,74 @@ export default function ProspectosPage() {
           <div className="text-4xl mb-3">&#128269;</div>
           <div className="text-[#194973] font-bold">No hay prospectos</div>
           <div className="text-[#5A6D6D] text-sm mt-1">Anade tu primer prospecto para empezar a hacer seguimiento</div>
+        </div>
+      ) : viewMode === "list" ? (
+        <div className="bg-white rounded-2xl border border-gray-200 overflow-hidden">
+          <div className="overflow-x-auto">
+            <table className="w-full">
+              <thead>
+                <tr className="border-b border-gray-100">
+                  <th className="text-left text-xs font-bold text-[#5A6D6D] uppercase tracking-wider px-4 py-3">Nombre</th>
+                  <th className="text-left text-xs font-bold text-[#5A6D6D] uppercase tracking-wider px-4 py-3">Cargo</th>
+                  <th className="text-left text-xs font-bold text-[#5A6D6D] uppercase tracking-wider px-4 py-3">Empresa</th>
+                  <th className="text-left text-xs font-bold text-[#5A6D6D] uppercase tracking-wider px-4 py-3">Ciudad</th>
+                  <th className="text-left text-xs font-bold text-[#5A6D6D] uppercase tracking-wider px-4 py-3">Segmento</th>
+                  <th className="text-left text-xs font-bold text-[#5A6D6D] uppercase tracking-wider px-4 py-3">Web</th>
+                  <th className="text-left text-xs font-bold text-[#5A6D6D] uppercase tracking-wider px-4 py-3 text-center">Calidad</th>
+                  <th className="text-left text-xs font-bold text-[#5A6D6D] uppercase tracking-wider px-4 py-3 text-center">Reserva</th>
+                  <th className="text-left text-xs font-bold text-[#5A6D6D] uppercase tracking-wider px-4 py-3 text-center">App</th>
+                  <th className="text-left text-xs font-bold text-[#5A6D6D] uppercase tracking-wider px-4 py-3">Estado</th>
+                </tr>
+              </thead>
+              <tbody>
+                {prospects.map((p) => {
+                  const segLabel = SEGMENTS.find((s) => s.value === p.segment)?.label || p.segment;
+                  return (
+                    <tr key={p.id} className="border-b border-gray-50 hover:bg-[#f8f9fa] transition-colors">
+                      <td className="px-4 py-3">
+                        <Link href={`/dashboard/prospectos/${p.id}`} className="text-sm font-medium text-[#194973] hover:text-[#71C648]">
+                          {p.name}
+                        </Link>
+                      </td>
+                      <td className="px-4 py-3 text-sm text-[#5A6D6D]">{p.position || "-"}</td>
+                      <td className="px-4 py-3 text-sm text-[#194973]">{p.company || "-"}</td>
+                      <td className="px-4 py-3 text-sm text-[#5A6D6D]">{p.city || "-"}</td>
+                      <td className="px-4 py-3 text-xs text-[#5A6D6D]">{segLabel || "-"}</td>
+                      <td className="px-4 py-3 text-sm">
+                        {p.website_url ? (
+                          <a href={p.website_url} target="_blank" rel="noopener noreferrer" className="text-[#71C648] hover:underline truncate block max-w-[120px]">
+                            {p.website_url.replace(/^https?:\/\/(www\.)?/, "")}
+                          </a>
+                        ) : "-"}
+                      </td>
+                      <td className="px-4 py-3 text-center">
+                        {p.website_quality ? (
+                          <span className="text-sm font-bold text-[#194973]">{p.website_quality}/5</span>
+                        ) : <span className="text-[#5A6D6D]">-</span>}
+                      </td>
+                      <td className="px-4 py-3 text-center">
+                        <span className={`inline-block w-5 h-5 rounded-full text-xs font-bold leading-5 ${
+                          p.has_online_booking ? "bg-green-100 text-green-700" : "bg-gray-100 text-gray-400"
+                        }`}>
+                          {p.has_online_booking ? "S" : "N"}
+                        </span>
+                      </td>
+                      <td className="px-4 py-3 text-center">
+                        <span className={`inline-block w-5 h-5 rounded-full text-xs font-bold leading-5 ${
+                          p.has_app ? "bg-green-100 text-green-700" : "bg-gray-100 text-gray-400"
+                        }`}>
+                          {p.has_app ? "S" : "N"}
+                        </span>
+                      </td>
+                      <td className="px-4 py-3">
+                        <ProspectPipelineBadge status={p.pipeline_status} />
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
         </div>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
