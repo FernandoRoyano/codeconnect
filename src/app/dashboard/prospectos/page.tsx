@@ -23,6 +23,34 @@ interface Prospect {
   created_at: string;
 }
 
+type SortKey = "name" | "company" | "city" | "country" | "score" | "quality" | "created_at";
+type SortDir = "asc" | "desc";
+
+const HIGH_VALUE_SEGMENTS = ["salud", "restauracion", "ecommerce"];
+
+function calcScore(p: Prospect): number {
+  let score = 0;
+  if (!p.website_url) score += 25;
+  if (p.website_quality !== null && p.website_quality <= 2) score += 30;
+  else if (p.website_quality !== null && p.website_quality <= 3) score += 15;
+  if (!p.has_online_booking) score += 20;
+  if (!p.has_app) score += 15;
+  if (p.segment && HIGH_VALUE_SEGMENTS.includes(p.segment)) score += 10;
+  return score;
+}
+
+function scoreColor(score: number): string {
+  if (score >= 70) return "bg-green-100 text-green-700";
+  if (score >= 40) return "bg-yellow-100 text-yellow-700";
+  return "bg-gray-100 text-gray-500";
+}
+
+function scoreLabel(score: number): string {
+  if (score >= 70) return "Alta";
+  if (score >= 40) return "Media";
+  return "Baja";
+}
+
 interface Filters {
   name: string;
   position: string;
@@ -56,6 +84,8 @@ export default function ProspectosPage() {
   const [viewMode, setViewMode] = useState<"list" | "grid">("list");
   const [filters, setFilters] = useState<Filters>(emptyFilters);
   const [showFilters, setShowFilters] = useState(false);
+  const [sortKey, setSortKey] = useState<SortKey>("score");
+  const [sortDir, setSortDir] = useState<SortDir>("desc");
 
   useEffect(() => {
     fetchProspects();
@@ -101,6 +131,28 @@ export default function ProspectosPage() {
     if (f.app === "no" && p.has_app) return false;
     return true;
   });
+
+  const sortedProspects = [...filteredProspects].sort((a, b) => {
+    let cmp = 0;
+    switch (sortKey) {
+      case "score": cmp = calcScore(a) - calcScore(b); break;
+      case "quality": cmp = (a.website_quality || 0) - (b.website_quality || 0); break;
+      case "created_at": cmp = new Date(a.created_at).getTime() - new Date(b.created_at).getTime(); break;
+      default: cmp = (a[sortKey] || "").localeCompare(b[sortKey] || ""); break;
+    }
+    return sortDir === "asc" ? cmp : -cmp;
+  });
+
+  const toggleSort = (key: SortKey) => {
+    if (sortKey === key) setSortDir(sortDir === "asc" ? "desc" : "asc");
+    else { setSortKey(key); setSortDir(key === "score" ? "desc" : "asc"); }
+  };
+
+  const SortIcon = ({ col }: { col: SortKey }) => (
+    <span className="ml-1 inline-block opacity-60">
+      {sortKey === col ? (sortDir === "asc" ? "\u25B2" : "\u25BC") : "\u25B4\u25BE"}
+    </span>
+  );
 
   return (
     <div>
@@ -217,11 +269,18 @@ export default function ProspectosPage() {
       {/* Content */}
       {loading ? (
         <div className="p-12 text-center text-[#5A6D6D]">Cargando...</div>
-      ) : filteredProspects.length === 0 ? (
+      ) : prospects.length === 0 ? (
         <div className="bg-white rounded-2xl border border-gray-200 p-12 text-center">
           <div className="text-4xl mb-3">&#128269;</div>
           <div className="text-[#194973] font-bold">No hay prospectos</div>
           <div className="text-[#5A6D6D] text-sm mt-1">Anade tu primer prospecto para empezar a hacer seguimiento</div>
+        </div>
+      ) : sortedProspects.length === 0 ? (
+        <div className="bg-white rounded-2xl border border-gray-200 p-12 text-center">
+          <div className="text-4xl mb-3">&#128270;</div>
+          <div className="text-[#194973] font-bold">Sin resultados</div>
+          <div className="text-[#5A6D6D] text-sm mt-1">Ningun prospecto coincide con los filtros aplicados</div>
+          <button onClick={() => setFilters(emptyFilters)} className="mt-3 text-sm text-[#71C648] font-semibold hover:underline">Limpiar filtros</button>
         </div>
       ) : viewMode === "list" ? (
         <div className="bg-white rounded-2xl border border-gray-200 overflow-hidden">
@@ -229,19 +288,23 @@ export default function ProspectosPage() {
             <table className="w-full">
               <thead>
                 <tr className="border-b border-gray-100">
-                  <th className="text-left text-xs font-bold text-[#5A6D6D] uppercase tracking-wider px-4 py-3">Nombre</th>
+                  <th className="text-left text-xs font-bold text-[#5A6D6D] uppercase tracking-wider px-4 py-3 cursor-pointer select-none hover:text-[#194973]" onClick={() => toggleSort("score")}>Oportunidad<SortIcon col="score" /></th>
+                  <th className="text-left text-xs font-bold text-[#5A6D6D] uppercase tracking-wider px-4 py-3 cursor-pointer select-none hover:text-[#194973]" onClick={() => toggleSort("name")}>Nombre<SortIcon col="name" /></th>
                   <th className="text-left text-xs font-bold text-[#5A6D6D] uppercase tracking-wider px-4 py-3">Cargo</th>
-                  <th className="text-left text-xs font-bold text-[#5A6D6D] uppercase tracking-wider px-4 py-3">Empresa</th>
-                  <th className="text-left text-xs font-bold text-[#5A6D6D] uppercase tracking-wider px-4 py-3">Ciudad</th>
+                  <th className="text-left text-xs font-bold text-[#5A6D6D] uppercase tracking-wider px-4 py-3 cursor-pointer select-none hover:text-[#194973]" onClick={() => toggleSort("company")}>Empresa<SortIcon col="company" /></th>
+                  <th className="text-left text-xs font-bold text-[#5A6D6D] uppercase tracking-wider px-4 py-3 cursor-pointer select-none hover:text-[#194973]" onClick={() => toggleSort("city")}>Ciudad<SortIcon col="city" /></th>
+                  <th className="text-left text-xs font-bold text-[#5A6D6D] uppercase tracking-wider px-4 py-3 cursor-pointer select-none hover:text-[#194973]" onClick={() => toggleSort("country")}>Pais<SortIcon col="country" /></th>
                   <th className="text-left text-xs font-bold text-[#5A6D6D] uppercase tracking-wider px-4 py-3">Segmento</th>
                   <th className="text-left text-xs font-bold text-[#5A6D6D] uppercase tracking-wider px-4 py-3">Web</th>
-                  <th className="text-left text-xs font-bold text-[#5A6D6D] uppercase tracking-wider px-4 py-3 text-center">Calidad</th>
+                  <th className="text-left text-xs font-bold text-[#5A6D6D] uppercase tracking-wider px-4 py-3 text-center cursor-pointer select-none hover:text-[#194973]" onClick={() => toggleSort("quality")}>Calidad<SortIcon col="quality" /></th>
                   <th className="text-left text-xs font-bold text-[#5A6D6D] uppercase tracking-wider px-4 py-3 text-center">Reserva</th>
                   <th className="text-left text-xs font-bold text-[#5A6D6D] uppercase tracking-wider px-4 py-3 text-center">App</th>
                   <th className="text-left text-xs font-bold text-[#5A6D6D] uppercase tracking-wider px-4 py-3">Estado</th>
+                  <th className="text-left text-xs font-bold text-[#5A6D6D] uppercase tracking-wider px-4 py-3 cursor-pointer select-none hover:text-[#194973]" onClick={() => toggleSort("created_at")}>Fecha<SortIcon col="created_at" /></th>
                 </tr>
                 {showFilters && (
                   <tr className="border-b border-gray-200 bg-gray-50/50">
+                    <th className="px-4 py-2"></th>
                     <th className="px-4 py-2">
                       <input type="text" value={filters.name} onChange={(e) => setFilters({ ...filters, name: e.target.value })} placeholder="Filtrar..." className="w-full px-2 py-1 text-xs border border-gray-200 rounded-md bg-white text-[#194973] outline-none focus:border-[#71C648]" />
                     </th>
@@ -254,6 +317,7 @@ export default function ProspectosPage() {
                     <th className="px-4 py-2">
                       <input type="text" value={filters.city} onChange={(e) => setFilters({ ...filters, city: e.target.value })} placeholder="Filtrar..." className="w-full px-2 py-1 text-xs border border-gray-200 rounded-md bg-white text-[#194973] outline-none focus:border-[#71C648]" />
                     </th>
+                    <th className="px-4 py-2"></th>
                     <th className="px-4 py-2">
                       <select value={filters.segment} onChange={(e) => setFilters({ ...filters, segment: e.target.value })} className="w-full px-2 py-1 text-xs border border-gray-200 rounded-md bg-white text-[#194973] outline-none focus:border-[#71C648]">
                         <option value="">Todos</option>
@@ -288,14 +352,21 @@ export default function ProspectosPage() {
                       </select>
                     </th>
                     <th className="px-4 py-2"></th>
+                    <th className="px-4 py-2"></th>
                   </tr>
                 )}
               </thead>
               <tbody>
-                {filteredProspects.map((p) => {
+                {sortedProspects.map((p) => {
                   const segLabel = SEGMENTS.find((s) => s.value === p.segment)?.label || p.segment;
+                  const score = calcScore(p);
                   return (
                     <tr key={p.id} className="border-b border-gray-50 hover:bg-[#f8f9fa] transition-colors">
+                      <td className="px-4 py-3">
+                        <span className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold ${scoreColor(score)}`}>
+                          {score}% {scoreLabel(score)}
+                        </span>
+                      </td>
                       <td className="px-4 py-3">
                         <Link href={`/dashboard/prospectos/${p.id}`} className="text-sm font-medium text-[#194973] hover:text-[#71C648]">
                           {p.name}
@@ -304,6 +375,7 @@ export default function ProspectosPage() {
                       <td className="px-4 py-3 text-sm text-[#5A6D6D]">{p.position || "-"}</td>
                       <td className="px-4 py-3 text-sm text-[#194973]">{p.company || "-"}</td>
                       <td className="px-4 py-3 text-sm text-[#5A6D6D]">{p.city || "-"}</td>
+                      <td className="px-4 py-3 text-sm text-[#5A6D6D]">{p.country || "-"}</td>
                       <td className="px-4 py-3 text-xs text-[#5A6D6D]">{segLabel || "-"}</td>
                       <td className="px-4 py-3 text-sm">
                         {p.website_url ? (
@@ -334,6 +406,9 @@ export default function ProspectosPage() {
                       <td className="px-4 py-3">
                         <ProspectPipelineBadge status={p.pipeline_status} />
                       </td>
+                      <td className="px-4 py-3 text-xs text-[#5A6D6D] whitespace-nowrap">
+                        {new Date(p.created_at).toLocaleDateString("es-ES")}
+                      </td>
                     </tr>
                   );
                 })}
@@ -343,7 +418,7 @@ export default function ProspectosPage() {
         </div>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {filteredProspects.map((prospect) => (
+          {sortedProspects.map((prospect) => (
             <ProspectCard key={prospect.id} prospect={prospect} />
           ))}
         </div>
