@@ -5,7 +5,7 @@ import Link from "next/link";
 import ProspectCard from "@/components/dashboard/ProspectCard";
 import ProspectPipelineBadge from "@/components/dashboard/ProspectPipelineBadge";
 import ImportProspectsModal from "@/components/dashboard/ImportProspectsModal";
-import { PIPELINE_TABS, SEGMENTS, type ProspectPipelineStatus } from "@/lib/constants/prospect";
+import { PIPELINE_TABS, PIPELINE_STATUS_CONFIG, SEGMENTS, type ProspectPipelineStatus } from "@/lib/constants/prospect";
 
 interface Prospect {
   id: string;
@@ -86,6 +86,8 @@ export default function ProspectosPage() {
   const [showFilters, setShowFilters] = useState(false);
   const [sortKey, setSortKey] = useState<SortKey>("score");
   const [sortDir, setSortDir] = useState<SortDir>("desc");
+  const [selected, setSelected] = useState<Set<string>>(new Set());
+  const [bulkLoading, setBulkLoading] = useState(false);
 
   useEffect(() => {
     fetchProspects();
@@ -146,6 +148,75 @@ export default function ProspectosPage() {
   const toggleSort = (key: SortKey) => {
     if (sortKey === key) setSortDir(sortDir === "asc" ? "desc" : "asc");
     else { setSortKey(key); setSortDir(key === "score" ? "desc" : "asc"); }
+  };
+
+  const toggleSelect = (id: string) => {
+    const next = new Set(selected);
+    if (next.has(id)) next.delete(id); else next.add(id);
+    setSelected(next);
+  };
+
+  const toggleSelectAll = () => {
+    if (selected.size === sortedProspects.length) setSelected(new Set());
+    else setSelected(new Set(sortedProspects.map((p) => p.id)));
+  };
+
+  const bulkChangeStatus = async (status: ProspectPipelineStatus) => {
+    if (selected.size === 0) return;
+    setBulkLoading(true);
+    const res = await fetch("/api/prospects/batch", {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ ids: Array.from(selected), pipelineStatus: status }),
+    });
+    if (res.ok) { setSelected(new Set()); await fetchProspects(); }
+    setBulkLoading(false);
+  };
+
+  const bulkDelete = async () => {
+    if (selected.size === 0) return;
+    if (!confirm(`Eliminar ${selected.size} prospecto(s)?`)) return;
+    setBulkLoading(true);
+    const res = await fetch("/api/prospects/batch", {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ ids: Array.from(selected) }),
+    });
+    if (res.ok) { setSelected(new Set()); await fetchProspects(); }
+    setBulkLoading(false);
+  };
+
+  const exportCSV = () => {
+    const rows = sortedProspects.length > 0 && selected.size > 0
+      ? sortedProspects.filter((p) => selected.has(p.id))
+      : sortedProspects;
+    const headers = ["Oportunidad","Nombre","Cargo","Empresa","Ciudad","Pais","Segmento","Web","Calidad","Reserva Online","App","Estado","Fecha"];
+    const csvRows = [headers.join(",")];
+    for (const p of rows) {
+      const seg = SEGMENTS.find((s) => s.value === p.segment)?.label || p.segment || "";
+      csvRows.push([
+        calcScore(p) + "%",
+        `"${(p.name || "").replace(/"/g, '""')}"`,
+        `"${(p.position || "").replace(/"/g, '""')}"`,
+        `"${(p.company || "").replace(/"/g, '""')}"`,
+        `"${(p.city || "").replace(/"/g, '""')}"`,
+        `"${(p.country || "").replace(/"/g, '""')}"`,
+        `"${seg.replace(/"/g, '""')}"`,
+        p.website_url || "",
+        p.website_quality ? p.website_quality + "/5" : "",
+        p.has_online_booking ? "Si" : "No",
+        p.has_app ? "Si" : "No",
+        p.pipeline_status,
+        new Date(p.created_at).toLocaleDateString("es-ES"),
+      ].join(","));
+    }
+    const blob = new Blob(["\uFEFF" + csvRows.join("\n")], { type: "text/csv;charset=utf-8;" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `prospectos_${new Date().toISOString().slice(0, 10)}.csv`;
+    a.click();
+    URL.revokeObjectURL(url);
   };
 
   const SortIcon = ({ col }: { col: SortKey }) => (
@@ -237,12 +308,52 @@ export default function ProspectosPage() {
             Limpiar filtros
           </button>
         )}
+        <button
+          onClick={exportCSV}
+          className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-white text-[#5A6D6D] border border-gray-200 hover:bg-gray-50 transition-all"
+        >
+          <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+          </svg>
+          CSV{selected.size > 0 ? ` (${selected.size})` : ""}
+        </button>
         {filteredProspects.length !== prospects.length && (
           <span className="text-xs text-[#5A6D6D]">
             {filteredProspects.length} de {prospects.length}
           </span>
         )}
       </div>
+
+      {/* Bulk actions bar */}
+      {selected.size > 0 && (
+        <div className="flex items-center gap-3 mb-4 px-4 py-2.5 bg-[#194973] rounded-xl text-white text-sm">
+          <span className="font-semibold">{selected.size} seleccionado(s)</span>
+          <select
+            disabled={bulkLoading}
+            onChange={(e) => { if (e.target.value) bulkChangeStatus(e.target.value as ProspectPipelineStatus); e.target.value = ""; }}
+            className="px-2 py-1 rounded-md text-xs bg-white/20 text-white border border-white/30 outline-none"
+            defaultValue=""
+          >
+            <option value="" disabled>Cambiar estado...</option>
+            {Object.entries(PIPELINE_STATUS_CONFIG).map(([key, cfg]) => (
+              <option key={key} value={key} className="text-[#194973]">{cfg.label}</option>
+            ))}
+          </select>
+          <button
+            onClick={bulkDelete}
+            disabled={bulkLoading}
+            className="px-3 py-1 rounded-md text-xs font-semibold bg-red-500 hover:bg-red-600 transition-colors disabled:opacity-50"
+          >
+            Eliminar
+          </button>
+          <button
+            onClick={() => setSelected(new Set())}
+            className="ml-auto text-xs opacity-70 hover:opacity-100"
+          >
+            Deseleccionar
+          </button>
+        </div>
+      )}
 
       <div className="flex gap-1 mb-6 overflow-x-auto pb-1">
         {PIPELINE_TABS.map((tab) => (
@@ -288,6 +399,9 @@ export default function ProspectosPage() {
             <table className="w-full">
               <thead>
                 <tr className="border-b border-gray-100">
+                  <th className="px-4 py-3 w-8">
+                    <input type="checkbox" checked={selected.size === sortedProspects.length && sortedProspects.length > 0} onChange={toggleSelectAll} className="rounded border-gray-300 accent-[#71C648]" />
+                  </th>
                   <th className="text-left text-xs font-bold text-[#5A6D6D] uppercase tracking-wider px-4 py-3 cursor-pointer select-none hover:text-[#194973]" onClick={() => toggleSort("score")}>Oportunidad<SortIcon col="score" /></th>
                   <th className="text-left text-xs font-bold text-[#5A6D6D] uppercase tracking-wider px-4 py-3 cursor-pointer select-none hover:text-[#194973]" onClick={() => toggleSort("name")}>Nombre<SortIcon col="name" /></th>
                   <th className="text-left text-xs font-bold text-[#5A6D6D] uppercase tracking-wider px-4 py-3">Cargo</th>
@@ -304,6 +418,7 @@ export default function ProspectosPage() {
                 </tr>
                 {showFilters && (
                   <tr className="border-b border-gray-200 bg-gray-50/50">
+                    <th className="px-4 py-2"></th>
                     <th className="px-4 py-2"></th>
                     <th className="px-4 py-2">
                       <input type="text" value={filters.name} onChange={(e) => setFilters({ ...filters, name: e.target.value })} placeholder="Filtrar..." className="w-full px-2 py-1 text-xs border border-gray-200 rounded-md bg-white text-[#194973] outline-none focus:border-[#71C648]" />
@@ -361,7 +476,10 @@ export default function ProspectosPage() {
                   const segLabel = SEGMENTS.find((s) => s.value === p.segment)?.label || p.segment;
                   const score = calcScore(p);
                   return (
-                    <tr key={p.id} className="border-b border-gray-50 hover:bg-[#f8f9fa] transition-colors">
+                    <tr key={p.id} className={`border-b border-gray-50 hover:bg-[#f8f9fa] transition-colors ${selected.has(p.id) ? "bg-blue-50/50" : ""}`}>
+                      <td className="px-4 py-3 w-8">
+                        <input type="checkbox" checked={selected.has(p.id)} onChange={() => toggleSelect(p.id)} className="rounded border-gray-300 accent-[#71C648]" />
+                      </td>
                       <td className="px-4 py-3">
                         <span className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold ${scoreColor(score)}`}>
                           {score}% {scoreLabel(score)}
