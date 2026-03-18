@@ -29,11 +29,11 @@ export default function Header() {
 
   useEffect(() => {
     if (mobileMenuOpen) {
-      document.body.style.overflow = "hidden";
+      document.body.classList.add("overflow-hidden");
     } else {
-      document.body.style.overflow = "";
+      document.body.classList.remove("overflow-hidden");
     }
-    return () => { document.body.style.overflow = ""; };
+    return () => { document.body.classList.remove("overflow-hidden"); };
   }, [mobileMenuOpen]);
 
   return (
@@ -73,6 +73,8 @@ export default function Header() {
             <LanguageSwitcher scrolled={scrolled} />
             <button
               type="button"
+              aria-expanded={mobileMenuOpen}
+              aria-controls="mobile-menu"
               className={`inline-flex items-center justify-center p-2 rounded-md transition-colors ${
                 scrolled ? "text-[#194973] hover:text-[#71C648] hover:bg-gray-100" : "text-white hover:text-[#71C648]"
               }`}
@@ -93,6 +95,7 @@ export default function Header() {
         </div>
 
         <div
+          id="mobile-menu"
           className={`md:hidden transition-all duration-300 overflow-hidden ${
             mobileMenuOpen ? "max-h-[calc(100vh-5rem)] pb-4" : "max-h-0"
           } ${mobileMenuOpen ? (scrolled ? "bg-white/95 backdrop-blur-md" : "bg-[#194973]/95 backdrop-blur-md rounded-b-2xl") : ""}`}

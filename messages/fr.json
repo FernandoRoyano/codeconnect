@@ -288,6 +288,7 @@
     "optOther": "Autre",
     "submit": "Envoyer le message",
     "submitting": "Envoi en cours...",
+    "submitError": "Impossible d'envoyer le message. Veuillez reessayer.",
     "privacyNote": "En soumettant ce formulaire vous acceptez notre",
     "privacyLink": "politique de confidentialite",
     "successTitle": "Message envoye !",

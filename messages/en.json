@@ -288,6 +288,7 @@
     "optOther": "Other",
     "submit": "Send message",
     "submitting": "Sending...",
+    "submitError": "Failed to send the message. Please try again.",
     "privacyNote": "By submitting this form you accept our",
     "privacyLink": "privacy policy",
     "successTitle": "Message sent!",

@@ -39,7 +39,7 @@ export default function CookieBanner() {
   return (
     <>
       <div className="fixed inset-0 bg-black/50 z-[998]" />
-      <div className="fixed bottom-0 left-0 right-0 z-[999] p-4 md:p-6">
+      <div className="fixed bottom-0 left-0 right-0 z-[999] p-4 md:p-6" role="dialog" aria-modal="true" aria-label={t("title")}>
         <div className="max-w-4xl mx-auto bg-white rounded-2xl shadow-2xl overflow-hidden">
           {!showConfig ? (
             <div className="p-6">

@@ -1,4 +1,5 @@
 import { getTranslations } from "next-intl/server";
+import Image from "next/image";
 import Button from "@/components/Button";
 import SectionHeading from "@/components/SectionHeading";
 import ServiceCard from "@/components/ServiceCard";
@@ -124,9 +125,12 @@ export default async function Home() {
             <div className="hidden lg:block relative">
               <div className="relative">
                 <div className="rounded-2xl overflow-hidden shadow-2xl border border-white/10">
-                  <img
+                  <Image
                     src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80"
                     alt={t("heroImgAlt")}
+                    width={800}
+                    height={533}
+                    priority
                     className="w-full h-auto"
                   />
                 </div>
@@ -302,9 +306,11 @@ export default async function Home() {
             {/* Visual - Modern office/tech image */}
             <div className="relative">
               <div className="aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl relative">
-                <img
+                <Image
                   src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80"
                   alt={t("aboutImgAlt")}
+                  width={800}
+                  height={600}
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#194973]/80 via-transparent to-transparent flex items-end">
@@ -331,10 +337,13 @@ export default async function Home() {
       {/* CTA Section with background */}
       <section className="py-16 sm:py-24 relative overflow-hidden">
         <div className="absolute inset-0">
-          <img
+          <Image
             src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1600&q=80"
             alt=""
-            className="w-full h-full object-cover"
+            role="presentation"
+            fill
+            sizes="100vw"
+            className="object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-[#194973]/95 to-[#71C648]/90"></div>
         </div>
