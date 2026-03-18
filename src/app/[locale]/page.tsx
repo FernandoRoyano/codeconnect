@@ -126,7 +126,7 @@ export default async function Home() {
               <div className="relative">
                 <div className="rounded-2xl overflow-hidden shadow-2xl border border-white/10">
                   <Image
-                    src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80"
+                    src="/images/dashboard-mockup.jpg"
                     alt={t("heroImgAlt")}
                     width={800}
                     height={533}
@@ -307,7 +307,7 @@ export default async function Home() {
             <div className="relative">
               <div className="aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl relative">
                 <Image
-                  src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80"
+                  src="/images/office.jpg"
                   alt={t("aboutImgAlt")}
                   width={800}
                   height={600}
@@ -338,7 +338,7 @@ export default async function Home() {
       <section className="py-16 sm:py-24 relative overflow-hidden">
         <div className="absolute inset-0">
           <Image
-            src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1600&q=80"
+            src="/images/team-cta.jpg"
             alt=""
             role="presentation"
             fill
