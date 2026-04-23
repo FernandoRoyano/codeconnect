@@ -183,6 +183,80 @@ p { line-height: 1.65; }
 html {
   scroll-behavior: smooth;
   overflow-x: hidden;
+  /* Permite que height:auto pueda ser destino de una transicion (Chrome 129+) */
+  interpolate-size: allow-keywords;
+}
+
+/* ══════════════════════════════════════════════════════════
+   Accordion transitions pulidas
+   Estrategia:
+   1. Modern: ::details-content + interpolate-size (Chrome/Edge 129+)
+   2. Fallback universal: grid-template-rows 0fr <-> 1fr en .acc-body
+   3. Chevron con easing spring
+   4. Contenido entra con fade+translate sutil
+   ══════════════════════════════════════════════════════════ */
+
+/* 1. Modern browsers */
+@supports (interpolate-size: allow-keywords) {
+  details.acc::details-content {
+    block-size: 0;
+    overflow: clip;
+    opacity: 0;
+    transition:
+      block-size var(--dur-med) var(--ease-out),
+      opacity var(--dur-med) var(--ease-out),
+      content-visibility var(--dur-med) allow-discrete;
+  }
+  details.acc[open]::details-content {
+    block-size: auto;
+    opacity: 1;
+  }
+}
+
+/* 2. Fallback: grid-rows trick (Safari/Firefox actuales) */
+.acc-body {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition:
+    grid-template-rows var(--dur-med) var(--ease-out),
+    opacity var(--dur-med) var(--ease-out);
+  opacity: 0;
+}
+.acc-body > .acc-body-inner {
+  min-height: 0;
+  overflow: hidden;
+  transform: translateY(-4px);
+  transition: transform var(--dur-med) var(--ease-out);
+}
+details.acc[open] .acc-body {
+  grid-template-rows: 1fr;
+  opacity: 1;
+}
+details.acc[open] .acc-body > .acc-body-inner {
+  transform: translateY(0);
+}
+
+/* 3. Chevron — rotacion con muelle y cambio de color ligado al :open */
+.acc-chevron {
+  transition:
+    transform var(--dur-med) cubic-bezier(0.34, 1.56, 0.64, 1),
+    background-color var(--dur-med) var(--ease-out),
+    color var(--dur-med) var(--ease-out);
+}
+details.acc[open] .acc-chevron {
+  transform: rotate(180deg);
+}
+
+/* 4. Marker nativo fuera */
+details.acc > summary { list-style: none; }
+details.acc > summary::-webkit-details-marker { display: none; }
+
+/* 5. Hover sutil del summary */
+details.acc > summary {
+  transition: background-color var(--dur-fast) var(--ease-out);
+}
+details.acc:not([open]) > summary:hover {
+  background-color: rgb(113 198 72 / 0.04);
 }
 
 ::selection {
