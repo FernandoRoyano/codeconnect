@@ -60,8 +60,8 @@ export async function POST(request: NextRequest) {
     const totalStr = total > 0 ? formatPrecio(total) : "A consultar";
 
     const subject = solicitaLlamada
-      ? `LLAMADA solicitada: ${nombre}${empresa ? ` (${empresa})` : ""} - ${totalStr}`
-      : `Nuevo presupuesto: ${nombre}${empresa ? ` (${empresa})` : ""} - ${totalStr}`;
+      ? `Llamada solicitada - ${nombre}${empresa ? ` (${empresa})` : ""} · ${totalStr}`
+      : `Nuevo presupuesto - ${nombre}${empresa ? ` (${empresa})` : ""} · ${totalStr}`;
 
     const bannerColor = solicitaLlamada ? "#71C648" : "#194973";
     const bannerText = solicitaLlamada
