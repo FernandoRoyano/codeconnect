@@ -1078,7 +1078,21 @@ export default function PresupuestoPage() {
 
                       <h3 className="text-lg font-bold mb-2 text-[#194973] tracking-tight">{tipo.title}</h3>
 
-                      <p className="text-sm mb-5 leading-relaxed text-[#57534e]">{tipo.description}</p>
+                      <p className="text-sm mb-4 leading-relaxed text-[#57534e]">{tipo.description}</p>
+
+                      {/* Precio desde */}
+                      <div className="flex items-baseline gap-1.5 mb-4">
+                        {tipo.precio > 0 ? (
+                          <>
+                            <span className="text-[10px] uppercase tracking-widest text-[#57534e] font-medium">Desde</span>
+                            <span className="text-xl font-bold text-[#194973] tracking-tight">
+                              {new Intl.NumberFormat("es-ES", { style: "currency", currency: "EUR", maximumFractionDigits: 0 }).format(tipo.precio)}
+                            </span>
+                          </>
+                        ) : (
+                          <span className="text-sm font-semibold text-[#71C648]">A consultar</span>
+                        )}
+                      </div>
 
                       {tipo.complexity > 0 && (
                         <div className="flex items-center gap-2">

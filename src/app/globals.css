@@ -141,6 +141,39 @@ p { line-height: 1.65; }
   .reveal { opacity: 1; transform: none; }
 }
 
+/* Legal pages prose — tipografía unificada sin tener que clasear en cada h2/p */
+.legal-prose {
+  font-size: var(--fs-base);
+  line-height: 1.75;
+}
+.legal-prose h2 {
+  color: var(--cc-blue);
+  font-size: var(--fs-xl);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin-top: 2.5rem;
+  margin-bottom: 0.75rem;
+}
+.legal-prose h2:first-child { margin-top: 0; }
+.legal-prose h3 {
+  color: var(--cc-blue);
+  font-size: var(--fs-lg);
+  font-weight: 600;
+  margin-top: 1.75rem;
+  margin-bottom: 0.5rem;
+}
+.legal-prose p { margin-bottom: 1rem; }
+.legal-prose strong { color: var(--cc-blue); font-weight: 600; }
+.legal-prose a { color: var(--cc-green); text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+.legal-prose a:hover { text-decoration-thickness: 2px; }
+.legal-prose ul {
+  list-style: disc;
+  padding-left: 1.5rem;
+  margin-bottom: 1rem;
+}
+.legal-prose ul li { margin-bottom: 0.375rem; }
+.legal-prose ul li::marker { color: var(--cc-green); }
+
 /* Cookie banner entrance */
 @keyframes bannerRise {
   from { opacity: 0; transform: translateY(16px) scale(0.98); }
