@@ -5,6 +5,62 @@ import { useTranslations } from "next-intl";
 import Button from "@/components/Button";
 import SectionHeading from "@/components/SectionHeading";
 
+/* Visual abstracto por categoría — sin imágenes, 100% CSS/SVG */
+function ProjectVisual({ index, title, category }: { index: number; title: string; category: string }) {
+  const patterns = [
+    // 1 - Web
+    { bg: "from-[#194973] to-[#1f5a8f]", accent: "#71C648" },
+    // 2 - CRM / Software
+    { bg: "from-[#0f3150] to-[#194973]", accent: "#71C648" },
+    // 3 - Facturación
+    { bg: "from-[#194973] via-[#1f5a8f] to-[#71C648]", accent: "#fafaf9" },
+    // 4 - App
+    { bg: "from-[#0f3150] to-[#71C648]", accent: "#fff" },
+  ];
+  const p = patterns[Math.min(index - 1, patterns.length - 1)] ?? patterns[0];
+  const initial = title.charAt(0).toUpperCase();
+
+  return (
+    <div className={`relative h-44 bg-gradient-to-br ${p.bg} overflow-hidden`}>
+      {/* mesh pattern */}
+      <div
+        aria-hidden
+        className="absolute inset-0 opacity-40"
+        style={{
+          backgroundImage:
+            "radial-gradient(at 20% 20%, rgb(113 198 72 / 0.35) 0, transparent 45%), radial-gradient(at 80% 80%, rgb(255 255 255 / 0.12) 0, transparent 50%)",
+        }}
+      />
+      {/* grid lines */}
+      <div
+        aria-hidden
+        className="absolute inset-0 opacity-[0.08]"
+        style={{
+          backgroundImage:
+            "linear-gradient(to right, #fff 1px, transparent 1px), linear-gradient(to bottom, #fff 1px, transparent 1px)",
+          backgroundSize: "32px 32px",
+        }}
+      />
+      {/* initial as monogram */}
+      <div className="absolute inset-0 flex items-center justify-center">
+        <span
+          className="text-[120px] font-bold text-white/10 leading-none select-none"
+          aria-hidden
+          style={{ letterSpacing: "-0.05em" }}
+        >
+          {initial}
+        </span>
+      </div>
+      {/* category badge */}
+      <div className="absolute bottom-4 left-4">
+        <span className="bg-white/90 backdrop-blur text-[#194973] px-3 py-1 rounded-full text-xs font-semibold tracking-wide">
+          {category}
+        </span>
+      </div>
+    </div>
+  );
+}
+
 export default function PortfolioPage() {
   const t = useTranslations("portfolio");
   const [activeFilter, setActiveFilter] = useState(0);
@@ -81,34 +137,41 @@ export default function PortfolioPage() {
   return (
     <>
       {/* Hero Section */}
-      <section className="pt-28 sm:pt-32 pb-12 sm:pb-16 bg-gradient-to-br from-[#194973] to-[#0f3150]">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <span className="inline-block bg-[#71C648]/20 text-[#71C648] px-4 py-2 rounded-full text-sm font-medium mb-4 sm:mb-6">
+      <section className="relative pt-32 sm:pt-40 pb-20 sm:pb-24 bg-mesh overflow-hidden">
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="max-w-3xl mx-auto text-center">
+            <span className="inline-flex items-center gap-2 bg-white/5 backdrop-blur border border-white/10 text-[#71C648] px-4 py-1.5 rounded-full text-sm font-medium mb-8">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#71C648]" />
               {t("heroBadge")}
             </span>
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 sm:mb-6">
+            <h1
+              className="font-bold text-white tracking-tight mb-6"
+              style={{ fontSize: "var(--fs-5xl)", lineHeight: 1.05, letterSpacing: "-0.03em" }}
+            >
               {t("heroTitle")}
             </h1>
-            <p className="text-base sm:text-xl text-gray-300 max-w-3xl mx-auto">
+            <p
+              className="text-white/70 max-w-2xl mx-auto"
+              style={{ fontSize: "var(--fs-lg)", lineHeight: 1.6 }}
+            >
               {t("heroDesc")}
             </p>
           </div>
         </div>
       </section>
 
-      {/* Filter */}
-      <section className="py-6 sm:py-8 bg-white border-b">
+      {/* Filter — segmented pills */}
+      <section className="sticky top-16 z-30 py-4 bg-white/80 backdrop-blur-xl border-b border-[#e7e5e4]">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-wrap justify-center gap-2 sm:gap-4">
+          <div className="flex flex-wrap justify-center gap-2">
             {categories.map((category, index) => (
               <button
                 key={index}
                 onClick={() => setActiveFilter(index)}
-                className={`px-4 sm:px-6 py-2 rounded-full text-sm sm:text-base font-medium transition-colors ${
+                className={`px-4 sm:px-5 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
                   activeFilter === index
-                    ? "bg-[#194973] text-white"
-                    : "bg-gray-100 text-[#5A6D6D] hover:bg-[#71C648] hover:text-white"
+                    ? "bg-[#194973] text-white shadow-soft"
+                    : "text-[#57534e] hover:text-[#194973] hover:bg-[#fafaf9]"
                 }`}
               >
                 {category}
@@ -119,64 +182,48 @@ export default function PortfolioPage() {
       </section>
 
       {/* Projects Grid */}
-      <section className="py-12 sm:py-24 bg-[#f8f9fa]">
+      <section className="py-20 sm:py-28 bg-[#fafaf9]">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 reveal">
             {filteredProjects.map((project) => (
               <article
                 key={project.id}
-                className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 group"
+                className="bg-white rounded-2xl overflow-hidden shadow-soft hover:shadow-soft-lg transition-all duration-300 hover:-translate-y-1 border border-[#e7e5e4] hover:border-[#71C648]/40 group"
               >
-                {/* Image placeholder */}
-                <div className="h-48 bg-gradient-to-br from-[#194973] to-[#71C648] relative overflow-hidden">
-                  <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors" />
-                  <div className="absolute bottom-4 left-4">
-                    <span className="bg-white/90 text-[#194973] px-3 py-1 rounded-full text-sm font-medium">
-                      {project.category}
-                    </span>
-                  </div>
-                </div>
+                {/* Visual — abstract pattern por categoría */}
+                <ProjectVisual index={project.catIndex} title={project.title} category={project.category} />
 
                 {/* Content */}
                 <div className="p-6">
-                  <h3 className="text-xl font-bold text-[#194973] mb-3 group-hover:text-[#71C648] transition-colors">
+                  <h3 className="text-lg font-bold text-[#194973] mb-2 tracking-tight group-hover:text-[#71C648] transition-colors">
                     {project.title}
                   </h3>
-                  <p className="text-[#5A6D6D] mb-4 line-clamp-3">
+                  <p className="text-sm text-[#57534e] mb-5 line-clamp-2 leading-relaxed">
                     {project.description}
                   </p>
 
                   {/* Results */}
-                  <div className="mb-4">
-                    <h4 className="text-sm font-semibold text-[#194973] mb-2">
-                      {t("resultsLabel")}
-                    </h4>
-                    <ul className="space-y-1">
-                      {project.results.slice(0, 2).map((result, idx) => (
-                        <li key={idx} className="flex items-center text-sm text-[#5A6D6D]">
-                          <svg
-                            className="w-4 h-4 mr-2 text-[#71C648] flex-shrink-0"
-                            fill="currentColor"
-                            viewBox="0 0 20 20"
-                          >
-                            <path
-                              fillRule="evenodd"
-                              d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                              clipRule="evenodd"
-                            />
-                          </svg>
-                          {result}
-                        </li>
-                      ))}
-                    </ul>
+                  <div className="mb-5 space-y-1.5">
+                    {project.results.slice(0, 2).map((result, idx) => (
+                      <div key={idx} className="flex items-start text-sm text-[#57534e]">
+                        <svg
+                          className="w-4 h-4 mr-2 mt-0.5 text-[#71C648] flex-shrink-0"
+                          fill="currentColor"
+                          viewBox="0 0 20 20"
+                        >
+                          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                        </svg>
+                        <span>{result}</span>
+                      </div>
+                    ))}
                   </div>
 
                   {/* Technologies */}
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {project.technologies.slice(0, 3).map((tech, idx) => (
+                  <div className="flex flex-wrap gap-1.5 mb-5">
+                    {project.technologies.slice(0, 4).map((tech, idx) => (
                       <span
                         key={idx}
-                        className="bg-[#f8f9fa] text-[#5A6D6D] px-2 py-1 rounded text-xs"
+                        className="bg-[#fafaf9] text-[#57534e] border border-[#e7e5e4] px-2 py-0.5 rounded-md text-xs font-medium"
                       >
                         {tech}
                       </span>
@@ -184,12 +231,12 @@ export default function PortfolioPage() {
                   </div>
 
                   {/* Testimonial preview */}
-                  <div className="border-t pt-4 mt-4">
-                    <p className="text-sm text-[#5A6D6D] italic line-clamp-2 mb-2">
+                  <div className="border-t border-[#e7e5e4] pt-4">
+                    <p className="text-sm text-[#57534e] italic line-clamp-2 mb-1.5 leading-relaxed">
                       &ldquo;{project.testimonial.quote}&rdquo;
                     </p>
-                    <p className="text-xs text-[#194973] font-medium">
-                      {project.testimonial.author}, {project.testimonial.role}
+                    <p className="text-xs text-[#194973] font-semibold">
+                      {project.testimonial.author} <span className="text-[#57534e] font-normal">· {project.testimonial.role}</span>
                     </p>
                   </div>
                 </div>
@@ -200,13 +247,15 @@ export default function PortfolioPage() {
       </section>
 
       {/* Stats Section */}
-      <section className="py-12 sm:py-16 bg-[#194973]">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 text-center">
+      <section className="py-20 sm:py-28 bg-mesh relative overflow-hidden">
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center reveal">
             {[0, 1, 2, 3].map((i) => (
               <div key={i}>
-                <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#71C648] mb-1 sm:mb-2">{t(`stat${i}`)}</div>
-                <div className="text-sm sm:text-base text-gray-300">{t(`stat${i}Label`)}</div>
+                <div className="text-4xl sm:text-5xl md:text-6xl font-bold bg-gradient-to-br from-[#71C648] to-[#a5e47e] bg-clip-text text-transparent mb-2 tracking-tight">
+                  {t(`stat${i}`)}
+                </div>
+                <div className="text-sm text-white/70">{t(`stat${i}Label`)}</div>
               </div>
             ))}
           </div>
@@ -214,7 +263,7 @@ export default function PortfolioPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-12 sm:py-24 bg-white">
+      <section className="py-20 sm:py-28 bg-white">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center">
           <SectionHeading
             title={t("ctaTitle")}
