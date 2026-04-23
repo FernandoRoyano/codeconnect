@@ -93,38 +93,78 @@ export default async function Home() {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center bg-gradient-to-br from-[#194973] to-[#0f3150] overflow-hidden">
-        <div className="absolute top-20 right-0 w-48 h-48 sm:w-72 sm:h-72 lg:w-96 lg:h-96 bg-[#71C648]/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-20 left-0 w-48 h-48 sm:w-72 sm:h-72 lg:w-96 lg:h-96 bg-[#71C648]/5 rounded-full blur-3xl" />
+      <section className="relative min-h-screen flex items-center bg-mesh overflow-hidden">
+        {/* Grain sutil para romper la planitud */}
+        <div
+          aria-hidden
+          className="absolute inset-0 opacity-[0.035] mix-blend-overlay pointer-events-none"
+          style={{
+            backgroundImage:
+              "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")",
+          }}
+        />
 
-        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-24 pb-16 sm:py-32">
-          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-28 pb-20 sm:py-32 w-full">
+          <div className="grid lg:grid-cols-[1.1fr_1fr] gap-12 lg:gap-16 items-center">
             <div>
-              <span className="inline-block bg-[#71C648]/20 text-[#71C648] px-3 py-1.5 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm font-medium mb-4 sm:mb-6">
+              <span className="inline-flex items-center gap-2 bg-white/5 backdrop-blur border border-white/10 text-[#71C648] px-4 py-1.5 rounded-full text-sm font-medium mb-8">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#71C648] animate-pulse" />
                 {t("heroBadge")}
               </span>
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-4 sm:mb-6">
+              <h1
+                className="font-bold text-white tracking-tight mb-6"
+                style={{ fontSize: "var(--fs-hero)", lineHeight: 1.02, letterSpacing: "-0.03em" }}
+              >
                 {t("heroTitle")}
-                <span className="text-[#71C648]">{t("heroHighlight")}</span>
+                <span className="block bg-gradient-to-r from-[#71C648] to-[#a5e47e] bg-clip-text text-transparent">
+                  {t("heroHighlight")}
+                </span>
               </h1>
-              <p className="text-base sm:text-xl text-gray-300 mb-6 sm:mb-8 leading-relaxed">
+              <p
+                className="text-white/70 mb-10 max-w-xl"
+                style={{ fontSize: "var(--fs-lg)", lineHeight: 1.6 }}
+              >
                 {t("heroDesc1")}
-                <br /><br />
-                {t("heroDesc2")}
               </p>
-              <div className="flex flex-col sm:flex-row gap-4">
+              <div className="flex flex-col sm:flex-row gap-3 sm:items-center">
                 <Button href="/presupuesto" variant="primary" size="lg">
                   {t("heroCta1")}
+                  <svg className="w-4 h-4 ml-2" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                  </svg>
                 </Button>
-                <Button href="/servicios" variant="outline-light" size="lg">
+                <a
+                  href="/servicios"
+                  className="inline-flex items-center gap-2 text-white/80 hover:text-white px-4 py-3 font-medium transition-colors"
+                >
                   {t("heroCta2")}
-                </Button>
+                  <span aria-hidden>→</span>
+                </a>
+              </div>
+
+              {/* Prueba social en primer scroll */}
+              <div className="mt-14 pt-8 border-t border-white/10 flex flex-wrap gap-x-10 gap-y-4 text-white/60 text-sm">
+                <div>
+                  <span className="block text-2xl font-bold text-white">{t("aboutStat1")}</span>
+                  <span>{t("aboutStat1Label")}</span>
+                </div>
+                <div>
+                  <span className="block text-2xl font-bold text-white">{t("aboutStat2")}</span>
+                  <span>{t("aboutStat2Label")}</span>
+                </div>
+                <div>
+                  <span className="block text-2xl font-bold text-white">{t("aboutStat3")}</span>
+                  <span>{t("aboutStat3Label")}</span>
+                </div>
               </div>
             </div>
-            {/* Hero Image - Dashboard mockup */}
+
+            {/* Mockup */}
             <div className="hidden lg:block relative">
               <div className="relative">
-                <div className="rounded-2xl overflow-hidden shadow-2xl border border-white/10">
+                {/* Halo detrás de la imagen */}
+                <div className="absolute -inset-10 bg-gradient-to-tr from-[#71C648]/20 via-transparent to-[#71C648]/10 blur-3xl" aria-hidden />
+                <div className="relative rounded-2xl overflow-hidden shadow-soft-xl border border-white/10 ring-1 ring-white/5">
                   <Image
                     src="/images/dashboard-mockup.jpg"
                     alt={t("heroImgAlt")}
@@ -134,23 +174,23 @@ export default async function Home() {
                     className="w-full h-auto"
                   />
                 </div>
-                <div className="absolute -bottom-6 -left-6 bg-white rounded-xl shadow-xl p-4 animate-pulse">
+                <div className="absolute -bottom-6 -left-6 bg-white/95 backdrop-blur rounded-xl shadow-soft-lg p-4">
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 bg-[#71C648]/20 rounded-full flex items-center justify-center">
+                    <div className="w-10 h-10 bg-[#71C648]/15 rounded-full flex items-center justify-center">
                       <svg className="w-5 h-5 text-[#71C648]" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 18L9 11.25l4.306 4.307a11.95 11.95 0 015.814-5.519l2.74-1.22m0 0l-5.94-2.28m5.94 2.28l-2.28 5.941" />
                       </svg>
                     </div>
                     <div>
-                      <div className="text-xs text-gray-500">{t("heroStats")}</div>
+                      <div className="text-xs text-[#57534e]">{t("heroStats")}</div>
                       <div className="text-lg font-bold text-[#194973]">+127%</div>
                     </div>
                   </div>
                 </div>
-                <div className="absolute -top-4 -right-4 bg-white rounded-xl shadow-xl p-3">
+                <div className="absolute -top-4 -right-4 bg-white/95 backdrop-blur rounded-xl shadow-soft-lg p-3">
                   <div className="flex items-center gap-2">
                     <div className="w-8 h-8 bg-[#71C648] rounded-full flex items-center justify-center">
-                      <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
+                      <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
                       </svg>
                     </div>
@@ -164,9 +204,9 @@ export default async function Home() {
       </section>
 
       {/* Problem/Solution Section */}
-      <section className="py-12 sm:py-20 bg-white">
+      <section className="py-20 sm:py-28 bg-white">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center reveal">
             <div>
               <h2 className="text-3xl md:text-4xl font-bold text-[#194973] mb-6">
                 {t("problemTitle")}
@@ -195,14 +235,14 @@ export default async function Home() {
       </section>
 
       {/* Services Section */}
-      <section id="servicios" className="py-12 sm:py-20 bg-[#f8f9fa]">
+      <section id="servicios" className="py-20 sm:py-28 bg-[#fafaf9]">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionHeading
             title={t("servicesTitle")}
             subtitle={t("servicesSubtitle")}
           />
 
-          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8">
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8 reveal">
             {services.map((service, index) => (
               <ServiceCard
                 key={index}
@@ -218,14 +258,14 @@ export default async function Home() {
       </section>
 
       {/* Why Choose Us Section */}
-      <section className="py-12 sm:py-20 bg-white">
+      <section className="py-20 sm:py-28 bg-white">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionHeading
             title={t("benefitsTitle")}
             subtitle={t("benefitsSubtitle")}
           />
 
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid md:grid-cols-2 gap-6 reveal">
             {benefits.map((benefit, index) => (
               <div
                 key={index}
@@ -249,22 +289,24 @@ export default async function Home() {
       </section>
 
       {/* How it works */}
-      <section className="py-12 sm:py-20 bg-[#194973]">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <section className="py-20 sm:py-28 bg-mesh relative overflow-hidden">
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionHeading
             title={t("howTitle")}
             subtitle={t("howSubtitle")}
             light
           />
 
-          <div className="grid sm:grid-cols-3 gap-8">
+          <div className="grid sm:grid-cols-3 gap-8 relative reveal">
+            {/* Línea conectora */}
+            <div className="hidden sm:block absolute top-8 left-[16%] right-[16%] h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" aria-hidden />
             {steps.map((item, index) => (
-              <div key={index} className="text-center">
-                <div className="w-16 h-16 bg-[#71C648] rounded-full flex items-center justify-center text-white text-2xl font-bold mx-auto mb-4">
+              <div key={index} className="relative text-center">
+                <div className="w-16 h-16 bg-[#71C648] rounded-2xl flex items-center justify-center text-white text-2xl font-bold mx-auto mb-6 shadow-soft-lg ring-4 ring-[#194973]">
                   {item.step}
                 </div>
-                <h3 className="text-xl font-bold text-white mb-2">{item.title}</h3>
-                <p className="text-gray-300">{item.description}</p>
+                <h3 className="text-xl font-bold text-white mb-3 tracking-tight">{item.title}</h3>
+                <p className="text-white/70 leading-relaxed">{item.description}</p>
               </div>
             ))}
           </div>
@@ -272,9 +314,9 @@ export default async function Home() {
       </section>
 
       {/* Brand Section - Company Presence */}
-      <section className="py-12 sm:py-20 bg-white overflow-hidden">
+      <section className="py-20 sm:py-28 bg-white overflow-hidden">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="grid lg:grid-cols-2 gap-12 items-center reveal">
             <div>
               <span className="inline-block bg-[#71C648]/10 text-[#71C648] px-3 py-1 rounded-full text-sm font-medium mb-4">
                 {t("aboutBadge")}

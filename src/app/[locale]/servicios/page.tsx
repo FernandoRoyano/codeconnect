@@ -222,16 +222,23 @@ export default async function ServiciosPage() {
   return (
     <>
       {/* Hero Section */}
-      <section className="pt-28 sm:pt-32 pb-12 sm:pb-16 bg-gradient-to-br from-[#194973] to-[#0f3150]">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <span className="inline-block bg-[#71C648]/20 text-[#71C648] px-4 py-2 rounded-full text-sm font-medium mb-4 sm:mb-6">
+      <section className="relative pt-32 sm:pt-40 pb-20 sm:pb-28 bg-mesh overflow-hidden">
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="max-w-3xl mx-auto text-center">
+            <span className="inline-flex items-center gap-2 bg-white/5 backdrop-blur border border-white/10 text-[#71C648] px-4 py-1.5 rounded-full text-sm font-medium mb-8">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#71C648]" />
               {t("heroBadge")}
             </span>
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 sm:mb-6">
+            <h1
+              className="font-bold text-white tracking-tight mb-6"
+              style={{ fontSize: "var(--fs-5xl)", lineHeight: 1.05, letterSpacing: "-0.03em" }}
+            >
               {t("heroTitle")}
             </h1>
-            <p className="text-base sm:text-xl text-gray-300 max-w-2xl mx-auto">
+            <p
+              className="text-white/70 max-w-2xl mx-auto"
+              style={{ fontSize: "var(--fs-lg)", lineHeight: 1.6 }}
+            >
               {t("heroDesc")}
             </p>
           </div>
@@ -243,29 +250,43 @@ export default async function ServiciosPage() {
         <section
           key={service.id}
           id={service.id}
-          className={`py-12 sm:py-20 ${index % 2 === 0 ? "bg-white" : "bg-[#f8f9fa]"}`}
+          className={`py-24 sm:py-32 scroll-mt-24 ${index % 2 === 0 ? "bg-white" : "bg-[#fafaf9]"}`}
         >
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className={`grid lg:grid-cols-2 gap-8 lg:gap-12 items-center`}>
+            <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center reveal">
               {/* Content */}
               <div className={index % 2 === 1 ? "lg:order-2" : ""}>
-                <span className="inline-block bg-[#71C648]/10 text-[#71C648] px-3 py-1 rounded-full text-sm font-medium mb-4">
-                  {service.subtitle}
-                </span>
-                <h2 className="text-3xl md:text-4xl font-bold text-[#194973] mb-4">
+                <div className="flex items-center gap-4 mb-6">
+                  <span
+                    className="text-7xl font-bold bg-gradient-to-br from-[#71C648] to-[#194973] bg-clip-text text-transparent tracking-tighter leading-none"
+                    aria-hidden
+                  >
+                    0{index + 1}
+                  </span>
+                  <span className="text-sm font-medium text-[#71C648] uppercase tracking-widest">
+                    {service.subtitle}
+                  </span>
+                </div>
+                <h2
+                  className="font-bold text-[#194973] tracking-tight mb-5"
+                  style={{ fontSize: "var(--fs-4xl)", lineHeight: 1.05 }}
+                >
                   {service.title}
                 </h2>
-                <p className="text-lg text-[#5A6D6D] mb-8 leading-relaxed">
+                <p
+                  className="text-[#57534e] mb-10"
+                  style={{ fontSize: "var(--fs-lg)", lineHeight: 1.6 }}
+                >
                   {service.description}
                 </p>
 
                 {/* Features */}
-                <div className="space-y-4 mb-8">
+                <div className="grid sm:grid-cols-2 gap-5 mb-10">
                   {service.features.map((feature, idx) => (
-                    <div key={idx} className="flex gap-4">
-                      <div className="flex-shrink-0 w-10 h-10 bg-[#71C648]/10 rounded-lg flex items-center justify-center">
+                    <div key={idx} className="flex gap-3">
+                      <div className="flex-shrink-0 w-8 h-8 bg-[#71C648]/10 rounded-lg flex items-center justify-center mt-0.5">
                         <svg
-                          className="w-5 h-5 text-[#71C648]"
+                          className="w-4 h-4 text-[#71C648]"
                           fill="currentColor"
                           viewBox="0 0 20 20"
                         >
@@ -277,10 +298,10 @@ export default async function ServiciosPage() {
                         </svg>
                       </div>
                       <div>
-                        <h4 className="font-semibold text-[#194973]">
+                        <h4 className="font-semibold text-[#194973] mb-0.5">
                           {feature.title}
                         </h4>
-                        <p className="text-sm text-[#5A6D6D]">
+                        <p className="text-sm text-[#57534e] leading-relaxed">
                           {feature.description}
                         </p>
                       </div>
@@ -294,9 +315,13 @@ export default async function ServiciosPage() {
               </div>
 
               {/* Visual */}
-              <div className={`${index % 2 === 1 ? "lg:order-1" : ""}`}>
-                <div className="bg-gradient-to-br from-[#194973]/10 to-[#71C648]/10 rounded-2xl sm:rounded-3xl p-4 sm:p-6 aspect-[3/2] sm:aspect-[4/3] lg:aspect-square flex items-center justify-center">
-                  <div className="w-full h-full">
+              <div className={index % 2 === 1 ? "lg:order-1" : ""}>
+                <div className="relative">
+                  <div
+                    aria-hidden
+                    className="absolute -inset-8 bg-gradient-to-tr from-[#71C648]/15 via-transparent to-[#194973]/10 blur-3xl"
+                  />
+                  <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-soft-xl ring-1 ring-black/5">
                     {service.visual}
                   </div>
                 </div>
@@ -307,22 +332,34 @@ export default async function ServiciosPage() {
       ))}
 
       {/* Extras */}
-      <section className="py-12 sm:py-20 bg-white">
+      <section className="py-24 sm:py-32 bg-white">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-8 sm:mb-12">
-            <h2 className="text-3xl font-bold text-[#194973] mb-4">
+          <div className="text-center mb-16 reveal">
+            <h2
+              className="font-bold text-[#194973] tracking-tight mb-4"
+              style={{ fontSize: "var(--fs-3xl)", lineHeight: 1.1 }}
+            >
               {t("extrasTitle")}
             </h2>
-            <p className="text-[#5A6D6D] max-w-2xl mx-auto">
+            <p
+              className="text-[#57534e] max-w-2xl mx-auto"
+              style={{ fontSize: "var(--fs-lg)" }}
+            >
               {t("extrasSubtitle")}
             </p>
           </div>
 
-          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-8">
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-5 reveal">
             {extras.map((extra, index) => (
-              <div key={index} className="p-6 bg-[#f8f9fa] rounded-xl">
-                <h3 className="font-semibold text-[#194973] mb-2">{extra.title}</h3>
-                <p className="text-sm text-[#5A6D6D]">{extra.description}</p>
+              <div
+                key={index}
+                className="group p-6 rounded-2xl border border-[#e7e5e4] bg-white hover:border-[#71C648]/40 hover:shadow-soft transition-all duration-300"
+              >
+                <div className="w-10 h-10 rounded-lg bg-[#71C648]/10 flex items-center justify-center mb-4 group-hover:bg-[#71C648]/15 transition-colors">
+                  <span className="text-[#71C648] font-bold text-sm">{String(index + 1).padStart(2, "0")}</span>
+                </div>
+                <h3 className="font-semibold text-[#194973] mb-2 tracking-tight">{extra.title}</h3>
+                <p className="text-sm text-[#57534e] leading-relaxed">{extra.description}</p>
               </div>
             ))}
           </div>
@@ -330,12 +367,18 @@ export default async function ServiciosPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-12 sm:py-20 bg-[#194973]">
-        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4 sm:mb-6">
+      <section className="py-24 sm:py-32 bg-mesh relative overflow-hidden">
+        <div className="relative mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center reveal">
+          <h2
+            className="font-bold text-white tracking-tight mb-6"
+            style={{ fontSize: "var(--fs-4xl)", lineHeight: 1.05 }}
+          >
             {t("ctaTitle")}
           </h2>
-          <p className="text-xl text-gray-300 mb-8">
+          <p
+            className="text-white/75 mb-10 max-w-2xl mx-auto"
+            style={{ fontSize: "var(--fs-lg)" }}
+          >
             {t("ctaDesc")}
           </p>
           <Button href="/contacto" variant="primary" size="lg">

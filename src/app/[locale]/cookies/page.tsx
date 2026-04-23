@@ -141,7 +141,7 @@ export default function CookiesPage() {
             <h2 className="text-2xl font-bold text-[#194973] mt-8 mb-4">6. Contacto</h2>
             <p>
               Si tienes dudas sobre nuestra política de cookies, puedes contactarnos en{" "}
-              <a href="mailto:info@codeconnect.es" className="text-[#71C648] hover:underline">info@codeconnect.es</a>.
+              <a href="mailto:codeconnectsl@gmail.com" className="text-[#71C648] hover:underline">codeconnectsl@gmail.com</a>.
             </p>
 
           </div>

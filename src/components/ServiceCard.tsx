@@ -16,11 +16,11 @@ export default function ServiceCard({ title, description, icon, href, features }
 
   return (
     <Link href={href as never} className="group block">
-      <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 h-full border border-gray-100 hover:border-[#71C648] group-hover:-translate-y-2">
-        <div className="w-16 h-16 bg-gradient-to-br from-[#71C648] to-[#194973] rounded-xl flex items-center justify-center text-white mb-6 group-hover:scale-110 transition-transform duration-300">
+      <div className="bg-white rounded-2xl p-8 shadow-soft hover:shadow-soft-lg transition-all duration-300 h-full border border-[#e7e5e4] hover:border-[#71C648]/40 group-hover:-translate-y-1">
+        <div className="w-14 h-14 bg-gradient-to-br from-[#71C648] to-[#194973] rounded-xl flex items-center justify-center text-white mb-6 group-hover:scale-105 transition-transform duration-300">
           {icon}
         </div>
-        <h3 className="text-xl font-bold text-[#194973] mb-3 group-hover:text-[#71C648] transition-colors">{title}</h3>
+        <h3 className="text-xl font-bold text-[#194973] mb-3 tracking-tight group-hover:text-[#71C648] transition-colors">{title}</h3>
         <p className="text-[#5A6D6D] mb-4 leading-relaxed">{description}</p>
         {features && features.length > 0 && (
           <ul className="space-y-2 mb-4">

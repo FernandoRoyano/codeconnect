@@ -1,17 +1,19 @@
 import type { Metadata } from "next";
-import { Roboto, Roboto_Slab } from "next/font/google";
+import { Inter, Roboto_Slab } from "next/font/google";
 import "./globals.css";
 
-const roboto = Roboto({
-  variable: "--font-roboto",
+const inter = Inter({
+  variable: "--font-sans",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "700"],
+  display: "swap",
+  axes: ["opsz"],
 });
 
 const robotoSlab = Roboto_Slab({
   variable: "--font-roboto-slab",
   subsets: ["latin"],
   weight: ["400", "700"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -34,7 +36,7 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body
-        className={`${roboto.variable} ${robotoSlab.variable} antialiased`}
+        className={`${inter.variable} ${robotoSlab.variable} antialiased`}
       >
         {children}
       </body>

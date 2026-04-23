@@ -23,9 +23,9 @@ export async function POST(request: NextRequest) {
       otro: "Otro",
     };
 
-    await resend.emails.send({
-      from: "CodeConnect <propuestas@codeconnect.es>",
-      to: "info@codeconnect.es",
+    const { error } = await resend.emails.send({
+      from: "CodeConnect <onboarding@resend.dev>",
+      to: "codeconnectsl@gmail.com",
       replyTo: email,
       subject: `Nuevo contacto: ${nombre}${empresa ? ` - ${empresa}` : ""}`,
       html: `<!DOCTYPE html>
@@ -52,8 +52,17 @@ export async function POST(request: NextRequest) {
 </body></html>`,
     });
 
+    if (error) {
+      console.error("[contact] Resend error:", error);
+      return NextResponse.json(
+        { error: "Error al enviar el mensaje" },
+        { status: 500 }
+      );
+    }
+
     return NextResponse.json({ success: true });
-  } catch {
+  } catch (err) {
+    console.error("[contact] Unexpected error:", err);
     return NextResponse.json(
       { error: "Error al enviar el mensaje" },
       { status: 500 }

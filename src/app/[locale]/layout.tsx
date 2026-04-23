@@ -92,7 +92,7 @@ export default async function LocaleLayout({
     description: DESCRIPTIONS[locale] || DESCRIPTIONS.es,
     contactPoint: {
       "@type": "ContactPoint",
-      email: "info@codeconnect.es",
+      email: "codeconnectsl@gmail.com",
       contactType: "customer service",
       availableLanguage: ["Spanish", "English", "French"],
     },

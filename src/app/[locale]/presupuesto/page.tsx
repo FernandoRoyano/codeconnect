@@ -257,8 +257,44 @@ export default function PresupuestoPage() {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [submitError, setSubmitError] = useState("");
+  const [llamadaStatus, setLlamadaStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
 
   const totalSteps = 5;
+
+  const buildPayload = (solicitaLlamada: boolean) => {
+    const presupuesto = calcularPresupuesto();
+    const tipoProyectoData = tiposProyecto.find((t) => t.id === formData.tipoProyecto);
+    const funcionalidadesSeleccionadas = formData.funcionalidades
+      .map((id) => getFuncionalidadesActuales().find((f) => f.id === id)?.label)
+      .filter(Boolean) as string[];
+    const integracionesSeleccionadas = formData.integraciones
+      .map((id) => getIntegracionesActuales().find((i) => i.id === id)?.label)
+      .filter(Boolean) as string[];
+
+    return {
+      nombre: formData.nombre,
+      email: formData.email,
+      telefono: formData.telefono,
+      empresa: formData.empresa,
+      comentarios: formData.comentarios,
+      tipoProyectoLabel: tipoProyectoData?.title || formData.tipoProyecto,
+      funcionalidades: funcionalidadesSeleccionadas,
+      otraFuncionalidad: formData.otraFuncionalidad,
+      integraciones: integracionesSeleccionadas,
+      otraIntegracion: formData.otraIntegracion,
+      numeroUsuarios: formData.numeroUsuarios,
+      necesitaApp: formData.necesitaApp,
+      presupuesto: {
+        precioBase: presupuesto.precioBase,
+        subtotal: presupuesto.subtotal,
+        total: presupuesto.total,
+        multiplicador: presupuesto.multiplicador,
+        precioApp: presupuesto.precioApp,
+      },
+      solicitaLlamada,
+    };
+  };
 
   const handleTipoProyecto = (id: string) => {
     // Limpiar funcionalidades e integraciones al cambiar de tipo de proyecto
@@ -296,10 +332,36 @@ export default function PresupuestoPage() {
 
   const handleSubmit = async () => {
     setIsSubmitting(true);
-    // Simular envío
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    setIsSubmitting(false);
-    setSubmitted(true);
+    setSubmitError("");
+    try {
+      const res = await fetch("/api/presupuesto", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(buildPayload(false)),
+      });
+      if (!res.ok) throw new Error("send failed");
+      setSubmitted(true);
+    } catch {
+      setSubmitError("No se pudo enviar. Inténtalo de nuevo o escríbenos a codeconnectsl@gmail.com.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const solicitarLlamada = async () => {
+    if (llamadaStatus === "sending" || llamadaStatus === "sent") return;
+    setLlamadaStatus("sending");
+    try {
+      const res = await fetch("/api/presupuesto", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(buildPayload(true)),
+      });
+      if (!res.ok) throw new Error("send failed");
+      setLlamadaStatus("sent");
+    } catch {
+      setLlamadaStatus("error");
+    }
   };
 
   const canProceed = () => {
@@ -591,7 +653,7 @@ export default function PresupuestoPage() {
 
       <div class="footer">
         <p>CodeConnect - Conectando ideas, creando soluciones</p>
-        <p><a href="mailto:info@codeconnect.es">info@codeconnect.es</a> | <a href="https://codeconnect.es">codeconnect.es</a></p>
+        <p><a href="mailto:codeconnectsl@gmail.com">codeconnectsl@gmail.com</a> | <a href="https://codeconnect.es">codeconnect.es</a></p>
       </div>
     </div>
   </div>
@@ -798,7 +860,7 @@ export default function PresupuestoPage() {
               </div>
 
               {/* Card Footer - Actions */}
-              <div className="bg-[#f8f9fa] p-6">
+              <div className="bg-[#fafaf9] p-6">
                 <div className="flex flex-col sm:flex-row gap-3">
                   <button
                     onClick={descargarPresupuesto}
@@ -822,6 +884,60 @@ export default function PresupuestoPage() {
               </div>
             </div>
 
+            {/* Solicitar llamada — bloque prominente */}
+            <div className="mt-8 bg-white rounded-3xl shadow-soft-xl overflow-hidden">
+              <div className="bg-[#71C648] p-6 sm:p-8 text-white">
+                <div className="flex items-start gap-4">
+                  <div className="flex-shrink-0 w-12 h-12 rounded-full bg-white/15 backdrop-blur flex items-center justify-center">
+                    <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
+                    </svg>
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-lg sm:text-xl font-bold tracking-tight mb-1">¿Prefieres que lo concretemos hablando?</h3>
+                    <p className="text-white/90 text-sm sm:text-base">
+                      Un presupuesto online nunca sustituye una conversación. Te llamamos en 24h para afinar cada detalle sin compromiso.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div className="p-6 sm:p-8">
+                {llamadaStatus === "sent" ? (
+                  <div className="flex items-center gap-3 text-[#194973]">
+                    <div className="w-10 h-10 rounded-full bg-[#71C648] flex items-center justify-center flex-shrink-0">
+                      <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                      </svg>
+                    </div>
+                    <div>
+                      <div className="font-semibold">¡Recibido! Te llamaremos en menos de 24h.</div>
+                      <div className="text-sm text-[#57534e]">Hemos guardado tu presupuesto y tus datos.</div>
+                    </div>
+                  </div>
+                ) : (
+                  <>
+                    <button
+                      onClick={solicitarLlamada}
+                      disabled={llamadaStatus === "sending"}
+                      className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#194973] hover:bg-[#0f3150] disabled:opacity-60 text-white px-8 py-3.5 rounded-full font-semibold transition-all shadow-soft hover:shadow-soft-lg"
+                    >
+                      {llamadaStatus === "sending" ? "Enviando..." : "Quiero que me llames"}
+                      {llamadaStatus !== "sending" && (
+                        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                        </svg>
+                      )}
+                    </button>
+                    {llamadaStatus === "error" && (
+                      <p role="alert" className="mt-3 text-sm text-red-600">
+                        No se pudo enviar. Inténtalo de nuevo o escríbenos a codeconnectsl@gmail.com.
+                      </p>
+                    )}
+                  </>
+                )}
+              </div>
+            </div>
+
             {/* Back buttons */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
               <Button href="/" variant="outline-light">
@@ -832,8 +948,8 @@ export default function PresupuestoPage() {
               </Button>
             </div>
 
-            <p className="text-center text-gray-400 text-sm mt-6">
-              Nos pondremos en contacto contigo en menos de 24 horas
+            <p className="text-center text-white/60 text-sm mt-6">
+              Hemos recibido tu solicitud. Te escribiremos en menos de 24h.
             </p>
           </div>
         </section>
@@ -1299,6 +1415,12 @@ export default function PresupuestoPage() {
                   </div>
                 </div>
               </div>
+            </div>
+          )}
+
+          {submitError && currentStep === totalSteps && (
+            <div role="alert" className="max-w-xl mx-auto mt-6 bg-red-50 border border-red-200 text-red-700 text-sm font-medium px-4 py-3 rounded-xl">
+              {submitError}
             </div>
           )}
 

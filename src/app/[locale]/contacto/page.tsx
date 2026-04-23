@@ -51,21 +51,11 @@ export default function ContactoPage() {
   const contactInfo = [
     {
       title: t("infoEmail"),
-      value: "info@codeconnect.es",
-      href: "mailto:info@codeconnect.es",
+      value: "codeconnectsl@gmail.com",
+      href: "mailto:codeconnectsl@gmail.com",
       icon: (
         <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
-        </svg>
-      ),
-    },
-    {
-      title: t("infoPhone"),
-      value: "+34 611 234 567",
-      href: "tel:+34611234567",
-      icon: (
-        <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
         </svg>
       ),
     },
@@ -92,79 +82,97 @@ export default function ContactoPage() {
   return (
     <>
       {/* Hero Section */}
-      <section className="pt-28 sm:pt-32 pb-12 sm:pb-16 bg-gradient-to-br from-[#194973] to-[#0f3150]">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <span className="inline-block bg-[#71C648]/20 text-[#71C648] px-4 py-2 rounded-full text-sm font-medium mb-4 sm:mb-6">
+      <section className="relative pt-32 sm:pt-40 pb-20 sm:pb-28 bg-mesh overflow-hidden">
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="max-w-3xl mx-auto text-center">
+            <span className="inline-flex items-center gap-2 bg-white/5 backdrop-blur border border-white/10 text-[#71C648] px-4 py-1.5 rounded-full text-sm font-medium mb-8">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#71C648]" />
               {t("heroBadge")}
             </span>
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 sm:mb-6">
+            <h1
+              className="font-bold text-white tracking-tight mb-6"
+              style={{ fontSize: "var(--fs-5xl)", lineHeight: 1.05, letterSpacing: "-0.03em" }}
+            >
               {t("heroTitle")}
             </h1>
-            <p className="text-base sm:text-xl text-gray-300 max-w-3xl mx-auto">
+            <p
+              className="text-white/70 max-w-2xl mx-auto"
+              style={{ fontSize: "var(--fs-lg)", lineHeight: 1.6 }}
+            >
               {t("heroDesc")}
             </p>
           </div>
         </div>
       </section>
 
-      {/* Contact Info */}
-      <section className="py-8 sm:py-12 bg-white border-b">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8">
-            {contactInfo.map((info, index) => (
-              <div key={index} className="flex items-center gap-4">
-                <div className="w-14 h-14 bg-[#71C648]/10 rounded-xl flex items-center justify-center text-[#71C648]">
-                  {info.icon}
+      {/* Contact Info - tarjetas superpuestas al hero */}
+      <section className="relative -mt-14 mb-8 sm:mb-12">
+        <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+          <div className="grid sm:grid-cols-2 gap-4 reveal">
+            {contactInfo.map((info, index) => {
+              const Inner = (
+                <>
+                  <div className="w-12 h-12 bg-[#71C648]/10 rounded-xl flex items-center justify-center text-[#71C648] flex-shrink-0">
+                    {info.icon}
+                  </div>
+                  <div className="min-w-0">
+                    <div className="text-xs uppercase tracking-wider text-[#71C648] font-medium mb-0.5">{info.title}</div>
+                    <div className="text-base font-semibold text-[#194973] truncate">{info.value}</div>
+                  </div>
+                </>
+              );
+              const baseCls =
+                "flex items-center gap-4 bg-white rounded-2xl p-5 shadow-soft border border-[#e7e5e4] transition-all duration-300";
+              return info.href ? (
+                <a
+                  key={index}
+                  href={info.href}
+                  className={`${baseCls} hover:shadow-soft-lg hover:border-[#71C648]/40 hover:-translate-y-0.5`}
+                >
+                  {Inner}
+                </a>
+              ) : (
+                <div key={index} className={baseCls}>
+                  {Inner}
                 </div>
-                <div>
-                  <div className="text-sm text-[#5A6D6D]">{info.title}</div>
-                  {info.href ? (
-                    <a
-                      href={info.href}
-                      className="text-lg font-medium text-[#194973] hover:text-[#71C648] transition-colors"
-                    >
-                      {info.value}
-                    </a>
-                  ) : (
-                    <div className="text-lg font-medium text-[#194973]">{info.value}</div>
-                  )}
-                </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
 
       {/* Form Section */}
-      <section className="py-12 sm:py-24 bg-[#f8f9fa]">
+      <section className="py-16 sm:py-24 bg-[#fafaf9]">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-8 lg:gap-16">
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 reveal">
             {/* Form */}
-            <div>
-              <h2 className="text-3xl font-bold text-[#194973] mb-2">
+            <div className="bg-white rounded-3xl p-6 sm:p-10 shadow-soft border border-[#e7e5e4]">
+              <h2
+                className="font-bold text-[#194973] tracking-tight mb-3"
+                style={{ fontSize: "var(--fs-3xl)", lineHeight: 1.1 }}
+              >
                 {t("formTitle")}
               </h2>
-              <p className="text-[#5A6D6D] mb-8">
+              <p className="text-[#57534e] mb-8" style={{ fontSize: "var(--fs-base)" }}>
                 {t("formSubtitle")}
               </p>
 
               {submitted ? (
-                <div className="bg-[#71C648]/10 border border-[#71C648] rounded-2xl p-8 text-center">
-                  <div className="w-16 h-16 bg-[#71C648] rounded-full flex items-center justify-center mx-auto mb-4">
-                    <svg className="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
+                <div className="bg-[#71C648]/10 border border-[#71C648]/30 rounded-2xl p-8 text-center">
+                  <div className="w-16 h-16 bg-[#71C648] rounded-full flex items-center justify-center mx-auto mb-4 shadow-soft">
+                    <svg className="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
                     </svg>
                   </div>
-                  <h3 className="text-xl font-bold text-[#194973] mb-2">
+                  <h3 className="text-xl font-bold text-[#194973] mb-2 tracking-tight">
                     {t("successTitle")}
                   </h3>
-                  <p className="text-[#5A6D6D]">
+                  <p className="text-[#57534e]">
                     {t("successDesc")}
                   </p>
                 </div>
               ) : (
-                <form onSubmit={handleSubmit} className="space-y-6">
+                <form onSubmit={handleSubmit} className="space-y-5">
                   <div className="grid md:grid-cols-2 gap-6">
                     <div>
                       <label htmlFor="nombre" className="block text-sm font-medium text-[#194973] mb-2">
@@ -177,7 +185,7 @@ export default function ContactoPage() {
                         required
                         value={formData.nombre}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#71C648] focus:border-transparent transition-all"
+                        className="w-full px-4 py-3 rounded-xl border border-[#e7e5e4] bg-[#fafaf9] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#71C648]/40 focus:border-[#71C648] transition-all"
                         placeholder={t("phName")}
                       />
                     </div>
@@ -192,7 +200,7 @@ export default function ContactoPage() {
                         required
                         value={formData.email}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#71C648] focus:border-transparent transition-all"
+                        className="w-full px-4 py-3 rounded-xl border border-[#e7e5e4] bg-[#fafaf9] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#71C648]/40 focus:border-[#71C648] transition-all"
                         placeholder={t("phEmail")}
                       />
                     </div>
@@ -209,7 +217,7 @@ export default function ContactoPage() {
                         name="telefono"
                         value={formData.telefono}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#71C648] focus:border-transparent transition-all"
+                        className="w-full px-4 py-3 rounded-xl border border-[#e7e5e4] bg-[#fafaf9] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#71C648]/40 focus:border-[#71C648] transition-all"
                         placeholder={t("phPhone")}
                       />
                     </div>
@@ -223,7 +231,7 @@ export default function ContactoPage() {
                         name="empresa"
                         value={formData.empresa}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#71C648] focus:border-transparent transition-all"
+                        className="w-full px-4 py-3 rounded-xl border border-[#e7e5e4] bg-[#fafaf9] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#71C648]/40 focus:border-[#71C648] transition-all"
                         placeholder={t("phCompany")}
                       />
                     </div>
@@ -238,7 +246,7 @@ export default function ContactoPage() {
                       name="servicio"
                       value={formData.servicio}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#71C648] focus:border-transparent transition-all"
+                      className="w-full px-4 py-3 rounded-xl border border-[#e7e5e4] bg-[#fafaf9] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#71C648]/40 focus:border-[#71C648] transition-all"
                     >
                       <option value="">{t("optDefault")}</option>
                       <option value="web">{t("optWeb")}</option>
@@ -293,30 +301,33 @@ export default function ContactoPage() {
 
             {/* FAQs */}
             <div>
-              <h2 className="text-3xl font-bold text-[#194973] mb-2">
+              <h2
+                className="font-bold text-[#194973] tracking-tight mb-3"
+                style={{ fontSize: "var(--fs-3xl)", lineHeight: 1.1 }}
+              >
                 {t("faqTitle")}
               </h2>
-              <p className="text-[#5A6D6D] mb-8">
+              <p className="text-[#57534e] mb-8" style={{ fontSize: "var(--fs-base)" }}>
                 {t("faqSubtitle")}
               </p>
 
-              <div className="space-y-4">
+              <div className="space-y-3">
                 {faqs.map((faq, index) => (
                   <details
                     key={index}
-                    className="bg-white rounded-xl p-6 shadow-sm group"
+                    className="bg-white rounded-2xl border border-[#e7e5e4] overflow-hidden group transition-all hover:border-[#71C648]/40 open:border-[#71C648]/40 open:shadow-soft"
                   >
-                    <summary className="flex justify-between items-center cursor-pointer list-none">
-                      <h3 className="font-semibold text-[#194973] pr-4">
+                    <summary className="flex justify-between items-center cursor-pointer list-none p-5 sm:p-6 gap-4">
+                      <h3 className="font-semibold text-[#194973] tracking-tight">
                         {faq.question}
                       </h3>
-                      <span className="text-[#71C648] group-open:rotate-180 transition-transform">
-                        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
+                      <span className="flex-shrink-0 w-8 h-8 rounded-full bg-[#71C648]/10 text-[#71C648] flex items-center justify-center group-open:rotate-180 group-open:bg-[#71C648] group-open:text-white transition-all">
+                        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor">
                           <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
                         </svg>
                       </span>
                     </summary>
-                    <p className="mt-4 text-[#5A6D6D] leading-relaxed">
+                    <p className="px-5 sm:px-6 pb-5 sm:pb-6 text-[#57534e] leading-relaxed">
                       {faq.answer}
                     </p>
                   </details>
@@ -324,12 +335,12 @@ export default function ContactoPage() {
               </div>
 
               {/* CTA Card */}
-              <div className="mt-8 bg-[#194973] rounded-2xl p-8 text-white">
-                <h3 className="text-xl font-bold mb-2">{t("callTitle")}</h3>
-                <p className="text-gray-300 mb-4">
+              <div className="mt-8 relative bg-mesh rounded-2xl p-8 text-white overflow-hidden">
+                <h3 className="text-xl font-bold mb-2 tracking-tight">{t("callTitle")}</h3>
+                <p className="text-white/75 mb-5 leading-relaxed">
                   {t("callDesc")}
                 </p>
-                <Button href="/presupuesto" variant="white">
+                <Button href="/presupuesto" variant="primary">
                   {t("callButton")}
                 </Button>
               </div>

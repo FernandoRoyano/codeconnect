@@ -1,94 +1,190 @@
 @import "tailwindcss";
 
 :root {
-  /* Colores corporativos CodeConnect */
+  /* Marca CodeConnect */
   --cc-blue: #194973;
+  --cc-blue-600: #1f5a8f;
+  --cc-blue-900: #0f3150;
   --cc-green: #71C648;
+  --cc-green-600: #5fb039;
   --cc-gray: #5A6D6D;
   --cc-white: #ffffff;
-  --cc-light-gray: #f8f9fa;
 
-  --background: #ffffff;
-  --foreground: #194973;
+  /* Neutros cálidos (en vez de grises planos) */
+  --cc-bg: #ffffff;
+  --cc-surface: #fafaf9;
+  --cc-surface-2: #f5f5f4;
+  --cc-border: #e7e5e4;
+  --cc-text: #1c1917;
+  --cc-text-muted: #57534e;
+
+  /* Alias de compatibilidad con código existente */
+  --cc-light-gray: var(--cc-surface);
+  --background: var(--cc-bg);
+  --foreground: var(--cc-blue);
+
+  /* Escala tipográfica fluida (clamp min-preferred-max) */
+  --fs-xs:   clamp(0.75rem,  0.72rem + 0.15vw, 0.8125rem);
+  --fs-sm:   clamp(0.875rem, 0.84rem + 0.2vw,  0.9375rem);
+  --fs-base: clamp(1rem,     0.96rem + 0.25vw, 1.0625rem);
+  --fs-lg:   clamp(1.125rem, 1.06rem + 0.35vw, 1.25rem);
+  --fs-xl:   clamp(1.25rem,  1.16rem + 0.5vw,  1.5rem);
+  --fs-2xl:  clamp(1.5rem,   1.35rem + 0.8vw,  1.875rem);
+  --fs-3xl:  clamp(1.875rem, 1.6rem + 1.3vw,   2.5rem);
+  --fs-4xl:  clamp(2.25rem,  1.85rem + 2vw,    3.25rem);
+  --fs-5xl:  clamp(2.75rem,  2.1rem + 3vw,     4.25rem);
+  --fs-hero: clamp(3rem,     2.2rem + 4vw,     5.5rem);
+
+  /* Radios consistentes */
+  --r-sm: 0.5rem;
+  --r-md: 0.75rem;
+  --r-lg: 1rem;
+  --r-xl: 1.25rem;
+  --r-2xl: 1.5rem;
+
+  /* Sombras en capas (más suaves y naturales) */
+  --shadow-xs: 0 1px 2px rgb(15 23 42 / 0.04);
+  --shadow-sm: 0 1px 3px rgb(15 23 42 / 0.06), 0 1px 2px rgb(15 23 42 / 0.04);
+  --shadow-md: 0 4px 12px -2px rgb(15 23 42 / 0.08), 0 2px 4px -2px rgb(15 23 42 / 0.05);
+  --shadow-lg: 0 12px 32px -8px rgb(15 23 42 / 0.12), 0 4px 8px -2px rgb(15 23 42 / 0.06);
+  --shadow-xl: 0 24px 56px -12px rgb(15 23 42 / 0.18), 0 8px 16px -4px rgb(15 23 42 / 0.08);
+
+  /* Transición estándar */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --dur-fast: 160ms;
+  --dur-med: 260ms;
+  --dur-slow: 420ms;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-background: var(--cc-bg);
+  --color-foreground: var(--cc-text);
   --color-cc-blue: var(--cc-blue);
+  --color-cc-blue-600: var(--cc-blue-600);
+  --color-cc-blue-900: var(--cc-blue-900);
   --color-cc-green: var(--cc-green);
+  --color-cc-green-600: var(--cc-green-600);
   --color-cc-gray: var(--cc-gray);
-  --color-cc-light: var(--cc-light-gray);
-  --font-sans: var(--font-roboto);
+  --color-cc-light: var(--cc-surface);
+  --color-cc-surface: var(--cc-surface);
+  --color-cc-surface-2: var(--cc-surface-2);
+  --color-cc-border: var(--cc-border);
+  --color-cc-text: var(--cc-text);
+  --color-cc-text-muted: var(--cc-text-muted);
+  --font-sans: var(--font-sans);
+  --font-roboto: var(--font-sans);
+  --font-display: var(--font-roboto-slab);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: 'Roboto', Arial, Helvetica, sans-serif;
+  background: var(--cc-bg);
+  color: var(--cc-text);
+  font-family: var(--font-sans), ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-feature-settings: "cv11", "ss01", "ss03";
+  font-optical-sizing: auto;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
 }
 
-/* Animaciones personalizadas */
+h1, h2, h3, h4 {
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+p { line-height: 1.65; }
+
+/* --- Animaciones clásicas (compatibilidad con marcado existente) --- */
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
 }
-
 @keyframes slideInLeft {
   from { opacity: 0; transform: translateX(-50px); }
   to { opacity: 1; transform: translateX(0); }
 }
-
 @keyframes slideInRight {
   from { opacity: 0; transform: translateX(50px); }
   to { opacity: 1; transform: translateX(0); }
 }
-
 @keyframes pulse {
   0%, 100% { transform: scale(1); }
   50% { transform: scale(1.05); }
 }
 
-.animate-fade-in {
-  animation: fadeIn 0.6s ease-out forwards;
-}
+.animate-fade-in    { animation: fadeIn     0.6s var(--ease-out) forwards; }
+.animate-slide-left { animation: slideInLeft 0.6s var(--ease-out) forwards; }
+.animate-slide-right{ animation: slideInRight 0.6s var(--ease-out) forwards; }
+.animate-pulse-subtle { animation: pulse 2s ease-in-out infinite; }
 
-.animate-slide-left {
-  animation: slideInLeft 0.6s ease-out forwards;
-}
-
-.animate-slide-right {
-  animation: slideInRight 0.6s ease-out forwards;
-}
-
-.animate-pulse-subtle {
-  animation: pulse 2s ease-in-out infinite;
-}
-
-/* Delay utilities */
 .delay-100 { animation-delay: 100ms; }
 .delay-200 { animation-delay: 200ms; }
 .delay-300 { animation-delay: 300ms; }
 .delay-400 { animation-delay: 400ms; }
 .delay-500 { animation-delay: 500ms; }
 
+/* --- Scroll-driven reveal: 0 JS, nativo --- */
+@supports (animation-timeline: view()) {
+  @keyframes reveal {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .reveal {
+    animation: reveal linear both;
+    animation-timeline: view();
+    animation-range: entry 0% cover 30%;
+  }
+}
+/* Fallback: si el navegador no soporta animation-timeline, el contenido se ve normal */
+@supports not (animation-timeline: view()) {
+  .reveal { opacity: 1; transform: none; }
+}
+
+/* Respeta preferencias del usuario */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
 /* Gradientes corporativos */
 .gradient-blue-green {
   background: linear-gradient(135deg, var(--cc-blue) 0%, var(--cc-green) 100%);
 }
-
 .gradient-green-blue {
   background: linear-gradient(135deg, var(--cc-green) 0%, var(--cc-blue) 100%);
 }
 
-/* Scroll suave y prevenir overflow horizontal en movil */
+/* Mesh sutil para heroes y secciones destacadas */
+.bg-mesh {
+  background-color: var(--cc-blue-900);
+  background-image:
+    radial-gradient(at 20% 0%, rgb(113 198 72 / 0.18) 0, transparent 50%),
+    radial-gradient(at 80% 100%, rgb(31 90 143 / 0.55) 0, transparent 55%),
+    radial-gradient(at 100% 0%, rgb(113 198 72 / 0.08) 0, transparent 50%);
+}
+
+/* Utilidades de sombra más naturales */
+.shadow-soft  { box-shadow: var(--shadow-md); }
+.shadow-soft-lg { box-shadow: var(--shadow-lg); }
+.shadow-soft-xl { box-shadow: var(--shadow-xl); }
+
+/* Focus states accesibles y coherentes */
+:where(a, button, [role="button"], input, textarea, select):focus-visible {
+  outline: 2px solid var(--cc-green);
+  outline-offset: 2px;
+  border-radius: var(--r-sm);
+}
+
 html {
   scroll-behavior: smooth;
   overflow-x: hidden;
 }
 
-/* Selección de texto */
 ::selection {
   background-color: var(--cc-green);
   color: white;

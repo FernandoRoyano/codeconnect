@@ -27,8 +27,7 @@ export default function AvisoLegalPage() {
               <li><strong>Titular:</strong> CodeConnect</li>
               <li><strong>NIF/CIF:</strong> [A completar]</li>
               <li><strong>Domicilio:</strong> [A completar]</li>
-              <li><strong>Email:</strong> info@codeconnect.es</li>
-              <li><strong>Teléfono:</strong> [A completar]</li>
+              <li><strong>Email:</strong> codeconnectsl@gmail.com</li>
               <li><strong>Actividad:</strong> Desarrollo de software y aplicaciones web</li>
             </ul>
 
