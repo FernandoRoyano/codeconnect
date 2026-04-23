@@ -727,7 +727,7 @@ export default function PresupuestoPage() {
 
     return (
       <>
-        <section className="pt-28 sm:pt-32 pb-16 bg-gradient-to-br from-[#194973] to-[#0f3150] min-h-screen">
+        <section className="pt-28 sm:pt-32 pb-16 bg-mesh min-h-screen relative overflow-hidden">
           <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
             {/* Header */}
             <div className="text-center mb-8">
@@ -962,174 +962,152 @@ export default function PresupuestoPage() {
 
   return (
     <>
-      {/* Hero Section */}
-      <section className="pt-28 sm:pt-32 pb-6 sm:pb-8 bg-gradient-to-br from-[#194973] to-[#0f3150]">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <span className="inline-block bg-[#71C648]/20 text-[#71C648] px-4 py-2 rounded-full text-sm font-medium mb-4 sm:mb-6">
-              Sin compromiso
+      {/* Hero + Progress */}
+      <section className="relative pt-32 sm:pt-36 pb-10 sm:pb-14 bg-mesh overflow-hidden">
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="max-w-3xl mx-auto text-center mb-10 sm:mb-14">
+            <span className="inline-flex items-center gap-2 bg-white/5 backdrop-blur border border-white/10 text-[#71C648] px-4 py-1.5 rounded-full text-sm font-medium mb-8">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#71C648]" />
+              Sin compromiso · 24h
             </span>
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-3 sm:mb-4">
+            <h1
+              className="font-bold text-white tracking-tight mb-5"
+              style={{ fontSize: "var(--fs-5xl)", lineHeight: 1.05, letterSpacing: "-0.03em" }}
+            >
               Calcula tu presupuesto
             </h1>
-            <p className="text-base sm:text-xl text-gray-300 max-w-2xl mx-auto">
-              Responde unas preguntas sencillas y te preparamos una propuesta
-              personalizada en menos de 24 horas.
+            <p className="text-white/70 max-w-2xl mx-auto" style={{ fontSize: "var(--fs-lg)", lineHeight: 1.6 }}>
+              Responde unas preguntas sencillas y te preparamos una propuesta personalizada.
             </p>
           </div>
-        </div>
-      </section>
 
-      {/* Progress Bar */}
-      <section className="bg-[#194973] pb-8 sm:pb-12">
-        <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center">
-            {[1, 2, 3, 4, 5].map((step) => (
-              <div key={step} className="flex items-center">
-                <div
-                  className={`w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center font-bold text-sm sm:text-base transition-all ${
-                    step < currentStep
-                      ? "bg-[#71C648] text-white"
-                      : step === currentStep
-                      ? "bg-white text-[#194973]"
-                      : "bg-white/20 text-white/50"
-                  }`}
-                >
-                  {step < currentStep ? (
-                    <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
-                    </svg>
-                  ) : (
-                    step
-                  )}
-                </div>
-                {step < 5 && (
-                  <div
-                    className={`w-8 sm:w-20 h-1 mx-1 sm:mx-2 rounded ${
-                      step < currentStep ? "bg-[#71C648]" : "bg-white/20"
-                    }`}
-                  />
-                )}
-              </div>
-            ))}
-          </div>
-          <div className="hidden sm:flex justify-between mt-2 text-xs sm:text-sm text-gray-400">
-            <span>Proyecto</span>
-            <span>Funciones</span>
-            <span>Integraciones</span>
-            <span>Escala</span>
-            <span>Contacto</span>
+          {/* Progress bar */}
+          <div className="mx-auto max-w-3xl">
+            {(() => {
+              const labels = ["Proyecto", "Funciones", "Integraciones", "Escala", "Contacto"];
+              return (
+                <>
+                  <div className="flex items-center">
+                    {[1, 2, 3, 4, 5].map((step) => (
+                      <div key={step} className="flex items-center flex-1 last:flex-none">
+                        <div
+                          className={`w-8 h-8 sm:w-9 sm:h-9 rounded-full flex items-center justify-center font-bold text-sm transition-all duration-300 flex-shrink-0 ${
+                            step < currentStep
+                              ? "bg-[#71C648] text-white shadow-soft"
+                              : step === currentStep
+                                ? "bg-white text-[#194973] shadow-soft ring-4 ring-white/20"
+                                : "bg-white/5 text-white/40 border border-white/10"
+                          }`}
+                        >
+                          {step < currentStep ? (
+                            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor">
+                              <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                            </svg>
+                          ) : (
+                            step
+                          )}
+                        </div>
+                        {step < 5 && (
+                          <div className="flex-1 h-px mx-2 bg-white/10 relative overflow-hidden">
+                            <div
+                              className={`absolute inset-y-0 left-0 bg-[#71C648] transition-[width] duration-500 ease-out ${
+                                step < currentStep ? "w-full" : "w-0"
+                              }`}
+                            />
+                          </div>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                  <div className="hidden sm:flex justify-between mt-3 text-[11px] uppercase tracking-wider text-white/50 font-medium">
+                    {labels.map((l, i) => (
+                      <span key={l} className={i + 1 === currentStep ? "text-white" : ""}>
+                        {l}
+                      </span>
+                    ))}
+                  </div>
+                </>
+              );
+            })()}
           </div>
         </div>
       </section>
 
       {/* Form Steps */}
-      <section className="py-8 sm:py-16 bg-[#f8f9fa] min-h-[60vh]">
-        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+      <section className="py-12 sm:py-20 bg-[#fafaf9] min-h-[60vh]">
+        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
           {/* Step 1: Tipo de proyecto */}
           {currentStep === 1 && (
             <div className="animate-fade-in">
-              <h2 className="text-2xl font-bold text-[#194973] mb-2 text-center">
+              <h2 className="font-bold text-[#194973] tracking-tight mb-3 text-center" style={{ fontSize: "var(--fs-3xl)", lineHeight: 1.1 }}>
                 ¿Qué tipo de proyecto necesitas?
               </h2>
-              <p className="text-[#5A6D6D] mb-8 text-center">
+              <p className="text-[#57534e] mb-10 text-center" style={{ fontSize: "var(--fs-base)" }}>
                 Selecciona la opción que mejor se ajuste a tu idea
               </p>
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-                {tiposProyecto.map((tipo) => (
-                  <button
-                    key={tipo.id}
-                    onClick={() => handleTipoProyecto(tipo.id)}
-                    className={`relative p-6 rounded-2xl text-left transition-all duration-300 group overflow-hidden ${
-                      formData.tipoProyecto === tipo.id
-                        ? "bg-gradient-to-br from-[#71C648] to-[#5db33a] text-white shadow-xl scale-[1.02] ring-4 ring-[#71C648]/30"
-                        : "bg-white hover:shadow-xl hover:scale-[1.02] border-2 border-transparent hover:border-[#71C648]/20"
-                    }`}
-                  >
-                    {/* Badge */}
-                    {tipo.badge && (
-                      <span className={`absolute top-3 right-3 px-2.5 py-1 rounded-full text-xs font-bold ${
-                        formData.tipoProyecto === tipo.id
-                          ? "bg-white/20 text-white"
-                          : tipo.badge === "Recomendado"
-                            ? "bg-[#71C648] text-white"
-                            : "bg-[#194973] text-white"
-                      }`}>
-                        {tipo.badge}
-                      </span>
-                    )}
-
-                    {/* Icon */}
-                    <div className={`w-14 h-14 rounded-xl flex items-center justify-center mb-4 transition-all ${
-                      formData.tipoProyecto === tipo.id
-                        ? "bg-white/20 text-white"
-                        : "bg-gradient-to-br from-[#194973]/10 to-[#71C648]/10 text-[#194973] group-hover:from-[#71C648]/20 group-hover:to-[#71C648]/10"
-                    }`}>
-                      {tipo.icon}
-                    </div>
-
-                    {/* Benefit tag */}
-                    <span className={`inline-block px-2 py-0.5 rounded text-xs font-medium mb-2 ${
-                      formData.tipoProyecto === tipo.id
-                        ? "bg-white/20 text-white"
-                        : "bg-[#71C648]/10 text-[#71C648]"
-                    }`}>
-                      {tipo.benefit}
-                    </span>
-
-                    {/* Title */}
-                    <h3 className={`text-lg font-bold mb-2 ${
-                      formData.tipoProyecto === tipo.id ? "text-white" : "text-[#194973]"
-                    }`}>
-                      {tipo.title}
-                    </h3>
-
-                    {/* Description */}
-                    <p className={`text-sm mb-4 leading-relaxed ${
-                      formData.tipoProyecto === tipo.id ? "text-white/90" : "text-[#5A6D6D]"
-                    }`}>
-                      {tipo.description}
-                    </p>
-
-                    {/* Complexity indicator */}
-                    {tipo.complexity > 0 && (
-                      <div className="flex items-center gap-2">
-                        <span className={`text-xs ${
-                          formData.tipoProyecto === tipo.id ? "text-white/70" : "text-[#5A6D6D]"
-                        }`}>
-                          Alcance:
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                {tiposProyecto.map((tipo) => {
+                  const selected = formData.tipoProyecto === tipo.id;
+                  return (
+                    <button
+                      key={tipo.id}
+                      onClick={() => handleTipoProyecto(tipo.id)}
+                      className={`relative p-6 rounded-2xl text-left transition-all duration-300 group overflow-hidden bg-white border ${
+                        selected
+                          ? "border-[#71C648] shadow-soft-lg ring-4 ring-[#71C648]/15"
+                          : "border-[#e7e5e4] hover:border-[#71C648]/40 hover:shadow-soft hover:-translate-y-0.5"
+                      }`}
+                    >
+                      {tipo.badge && (
+                        <span
+                          className={`absolute top-3 right-3 px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider ${
+                            tipo.badge === "Recomendado" ? "bg-[#71C648] text-white" : "bg-[#194973] text-white"
+                          }`}
+                        >
+                          {tipo.badge}
                         </span>
-                        <div className="flex gap-1">
-                          {[1, 2, 3, 4, 5].map((level) => (
-                            <div
-                              key={level}
-                              className={`w-2 h-2 rounded-full transition-all ${
-                                level <= tipo.complexity
-                                  ? formData.tipoProyecto === tipo.id
-                                    ? "bg-white"
-                                    : "bg-[#71C648]"
-                                  : formData.tipoProyecto === tipo.id
-                                    ? "bg-white/30"
-                                    : "bg-gray-200"
-                              }`}
-                            />
-                          ))}
-                        </div>
-                      </div>
-                    )}
+                      )}
 
-                    {/* Selection indicator */}
-                    <div className={`absolute bottom-3 right-3 w-6 h-6 rounded-full flex items-center justify-center transition-all ${
-                      formData.tipoProyecto === tipo.id
-                        ? "bg-white text-[#71C648]"
-                        : "bg-gray-100 text-gray-300 group-hover:bg-[#71C648]/10 group-hover:text-[#71C648]"
-                    }`}>
-                      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
-                      </svg>
-                    </div>
-                  </button>
-                ))}
+                      <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-4 bg-gradient-to-br from-[#194973]/10 to-[#71C648]/10 text-[#194973]">
+                        {tipo.icon}
+                      </div>
+
+                      <span className="inline-block text-[10px] font-semibold uppercase tracking-widest text-[#71C648] mb-2">
+                        {tipo.benefit}
+                      </span>
+
+                      <h3 className="text-lg font-bold mb-2 text-[#194973] tracking-tight">{tipo.title}</h3>
+
+                      <p className="text-sm mb-5 leading-relaxed text-[#57534e]">{tipo.description}</p>
+
+                      {tipo.complexity > 0 && (
+                        <div className="flex items-center gap-2">
+                          <span className="text-[10px] uppercase tracking-wider text-[#57534e] font-medium">Alcance</span>
+                          <div className="flex gap-1">
+                            {[1, 2, 3, 4, 5].map((level) => (
+                              <div
+                                key={level}
+                                className={`w-1.5 h-1.5 rounded-full transition-all ${
+                                  level <= tipo.complexity ? "bg-[#71C648]" : "bg-[#e7e5e4]"
+                                }`}
+                              />
+                            ))}
+                          </div>
+                        </div>
+                      )}
+
+                      <div
+                        className={`absolute top-4 left-4 w-6 h-6 rounded-full flex items-center justify-center transition-all ${
+                          selected ? "bg-[#71C648] text-white scale-100" : "bg-transparent text-transparent scale-0"
+                        }`}
+                      >
+                        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" strokeWidth={3} stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                        </svg>
+                      </div>
+                    </button>
+                  );
+                })}
               </div>
             </div>
           )}
@@ -1137,55 +1115,47 @@ export default function PresupuestoPage() {
           {/* Step 2: Funcionalidades */}
           {currentStep === 2 && (
             <div className="animate-fade-in">
-              <h2 className="text-2xl font-bold text-[#194973] mb-2 text-center">
+              <h2 className="font-bold text-[#194973] tracking-tight mb-3 text-center" style={{ fontSize: "var(--fs-3xl)", lineHeight: 1.1 }}>
                 ¿Qué funcionalidades necesitas?
               </h2>
-              <p className="text-[#5A6D6D] mb-8 text-center">
+              <p className="text-[#57534e] mb-10 text-center" style={{ fontSize: "var(--fs-base)" }}>
                 Selecciona las que apliquen a tu{" "}
-                <span className="font-medium text-[#71C648]">
+                <span className="font-semibold text-[#71C648]">
                   {tiposProyecto.find(t => t.id === formData.tipoProyecto)?.title.toLowerCase()}
                 </span>
               </p>
-              <div className="grid md:grid-cols-2 gap-4">
-                {getFuncionalidadesActuales().map((func) => (
-                  <button
-                    key={func.id}
-                    onClick={() => handleFuncionalidad(func.id)}
-                    className={`p-5 rounded-xl text-left transition-all flex items-start gap-4 ${
-                      formData.funcionalidades.includes(func.id)
-                        ? "bg-[#71C648] text-white shadow-lg"
-                        : "bg-white hover:shadow-md"
-                    }`}
-                  >
-                    <div className={`w-6 h-6 rounded-md flex items-center justify-center flex-shrink-0 ${
-                      formData.funcionalidades.includes(func.id)
-                        ? "bg-white text-[#71C648]"
-                        : "border-2 border-gray-300"
-                    }`}>
-                      {formData.funcionalidades.includes(func.id) && (
-                        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" strokeWidth={3} stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
-                        </svg>
-                      )}
-                    </div>
-                    <div>
-                      <h3 className={`font-semibold ${
-                        formData.funcionalidades.includes(func.id) ? "text-white" : "text-[#194973]"
+              <div className="grid md:grid-cols-2 gap-3">
+                {getFuncionalidadesActuales().map((func) => {
+                  const selected = formData.funcionalidades.includes(func.id);
+                  return (
+                    <button
+                      key={func.id}
+                      onClick={() => handleFuncionalidad(func.id)}
+                      className={`p-5 rounded-xl text-left transition-all duration-200 flex items-start gap-3 bg-white border ${
+                        selected
+                          ? "border-[#71C648] bg-[#71C648]/5 ring-2 ring-[#71C648]/20"
+                          : "border-[#e7e5e4] hover:border-[#71C648]/40 hover:shadow-soft"
+                      }`}
+                    >
+                      <div className={`w-5 h-5 rounded-md flex items-center justify-center flex-shrink-0 transition-all mt-0.5 ${
+                        selected ? "bg-[#71C648] text-white" : "border-2 border-[#e7e5e4]"
                       }`}>
-                        {func.label}
-                      </h3>
-                      <p className={`text-sm ${
-                        formData.funcionalidades.includes(func.id) ? "text-white/80" : "text-[#5A6D6D]"
-                      }`}>
-                        {func.description}
-                      </p>
-                    </div>
-                  </button>
-                ))}
+                        {selected && (
+                          <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" strokeWidth={3.5} stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                          </svg>
+                        )}
+                      </div>
+                      <div className="min-w-0">
+                        <h3 className="font-semibold text-[#194973] tracking-tight">{func.label}</h3>
+                        <p className="text-sm text-[#57534e] leading-relaxed">{func.description}</p>
+                      </div>
+                    </button>
+                  );
+                })}
               </div>
 
-              {/* Campo para añadir funcionalidad personalizada */}
-              <div className="mt-6 bg-white rounded-xl p-5">
+              <div className="mt-6 bg-white rounded-2xl p-6 border border-[#e7e5e4]">
                 <label className="block mb-3">
                   <span className="font-semibold text-[#194973] flex items-center gap-2">
                     <svg className="w-5 h-5 text-[#71C648]" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
@@ -1193,7 +1163,7 @@ export default function PresupuestoPage() {
                     </svg>
                     ¿Necesitas algo más?
                   </span>
-                  <span className="text-sm text-[#5A6D6D]">
+                  <span className="text-sm text-[#57534e] mt-1 block">
                     Describe cualquier funcionalidad adicional que no aparezca en la lista
                   </span>
                 </label>
@@ -1202,7 +1172,7 @@ export default function PresupuestoPage() {
                   value={formData.otraFuncionalidad}
                   onChange={handleInputChange}
                   rows={3}
-                  className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#71C648] resize-none"
+                  className="w-full px-4 py-3 rounded-xl border border-[#e7e5e4] bg-[#fafaf9] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#71C648]/40 focus:border-[#71C648] transition-all resize-none"
                   placeholder="Ej: Quiero que los clientes puedan subir documentos, necesito un sistema de puntos de fidelidad, integración con mi software actual..."
                 />
               </div>
@@ -1212,56 +1182,48 @@ export default function PresupuestoPage() {
           {/* Step 3: Integraciones */}
           {currentStep === 3 && (
             <div className="animate-fade-in">
-              <h2 className="text-2xl font-bold text-[#194973] mb-2 text-center">
+              <h2 className="font-bold text-[#194973] tracking-tight mb-3 text-center" style={{ fontSize: "var(--fs-3xl)", lineHeight: 1.1 }}>
                 ¿Necesitas integraciones?
               </h2>
-              <p className="text-[#5A6D6D] mb-8 text-center">
+              <p className="text-[#57534e] mb-10 text-center" style={{ fontSize: "var(--fs-base)" }}>
                 Conecta tu{" "}
-                <span className="font-medium text-[#71C648]">
+                <span className="font-semibold text-[#71C648]">
                   {tiposProyecto.find(t => t.id === formData.tipoProyecto)?.title.toLowerCase()}
                 </span>
                 {" "}con otras herramientas
               </p>
-              <div className="grid md:grid-cols-2 gap-4">
-                {getIntegracionesActuales().map((integ) => (
-                  <button
-                    key={integ.id}
-                    onClick={() => handleIntegracion(integ.id)}
-                    className={`p-5 rounded-xl text-left transition-all flex items-start gap-4 ${
-                      formData.integraciones.includes(integ.id)
-                        ? "bg-[#71C648] text-white shadow-lg"
-                        : "bg-white hover:shadow-md"
-                    }`}
-                  >
-                    <div className={`w-6 h-6 rounded-md flex items-center justify-center flex-shrink-0 ${
-                      formData.integraciones.includes(integ.id)
-                        ? "bg-white text-[#71C648]"
-                        : "border-2 border-gray-300"
-                    }`}>
-                      {formData.integraciones.includes(integ.id) && (
-                        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" strokeWidth={3} stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
-                        </svg>
-                      )}
-                    </div>
-                    <div>
-                      <h3 className={`font-semibold ${
-                        formData.integraciones.includes(integ.id) ? "text-white" : "text-[#194973]"
+              <div className="grid md:grid-cols-2 gap-3">
+                {getIntegracionesActuales().map((integ) => {
+                  const selected = formData.integraciones.includes(integ.id);
+                  return (
+                    <button
+                      key={integ.id}
+                      onClick={() => handleIntegracion(integ.id)}
+                      className={`p-5 rounded-xl text-left transition-all duration-200 flex items-start gap-3 bg-white border ${
+                        selected
+                          ? "border-[#71C648] bg-[#71C648]/5 ring-2 ring-[#71C648]/20"
+                          : "border-[#e7e5e4] hover:border-[#71C648]/40 hover:shadow-soft"
+                      }`}
+                    >
+                      <div className={`w-5 h-5 rounded-md flex items-center justify-center flex-shrink-0 transition-all mt-0.5 ${
+                        selected ? "bg-[#71C648] text-white" : "border-2 border-[#e7e5e4]"
                       }`}>
-                        {integ.label}
-                      </h3>
-                      <p className={`text-sm ${
-                        formData.integraciones.includes(integ.id) ? "text-white/80" : "text-[#5A6D6D]"
-                      }`}>
-                        {integ.description}
-                      </p>
-                    </div>
-                  </button>
-                ))}
+                        {selected && (
+                          <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" strokeWidth={3.5} stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                          </svg>
+                        )}
+                      </div>
+                      <div className="min-w-0">
+                        <h3 className="font-semibold text-[#194973] tracking-tight">{integ.label}</h3>
+                        <p className="text-sm text-[#57534e] leading-relaxed">{integ.description}</p>
+                      </div>
+                    </button>
+                  );
+                })}
               </div>
 
-              {/* Campo para añadir integración personalizada */}
-              <div className="mt-6 bg-white rounded-xl p-5">
+              <div className="mt-6 bg-white rounded-2xl p-6 border border-[#e7e5e4]">
                 <label className="block mb-3">
                   <span className="font-semibold text-[#194973] flex items-center gap-2">
                     <svg className="w-5 h-5 text-[#71C648]" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
@@ -1269,7 +1231,7 @@ export default function PresupuestoPage() {
                     </svg>
                     ¿Otra integración?
                   </span>
-                  <span className="text-sm text-[#5A6D6D]">
+                  <span className="text-sm text-[#57534e] mt-1 block">
                     Describe cualquier sistema o herramienta con la que necesites conectar
                   </span>
                 </label>
@@ -1278,7 +1240,7 @@ export default function PresupuestoPage() {
                   value={formData.otraIntegracion}
                   onChange={handleInputChange}
                   rows={3}
-                  className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#71C648] resize-none"
+                  className="w-full px-4 py-3 rounded-xl border border-[#e7e5e4] bg-[#fafaf9] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#71C648]/40 focus:border-[#71C648] transition-all resize-none"
                   placeholder="Ej: Necesito conectar con mi software de contabilidad actual, quiero sincronizar con Notion, integración con mi CRM de HubSpot..."
                 />
               </div>
@@ -1288,131 +1250,142 @@ export default function PresupuestoPage() {
           {/* Step 4: Usuarios y escala */}
           {currentStep === 4 && (
             <div className="animate-fade-in">
-              <h2 className="text-2xl font-bold text-[#194973] mb-2 text-center">
+              <h2 className="font-bold text-[#194973] tracking-tight mb-3 text-center" style={{ fontSize: "var(--fs-3xl)", lineHeight: 1.1 }}>
                 ¿Cuántos usuarios tendrá la plataforma?
               </h2>
-              <p className="text-[#5A6D6D] mb-8 text-center">
+              <p className="text-[#57534e] mb-10 text-center" style={{ fontSize: "var(--fs-base)" }}>
                 Esto nos ayuda a dimensionar la infraestructura necesaria
               </p>
-              <div className="grid md:grid-cols-2 gap-4 mb-8">
-                {usuariosOptions.map((option) => (
-                  <button
-                    key={option.id}
-                    onClick={() => handleUsuarios(option.value)}
-                    className={`p-6 rounded-xl text-center transition-all ${
-                      formData.numeroUsuarios === option.value
-                        ? "bg-[#71C648] text-white shadow-lg"
-                        : "bg-white hover:shadow-md"
-                    }`}
-                  >
-                    <h3 className={`text-xl font-bold mb-1 ${
-                      formData.numeroUsuarios === option.value ? "text-white" : "text-[#194973]"
-                    }`}>
-                      {option.label}
-                    </h3>
-                    <p className={`text-sm ${
-                      formData.numeroUsuarios === option.value ? "text-white/80" : "text-[#5A6D6D]"
-                    }`}>
-                      {option.description}
-                    </p>
-                  </button>
-                ))}
+              <div className="grid md:grid-cols-2 gap-3 mb-6 max-w-3xl mx-auto">
+                {usuariosOptions.map((option) => {
+                  const selected = formData.numeroUsuarios === option.value;
+                  return (
+                    <button
+                      key={option.id}
+                      onClick={() => handleUsuarios(option.value)}
+                      className={`p-6 rounded-2xl text-left transition-all duration-200 bg-white border ${
+                        selected
+                          ? "border-[#71C648] bg-[#71C648]/5 ring-2 ring-[#71C648]/20"
+                          : "border-[#e7e5e4] hover:border-[#71C648]/40 hover:shadow-soft"
+                      }`}
+                    >
+                      <div className="flex items-start justify-between gap-3">
+                        <div>
+                          <h3 className="text-lg font-bold text-[#194973] tracking-tight">{option.label}</h3>
+                          <p className="text-sm text-[#57534e]">{option.description}</p>
+                        </div>
+                        <div className={`w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 transition-all mt-1 ${
+                          selected ? "bg-[#71C648]" : "border-2 border-[#e7e5e4]"
+                        }`}>
+                          {selected && (
+                            <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" strokeWidth={3.5} stroke="currentColor">
+                              <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                            </svg>
+                          )}
+                        </div>
+                      </div>
+                    </button>
+                  );
+                })}
               </div>
 
-              <div className="bg-white rounded-xl p-6">
-                <label className="flex items-center gap-4 cursor-pointer">
-                  <input
-                    type="checkbox"
-                    checked={formData.necesitaApp}
-                    onChange={(e) => setFormData({ ...formData, necesitaApp: e.target.checked })}
-                    className="w-5 h-5 rounded text-[#71C648] focus:ring-[#71C648]"
-                  />
-                  <div>
-                    <span className="font-semibold text-[#194973]">Necesito también una app móvil</span>
-                    <p className="text-sm text-[#5A6D6D]">App nativa para iOS y Android además de la web</p>
-                  </div>
-                </label>
-              </div>
+              <label className="max-w-3xl mx-auto bg-white rounded-2xl p-5 border border-[#e7e5e4] flex items-center gap-4 cursor-pointer hover:border-[#71C648]/40 transition-colors">
+                <input
+                  type="checkbox"
+                  checked={formData.necesitaApp}
+                  onChange={(e) => setFormData({ ...formData, necesitaApp: e.target.checked })}
+                  className="w-5 h-5 rounded text-[#71C648] focus:ring-[#71C648]"
+                />
+                <div>
+                  <span className="font-semibold text-[#194973] tracking-tight">Necesito también una app móvil</span>
+                  <p className="text-sm text-[#57534e]">App nativa para iOS y Android además de la web</p>
+                </div>
+              </label>
             </div>
           )}
 
           {/* Step 5: Contacto */}
           {currentStep === 5 && (
             <div className="animate-fade-in">
-              <h2 className="text-2xl font-bold text-[#194973] mb-2 text-center">
+              <h2 className="font-bold text-[#194973] tracking-tight mb-3 text-center" style={{ fontSize: "var(--fs-3xl)", lineHeight: 1.1 }}>
                 ¿Cómo te contactamos?
               </h2>
-              <p className="text-[#5A6D6D] mb-8 text-center">
+              <p className="text-[#57534e] mb-10 text-center" style={{ fontSize: "var(--fs-base)" }}>
                 Te enviaremos la propuesta personalizada
               </p>
-              <div className="max-w-xl mx-auto bg-white rounded-2xl p-8 shadow-lg">
+              <div className="max-w-xl mx-auto bg-white rounded-3xl p-6 sm:p-8 shadow-soft border border-[#e7e5e4]">
                 <div className="space-y-5">
                   <div>
-                    <label className="block text-sm font-medium text-[#194973] mb-2">
+                    <label htmlFor="nombre" className="block text-sm font-medium text-[#194973] mb-2">
                       Nombre completo *
                     </label>
                     <input
+                      id="nombre"
                       type="text"
                       name="nombre"
                       value={formData.nombre}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#71C648]"
+                      className="w-full px-4 py-3 rounded-xl border border-[#e7e5e4] bg-[#fafaf9] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#71C648]/40 focus:border-[#71C648] transition-all"
                       placeholder="Tu nombre"
                       required
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-[#194973] mb-2">
+                    <label htmlFor="email" className="block text-sm font-medium text-[#194973] mb-2">
                       Email profesional *
                     </label>
                     <input
+                      id="email"
                       type="email"
                       name="email"
                       value={formData.email}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#71C648]"
+                      className="w-full px-4 py-3 rounded-xl border border-[#e7e5e4] bg-[#fafaf9] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#71C648]/40 focus:border-[#71C648] transition-all"
                       placeholder="tu@empresa.com"
                       required
                     />
                   </div>
                   <div className="grid md:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-sm font-medium text-[#194973] mb-2">
+                      <label htmlFor="telefono" className="block text-sm font-medium text-[#194973] mb-2">
                         Teléfono
                       </label>
                       <input
+                        id="telefono"
                         type="tel"
                         name="telefono"
                         value={formData.telefono}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#71C648]"
+                        className="w-full px-4 py-3 rounded-xl border border-[#e7e5e4] bg-[#fafaf9] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#71C648]/40 focus:border-[#71C648] transition-all"
                         placeholder="+34 600 000 000"
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-[#194973] mb-2">
+                      <label htmlFor="empresa" className="block text-sm font-medium text-[#194973] mb-2">
                         Empresa / Centro
                       </label>
                       <input
+                        id="empresa"
                         type="text"
                         name="empresa"
                         value={formData.empresa}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#71C648]"
+                        className="w-full px-4 py-3 rounded-xl border border-[#e7e5e4] bg-[#fafaf9] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#71C648]/40 focus:border-[#71C648] transition-all"
                         placeholder="Nombre de tu organización"
                       />
                     </div>
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-[#194973] mb-2">
+                    <label htmlFor="comentarios" className="block text-sm font-medium text-[#194973] mb-2">
                       ¿Algo más que quieras contarnos?
                     </label>
                     <textarea
+                      id="comentarios"
                       name="comentarios"
                       value={formData.comentarios}
                       onChange={handleInputChange}
                       rows={3}
-                      className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#71C648] resize-none"
+                      className="w-full px-4 py-3 rounded-xl border border-[#e7e5e4] bg-[#fafaf9] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#71C648]/40 focus:border-[#71C648] transition-all resize-none"
                       placeholder="Detalles adicionales sobre tu proyecto..."
                     />
                   </div>
