@@ -3,6 +3,7 @@ import Image from "next/image";
 import Button from "@/components/Button";
 import SectionHeading from "@/components/SectionHeading";
 import ServiceCard from "@/components/ServiceCard";
+import HeroMockup from "@/components/HeroMockup";
 
 export default async function Home() {
   const t = await getTranslations("home");
@@ -162,17 +163,11 @@ export default async function Home() {
             {/* Mockup */}
             <div className="hidden lg:block relative">
               <div className="relative">
-                {/* Halo detrás de la imagen */}
+                {/* Halo detrás del mockup */}
                 <div className="absolute -inset-10 bg-gradient-to-tr from-[#71C648]/20 via-transparent to-[#71C648]/10 blur-3xl" aria-hidden />
                 <div className="relative rounded-2xl overflow-hidden shadow-soft-xl border border-white/10 ring-1 ring-white/5">
-                  <Image
-                    src="/images/dashboard-mockup.jpg"
-                    alt={t("heroImgAlt")}
-                    width={800}
-                    height={533}
-                    priority
-                    className="w-full h-auto"
-                  />
+                  <HeroMockup />
+                  <span className="sr-only">{t("heroImgAlt")}</span>
                 </div>
                 <div className="absolute -bottom-6 -left-6 bg-white/95 backdrop-blur rounded-xl shadow-soft-lg p-4">
                   <div className="flex items-center gap-3">
