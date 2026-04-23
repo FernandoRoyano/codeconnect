@@ -1,9 +1,9 @@
 import { getTranslations } from "next-intl/server";
-import Image from "next/image";
 import Button from "@/components/Button";
 import SectionHeading from "@/components/SectionHeading";
 import ServiceCard from "@/components/ServiceCard";
 import HeroMockup from "@/components/HeroMockup";
+import BrandVisual from "@/components/BrandVisual";
 
 export default async function Home() {
   const t = await getTranslations("home");
@@ -340,30 +340,11 @@ export default async function Home() {
                 </div>
               </div>
             </div>
-            {/* Visual - Modern office/tech image */}
+            {/* Visual - Ecosistema de productos conectados */}
             <div className="relative">
-              <div className="aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl relative">
-                <Image
-                  src="/images/office.jpg"
-                  alt={t("aboutImgAlt")}
-                  width={800}
-                  height={600}
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#194973]/80 via-transparent to-transparent flex items-end">
-                  <div className="p-4 sm:p-6 text-white">
-                    <div className="flex items-center gap-2 mb-2">
-                      <span className="text-xl sm:text-2xl font-bold">Code</span>
-                      <div className="flex">
-                        <div className="w-4 h-4 sm:w-5 sm:h-5 bg-[#71C648] rounded-full"></div>
-                        <div className="w-4 h-4 sm:w-5 sm:h-5 bg-[#194973] border-2 border-white rounded-full -ml-2"></div>
-                      </div>
-                      <span className="text-xl sm:text-2xl font-bold">nnect</span>
-                    </div>
-                    <p className="text-xs sm:text-sm text-gray-200">{t("aboutTitle")}</p>
-                  </div>
-                </div>
-              </div>
+              <div className="absolute -inset-6 bg-gradient-to-tr from-[#71C648]/15 via-transparent to-[#194973]/10 blur-3xl" aria-hidden />
+              <BrandVisual className="relative shadow-soft-xl ring-1 ring-black/5" />
+              <span className="sr-only">{t("aboutImgAlt")}</span>
               <div className="hidden sm:block absolute -bottom-6 -right-6 w-32 h-32 bg-[#71C648]/20 rounded-2xl -z-10"></div>
               <div className="hidden sm:block absolute -top-6 -left-6 w-24 h-24 bg-[#194973]/10 rounded-2xl -z-10"></div>
             </div>
@@ -371,21 +352,18 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* CTA Section with background */}
-      <section className="py-16 sm:py-24 relative overflow-hidden">
-        <div className="absolute inset-0">
-          <Image
-            src="/images/team-cta.jpg"
-            alt=""
-            role="presentation"
-            fill
-            sizes="100vw"
-            className="object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#194973]/95 to-[#71C648]/90"></div>
-        </div>
+      {/* CTA Section */}
+      <section className="py-20 sm:py-28 relative overflow-hidden bg-mesh">
+        <div
+          aria-hidden
+          className="absolute inset-0 opacity-[0.04] mix-blend-overlay pointer-events-none"
+          style={{
+            backgroundImage:
+              "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")",
+          }}
+        />
 
-        <div className="relative mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center">
+        <div className="relative mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center reveal">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-6">
             {t("ctaTitle")}
           </h2>
