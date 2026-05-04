@@ -4,9 +4,23 @@ import SectionHeading from "@/components/SectionHeading";
 import ServiceCard from "@/components/ServiceCard";
 import HeroMockup from "@/components/HeroMockup";
 import BrandVisual from "@/components/BrandVisual";
+import Accordion, { AccordionItem } from "@/components/Accordion";
 
 export default async function Home() {
   const t = await getTranslations("home");
+  const tPortfolio = await getTranslations("portfolio");
+  const tContact = await getTranslations("contact");
+
+  const testimonials = [1, 2, 3, 4, 5, 6].map((i) => ({
+    quote: tPortfolio(`p${i}Quote`),
+    author: tPortfolio(`p${i}Author`),
+    role: tPortfolio(`p${i}Role`),
+  }));
+
+  const homeFaqs = [0, 1, 2, 3].map((i) => ({
+    question: tContact(`faq${i}Q`),
+    answer: tContact(`faq${i}A`),
+  }));
 
   const services = [
     {
@@ -348,6 +362,69 @@ export default async function Home() {
                 <p className="text-white/70 leading-relaxed">{item.description}</p>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonios — prueba social en home */}
+      <section className="py-20 sm:py-28 bg-white">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <SectionHeading
+            title={t("testimonialsTitle")}
+            subtitle={t("testimonialsSubtitle")}
+          />
+
+          <div className="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6 reveal">
+            {testimonials.map((testimonial, i) => (
+              <figure
+                key={i}
+                className="break-inside-avoid bg-[#fafaf9] border border-[#e7e5e4] rounded-2xl p-6 sm:p-7 hover:border-[#71C648]/40 hover:shadow-soft transition-all duration-300"
+              >
+                <svg
+                  className="w-7 h-7 text-[#71C648]/40 mb-4"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                  aria-hidden
+                >
+                  <path d="M4.583 17.321C3.553 16.227 3 15 3 13.011c0-3.5 2.457-6.637 6.03-8.188l.893 1.378c-3.335 1.804-3.987 4.145-4.247 5.621.537-.278 1.24-.375 1.929-.311 1.804.167 3.226 1.648 3.226 3.489a3.5 3.5 0 01-3.5 3.5c-1.073 0-2.099-.49-2.748-1.179zm10 0C13.553 16.227 13 15 13 13.011c0-3.5 2.457-6.637 6.03-8.188l.893 1.378c-3.335 1.804-3.987 4.145-4.247 5.621.537-.278 1.24-.375 1.929-.311 1.804.167 3.226 1.648 3.226 3.489a3.5 3.5 0 01-3.5 3.5c-1.073 0-2.099-.49-2.748-1.179z" />
+                </svg>
+                <blockquote className="text-[#194973] leading-relaxed mb-5">
+                  {testimonial.quote}
+                </blockquote>
+                <figcaption className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#71C648] to-[#194973] flex items-center justify-center text-white text-sm font-bold flex-shrink-0">
+                    {testimonial.author.split(" ").map((n) => n[0]).slice(0, 2).join("")}
+                  </div>
+                  <div className="min-w-0">
+                    <div className="font-semibold text-sm text-[#194973] tracking-tight truncate">
+                      {testimonial.author}
+                    </div>
+                    <div className="text-xs text-[#57534e] truncate">
+                      {testimonial.role}
+                    </div>
+                  </div>
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ — eliminar objeciones antes del CTA final */}
+      <section className="py-20 sm:py-28 bg-[#fafaf9]">
+        <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+          <SectionHeading
+            title={t("homeFaqTitle")}
+            subtitle={t("homeFaqSubtitle")}
+          />
+          <div className="reveal">
+            <Accordion>
+              {homeFaqs.map((faq, i) => (
+                <AccordionItem key={i} question={faq.question}>
+                  {faq.answer}
+                </AccordionItem>
+              ))}
+            </Accordion>
           </div>
         </div>
       </section>
