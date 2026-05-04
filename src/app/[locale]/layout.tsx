@@ -32,6 +32,7 @@ export async function generateMetadata({
   };
 
   return {
+    metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://codeconnect-ten.vercel.app"),
     title: {
       default: TITLES[locale] || TITLES.es,
       template: "%s | CodeConnect",
