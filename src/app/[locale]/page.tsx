@@ -81,6 +81,15 @@ export default async function Home() {
         </svg>
       ),
     },
+    {
+      title: t("benefit4Title"),
+      description: t("benefit4Desc"),
+      icon: (
+        <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z" />
+        </svg>
+      ),
+    },
   ];
 
   const clients = Array.from({ length: 10 }, (_, i) => t(`client${i}`));
@@ -276,25 +285,44 @@ export default async function Home() {
             subtitle={t("benefitsSubtitle")}
           />
 
-          <div className="grid md:grid-cols-2 gap-6 reveal">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-[#e7e5e4] rounded-2xl overflow-hidden border border-[#e7e5e4] reveal">
             {benefits.map((benefit, index) => (
               <div
                 key={index}
-                className="flex gap-4 p-6 rounded-2xl hover:bg-[#f8f9fa] transition-colors duration-300"
+                className="group relative bg-white p-7 sm:p-8 hover:bg-[#fafaf9] transition-colors duration-300"
               >
-                <div className="flex-shrink-0 w-14 h-14 bg-[#71C648]/10 rounded-xl flex items-center justify-center text-[#71C648]">
+                <span className="absolute top-4 right-5 text-xs font-semibold text-[#71C648]/40 tracking-widest tabular-nums">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <div className="w-11 h-11 bg-[#71C648]/10 rounded-xl flex items-center justify-center text-[#71C648] mb-5 group-hover:bg-[#71C648]/15 transition-colors">
                   {benefit.icon}
                 </div>
-                <div>
-                  <h3 className="text-lg font-bold text-[#194973] mb-2">
-                    {benefit.title}
-                  </h3>
-                  <p className="text-[#5A6D6D] leading-relaxed">
-                    {benefit.description}
-                  </p>
-                </div>
+                <h3
+                  className="font-bold text-[#194973] mb-2 tracking-tight"
+                  style={{ fontSize: "var(--fs-xl)", lineHeight: 1.2 }}
+                >
+                  {benefit.title}
+                </h3>
+                <p className="text-[#57534e] leading-relaxed text-sm">
+                  {benefit.description}
+                </p>
               </div>
             ))}
+            {/* Cell vacía para que la cuadrícula 3xN no quede coja con 5 ítems */}
+            <div className="hidden lg:flex bg-white p-8 items-center justify-center">
+              <div className="text-center">
+                <div className="text-3xl font-bold text-[#194973] tracking-tight mb-2">¿Encajamos?</div>
+                <a
+                  href="/presupuesto"
+                  className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#71C648] hover:text-[#194973] transition-colors"
+                >
+                  Cuéntanos tu caso
+                  <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                  </svg>
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </section>
