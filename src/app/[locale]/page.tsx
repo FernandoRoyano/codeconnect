@@ -122,11 +122,27 @@ export default async function Home() {
                 </span>
               </h1>
               <p
-                className="text-white/70 mb-10 max-w-xl"
+                className="text-white/70 mb-6 max-w-xl"
                 style={{ fontSize: "var(--fs-lg)", lineHeight: 1.6 }}
               >
                 {t("heroDesc1")}
               </p>
+
+              {/* Industrias pills */}
+              <div className="flex flex-wrap items-center gap-2 mb-10 max-w-xl">
+                <span className="text-xs uppercase tracking-widest text-white/40 font-medium mr-1">
+                  {t("industriesLabel")}
+                </span>
+                {[1, 2, 3, 4, 5].map((i) => (
+                  <span
+                    key={i}
+                    className="text-xs font-medium text-white/80 bg-white/5 backdrop-blur border border-white/10 px-3 py-1 rounded-full"
+                  >
+                    {t(`industry${i}`)}
+                  </span>
+                ))}
+              </div>
+
               <div className="flex flex-col sm:flex-row gap-3 sm:items-center">
                 <Button href="/presupuesto" variant="primary" size="lg">
                   {t("heroCta1")}
