@@ -7,6 +7,17 @@ const nextConfig: NextConfig = {
   images: {
     formats: ["image/avif", "image/webp"],
   },
+  // /en y /fr estuvieron publicados y hoy devuelven 200. Al dejar el sitio en
+  // solo espanol, redirigirlos conserva los enlaces en circulacion y lo que
+  // tengan indexado los buscadores, en vez de convertirlos en 404.
+  async redirects() {
+    return [
+      { source: "/en", destination: "/es", permanent: true },
+      { source: "/fr", destination: "/es", permanent: true },
+      { source: "/en/:path*", destination: "/es/:path*", permanent: true },
+      { source: "/fr/:path*", destination: "/es/:path*", permanent: true },
+    ];
+  },
   async headers() {
     return [
       {
