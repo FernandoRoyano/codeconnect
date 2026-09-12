@@ -66,7 +66,9 @@ CREATE TABLE proposals (
   updated_at TIMESTAMPTZ DEFAULT NOW(),
   sent_at TIMESTAMPTZ,
   first_viewed_at TIMESTAMPTZ,
-  user_id UUID REFERENCES auth.users(id) ON DELETE CASCADE
+  user_id UUID REFERENCES auth.users(id) ON DELETE CASCADE,
+  rejection_reason TEXT,
+  rejected_at TIMESTAMPTZ
 );
 
 CREATE INDEX idx_proposals_token ON proposals(token);
@@ -112,6 +114,49 @@ CREATE TABLE proposal_views (
 CREATE INDEX idx_proposal_views_proposal ON proposal_views(proposal_id);
 
 -- ============================================================
+-- ENUM: prospect_pipeline_status
+-- ============================================================
+CREATE TYPE prospect_pipeline_status AS ENUM (
+  'identificado',
+  'contactado',
+  'respondido',
+  'interesado',
+  'negociando',
+  'convertido',
+  'descartado'
+);
+
+-- ============================================================
+-- TABLE: prospects
+-- ============================================================
+CREATE TABLE prospects (
+  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  user_id UUID NOT NULL REFERENCES auth.users(id) ON DELETE CASCADE,
+  name TEXT NOT NULL,
+  position TEXT,
+  company TEXT,
+  city TEXT,
+  country TEXT,
+  segment TEXT,
+  why_good_prospect TEXT,
+  contact_notes TEXT,
+  website_url TEXT,
+  has_online_booking BOOLEAN DEFAULT FALSE,
+  has_app BOOLEAN DEFAULT FALSE,
+  website_quality INTEGER,
+  pipeline_status prospect_pipeline_status DEFAULT 'identificado',
+  email TEXT,
+  phone TEXT,
+  contacted_at TIMESTAMPTZ,
+  created_at TIMESTAMPTZ DEFAULT NOW(),
+  updated_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+CREATE INDEX idx_prospects_user ON prospects(user_id);
+CREATE INDEX idx_prospects_pipeline ON prospects(pipeline_status);
+CREATE INDEX idx_prospects_company ON prospects(company);
+
+-- ============================================================
 -- FUNCTION: auto-update updated_at
 -- ============================================================
 CREATE OR REPLACE FUNCTION update_updated_at()
@@ -134,6 +179,10 @@ CREATE TRIGGER payments_updated_at
   BEFORE UPDATE ON payments
   FOR EACH ROW EXECUTE FUNCTION update_updated_at();
 
+CREATE TRIGGER prospects_updated_at
+  BEFORE UPDATE ON prospects
+  FOR EACH ROW EXECUTE FUNCTION update_updated_at();
+
 -- ============================================================
 -- ROW LEVEL SECURITY (RLS)
 -- ============================================================
@@ -142,6 +191,7 @@ ALTER TABLE clients ENABLE ROW LEVEL SECURITY;
 ALTER TABLE proposals ENABLE ROW LEVEL SECURITY;
 ALTER TABLE payments ENABLE ROW LEVEL SECURITY;
 ALTER TABLE proposal_views ENABLE ROW LEVEL SECURITY;
+ALTER TABLE prospects ENABLE ROW LEVEL SECURITY;
 
 -- Clients: admin autenticado puede gestionar
 CREATE POLICY "Users can manage own clients"
@@ -165,6 +215,12 @@ CREATE POLICY "Admin can manage payments"
       AND proposals.user_id = auth.uid()
     )
   );
+
+-- Prospects: cada usuario gestiona solo los suyos
+CREATE POLICY "Users can manage own prospects"
+  ON prospects FOR ALL
+  USING (auth.uid() = user_id)
+  WITH CHECK (auth.uid() = user_id);
 
 -- Proposal views: admin puede leer vistas de sus propuestas
 CREATE POLICY "Admin can read views"
