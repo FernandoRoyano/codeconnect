@@ -10,13 +10,13 @@ import { buildAlternates } from "@/lib/seo";
 import { Link } from "@/i18n/navigation";
 
 const TITLES: Record<string, string> = {
-  es: "Desarrollo Web y CRM a Medida para Clínicas, Gimnasios y Centros de Bienestar",
+  es: "Software, Automatización y Desarrollo Web a Medida",
   en: "Custom Web Development and CRM for Clinics, Gyms and Wellness Centers",
   fr: "Développement Web et CRM sur Mesure pour Cliniques, Salles de Sport et Bien-être",
 };
 
 const DESCRIPTIONS: Record<string, string> = {
-  es: "Webs, CRM y aplicaciones a medida para clínicas, gimnasios y centros de bienestar, con contacto directo durante todo el proyecto.",
+  es: "Consultoría tecnológica, automatización, integraciones y software a medida para mejorar procesos empresariales, con especialización en salud y bienestar.",
   en: "Custom websites, CRMs and applications for clinics, gyms and wellness centers, with direct contact throughout the project.",
   fr: "Sites web, CRM et applications sur mesure pour les cliniques, salles de sport et centres de bien-être, avec un contact direct pendant le projet.",
 };
@@ -64,7 +64,7 @@ export default async function Home() {
         </svg>
       ),
       features: [t("svcWebF0"), t("svcWebF1"), t("svcWebF2")],
-      label: "Presencia digital",
+      label: "Producto",
     },
     {
       title: t("svcCrmTitle"),
@@ -76,7 +76,7 @@ export default async function Home() {
         </svg>
       ),
       features: [t("svcCrmF0"), t("svcCrmF1"), t("svcCrmF2")],
-      label: "Operativa",
+      label: "Sistemas",
     },
     {
       title: t("svcBillingTitle"),
@@ -88,7 +88,7 @@ export default async function Home() {
         </svg>
       ),
       features: [t("svcBillingF0"), t("svcBillingF1"), t("svcBillingF2")],
-      label: "Control",
+      label: "Procesos",
     },
   ];
 
@@ -212,7 +212,7 @@ export default async function Home() {
                   </svg>
                 </Button>
                 <Link
-                  href="/servicios"
+                  href="/portfolio"
                   className="inline-flex items-center gap-2 text-white/80 hover:text-white px-4 py-3 font-medium transition-colors"
                 >
                   {t("heroCta2")}
@@ -312,6 +312,16 @@ export default async function Home() {
         </div>
       </section>
 
+      <section className="bg-[#0b202f] py-24 sm:py-32 overflow-hidden">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-[#9de377] mb-7">Nuestro criterio</p>
+          <h2 className="max-w-5xl text-4xl sm:text-6xl lg:text-7xl font-black tracking-[-0.045em] text-white leading-[0.98]">
+            No vendemos código.
+            <span className="block text-[#71C648]">Resolvemos problemas con tecnología.</span>
+          </h2>
+        </div>
+      </section>
+
       {/* Why Choose Us Section */}
       <section className="py-20 sm:py-28 bg-white">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -386,6 +396,22 @@ export default async function Home() {
         </div>
       </section>
 
+      <section className="py-20 sm:py-28 bg-white">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-[0.8fr_1.2fr] gap-10 lg:gap-16 items-center">
+            <div>
+              <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#39751f] mb-4">Demo conceptual</p>
+              <h2 className="text-3xl sm:text-5xl font-bold text-[#194973] mb-6">Una operativa completa, visible en una sola interfaz.</h2>
+              <p className="text-lg text-[#57534e] mb-8">Una muestra de cómo clientes, reservas, cobros y seguimiento pueden convivir sin duplicar información.</p>
+              <Button href="/portfolio" variant="outline" size="lg">Ver proyectos</Button>
+            </div>
+            <div className="relative rounded-[1.75rem] border border-[#dfe8dc] bg-[#f6faf4] p-3 sm:p-5 shadow-soft-lg">
+              <HeroMockup />
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* FAQ — eliminar objeciones antes del CTA final */}
       <section id="preguntas" className="py-20 sm:py-28 bg-[#fafaf9]">
         <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
@@ -402,6 +428,29 @@ export default async function Home() {
                 </AccordionItem>
               ))}
             </Accordion>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-20 sm:py-28 bg-[#f3f7f1]">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+            <div>
+              <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#39751f] mb-4">IA aplicada</p>
+              <h2 className="text-3xl sm:text-5xl font-bold text-[#194973] mb-6">IA cuando tiene sentido.</h2>
+              <p className="text-lg text-[#57534e] leading-relaxed">La utilizamos cuando puede clasificar información, mejorar búsquedas, generar reporting o reducir trabajo dentro de un proceso concreto. Nunca como reclamo vacío.</p>
+            </div>
+            <div className="rounded-[1.75rem] border border-[#dfe8dc] bg-white p-6 sm:p-8">
+              <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-3 text-center">
+                <div className="rounded-2xl bg-[#f3f7f1] p-5"><span className="text-xs font-bold uppercase tracking-widest text-[#194973]">Datos</span></div>
+                <span className="text-[#39751f]" aria-hidden>→</span>
+                <div className="rounded-2xl bg-[#194973] p-5"><span className="text-xs font-bold uppercase tracking-widest text-white">Análisis</span></div>
+                <div className="col-span-3 flex justify-center text-[#39751f]" aria-hidden>↓</div>
+                <div className="rounded-2xl bg-[#f3f7f1] p-5"><span className="text-xs font-bold uppercase tracking-widest text-[#194973]">Resumen</span></div>
+                <span className="text-[#39751f]" aria-hidden>→</span>
+                <div className="rounded-2xl bg-[#71C648] p-5"><span className="text-xs font-bold uppercase tracking-widest text-[#12324a]">Acción</span></div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
