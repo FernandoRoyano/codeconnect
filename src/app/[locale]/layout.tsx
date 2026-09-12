@@ -89,7 +89,7 @@ export default async function LocaleLayout({
     "@type": "Organization",
     name: "CodeConnect",
     url: SITE_URL,
-    logo: `${SITE_URL}/favicon.svg`,
+    logo: `${SITE_URL}/brand/codeconnect-logo.svg`,
     description: DESCRIPTIONS[locale] || DESCRIPTIONS.es,
     contactPoint: {
       "@type": "ContactPoint",

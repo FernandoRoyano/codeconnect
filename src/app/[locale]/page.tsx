@@ -169,7 +169,7 @@ export default async function Home() {
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-28 pb-16 sm:pt-32 sm:pb-24 w-full">
           <div className="grid lg:grid-cols-[1.1fr_1fr] gap-12 lg:gap-16 items-center">
             <div>
-              <span className="inline-flex items-center gap-2 bg-white/5 backdrop-blur border border-white/10 text-[#71C648] px-4 py-1.5 rounded-full text-sm font-medium mb-8">
+              <span className="inline-flex items-center gap-2 bg-white/5 backdrop-blur border border-white/10 text-[#20DCC2] px-4 py-1.5 rounded-full text-sm font-medium mb-8">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#71C648] animate-pulse" />
                 {t("heroBadge")}
               </span>
@@ -178,7 +178,7 @@ export default async function Home() {
                 style={{ fontSize: "var(--fs-hero)", lineHeight: 1.02, letterSpacing: "-0.03em" }}
               >
                 {t("heroTitle")}
-                <span className="block bg-gradient-to-r from-[#71C648] to-[#a5e47e] bg-clip-text text-transparent">
+                <span className="block bg-gradient-to-r from-[#20DCC2] to-[#8AF4E9] bg-clip-text text-transparent">
                   {t("heroHighlight")}
                 </span>
               </h1>
@@ -225,7 +225,7 @@ export default async function Home() {
             <div className="hidden lg:block relative">
               <div className="relative">
                 {/* Halo detrás del mockup */}
-                <div className="absolute -inset-10 bg-gradient-to-tr from-[#71C648]/20 via-transparent to-[#71C648]/10 blur-3xl" aria-hidden />
+                <div className="absolute -inset-10 bg-gradient-to-tr from-[#20DCC2]/20 via-transparent to-[#20DCC2]/10 blur-3xl" aria-hidden />
                 <div className="relative rounded-2xl overflow-hidden shadow-soft-xl border border-white/10 ring-1 ring-white/5">
                   <HeroMockup />
                   <span className="sr-only">{t("heroImgAlt")}</span>
@@ -317,7 +317,7 @@ export default async function Home() {
           <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-[#9de377] mb-7">Nuestro criterio</p>
           <h2 className="max-w-5xl text-4xl sm:text-6xl lg:text-7xl font-black tracking-[-0.045em] text-white leading-[0.98]">
             No vendemos código.
-            <span className="block text-[#71C648]">Resolvemos problemas con tecnología.</span>
+            <span className="block text-[#20DCC2]">Resolvemos problemas con tecnología.</span>
           </h2>
         </div>
       </section>
@@ -385,7 +385,7 @@ export default async function Home() {
             <div className="hidden sm:block absolute top-8 left-[16%] right-[16%] h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" aria-hidden />
             {steps.map((item, index) => (
               <div key={index} className="relative text-center">
-                <div className="w-16 h-16 bg-[#71C648] rounded-2xl flex items-center justify-center text-white text-2xl font-bold mx-auto mb-6 shadow-soft-lg ring-4 ring-[#194973]">
+                <div className="w-16 h-16 bg-[#20DCC2] rounded-2xl flex items-center justify-center text-[#0B0F10] text-2xl font-bold mx-auto mb-6 shadow-soft-lg ring-4 ring-[#111A1D]">
                   {item.step}
                 </div>
                 <h3 className="text-xl font-bold text-white mb-3 tracking-tight">{item.title}</h3>
@@ -436,7 +436,7 @@ export default async function Home() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             <div>
-              <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#39751f] mb-4">IA aplicada</p>
+              <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#066B63] mb-4">IA aplicada</p>
               <h2 className="text-3xl sm:text-5xl font-bold text-[#194973] mb-6">IA cuando tiene sentido.</h2>
               <p className="text-lg text-[#57534e] leading-relaxed">La utilizamos cuando puede clasificar información, mejorar búsquedas, generar reporting o reducir trabajo dentro de un proceso concreto. Nunca como reclamo vacío.</p>
             </div>
@@ -475,7 +475,7 @@ export default async function Home() {
             </div>
             {/* Visual - Ecosistema de productos conectados */}
             <div className="relative">
-              <div className="absolute -inset-6 bg-gradient-to-tr from-[#71C648]/15 via-transparent to-[#194973]/10 blur-3xl" aria-hidden />
+              <div className="absolute -inset-6 bg-gradient-to-tr from-[#20DCC2]/15 via-transparent to-[#111A1D]/10 blur-3xl" aria-hidden />
               <BrandVisual className="relative shadow-soft-xl ring-1 ring-black/5" />
               <span className="sr-only">{t("aboutImgAlt")}</span>
               <div className="hidden sm:block absolute -bottom-6 -right-6 w-32 h-32 bg-[#71C648]/20 rounded-2xl -z-10"></div>

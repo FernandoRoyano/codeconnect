@@ -1,16 +1,12 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
+import { Inter } from "next/font/google";
 import { getLocale } from "next-intl/server";
 import "./globals.css";
 
-const roboto = localFont({
+const inter = Inter({
   variable: "--font-sans",
+  subsets: ["latin"],
   display: "swap",
-  src: [
-    { path: "../../public/fonts/Roboto-Regular.ttf", weight: "400", style: "normal" },
-    { path: "../../public/fonts/Roboto-Bold.ttf", weight: "700", style: "normal" },
-    { path: "../../public/fonts/Roboto-Black.ttf", weight: "900", style: "normal" },
-  ],
 });
 
 export const metadata: Metadata = {
@@ -34,7 +30,7 @@ export default async function RootLayout({
   return (
     <html lang={locale}>
       <body
-        className={`${roboto.variable} antialiased`}
+        className={`${inter.variable} antialiased`}
       >
         {children}
       </body>

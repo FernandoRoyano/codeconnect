@@ -18,7 +18,7 @@ export default function ServiceCard({ title, description, icon, href, features, 
   return (
     <Link href={href as never} className="group block h-full">
       <div className="relative bg-white rounded-[1.4rem] p-7 sm:p-8 shadow-soft hover:shadow-soft-lg transition-all duration-300 h-full border border-[#e7e5e4] hover:border-[#71C648]/50 group-hover:-translate-y-1 overflow-hidden">
-        <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-[#71C648] via-[#71C648] to-[#194973] origin-left scale-x-[0.18] group-hover:scale-x-100 transition-transform duration-500" aria-hidden />
+        <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-[#20DCC2] via-[#20DCC2] to-[#111A1D] origin-left scale-x-[0.18] group-hover:scale-x-100 transition-transform duration-500" aria-hidden />
         <div className="flex items-start justify-between gap-4 mb-8">
           <div className="w-14 h-14 bg-[#eff8ea] rounded-2xl flex items-center justify-center text-[#194973] group-hover:bg-[#194973] group-hover:text-white transition-colors duration-300">
             {icon}

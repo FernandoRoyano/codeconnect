@@ -13,9 +13,9 @@ function ProjectVisual({ index, title, category }: { index: number; title: strin
     // 2 - CRM / Software
     { bg: "from-[#0f3150] to-[#194973]", accent: "#71C648" },
     // 3 - Facturación
-    { bg: "from-[#194973] via-[#1f5a8f] to-[#71C648]", accent: "#fafaf9" },
+    { bg: "from-[#111A1D] via-[#2A3639] to-[#20DCC2]", accent: "#f7f8f7" },
     // 4 - App
-    { bg: "from-[#0f3150] to-[#71C648]", accent: "#fff" },
+    { bg: "from-[#0B0F10] to-[#20DCC2]", accent: "#fff" },
   ];
   const p = patterns[Math.min(index - 1, patterns.length - 1)] ?? patterns[0];
   const initial = title.charAt(0).toUpperCase();

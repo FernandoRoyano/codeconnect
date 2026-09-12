@@ -2,21 +2,34 @@
 
 :root {
   /* Marca CodeConnect */
-  --cc-blue: #194973;
-  --cc-blue-600: #1f5a8f;
-  --cc-blue-900: #0f3150;
-  --cc-green: #71C648;
-  --cc-green-600: #5fb039;
-  --cc-gray: #5A6D6D;
-  --cc-white: #ffffff;
+  --cc-carbon: #0b0f10;
+  --cc-navy: #111a1d;
+  --cc-accent: #20dcc2;
+  --cc-accent-hover: #14bfa9;
+  --cc-light: #ebeceb;
+  --cc-cream: #f7f8f7;
+  --cc-text-secondary: #a6b0b2;
+  --cc-border-dark: #2a3639;
+  --cc-success: #35c98b;
+  --cc-warning: #f2b84b;
+  --cc-error: #e86767;
+
+  --cc-blue: var(--cc-navy);
+  --cc-blue-600: var(--cc-border-dark);
+  --cc-blue-900: var(--cc-carbon);
+  --cc-green: var(--cc-accent);
+  --cc-green-600: var(--cc-accent-hover);
+  --cc-gray: var(--cc-text-secondary);
+  --cc-white: #f7f8f7;
+  --cc-accent-ink: #075f58;
 
   /* Neutros cálidos (en vez de grises planos) */
-  --cc-bg: #ffffff;
-  --cc-surface: #fafaf9;
-  --cc-surface-2: #f5f5f4;
-  --cc-border: #e7e5e4;
-  --cc-text: #1c1917;
-  --cc-text-muted: #57534e;
+  --cc-bg: var(--cc-cream);
+  --cc-surface: var(--cc-light);
+  --cc-surface-2: #e1e4e3;
+  --cc-border: #d8e1de;
+  --cc-text: var(--cc-carbon);
+  --cc-text-muted: #46575a;
 
   /* Alias de compatibilidad con código existente */
   --cc-light-gray: var(--cc-surface);
@@ -203,11 +216,11 @@ p { line-height: 1.65; }
 
 /* Mesh sutil para heroes y secciones destacadas */
 .bg-mesh {
-  background-color: var(--cc-blue-900);
+  background-color: var(--cc-carbon);
   background-image:
-    radial-gradient(at 20% 0%, rgb(113 198 72 / 0.18) 0, transparent 50%),
-    radial-gradient(at 80% 100%, rgb(31 90 143 / 0.55) 0, transparent 55%),
-    radial-gradient(at 100% 0%, rgb(113 198 72 / 0.08) 0, transparent 50%);
+    radial-gradient(at 18% 0%, rgb(32 220 194 / 0.16) 0, transparent 45%),
+    radial-gradient(at 84% 100%, rgb(17 26 29 / 0.72) 0, transparent 58%),
+    radial-gradient(at 100% 0%, rgb(32 220 194 / 0.06) 0, transparent 45%);
 }
 
 .workflow-grid {
@@ -217,6 +230,29 @@ p { line-height: 1.65; }
   background-size: 32px 32px;
   mask-image: linear-gradient(to bottom right, black, transparent 85%);
 }
+
+/* Compatibilidad cromática mientras los componentes migran a tokens de marca. */
+:where([class~="bg-[#71C648]"]) { background-color: #20dcc2; }
+:where([class~="bg-[#71C648]/5"]) { background-color: rgb(32 220 194 / 0.05); }
+:where([class~="bg-[#71C648]/10"]) { background-color: rgb(32 220 194 / 0.10); }
+:where([class~="bg-[#71C648]/15"]) { background-color: rgb(32 220 194 / 0.15); }
+:where([class~="bg-[#71C648]/20"]) { background-color: rgb(32 220 194 / 0.20); }
+:where([class~="text-[#71C648]"]) { color: #075f58; }
+:where([class~="text-[#39751f]"]) { color: #075f58; }
+:where([class~="text-[#9de377]"]) { color: #65ead9; }
+:where([class~="text-[#12324a]"]) { color: #0b0f10; }
+:where([class~="border-[#71C648]"]) { border-color: #20dcc2; }
+:where([class~="border-[#71C648]/30"]) { border-color: rgb(32 220 194 / 0.30); }
+:where([class~="border-[#71C648]/40"]) { border-color: rgb(32 220 194 / 0.40); }
+:where([class~="bg-[#194973]"]) { background-color: #111a1d; }
+:where([class~="bg-[#0f3150]"]) { background-color: #0b0f10; }
+:where([class~="text-[#194973]"]) { color: #111a1d; }
+:where([class~="border-[#194973]"]) { border-color: #111a1d; }
+:where([class~="bg-[#eff8ea]"], [class~="bg-[#f3f7f1]"], [class~="bg-[#f6faf4]"]) { background-color: #e8f7f4; }
+:where([class~="hover:bg-[#5fb039]"]:hover, [class~="hover:bg-[#5db33a]"]:hover) { background-color: #14bfa9; }
+:where([class~="hover:text-[#194973]"]:hover) { color: #111a1d; }
+[class~="bg-[#71C648]"][class~="text-white"] { color: #0b0f10; }
+[class~="bg-[#71C648]"] > [class~="text-white"] { color: #0b0f10; }
 
 /* Utilidades de sombra más naturales */
 .shadow-soft  { box-shadow: var(--shadow-md); }
@@ -325,6 +361,6 @@ details.acc:not([open]) > summary:hover {
 }
 
 ::selection {
-  background-color: var(--cc-green);
-  color: white;
+  background-color: #20dcc2;
+  color: #0b0f10;
 }

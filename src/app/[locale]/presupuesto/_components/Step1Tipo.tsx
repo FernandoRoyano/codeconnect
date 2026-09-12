@@ -40,7 +40,7 @@ export default function Step1Tipo({ tipoProyecto, onSelect }: Props) {
                 </span>
               )}
 
-              <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-4 bg-gradient-to-br from-[#194973]/10 to-[#71C648]/10 text-[#194973]">
+              <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-4 bg-gradient-to-br from-[#111A1D]/10 to-[#20DCC2]/10 text-[#111A1D]">
                 {tipo.icon}
               </div>
 

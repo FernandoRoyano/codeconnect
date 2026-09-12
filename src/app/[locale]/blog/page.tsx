@@ -121,7 +121,7 @@ export default async function BlogPage() {
           <Link href={`/blog/${featuredPost.slug}` as never} className="group block">
             <article className="grid lg:grid-cols-2 gap-0 lg:gap-8 items-center bg-[#f8f9fa] rounded-2xl sm:rounded-3xl overflow-hidden hover:shadow-xl transition-all duration-300">
               {/* Image */}
-              <div className="h-48 sm:h-64 lg:h-full lg:min-h-[300px] bg-gradient-to-br from-[#194973] to-[#71C648] relative">
+              <div className="h-48 sm:h-64 lg:h-full lg:min-h-[300px] bg-gradient-to-br from-[#111A1D] to-[#20DCC2] relative">
                 <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors" />
                 <div className="absolute bottom-6 left-6">
                   <span className="bg-[#71C648] text-white px-3 py-1 rounded-full text-sm font-medium">
@@ -176,7 +176,7 @@ export default async function BlogPage() {
                   <Link key={post.id} href={`/blog/${post.slug}` as never} className="group">
                     <article className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 h-full flex flex-col">
                       {/* Image */}
-                      <div className="h-48 bg-gradient-to-br from-[#194973]/80 to-[#71C648]/80 relative">
+                      <div className="h-48 bg-gradient-to-br from-[#111A1D]/80 to-[#20DCC2]/80 relative">
                         <div className="absolute bottom-4 left-4">
                           <span className="bg-white/90 text-[#194973] px-3 py-1 rounded-full text-sm font-medium">
                             {post.category}
@@ -261,7 +261,7 @@ export default async function BlogPage() {
               </div>
 
               {/* CTA */}
-              <div className="bg-gradient-to-br from-[#71C648] to-[#5db33a] rounded-2xl p-6 mt-8 text-white">
+              <div className="bg-gradient-to-br from-[#20DCC2] to-[#14BFA9] rounded-2xl p-6 mt-8 text-[#0B0F10]">
                 <h3 className="text-lg font-bold mb-2">{t("sidebarCtaTitle")}</h3>
                 <p className="text-white/90 text-sm mb-4">
                   {t("sidebarCtaDesc")}

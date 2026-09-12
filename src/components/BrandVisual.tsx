@@ -14,8 +14,8 @@ export default function BrandVisual({ className = "" }: { className?: string }) 
       <svg className="absolute inset-0 w-full h-full" viewBox="0 0 400 300" preserveAspectRatio="none">
         <defs>
           <linearGradient id="lineGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#71C648" stopOpacity="0.6" />
-            <stop offset="100%" stopColor="#71C648" stopOpacity="0.1" />
+            <stop offset="0%" stopColor="#20DCC2" stopOpacity="0.7" />
+            <stop offset="100%" stopColor="#20DCC2" stopOpacity="0.1" />
           </linearGradient>
         </defs>
         <path d="M 100 80 Q 200 150 300 90" stroke="url(#lineGrad)" strokeWidth="1" fill="none" strokeDasharray="2 4" />
@@ -26,8 +26,8 @@ export default function BrandVisual({ className = "" }: { className?: string }) 
 
       {/* Central hub - CC logo */}
       <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-        <div className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-2xl bg-gradient-to-br from-[#71C648] to-[#5fb039] shadow-soft-xl flex items-center justify-center">
-          <span className="text-white text-2xl sm:text-3xl font-bold tracking-tight">CC</span>
+        <div className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-2xl bg-gradient-to-br from-[#20DCC2] to-[#14BFA9] shadow-soft-xl flex items-center justify-center">
+          <span className="text-[#0B0F10] text-2xl sm:text-3xl font-bold tracking-tight">CC</span>
           {/* Pulse ring */}
           <div className="absolute inset-0 rounded-2xl border-2 border-[#71C648]/30 animate-pulse-subtle" />
         </div>
@@ -35,10 +35,10 @@ export default function BrandVisual({ className = "" }: { className?: string }) 
 
       {/* Floating nodes — positioned around the hub */}
       {[
-        { label: "Web", top: "14%", left: "14%", accent: "#71C648" },
-        { label: "CRM", top: "14%", right: "12%", accent: "#71C648" },
-        { label: "App", bottom: "16%", left: "12%", accent: "#71C648" },
-        { label: "Facturación", bottom: "16%", right: "10%", accent: "#71C648" },
+        { label: "Web", top: "14%", left: "14%", accent: "#20DCC2" },
+        { label: "CRM", top: "14%", right: "12%", accent: "#20DCC2" },
+        { label: "App", bottom: "16%", left: "12%", accent: "#20DCC2" },
+        { label: "Facturación", bottom: "16%", right: "10%", accent: "#20DCC2" },
       ].map((node, i) => (
         <div
           key={i}

@@ -302,7 +302,7 @@ export default async function ServiciosPage() {
               <div className={index % 2 === 1 ? "lg:order-2" : ""}>
                 <div className="flex items-center gap-4 mb-6">
                   <span
-                    className="text-7xl font-bold bg-gradient-to-br from-[#71C648] to-[#194973] bg-clip-text text-transparent tracking-tighter leading-none"
+                    className="text-7xl font-bold bg-gradient-to-br from-[#20DCC2] to-[#111A1D] bg-clip-text text-transparent tracking-tighter leading-none"
                     aria-hidden
                   >
                     0{index + 1}
@@ -363,7 +363,7 @@ export default async function ServiciosPage() {
                 <div className="relative">
                   <div
                     aria-hidden
-                    className="absolute -inset-8 bg-gradient-to-tr from-[#71C648]/15 via-transparent to-[#194973]/10 blur-3xl"
+                    className="absolute -inset-8 bg-gradient-to-tr from-[#20DCC2]/15 via-transparent to-[#111A1D]/10 blur-3xl"
                   />
                   <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-soft-xl ring-1 ring-black/5">
                     {service.visual}

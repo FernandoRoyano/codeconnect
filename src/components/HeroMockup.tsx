@@ -42,7 +42,7 @@ export default function HeroMockup({ className = "" }: { className?: string }) {
             </div>
             <div className="flex items-center gap-2">
               <div className="hidden sm:block w-28 h-7 rounded-lg border border-[#e7e5e4] bg-[#fafaf9]" />
-              <div className="w-7 h-7 rounded-full bg-gradient-to-br from-[#71C648] to-[#194973] flex items-center justify-center text-white text-[9px] font-bold">FR</div>
+              <div className="w-7 h-7 rounded-full bg-gradient-to-br from-[#20DCC2] to-[#111A1D] flex items-center justify-center text-white text-[9px] font-bold">FR</div>
             </div>
           </div>
 

@@ -39,7 +39,7 @@ export default function Footer() {
                 {t("description")}
               </h2>
               <p className="text-white/60 text-sm">
-                <a href="mailto:codeconnectsl@gmail.com" className="hover:text-[#71C648] transition-colors">
+                <a href="mailto:codeconnectsl@gmail.com" className="hover:text-[#20DCC2] transition-colors">
                   codeconnectsl@gmail.com
                 </a>
                 <span className="mx-2">·</span>
@@ -66,7 +66,7 @@ export default function Footer() {
 
           {(["servicios", "empresa"] as const).map((key) => (
             <div key={key}>
-              <h3 className="text-xs uppercase tracking-widest font-semibold text-[#71C648] mb-4">
+              <h3 className="text-xs uppercase tracking-widest font-semibold text-[#20DCC2] mb-4">
                 {key === "servicios" ? t("servicesTitle") : t("companyTitle")}
               </h3>
               <ul className="space-y-2.5">
@@ -85,7 +85,7 @@ export default function Footer() {
           ))}
 
           <div>
-            <h3 className="text-xs uppercase tracking-widest font-semibold text-[#71C648] mb-4">{t("contactTitle")}</h3>
+            <h3 className="text-xs uppercase tracking-widest font-semibold text-[#20DCC2] mb-4">{t("contactTitle")}</h3>
             <ul className="space-y-2.5 text-sm">
               <li>
                 <a href="mailto:codeconnectsl@gmail.com" className="text-white/70 hover:text-white transition-colors break-all">
