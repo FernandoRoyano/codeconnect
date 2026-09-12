@@ -12,14 +12,19 @@ interface Props {
 export default function Step2Funcionalidades({ tipoProyecto, funcionalidades, otraFuncionalidad, onToggle, onChangeOtra }: Props) {
   const opciones = getFuncionalidades(tipoProyecto);
   const tipoTitle = tiposProyecto.find((t) => t.id === tipoProyecto)?.title.toLowerCase() ?? "";
+  const esWeb = tipoProyecto === "web";
 
   return (
     <div className="animate-fade-in">
       <h2 className="font-bold text-[#194973] tracking-tight mb-3 text-center" style={{ fontSize: "var(--fs-3xl)", lineHeight: 1.1 }}>
-        ¿Qué funcionalidades necesitas?
+        {esWeb ? "¿Qué funcionalidades necesitas?" : "¿Qué te complica el día a día?"}
       </h2>
       <p className="text-[#57534e] mb-10 text-center" style={{ fontSize: "var(--fs-base)" }}>
-        Selecciona las que apliquen a tu <span className="font-semibold text-[#71C648]">{tipoTitle}</span>
+        {esWeb ? (
+          <>Selecciona las que apliquen a tu <span className="font-semibold text-[#71C648]">{tipoTitle}</span></>
+        ) : (
+          "Marca lo que te suene — nosotros lo traducimos en las funciones que lo resuelven"
+        )}
       </p>
       <div className="grid md:grid-cols-2 gap-3">
         {opciones.map((func) => {

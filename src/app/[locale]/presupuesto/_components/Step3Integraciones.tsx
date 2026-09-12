@@ -12,14 +12,19 @@ interface Props {
 export default function Step3Integraciones({ tipoProyecto, integraciones, otraIntegracion, onToggle, onChangeOtra }: Props) {
   const opciones = getIntegraciones(tipoProyecto);
   const tipoTitle = tiposProyecto.find((t) => t.id === tipoProyecto)?.title.toLowerCase() ?? "";
+  const esWeb = tipoProyecto === "web";
 
   return (
     <div className="animate-fade-in">
       <h2 className="font-bold text-[#194973] tracking-tight mb-3 text-center" style={{ fontSize: "var(--fs-3xl)", lineHeight: 1.1 }}>
-        ¿Necesitas integraciones?
+        {esWeb ? "¿Necesitas integraciones?" : "¿Con qué más trabajas hoy?"}
       </h2>
       <p className="text-[#57534e] mb-10 text-center" style={{ fontSize: "var(--fs-base)" }}>
-        Conecta tu <span className="font-semibold text-[#71C648]">{tipoTitle}</span> con otras herramientas
+        {esWeb ? (
+          <>Conecta tu <span className="font-semibold text-[#71C648]">{tipoTitle}</span> con otras herramientas</>
+        ) : (
+          "Así lo conectamos con las herramientas que ya usas, sin que tengas que cambiar de costumbres"
+        )}
       </p>
       <div className="grid md:grid-cols-2 gap-3">
         {opciones.map((integ) => {

@@ -43,6 +43,15 @@ export default function Header() {
     return () => { document.body.classList.remove("overflow-hidden"); };
   }, [mobileMenuOpen]);
 
+  useEffect(() => {
+    if (!mobileMenuOpen) return;
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setMobileMenuOpen(false);
+    };
+    window.addEventListener("keydown", closeOnEscape);
+    return () => window.removeEventListener("keydown", closeOnEscape);
+  }, [mobileMenuOpen]);
+
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
@@ -105,12 +114,12 @@ export default function Header() {
               type="button"
               aria-expanded={mobileMenuOpen}
               aria-controls="mobile-menu"
+              aria-label={t("openMenu")}
               className={`inline-flex items-center justify-center p-2 rounded-lg transition-colors ${
                 scrolled ? "text-[#194973] hover:bg-[#f5f5f4]" : "text-white hover:bg-white/10"
               }`}
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             >
-              <span className="sr-only">{t("openMenu")}</span>
               {mobileMenuOpen ? (
                 <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />

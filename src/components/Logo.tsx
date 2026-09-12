@@ -17,7 +17,7 @@ export default function Logo({ className = "", showTagline = true, variant = "de
 
   if (variant === "icon") {
     return (
-      <svg viewBox="0 0 80 40" className={className} xmlns="http://www.w3.org/2000/svg">
+      <svg viewBox="0 0 80 40" className={className} xmlns="http://www.w3.org/2000/svg" role="img" aria-label="CodeConnect">
         <rect x="0" y="5" width="60" height="30" rx="15" fill={greenColor} />
         <circle cx="45" cy="20" r="12" fill={blueColor} />
       </svg>
@@ -25,8 +25,8 @@ export default function Logo({ className = "", showTagline = true, variant = "de
   }
 
   return (
-    <div className={`flex flex-col ${className}`}>
-      <div className="flex items-center">
+    <div className={`flex flex-col ${className}`} aria-label="CodeConnect">
+      <div className="flex items-center" aria-hidden="true">
         <span className="text-2xl md:text-3xl font-bold tracking-tight" style={{ color: textColor, fontFamily: "Helvetica, Arial, sans-serif" }}>Code</span>
         <svg viewBox="0 0 50 30" className="h-6 md:h-7 mx-0.5" xmlns="http://www.w3.org/2000/svg">
           <rect x="0" y="0" width="50" height="30" rx="15" fill={greenColor} />

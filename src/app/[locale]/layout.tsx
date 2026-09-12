@@ -13,9 +13,9 @@ const TITLES: Record<string, string> = {
 };
 
 const DESCRIPTIONS: Record<string, string> = {
-  es: "Conectando ideas, creando soluciones. Desarrollo de aplicaciones web y software a medida para el sector salud. Licencia completa en propiedad, desarrollo rapido y precios competitivos.",
-  en: "Connecting ideas, creating solutions. Custom web application and software development for the healthcare sector. Full ownership license, fast development, and competitive prices.",
-  fr: "Connecter les idees, creer des solutions. Developpement d'applications web et de logiciels sur mesure pour le secteur de la sante. Licence complete en propriete, developpement rapide et prix competitifs.",
+  es: "Desarrollo de aplicaciones web y software a medida para clínicas, gimnasios y centros de bienestar.",
+  en: "Custom web application and software development for clinics, gyms and wellness centers.",
+  fr: "Développement d'applications web et de logiciels sur mesure pour cliniques, salles de sport et centres de bien-être.",
 };
 
 export async function generateMetadata({
@@ -100,11 +100,30 @@ export default async function LocaleLayout({
     sameAs: [],
   };
 
+  // Dirección completa no publicada hoy (solo "Madrid, España" en el footer) —
+  // no se inventan calle/código postal; se declara solo lo verificable.
+  const localBusinessJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    name: "CodeConnect",
+    url: "https://codeconnect.es",
+    email: "codeconnectsl@gmail.com",
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Madrid",
+      addressCountry: "ES",
+    },
+  };
+
   return (
     <NextIntlClientProvider locale={locale} messages={messages}>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd) }}
       />
       <Header />
       <main>{children}</main>

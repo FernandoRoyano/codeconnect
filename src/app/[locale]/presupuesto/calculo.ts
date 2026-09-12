@@ -9,6 +9,17 @@ export function getIntegraciones(tipoProyecto: string): Opcion[] {
   return integracionesPorTipo[tipoProyecto] || [];
 }
 
+// Horquilla de variación sobre el total según la complejidad del tipo de proyecto
+// (0-5, ver `complexity` en TipoProyecto): un proyecto sencillo varía poco de lo
+// presupuestado, uno a medida grande tiene mucha más variabilidad real.
+function calcularHorquilla(complexity: number): number {
+  return 0.1 + complexity * 0.05;
+}
+
+function redondearA(precio: number, base = 50): number {
+  return Math.round(precio / base) * base;
+}
+
 export function calcularPresupuesto(formData: FormData): Presupuesto {
   const tipoProyectoData = tiposProyecto.find((t) => t.id === formData.tipoProyecto);
   const precioBase = tipoProyectoData?.precio || 0;
@@ -38,6 +49,10 @@ export function calcularPresupuesto(formData: FormData): Presupuesto {
 
   const total = totalConMultiplicador + precioApp;
 
+  const horquilla = calcularHorquilla(tipoProyectoData?.complexity ?? 0);
+  const precioMin = total > 0 ? redondearA(total * (1 - horquilla)) : 0;
+  const precioMax = total > 0 ? redondearA(total * (1 + horquilla)) : 0;
+
   return {
     precioBase,
     precioFuncionalidades,
@@ -46,6 +61,8 @@ export function calcularPresupuesto(formData: FormData): Presupuesto {
     multiplicador,
     precioApp,
     total,
+    precioMin,
+    precioMax,
   };
 }
 

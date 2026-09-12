@@ -22,6 +22,8 @@ interface PresupuestoBody {
     total: number;
     multiplicador: number;
     precioApp: number;
+    precioMin?: number;
+    precioMax?: number;
   };
   solicitaLlamada?: boolean;
 }
@@ -57,7 +59,12 @@ export async function POST(request: NextRequest) {
     }
 
     const total = presupuesto?.total ?? 0;
-    const totalStr = total > 0 ? formatPrecio(total) : "A consultar";
+    const totalStr =
+      total > 0 && presupuesto?.precioMin && presupuesto?.precioMax
+        ? `${formatPrecio(presupuesto.precioMin)} - ${formatPrecio(presupuesto.precioMax)}`
+        : total > 0
+          ? formatPrecio(total)
+          : "A consultar";
 
     const subject = solicitaLlamada
       ? `Llamada solicitada - ${nombre}${empresa ? ` (${empresa})` : ""} · ${totalStr}`
@@ -93,7 +100,7 @@ export async function POST(request: NextRequest) {
     const priceBlock = presupuesto
       ? `
       <div style="margin-top:16px;padding:16px;background:#194973;color:#fff;border-radius:8px;">
-        <div style="font-size:12px;color:#71C648;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;">Presupuesto estimado</div>
+        <div style="font-size:12px;color:#71C648;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;">Rango estimado</div>
         <div style="font-size:28px;font-weight:700;">${totalStr}</div>
         <div style="font-size:12px;color:#cbd5e1;margin-top:6px;">
           Base ${formatPrecio(presupuesto.precioBase)} · Subtotal ${formatPrecio(presupuesto.subtotal)}

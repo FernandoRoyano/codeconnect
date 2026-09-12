@@ -1,5 +1,32 @@
+import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import Button from "@/components/Button";
+import { buildAlternates } from "@/lib/seo";
+
+const TITLES: Record<string, string> = {
+  es: "Servicios: Web, CRM y Facturación para Clínicas y Gimnasios",
+  en: "Services: Websites, CRM and Billing for Clinics and Gyms",
+  fr: "Services : Sites Web, CRM et Facturation pour Cliniques et Salles de Sport",
+};
+
+const DESCRIPTIONS: Record<string, string> = {
+  es: "Webs a medida, sistemas de gestión de clientes y facturación para clínicas, gimnasios y centros de bienestar. Sin plantillas, con código en propiedad.",
+  en: "Custom websites, client management systems and billing for clinics, gyms and wellness centers. No templates, code you own.",
+  fr: "Sites web sur mesure, systèmes de gestion clients et facturation pour cliniques, salles de sport et centres de bien-être.",
+};
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  return {
+    title: TITLES[locale] || TITLES.es,
+    description: DESCRIPTIONS[locale] || DESCRIPTIONS.es,
+    alternates: buildAlternates(locale, "/servicios"),
+  };
+}
 
 /* ── Mockup illustrations for each service ── */
 
@@ -219,8 +246,25 @@ export default async function ServiciosPage() {
     description: t(`extra${i}Desc`),
   }));
 
+  const servicesJsonLd = services.map((service) => ({
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: service.title,
+    description: service.description,
+    provider: { "@type": "Organization", name: "CodeConnect", url: "https://codeconnect.es" },
+    areaServed: "ES",
+    audience: {
+      "@type": "Audience",
+      audienceType: "Clínicas, gimnasios y centros de bienestar",
+    },
+  }));
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(servicesJsonLd) }}
+      />
       {/* Hero Section */}
       <section className="relative pt-32 sm:pt-40 pb-20 sm:pb-28 bg-mesh overflow-hidden">
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

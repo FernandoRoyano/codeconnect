@@ -73,7 +73,7 @@
   --color-cc-text-muted: var(--cc-text-muted);
   --font-sans: var(--font-sans);
   --font-roboto: var(--font-sans);
-  --font-display: var(--font-roboto-slab);
+  --font-display: var(--font-sans);
 }
 
 body {

@@ -1,4 +1,18 @@
+import type { Metadata } from "next";
 import LegalLayout from "@/components/LegalLayout";
+import { buildAlternates } from "@/lib/seo";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  return {
+    title: "Política de Privacidad",
+    alternates: buildAlternates(locale, "/politica-privacidad"),
+  };
+}
 
 export default function PoliticaPrivacidadPage() {
   return (

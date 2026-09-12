@@ -26,6 +26,8 @@ export interface Presupuesto {
   multiplicador: number;
   precioApp: number;
   total: number;
+  precioMin: number;
+  precioMax: number;
 }
 
 export interface TipoProyecto {

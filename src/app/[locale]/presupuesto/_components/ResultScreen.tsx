@@ -156,11 +156,13 @@ export default function ResultScreen({ formData, llamadaStatus, onSolicitarLlama
             <div className="border-t-2 border-[#194973] pt-4 mt-6">
               <div className="flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-1">
                 <div>
-                  <span className="block text-xs text-[#71C648] font-semibold uppercase tracking-wider">Tu proyecto desde</span>
+                  <span className="block text-xs text-[#71C648] font-semibold uppercase tracking-wider">Rango estimado</span>
                   <span className="text-base sm:text-lg font-bold text-[#194973]">Precio orientativo</span>
                 </div>
-                <span className="text-2xl sm:text-3xl font-bold text-[#194973]">
-                  {formData.tipoProyecto === "otro" ? "A consultar" : `Desde ${formatearPrecio(presupuesto.total)}`}
+                <span className="text-xl sm:text-2xl font-bold text-[#194973]">
+                  {formData.tipoProyecto === "otro"
+                    ? "A consultar"
+                    : `${formatearPrecio(presupuesto.precioMin)} - ${formatearPrecio(presupuesto.precioMax)}`}
                 </span>
               </div>
               <p className="text-xs text-[#5A6D6D] mt-3 leading-relaxed">
@@ -205,7 +207,7 @@ export default function ResultScreen({ formData, llamadaStatus, onSolicitarLlama
               <div className="flex-1">
                 <h3 className="text-lg sm:text-xl font-bold tracking-tight mb-1">¿Prefieres que lo concretemos hablando?</h3>
                 <p className="text-white/90 text-sm sm:text-base">
-                  Un presupuesto online nunca sustituye una conversación. Te llamamos en 24h para afinar cada detalle sin compromiso.
+                  Un presupuesto online nunca sustituye una conversación. Revisaremos tu solicitud para afinar cada detalle sin compromiso.
                 </p>
               </div>
             </div>
@@ -219,7 +221,7 @@ export default function ResultScreen({ formData, llamadaStatus, onSolicitarLlama
                   </svg>
                 </div>
                 <div>
-                  <div className="font-semibold">¡Recibido! Te llamaremos en menos de 24h.</div>
+                  <div className="font-semibold">¡Recibido! Revisaremos personalmente tu solicitud.</div>
                   <div className="text-sm text-[#57534e]">Hemos guardado tu presupuesto y tus datos.</div>
                 </div>
               </div>
@@ -257,7 +259,7 @@ export default function ResultScreen({ formData, llamadaStatus, onSolicitarLlama
         </div>
 
         <p className="text-center text-white/60 text-sm mt-6">
-          Hemos recibido tu solicitud. Te escribiremos en menos de 24h.
+          Hemos recibido tu solicitud. Te escribiremos cuando hayamos revisado los detalles.
         </p>
       </div>
     </section>

@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import Button from "@/components/Button";
 import SectionHeading from "@/components/SectionHeading";
@@ -5,22 +6,52 @@ import ServiceCard from "@/components/ServiceCard";
 import HeroMockup from "@/components/HeroMockup";
 import BrandVisual from "@/components/BrandVisual";
 import Accordion, { AccordionItem } from "@/components/Accordion";
+import { buildAlternates } from "@/lib/seo";
+import { Link } from "@/i18n/navigation";
+
+const TITLES: Record<string, string> = {
+  es: "Desarrollo Web y CRM a Medida para Clínicas, Gimnasios y Centros de Bienestar",
+  en: "Custom Web Development and CRM for Clinics, Gyms and Wellness Centers",
+  fr: "Développement Web et CRM sur Mesure pour Cliniques, Salles de Sport et Bien-être",
+};
+
+const DESCRIPTIONS: Record<string, string> = {
+  es: "Webs, CRM y aplicaciones a medida para clínicas, gimnasios y centros de bienestar, con contacto directo durante todo el proyecto.",
+  en: "Custom websites, CRMs and applications for clinics, gyms and wellness centers, with direct contact throughout the project.",
+  fr: "Sites web, CRM et applications sur mesure pour les cliniques, salles de sport et centres de bien-être, avec un contact direct pendant le projet.",
+};
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  return {
+    title: TITLES[locale] || TITLES.es,
+    description: DESCRIPTIONS[locale] || DESCRIPTIONS.es,
+    alternates: buildAlternates(locale, ""),
+  };
+}
 
 export default async function Home() {
   const t = await getTranslations("home");
-  const tPortfolio = await getTranslations("portfolio");
   const tContact = await getTranslations("contact");
-
-  const testimonials = [1, 2, 3, 4, 5, 6].map((i) => ({
-    quote: tPortfolio(`p${i}Quote`),
-    author: tPortfolio(`p${i}Author`),
-    role: tPortfolio(`p${i}Role`),
-  }));
 
   const homeFaqs = [0, 1, 2, 3].map((i) => ({
     question: tContact(`faq${i}Q`),
     answer: tContact(`faq${i}A`),
   }));
+
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: homeFaqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.question,
+      acceptedAnswer: { "@type": "Answer", text: faq.answer },
+    })),
+  };
 
   const services = [
     {
@@ -116,6 +147,10 @@ export default async function Home() {
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center bg-mesh overflow-hidden">
         {/* Grain sutil para romper la planitud */}
@@ -173,29 +208,13 @@ export default async function Home() {
                     <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
                   </svg>
                 </Button>
-                <a
+                <Link
                   href="/servicios"
                   className="inline-flex items-center gap-2 text-white/80 hover:text-white px-4 py-3 font-medium transition-colors"
                 >
                   {t("heroCta2")}
                   <span aria-hidden>→</span>
-                </a>
-              </div>
-
-              {/* Prueba social en primer scroll */}
-              <div className="mt-14 pt-8 border-t border-white/10 flex flex-wrap gap-x-10 gap-y-4 text-white/60 text-sm">
-                <div>
-                  <span className="block text-2xl font-bold text-white">{t("aboutStat1")}</span>
-                  <span>{t("aboutStat1Label")}</span>
-                </div>
-                <div>
-                  <span className="block text-2xl font-bold text-white">{t("aboutStat2")}</span>
-                  <span>{t("aboutStat2Label")}</span>
-                </div>
-                <div>
-                  <span className="block text-2xl font-bold text-white">{t("aboutStat3")}</span>
-                  <span>{t("aboutStat3Label")}</span>
-                </div>
+                </Link>
               </div>
             </div>
 
@@ -207,19 +226,6 @@ export default async function Home() {
                 <div className="relative rounded-2xl overflow-hidden shadow-soft-xl border border-white/10 ring-1 ring-white/5">
                   <HeroMockup />
                   <span className="sr-only">{t("heroImgAlt")}</span>
-                </div>
-                <div className="absolute -bottom-6 -left-6 bg-white/95 backdrop-blur rounded-xl shadow-soft-lg p-4">
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 bg-[#71C648]/15 rounded-full flex items-center justify-center">
-                      <svg className="w-5 h-5 text-[#71C648]" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 18L9 11.25l4.306 4.307a11.95 11.95 0 015.814-5.519l2.74-1.22m0 0l-5.94-2.28m5.94 2.28l-2.28 5.941" />
-                      </svg>
-                    </div>
-                    <div>
-                      <div className="text-xs text-[#57534e]">{t("heroStats")}</div>
-                      <div className="text-lg font-bold text-[#194973]">+127%</div>
-                    </div>
-                  </div>
                 </div>
                 <div className="absolute -top-4 -right-4 bg-white/95 backdrop-blur rounded-xl shadow-soft-lg p-3">
                   <div className="flex items-center gap-2">
@@ -326,7 +332,7 @@ export default async function Home() {
             <div className="hidden lg:flex bg-white p-8 items-center justify-center">
               <div className="text-center">
                 <div className="text-3xl font-bold text-[#194973] tracking-tight mb-2">¿Encajamos?</div>
-                <a
+                <Link
                   href="/presupuesto"
                   className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#71C648] hover:text-[#194973] transition-colors"
                 >
@@ -334,7 +340,7 @@ export default async function Home() {
                   <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
                   </svg>
-                </a>
+                </Link>
               </div>
             </div>
           </div>
@@ -366,52 +372,8 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* Testimonios — prueba social en home */}
-      <section className="py-20 sm:py-28 bg-white">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <SectionHeading
-            title={t("testimonialsTitle")}
-            subtitle={t("testimonialsSubtitle")}
-          />
-
-          <div className="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6 reveal">
-            {testimonials.map((testimonial, i) => (
-              <figure
-                key={i}
-                className="break-inside-avoid bg-[#fafaf9] border border-[#e7e5e4] rounded-2xl p-6 sm:p-7 hover:border-[#71C648]/40 hover:shadow-soft transition-all duration-300"
-              >
-                <svg
-                  className="w-7 h-7 text-[#71C648]/40 mb-4"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                  aria-hidden
-                >
-                  <path d="M4.583 17.321C3.553 16.227 3 15 3 13.011c0-3.5 2.457-6.637 6.03-8.188l.893 1.378c-3.335 1.804-3.987 4.145-4.247 5.621.537-.278 1.24-.375 1.929-.311 1.804.167 3.226 1.648 3.226 3.489a3.5 3.5 0 01-3.5 3.5c-1.073 0-2.099-.49-2.748-1.179zm10 0C13.553 16.227 13 15 13 13.011c0-3.5 2.457-6.637 6.03-8.188l.893 1.378c-3.335 1.804-3.987 4.145-4.247 5.621.537-.278 1.24-.375 1.929-.311 1.804.167 3.226 1.648 3.226 3.489a3.5 3.5 0 01-3.5 3.5c-1.073 0-2.099-.49-2.748-1.179z" />
-                </svg>
-                <blockquote className="text-[#194973] leading-relaxed mb-5">
-                  {testimonial.quote}
-                </blockquote>
-                <figcaption className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#71C648] to-[#194973] flex items-center justify-center text-white text-sm font-bold flex-shrink-0">
-                    {testimonial.author.split(" ").map((n) => n[0]).slice(0, 2).join("")}
-                  </div>
-                  <div className="min-w-0">
-                    <div className="font-semibold text-sm text-[#194973] tracking-tight truncate">
-                      {testimonial.author}
-                    </div>
-                    <div className="text-xs text-[#57534e] truncate">
-                      {testimonial.role}
-                    </div>
-                  </div>
-                </figcaption>
-              </figure>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* FAQ — eliminar objeciones antes del CTA final */}
-      <section className="py-20 sm:py-28 bg-[#fafaf9]">
+      <section id="preguntas" className="py-20 sm:py-28 bg-[#fafaf9]">
         <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
           <SectionHeading
             title={t("homeFaqTitle")}
@@ -430,7 +392,7 @@ export default async function Home() {
       </section>
 
       {/* Brand Section - Company Presence */}
-      <section className="py-20 sm:py-28 bg-white overflow-hidden">
+      <section id="nosotros" className="py-20 sm:py-28 bg-white overflow-hidden">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center reveal">
             <div>
@@ -446,20 +408,6 @@ export default async function Home() {
               <p className="text-lg text-[#5A6D6D] mb-8 leading-relaxed">
                 {t("aboutP2")}
               </p>
-              <div className="grid grid-cols-3 gap-4 sm:gap-8">
-                <div>
-                  <div className="text-2xl sm:text-3xl font-bold text-[#71C648]">{t("aboutStat1")}</div>
-                  <div className="text-xs sm:text-sm text-[#5A6D6D]">{t("aboutStat1Label")}</div>
-                </div>
-                <div>
-                  <div className="text-2xl sm:text-3xl font-bold text-[#71C648]">{t("aboutStat2")}</div>
-                  <div className="text-xs sm:text-sm text-[#5A6D6D]">{t("aboutStat2Label")}</div>
-                </div>
-                <div>
-                  <div className="text-2xl sm:text-3xl font-bold text-[#71C648]">{t("aboutStat3")}</div>
-                  <div className="text-xs sm:text-sm text-[#5A6D6D]">{t("aboutStat3Label")}</div>
-                </div>
-              </div>
             </div>
             {/* Visual - Ecosistema de productos conectados */}
             <div className="relative">

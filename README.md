@@ -1,36 +1,60 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# CodeConnect
 
-## Getting Started
+Web comercial y panel interno de CodeConnect, construidos con Next.js App Router, TypeScript, Tailwind CSS, `next-intl`, Supabase y Resend.
 
-First, run the development server:
+## Requisitos
+
+- Node.js 22
+- npm
+- Proyecto Supabase para las funciones de dashboard
+- Cuenta Resend y un remitente verificado para los formularios
+
+## Desarrollo local
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+La web estará disponible en `http://localhost:3000`. La ruta raíz redirige al locale predeterminado y las páginas públicas viven bajo `/es`, `/en` y `/fr`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Variables de entorno
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Crear `.env.local` sin versionarlo:
 
-## Learn More
+```text
+NEXT_PUBLIC_SITE_URL=https://codeconnect.es
+NEXT_PUBLIC_SUPABASE_URL=
+NEXT_PUBLIC_SUPABASE_ANON_KEY=
+SUPABASE_SERVICE_ROLE_KEY=
+RESEND_API_KEY=
+CONTACT_EMAIL_FROM=CodeConnect <contacto@tu-dominio-verificado.es>
+CONTACT_EMAIL_TO=
+```
 
-To learn more about Next.js, take a look at the following resources:
+Las variables `NEXT_PUBLIC_*` llegan al navegador. La service-role de Supabase y la clave de Resend son exclusivamente de servidor.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Verificación
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+npm run lint
+npm run typecheck
+npm run build
+```
 
-## Deploy on Vercel
+## Estructura
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- `src/app/[locale]`: web pública localizada.
+- `messages`: copy de español, inglés y francés; los locales deben conservar paridad.
+- `src/app/dashboard`: panel privado.
+- `src/app/api`: formularios, clientes, prospectos, propuestas y pagos.
+- `src/lib/supabase`: clientes Supabase de navegador, servidor y administración.
+- `supabase-schema.sql`: esquema y políticas RLS.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Contenido comercial
+
+Un portfolio solo puede presentarse como cliente real cuando existe autorización para publicar nombre, cita, logo y resultados. En ausencia de evidencia debe etiquetarse como demo, prototipo o proyecto propio y no incluir testimonios ni métricas atribuidas.
+
+## Despliegue
+
+El despliegue previsto es Vercel. Configura allí todas las variables de entorno, usa el dominio canónico de producción y ejecuta las verificaciones anteriores antes de publicar.

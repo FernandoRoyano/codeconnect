@@ -156,8 +156,12 @@ export function generarHTMLPresupuesto(formData: FormData): string {
           }
           ${presupuesto.precioApp > 0 ? `<div class="total-row"><span class="label">App móvil adicional (iOS + Android)</span><span>+${formatearPrecio(presupuesto.precioApp)}</span></div>` : ""}
           <div class="total-row final">
-            <span class="label">Total estimado</span>
-            <span>${formData.tipoProyecto === "otro" ? "A consultar" : formatearPrecio(presupuesto.total)}</span>
+            <span class="label">Rango estimado</span>
+            <span>${
+              formData.tipoProyecto === "otro"
+                ? "A consultar"
+                : `${formatearPrecio(presupuesto.precioMin)} - ${formatearPrecio(presupuesto.precioMax)}`
+            }</span>
           </div>
         </div>
 

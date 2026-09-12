@@ -120,7 +120,7 @@ export default async function OpengraphImage({ params }: { params: Promise<{ loc
             }}
           >
             <span style={{ width: 8, height: 8, borderRadius: 4, background: "#71C648" }} />
-            <span>30+ proyectos · 100% satisfacción · Respuesta en 24h</span>
+            <span>Web · CRM · Facturación · Aplicaciones</span>
           </div>
           <span style={{ fontSize: 18, color: "rgba(255,255,255,0.4)" }}>codeconnect.es</span>
         </div>

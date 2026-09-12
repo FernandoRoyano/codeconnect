@@ -1,6 +1,22 @@
+import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import Button from "@/components/Button";
+import { buildAlternates } from "@/lib/seo";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  return {
+    title: "Blog",
+    alternates: buildAlternates(locale, "/blog"),
+    // Contenido de ejemplo pendiente de sustituir por artículos reales (Fase 3) — no indexar hasta entonces.
+    robots: { index: false, follow: false },
+  };
+}
 
 export default async function BlogPage() {
   const t = await getTranslations("blog");
