@@ -18,7 +18,7 @@ export default function HeroMockup({ className = "" }: { className?: string }) {
         {/* Sidebar */}
         <aside className="w-16 sm:w-20 bg-[#194973] flex flex-col items-center py-4 gap-2">
           <div className="w-8 h-8 rounded-lg bg-[#71C648] flex items-center justify-center">
-            <span className="text-white text-[10px] font-bold">CC</span>
+            <span className="text-[#12324a] text-[10px] font-bold">CC</span>
           </div>
           <div className="w-full flex-1 flex flex-col items-center gap-1.5 mt-3">
             <div className="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center">
@@ -37,7 +37,7 @@ export default function HeroMockup({ className = "" }: { className?: string }) {
           {/* Top bar */}
           <div className="flex items-center justify-between">
             <div>
-              <div className="text-[11px] sm:text-xs text-[#71C648] font-semibold uppercase tracking-wider">Dashboard</div>
+              <div className="text-[11px] sm:text-xs text-[#39751f] font-semibold uppercase tracking-wider">Dashboard</div>
               <div className="text-sm sm:text-base font-bold text-[#194973]">Resumen mensual</div>
             </div>
             <div className="flex items-center gap-2">
