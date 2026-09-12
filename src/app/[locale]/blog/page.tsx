@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
-import { Link } from "@/i18n/navigation";
 import Button from "@/components/Button";
 import { buildAlternates } from "@/lib/seo";
 
@@ -21,12 +20,12 @@ export async function generateMetadata({
 export default async function BlogPage() {
   const t = await getTranslations("blog");
 
+  // Sin slug, sin fecha y sin tiempo de lectura: los articulos todavia no
+  // existen. Inventar esos tres campos era lo que hacia la version anterior,
+  // con enlaces a /blog/[slug] que devolvian 404.
   const featuredPost = {
-    slug: "transformacion-digital-sector-salud-2024",
     title: t("featuredTitle"),
     excerpt: t("featuredExcerpt"),
-    date: t("featuredDate"),
-    readTime: t("featuredTime"),
     category: t("featuredCat"),
     author: { name: t("featuredAuthor"), role: t("featuredRole") },
   };
@@ -34,64 +33,54 @@ export default async function BlogPage() {
   const posts = [
     {
       id: 2,
-      slug: "interoperabilidad-hl7-fhir-guia-practica",
       title: t("post1Title"),
       excerpt: t("post1Excerpt"),
-      date: t("post1Date"),
-      readTime: t("post1Time"),
       category: t("post1Cat"),
       author: { name: t("post1Author"), role: t("post1Role") },
     },
     {
       id: 3,
-      slug: "portal-pacientes-beneficios-implementacion",
       title: t("post2Title"),
       excerpt: t("post2Excerpt"),
-      date: t("post2Date"),
-      readTime: t("post2Time"),
       category: t("post2Cat"),
       author: { name: t("post2Author"), role: t("post2Role") },
     },
     {
       id: 4,
-      slug: "seguridad-datos-sanitarios-rgpd",
       title: t("post3Title"),
       excerpt: t("post3Excerpt"),
-      date: t("post3Date"),
-      readTime: t("post3Time"),
       category: t("post3Cat"),
       author: { name: t("post3Author"), role: t("post3Role") },
     },
     {
       id: 5,
-      slug: "telemedicina-implementacion-paso-a-paso",
       title: t("post4Title"),
       excerpt: t("post4Excerpt"),
-      date: t("post4Date"),
-      readTime: t("post4Time"),
       category: t("post4Cat"),
       author: { name: t("post4Author"), role: t("post4Role") },
     },
     {
       id: 6,
-      slug: "inteligencia-artificial-diagnostico-medico",
       title: t("post5Title"),
       excerpt: t("post5Excerpt"),
-      date: t("post5Date"),
-      readTime: t("post5Time"),
       category: t("post5Cat"),
       author: { name: t("post5Author"), role: t("post5Role") },
     },
   ];
 
+  // Los contadores salen de los articulos que hay, no de una cifra a mano: la
+  // version anterior anunciaba 24 articulos cuando siempre hubo 6.
+  const allPosts = [featuredPost, ...posts];
+  const countBy = (label: string) => allPosts.filter((p) => p.category === label).length;
+
   const categories = [
-    { name: t("catAll"), count: 24 },
-    { name: t("catTrends"), count: 8 },
-    { name: t("catTech"), count: 6 },
-    { name: t("catProduct"), count: 5 },
-    { name: t("catGuides"), count: 3 },
-    { name: t("catLegal"), count: 2 },
-  ];
+    { name: t("catAll"), count: allPosts.length },
+    { name: t("catTrends"), count: countBy(t("catTrends")) },
+    { name: t("catTech"), count: countBy(t("catTech")) },
+    { name: t("catProduct"), count: countBy(t("catProduct")) },
+    { name: t("catGuides"), count: countBy(t("catGuides")) },
+    { name: t("catLegal"), count: countBy(t("catLegal")) },
+  ].filter((c) => c.count > 0);
 
   return (
     <>
@@ -118,8 +107,7 @@ export default async function BlogPage() {
           <h2 className="text-sm font-semibold text-[#71C648] uppercase tracking-wider mb-4 sm:mb-6">
             {t("featuredLabel")}
           </h2>
-          <Link href={`/blog/${featuredPost.slug}` as never} className="group block">
-            <article className="grid lg:grid-cols-2 gap-0 lg:gap-8 items-center bg-[#f8f9fa] rounded-2xl sm:rounded-3xl overflow-hidden hover:shadow-xl transition-all duration-300">
+            <article className="grid lg:grid-cols-2 gap-0 lg:gap-8 items-center bg-[#f8f9fa] rounded-2xl sm:rounded-3xl overflow-hidden">
               {/* Image */}
               <div className="h-48 sm:h-64 lg:h-full lg:min-h-[300px] bg-gradient-to-br from-[#111A1D] to-[#20DCC2] relative">
                 <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors" />
@@ -132,12 +120,12 @@ export default async function BlogPage() {
 
               {/* Content */}
               <div className="p-5 sm:p-8 lg:pr-12">
-                <div className="flex items-center gap-4 text-sm text-[#5A6D6D] mb-3 sm:mb-4">
-                  <span>{featuredPost.date}</span>
-                  <span>&bull;</span>
-                  <span>{featuredPost.readTime} {t("readSuffix")}</span>
+                <div className="flex items-center gap-4 text-sm mb-3 sm:mb-4">
+                  <span className="inline-block bg-[#194973]/10 text-[#194973] px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider">
+                    {t("comingSoon")}
+                  </span>
                 </div>
-                <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-[#194973] mb-3 sm:mb-4 group-hover:text-[#71C648] transition-colors">
+                <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-[#194973] mb-3 sm:mb-4">
                   {featuredPost.title}
                 </h3>
                 <p className="text-base sm:text-lg text-[#5A6D6D] mb-4 sm:mb-6 leading-relaxed">
@@ -158,7 +146,6 @@ export default async function BlogPage() {
                 </div>
               </div>
             </article>
-          </Link>
         </div>
       </section>
 
@@ -173,8 +160,7 @@ export default async function BlogPage() {
               </h2>
               <div className="grid md:grid-cols-2 gap-8">
                 {posts.map((post) => (
-                  <Link key={post.id} href={`/blog/${post.slug}` as never} className="group">
-                    <article className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 h-full flex flex-col">
+                    <article key={post.id} className="bg-white rounded-2xl overflow-hidden shadow-lg h-full flex flex-col">
                       {/* Image */}
                       <div className="h-48 bg-gradient-to-br from-[#111A1D]/80 to-[#20DCC2]/80 relative">
                         <div className="absolute bottom-4 left-4">
@@ -186,12 +172,12 @@ export default async function BlogPage() {
 
                       {/* Content */}
                       <div className="p-6 flex-grow flex flex-col">
-                        <div className="flex items-center gap-4 text-sm text-[#5A6D6D] mb-3">
-                          <span>{post.date}</span>
-                          <span>&bull;</span>
-                          <span>{post.readTime}</span>
+                        <div className="flex items-center gap-4 text-sm mb-3">
+                          <span className="inline-block bg-[#194973]/10 text-[#194973] px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider">
+                            {t("comingSoon")}
+                          </span>
                         </div>
-                        <h3 className="text-xl font-bold text-[#194973] mb-3 group-hover:text-[#71C648] transition-colors">
+                        <h3 className="text-xl font-bold text-[#194973] mb-3">
                           {post.title}
                         </h3>
                         <p className="text-[#5A6D6D] mb-4 flex-grow line-clamp-3">
@@ -207,13 +193,7 @@ export default async function BlogPage() {
                         </div>
                       </div>
                     </article>
-                  </Link>
                 ))}
-              </div>
-
-              {/* Load More */}
-              <div className="mt-12 text-center">
-                <Button variant="outline">{t("loadMore")}</Button>
               </div>
             </div>
 
@@ -223,17 +203,14 @@ export default async function BlogPage() {
               <div className="bg-white rounded-2xl p-6 shadow-lg mb-8">
                 <h3 className="text-lg font-bold text-[#194973] mb-4">{t("categoriesTitle")}</h3>
                 <ul className="space-y-3">
+                  {/* Sin enlace: el filtro por categoria no esta implementado y
+                      ?categoria= no lo lee nadie. */}
                   {categories.map((category) => (
-                    <li key={category.name}>
-                      <Link
-                        href={`/blog?categoria=${category.name.toLowerCase()}` as never}
-                        className="flex justify-between items-center text-[#5A6D6D] hover:text-[#71C648] transition-colors"
-                      >
-                        <span>{category.name}</span>
-                        <span className="bg-[#f8f9fa] px-2 py-1 rounded text-sm">
-                          {category.count}
-                        </span>
-                      </Link>
+                    <li key={category.name} className="flex justify-between items-center text-[#5A6D6D]">
+                      <span>{category.name}</span>
+                      <span className="bg-[#f8f9fa] px-2 py-1 rounded text-sm">
+                        {category.count}
+                      </span>
                     </li>
                   ))}
                 </ul>
