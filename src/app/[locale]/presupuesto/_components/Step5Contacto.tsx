@@ -19,6 +19,10 @@ export default function Step5Contacto({ formData, onChange }: Props) {
       </p>
       <div className="max-w-xl mx-auto bg-white rounded-3xl p-6 sm:p-8 shadow-soft border border-[#e7e5e4]">
         <div className="space-y-5">
+          <div className="hidden" aria-hidden="true">
+            <label htmlFor="website">Website</label>
+            <input id="website" name="website" type="text" tabIndex={-1} autoComplete="off" value={formData.website} onChange={onChange} />
+          </div>
           <div>
             <label htmlFor="nombre" className="block text-sm font-medium text-[#194973] mb-2">
               Nombre completo *

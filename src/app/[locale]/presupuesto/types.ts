@@ -16,6 +16,8 @@ export interface FormData {
   telefono: string;
   empresa: string;
   comentarios: string;
+  // Honeypot: oculto para las personas, irresistible para los bots.
+  website: string;
 }
 
 export interface Presupuesto {

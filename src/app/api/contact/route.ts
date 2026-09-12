@@ -1,60 +1,31 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
+import {
+  escapeHtml,
+  getClientIp,
+  isRateLimited,
+  readJsonBody,
+  readString,
+} from "@/lib/api/form-guards";
 
 const MAX_BODY_BYTES = 20_000;
-const WINDOW_MS = 10 * 60 * 1000;
-const MAX_REQUESTS = 5;
-const requestsByIp = new Map<string, number[]>();
-
-function escapeHtml(value: string) {
-  return value.replace(/[&<>'"]/g, (character) => ({
-    "&": "&amp;",
-    "<": "&lt;",
-    ">": "&gt;",
-    "'": "&#39;",
-    '"': "&quot;",
-  })[character] ?? character);
-}
-
-function readString(value: unknown, maxLength: number, required = false) {
-  if (value == null || value === "") return required ? null : "";
-  if (typeof value !== "string") return null;
-  const normalized = value.trim();
-  if ((required && !normalized) || normalized.length > maxLength) return null;
-  return normalized;
-}
-
-function isRateLimited(ip: string) {
-  if (ip === "unknown") return false;
-  const now = Date.now();
-  const recent = (requestsByIp.get(ip) ?? []).filter((timestamp) => now - timestamp < WINDOW_MS);
-  recent.push(now);
-  requestsByIp.set(ip, recent);
-  return recent.length > MAX_REQUESTS;
-}
+const RATE_LIMIT = { windowMs: 10 * 60 * 1000, max: 5 };
 
 export async function POST(request: NextRequest) {
   try {
-    const contentLength = Number(request.headers.get("content-length") ?? 0);
-    if (contentLength > MAX_BODY_BYTES) {
-      return NextResponse.json({ error: "Solicitud demasiado grande" }, { status: 413 });
-    }
-
-    const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
-    if (isRateLimited(ip)) {
+    if (isRateLimited(getClientIp(request), RATE_LIMIT)) {
       return NextResponse.json({ error: "Demasiadas solicitudes. Inténtalo más tarde." }, { status: 429 });
     }
 
-    const rawBody = await request.text();
-    if (new TextEncoder().encode(rawBody).length > MAX_BODY_BYTES) {
-      return NextResponse.json({ error: "Solicitud demasiado grande" }, { status: 413 });
+    const parsed = await readJsonBody(request, MAX_BODY_BYTES);
+    if (!parsed.ok) {
+      const error = parsed.status === 413 ? "Solicitud demasiado grande" : "Solicitud no válida";
+      return NextResponse.json({ error }, { status: parsed.status });
     }
-    const body: unknown = JSON.parse(rawBody);
-    if (!body || typeof body !== "object" || Array.isArray(body)) {
-      return NextResponse.json({ error: "Solicitud no válida" }, { status: 400 });
-    }
+    const data = parsed.data;
 
-    const data = body as Record<string, unknown>;
+    // Honeypot: campo que una persona nunca rellena. Devolvemos exito para no
+    // avisar al bot de que le hemos visto, pero no se envia nada.
     if (data.website) return NextResponse.json({ success: true });
 
     const nombre = readString(data.nombre, 100, true);

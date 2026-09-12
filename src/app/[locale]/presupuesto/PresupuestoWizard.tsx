@@ -34,6 +34,7 @@ export default function PresupuestoWizard() {
     telefono: "",
     empresa: "",
     comentarios: "",
+    website: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
@@ -56,6 +57,7 @@ export default function PresupuestoWizard() {
       telefono: formData.telefono,
       empresa: formData.empresa,
       comentarios: formData.comentarios,
+      website: formData.website,
       tipoProyectoLabel: tipoProyectoData?.title || formData.tipoProyecto,
       funcionalidades: funcionalidadesSeleccionadas,
       otraFuncionalidad: formData.otraFuncionalidad,
