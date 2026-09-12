@@ -4,6 +4,7 @@ import {
   escapeHtml,
   getClientIp,
   isRateLimited,
+  readEmailEnv,
   readFiniteNumber,
   readJsonBody,
   readString,
@@ -110,8 +111,8 @@ export async function POST(request: NextRequest) {
     }
 
     const apiKey = process.env.RESEND_API_KEY;
-    const from = process.env.CONTACT_EMAIL_FROM;
-    const to = process.env.CONTACT_EMAIL_TO;
+    const from = readEmailEnv(process.env.CONTACT_EMAIL_FROM);
+    const to = readEmailEnv(process.env.CONTACT_EMAIL_TO);
     if (!apiKey || !from || !to) {
       console.error("[presupuesto] Missing email configuration");
       return NextResponse.json({ error: "Servicio no disponible" }, { status: 503 });

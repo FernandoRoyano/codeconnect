@@ -52,6 +52,18 @@ export function getClientIp(request: NextRequest): string {
   return request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
 }
 
+/**
+ * Lee una direccion de correo de una variable de entorno quitando saltos de
+ * linea y tabuladores. Un valor pegado en el panel de Vercel puede arrastrar un
+ * salto final, y un salto dentro de una cabecera de correo es la via clasica de
+ * inyeccion: el destinatario o el remitente dejan de ser los que creemos.
+ */
+export function readEmailEnv(value: string | undefined): string | null {
+  if (!value) return null;
+  const cleaned = value.replace(/[\r\n\t]/g, "").trim();
+  return cleaned || null;
+}
+
 type RateLimitOptions = { windowMs: number; max: number };
 
 const buckets = new Map<string, number[]>();
