@@ -1,4 +1,5 @@
 import { Resend } from "resend";
+import { readEmailEnv } from "@/lib/api/form-guards";
 
 let _resend: Resend | null = null;
 function getResend() {
@@ -8,7 +9,10 @@ function getResend() {
   return _resend;
 }
 
-const FROM_EMAIL = process.env.CONTACT_EMAIL_FROM ?? "CodeConnect <onboarding@resend.dev>";
+// Estos correos van al cliente, no a nosotros: el remitente tiene que salir de
+// un dominio verificado en Resend. El de reserva es el remitente de pruebas y
+// solo entrega a la cuenta propietaria, asi que sirve en local y no en real.
+const FROM_EMAIL = readEmailEnv(process.env.CONTACT_EMAIL_FROM) ?? "CodeConnect <onboarding@resend.dev>";
 
 function emailLayout(content: string): string {
   return `<!DOCTYPE html>
