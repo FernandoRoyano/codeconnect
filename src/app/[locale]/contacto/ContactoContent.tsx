@@ -352,7 +352,7 @@ export default function ContactoContent() {
                 <p className="text-white/75 mb-5 leading-relaxed">
                   {t("callDesc")}
                 </p>
-                <Button href="/presupuesto" variant="primary">
+                <Button href="/diagnostico" variant="primary">
                   {t("callButton")}
                 </Button>
               </div>

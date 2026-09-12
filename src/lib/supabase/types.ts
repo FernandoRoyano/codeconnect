@@ -9,6 +9,14 @@ export type ProspectPipelineStatus =
   | "convertido"
   | "descartado";
 
+export type InquiryStatus =
+  | "new"
+  | "reviewed"
+  | "conversation"
+  | "proposal"
+  | "won"
+  | "discarded";
+
 export type Database = {
   public: {
     Tables: {
@@ -267,10 +275,80 @@ export type Database = {
           contacted_at?: string | null;
         };
       };
+      inquiries: {
+        Row: {
+          id: string;
+          status: InquiryStatus;
+          name: string;
+          email: string;
+          phone: string | null;
+          company: string | null;
+          goal: string;
+          current_process: string | null;
+          tools: string | null;
+          pain: string;
+          frequency: string | null;
+          time_spent: string | null;
+          people_involved: string | null;
+          consequences: string | null;
+          business_impact: string | null;
+          tried_so_far: string | null;
+          extra_notes: string | null;
+          landing_path: string | null;
+          referrer: string | null;
+          utm_source: string | null;
+          utm_medium: string | null;
+          utm_campaign: string | null;
+          utm_term: string | null;
+          utm_content: string | null;
+          privacy_accepted: boolean;
+          privacy_accepted_at: string | null;
+          internal_notes: string | null;
+          reviewed_at: string | null;
+          created_at: string;
+          updated_at: string;
+        };
+        Insert: {
+          id?: string;
+          status?: InquiryStatus;
+          name: string;
+          email: string;
+          phone?: string | null;
+          company?: string | null;
+          goal: string;
+          current_process?: string | null;
+          tools?: string | null;
+          pain: string;
+          frequency?: string | null;
+          time_spent?: string | null;
+          people_involved?: string | null;
+          consequences?: string | null;
+          business_impact?: string | null;
+          tried_so_far?: string | null;
+          extra_notes?: string | null;
+          landing_path?: string | null;
+          referrer?: string | null;
+          utm_source?: string | null;
+          utm_medium?: string | null;
+          utm_campaign?: string | null;
+          utm_term?: string | null;
+          utm_content?: string | null;
+          privacy_accepted: boolean;
+          privacy_accepted_at?: string | null;
+          internal_notes?: string | null;
+          reviewed_at?: string | null;
+        };
+        Update: {
+          status?: InquiryStatus;
+          internal_notes?: string | null;
+          reviewed_at?: string | null;
+        };
+      };
     };
     Enums: {
       proposal_status: ProposalStatus;
       prospect_pipeline_status: ProspectPipelineStatus;
+      inquiry_status: InquiryStatus;
     };
   };
 };

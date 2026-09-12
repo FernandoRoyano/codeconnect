@@ -232,3 +232,67 @@ CREATE POLICY "Admin can read views"
       AND proposals.user_id = auth.uid()
     )
   );
+
+-- ============================================================
+-- ENUM: inquiry_status
+-- ============================================================
+CREATE TYPE inquiry_status AS ENUM (
+  'new',
+  'reviewed',
+  'conversation',
+  'proposal',
+  'won',
+  'discarded'
+);
+
+-- ============================================================
+-- TABLE: inquiries  (diagnosticos inbound desde /diagnostico)
+-- Separada de prospects a proposito: prospects es prospeccion saliente.
+-- ============================================================
+CREATE TABLE inquiries (
+  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  status inquiry_status NOT NULL DEFAULT 'new',
+  name TEXT NOT NULL,
+  email TEXT NOT NULL,
+  phone TEXT,
+  company TEXT,
+  goal TEXT NOT NULL,
+  current_process TEXT,
+  tools TEXT,
+  pain TEXT NOT NULL,
+  frequency TEXT,
+  time_spent TEXT,
+  people_involved TEXT,
+  consequences TEXT,
+  business_impact TEXT,
+  tried_so_far TEXT,
+  extra_notes TEXT,
+  landing_path TEXT,
+  referrer TEXT,
+  utm_source TEXT,
+  utm_medium TEXT,
+  utm_campaign TEXT,
+  utm_term TEXT,
+  utm_content TEXT,
+  privacy_accepted BOOLEAN NOT NULL DEFAULT FALSE,
+  privacy_accepted_at TIMESTAMPTZ,
+  internal_notes TEXT,
+  reviewed_at TIMESTAMPTZ,
+  created_at TIMESTAMPTZ DEFAULT NOW(),
+  updated_at TIMESTAMPTZ DEFAULT NOW(),
+  CONSTRAINT inquiries_privacy_required CHECK (privacy_accepted)
+);
+
+CREATE INDEX idx_inquiries_status ON inquiries(status);
+CREATE INDEX idx_inquiries_created ON inquiries(created_at DESC);
+CREATE INDEX idx_inquiries_email ON inquiries(email);
+
+CREATE TRIGGER inquiries_updated_at
+  BEFORE UPDATE ON inquiries
+  FOR EACH ROW EXECUTE FUNCTION update_updated_at();
+
+-- RLS sin politicas a proposito: una inquiry no tiene dueno con el que comparar
+-- auth.uid(). Con RLS activado y ninguna politica, ni la clave anonima ni una
+-- sesion autenticada leen nada desde el navegador. El unico acceso es el
+-- servidor, que usa la service-role despues de comprobar la sesion.
+ALTER TABLE inquiries ENABLE ROW LEVEL SECURITY;

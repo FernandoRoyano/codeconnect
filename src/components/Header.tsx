@@ -95,10 +95,10 @@ export default function Header() {
               );
             })}
             <Link
-              href="/presupuesto"
+              href="/diagnostico"
               className="ml-3 inline-flex items-center gap-1.5 bg-[#71C648] hover:bg-[#5fb039] text-[#12324a] px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-200 shadow-soft hover:shadow-soft-lg"
             >
-              {t("budget")}
+              {t("diagnosis")}
               <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
               </svg>
@@ -158,11 +158,11 @@ export default function Header() {
               );
             })}
             <Link
-              href="/presupuesto"
+              href="/diagnostico"
               className="block mx-2 mt-4 text-center bg-[#71C648] hover:bg-[#5fb039] text-[#12324a] px-6 py-3.5 rounded-full font-semibold transition-all text-base shadow-soft"
               onClick={() => setMobileMenuOpen(false)}
             >
-              {t("budget")}
+              {t("diagnosis")}
             </Link>
           </div>
         </div>

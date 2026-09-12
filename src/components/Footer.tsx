@@ -47,10 +47,10 @@ export default function Footer() {
               </p>
             </div>
             <Link
-              href="/presupuesto"
+              href="/diagnostico"
               className="flex-shrink-0 inline-flex items-center gap-2 bg-[#71C648] hover:bg-[#5fb039] text-[#12324a] px-6 py-3 rounded-full text-sm font-semibold transition-all shadow-soft hover:shadow-soft-lg"
             >
-              Solicitar presupuesto
+              {t("diagnosis")}
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
               </svg>

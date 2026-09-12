@@ -12,6 +12,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const pages = [
     "",
     "/servicios",
+    "/diagnostico",
     "/contacto",
     "/presupuesto",
     "/portfolio",

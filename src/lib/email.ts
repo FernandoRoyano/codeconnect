@@ -1,5 +1,5 @@
 import { Resend } from "resend";
-import { readEmailEnv } from "@/lib/api/form-guards";
+import { escapeHtml, readEmailEnv } from "@/lib/api/form-guards";
 
 let _resend: Resend | null = null;
 function getResend() {
@@ -184,6 +184,97 @@ export async function sendRejectionNotificationToAdmin(params: {
     from: FROM_EMAIL,
     to: params.to,
     subject: `Rechazada: ${params.clientName} ha rechazado ${params.referenceCode}`,
+    html: emailLayout(content),
+  });
+}
+
+/**
+ * Aviso interno de un diagnostico recibido. Todo el contenido lo escribe una
+ * persona anonima desde la web, asi que va escapado sin excepcion.
+ */
+export async function sendInquiryNotificationToAdmin(params: {
+  to: string;
+  inquiry: Record<string, string | null>;
+  sections: { title: string; fields: { key: string; label: string }[] }[];
+  dashboardUrl: string;
+}) {
+  const e = (value: string | null | undefined) => escapeHtml(value ?? "");
+  const q = params.inquiry;
+
+  const block = (title: string, rows: string) =>
+    rows
+      ? `<h2 style="margin:28px 0 8px;font-size:13px;font-weight:700;color:#5A6D6D;text-transform:uppercase;letter-spacing:1px;">${escapeHtml(title)}</h2>
+         <table width="100%" cellpadding="0" cellspacing="0" style="background-color:#f8f9fa;border-radius:12px;padding:16px;">${rows}</table>`
+      : "";
+
+  const row = (label: string, value: string | null) =>
+    value
+      ? `<tr><td style="padding:6px 0;">
+           <p style="margin:0 0 2px;font-size:11px;color:#9ca3af;">${escapeHtml(label)}</p>
+           <p style="margin:0;font-size:14px;color:#194973;line-height:1.6;">${e(value).replace(/\n/g, "<br>")}</p>
+         </td></tr>`
+      : "";
+
+  const contact = block(
+    "Contacto",
+    row("Nombre", q.name) +
+      `<tr><td style="padding:6px 0;"><p style="margin:0 0 2px;font-size:11px;color:#9ca3af;">Email</p><p style="margin:0;font-size:14px;"><a href="mailto:${e(q.email)}" style="color:#71C648;">${e(q.email)}</a></p></td></tr>` +
+      row("Telefono", q.phone) +
+      row("Empresa", q.company)
+  );
+
+  const sections = params.sections
+    .map((s) => block(s.title, s.fields.map((f) => row(f.label, q[f.key] ?? null)).join("")))
+    .join("");
+
+  const originRows =
+    row("Landing", q.landing_path) +
+    row("Referrer", q.referrer) +
+    row("utm_source", q.utm_source) +
+    row("utm_medium", q.utm_medium) +
+    row("utm_campaign", q.utm_campaign) +
+    row("utm_term", q.utm_term) +
+    row("utm_content", q.utm_content);
+
+  const content = `
+    <h1 style="margin:0 0 8px;font-size:24px;font-weight:800;color:#194973;">Nuevo diagnostico</h1>
+    <p style="margin:0 0 8px;font-size:15px;color:#5A6D6D;line-height:1.6;">
+      Alguien ha explicado su proceso desde la web. Revisalo antes de recomendar nada.
+    </p>
+    ${contact}
+    ${sections}
+    ${block("Origen", originRows)}
+    ${ctaButton(params.dashboardUrl, "Abrir en el panel")}`;
+
+  return getResend().emails.send({
+    from: FROM_EMAIL,
+    to: params.to,
+    replyTo: q.email ?? undefined,
+    subject: `Diagnostico: ${(q.name ?? "Sin nombre").replace(/[\r\n]/g, " ")}${q.company ? ` - ${q.company.replace(/[\r\n]/g, " ")}` : ""}`,
+    html: emailLayout(content),
+  });
+}
+
+/** Confirmacion a quien ha enviado el diagnostico. No promete desarrollo. */
+export async function sendInquiryConfirmationToUser(params: { to: string; name: string }) {
+  const content = `
+    <h1 style="margin:0 0 8px;font-size:24px;font-weight:800;color:#194973;">He recibido tu caso, ${escapeHtml(params.name)}</h1>
+    <p style="margin:0 0 16px;font-size:15px;color:#5A6D6D;line-height:1.6;">
+      Lo revisar&eacute; antes de recomendarte una soluci&oacute;n. Si veo una forma razonable de simplificar
+      el proceso, te explicar&eacute; qu&eacute; har&iacute;a y por qu&eacute;.
+    </p>
+    <p style="margin:0 0 16px;font-size:15px;color:#5A6D6D;line-height:1.6;">
+      Tambi&eacute;n te dir&eacute; si creo que no compensa desarrollar nada. A veces el problema se
+      arregla ordenando el proceso, y eso tambi&eacute;n es una respuesta.
+    </p>
+    <p style="margin:0;font-size:14px;color:#9ca3af;line-height:1.6;">
+      Si quieres a&ntilde;adir algo, responde a este correo.
+    </p>`;
+
+  return getResend().emails.send({
+    from: FROM_EMAIL,
+    to: params.to,
+    subject: "He recibido tu caso - CodeConnect",
     html: emailLayout(content),
   });
 }

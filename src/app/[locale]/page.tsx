@@ -205,7 +205,7 @@ export default async function Home() {
               </div>
 
               <div className="flex flex-col sm:flex-row gap-3 sm:items-center">
-                <Button href="/presupuesto" variant="primary" size="lg">
+                <Button href="/diagnostico" variant="primary" size="lg">
                   {t("heroCta1")}
                   <svg className="w-4 h-4 ml-2" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
@@ -356,7 +356,7 @@ export default async function Home() {
               <div className="text-center">
                 <div className="text-3xl font-bold text-[#194973] tracking-tight mb-2">¿Encajamos?</div>
                 <Link
-                  href="/presupuesto"
+                  href="/diagnostico"
                   className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#39751f] hover:text-[#194973] transition-colors"
                 >
                   Cuéntanos tu caso
@@ -508,7 +508,7 @@ export default async function Home() {
             {t("ctaDesc")}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button href="/presupuesto" variant="white" size="lg">
+            <Button href="/diagnostico" variant="white" size="lg">
               {t("ctaCta1")}
             </Button>
             <Button href="/contacto" variant="outline-light" size="lg">
