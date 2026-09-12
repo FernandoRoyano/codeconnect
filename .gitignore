@@ -41,3 +41,10 @@ yarn-error.log*
 next-env.d.ts
 
 .vercel
+
+# informes y artefactos regenerables
+/graphify-out/
+lighthouse-*.json
+
+# estado local de Claude Code (el resto de .claude/ si se versiona)
+.claude/scheduled_tasks.lock

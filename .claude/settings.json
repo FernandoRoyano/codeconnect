@@ -1,0 +1,20 @@
+{
+  "permissions": {
+    "allow": [
+      "WebSearch",
+      "WebFetch(domain:clinicamapfisioterapia.com)",
+      "WebFetch(domain:clinicafisioterapiaeuropa.es)",
+      "WebFetch(domain:marchantegago.com)",
+      "WebFetch(domain:fisiomujer.es)",
+      "WebFetch(domain:saludonnet.com)",
+      "WebFetch(domain:aureaclinic.com)",
+      "WebFetch(domain:premiumhealthsport.com)",
+      "WebFetch(domain:fisioactividad.wordpress.com)",
+      "WebFetch(domain:teixidonutriciondeportiva.com)",
+      "WebFetch(domain:clinicaadarma.com)",
+      "WebFetch(domain:esenciapsicologia.es)",
+      "WebFetch(domain:clinicapalacios.com)",
+      "WebFetch(domain:annaparevidal.com)"
+    ]
+  }
+}
