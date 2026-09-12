@@ -27,6 +27,7 @@ export default function Step5Contacto({ formData, onChange }: Props) {
               id="nombre"
               type="text"
               name="nombre"
+              autoComplete="name"
               value={formData.nombre}
               onChange={onChange}
               className={inputCls}
@@ -42,6 +43,8 @@ export default function Step5Contacto({ formData, onChange }: Props) {
               id="email"
               type="email"
               name="email"
+              autoComplete="email"
+              spellCheck={false}
               value={formData.email}
               onChange={onChange}
               className={inputCls}
@@ -58,6 +61,7 @@ export default function Step5Contacto({ formData, onChange }: Props) {
                 id="telefono"
                 type="tel"
                 name="telefono"
+                autoComplete="tel"
                 value={formData.telefono}
                 onChange={onChange}
                 className={inputCls}
@@ -72,6 +76,7 @@ export default function Step5Contacto({ formData, onChange }: Props) {
                 id="empresa"
                 type="text"
                 name="empresa"
+                autoComplete="organization"
                 value={formData.empresa}
                 onChange={onChange}
                 className={inputCls}
@@ -86,6 +91,7 @@ export default function Step5Contacto({ formData, onChange }: Props) {
             <textarea
               id="comentarios"
               name="comentarios"
+              autoComplete="off"
               value={formData.comentarios}
               onChange={onChange}
               rows={3}

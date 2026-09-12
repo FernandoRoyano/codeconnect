@@ -1,12 +1,13 @@
 import type { MetadataRoute } from "next";
+import { SITE_URL } from "@/lib/seo";
 
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: {
       userAgent: "*",
       allow: "/",
-      disallow: ["/dashboard/", "/api/", "/login", "/blog", "/generar-presupuesto", "/propuesta/"],
+      disallow: ["/dashboard/", "/api/", "/login", "/es/blog", "/es/generar-presupuesto", "/propuesta/"],
     },
-    sitemap: "https://codeconnect.es/sitemap.xml",
+    sitemap: `${SITE_URL}/sitemap.xml`,
   };
 }

@@ -33,6 +33,7 @@ export default function Step3Integraciones({ tipoProyecto, integraciones, otraIn
             <button
               key={integ.id}
               onClick={() => onToggle(integ.id)}
+              aria-pressed={integraciones.includes(integ.id)}
               className={`p-5 rounded-xl text-left transition-all duration-200 flex items-start gap-3 bg-white border ${
                 selected
                   ? "border-[#71C648] bg-[#71C648]/5 ring-2 ring-[#71C648]/20"

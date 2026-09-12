@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import { getLocale } from "next-intl/server";
 import "./globals.css";
 
 const roboto = localFont({
@@ -24,13 +25,14 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const locale = await getLocale();
   return (
-    <html lang="es">
+    <html lang={locale}>
       <body
         className={`${roboto.variable} antialiased`}
       >

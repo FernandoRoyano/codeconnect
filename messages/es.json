@@ -102,7 +102,7 @@
     "svcBillingF1": "Control de cobros",
     "svcBillingF2": "Informes",
     "benefitsTitle": "Por qué CodeConnect",
-    "benefitsSubtitle": "Cinco razones por las que nuestros clientes nos eligen y se quedan.",
+    "benefitsSubtitle": "Cinco principios para construir una solución útil y mantenible.",
     "benefit0Title": "A medida",
     "benefit0Desc": "Nada de plantillas ni soluciones genéricas. Cada herramienta se adapta a cómo tú trabajas.",
     "benefit1Title": "Sin ataduras",
@@ -195,7 +195,7 @@
   },
   "portfolio": {
     "heroBadge": "Ejemplos de soluciones",
-    "heroTitle": "Nuestro Portfolio",
+    "heroTitle": "Ejemplos de soluciones",
     "heroDesc": "Demos conceptuales que muestran cómo podemos resolver retos habituales de clínicas, gimnasios y centros de bienestar.",
     "cat0": "Todos",
     "cat1": "Desarrollo Web",
@@ -268,8 +268,8 @@
     "stat2Label": "Satisfacción",
     "stat3": "24h",
     "stat3Label": "Respuesta garantizada",
-    "ctaTitle": "Tu proyecto puede ser el siguiente",
-    "ctaSubtitle": "Cuéntanos tu idea y la convertiremos en una solución que transforme tu negocio",
+    "ctaTitle": "¿Quieres valorar una solución para tu negocio?",
+    "ctaSubtitle": "Cuéntanos tu proceso y prepararemos una primera orientación sin compromiso",
     "ctaCta1": "Solicitar Presupuesto",
     "ctaCta2": "Hablemos de tu proyecto"
   },

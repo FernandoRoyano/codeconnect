@@ -1,6 +1,7 @@
 interface SectionHeadingProps {
   title: string;
   subtitle?: string;
+  eyebrow?: string;
   centered?: boolean;
   light?: boolean;
 }
@@ -8,11 +9,17 @@ interface SectionHeadingProps {
 export default function SectionHeading({
   title,
   subtitle,
+  eyebrow,
   centered = true,
   light = false,
 }: SectionHeadingProps) {
   return (
     <div className={`mb-16 lg:mb-20 reveal ${centered ? "text-center" : ""}`}>
+      {eyebrow && (
+        <p className={`mb-4 text-xs font-bold uppercase tracking-[0.2em] ${light ? "text-[#9de377]" : "text-[#39751f]"}`}>
+          {eyebrow}
+        </p>
+      )}
       <h2
         className={`font-bold tracking-tight mb-5 ${
           light ? "text-white" : "text-[#194973]"

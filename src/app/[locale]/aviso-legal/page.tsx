@@ -32,7 +32,7 @@ export default function AvisoLegalPage() {
 
             <h2>2. Objeto</h2>
             <p>
-              El presente aviso legal regula el uso del sitio web codeconnect.es (en adelante, el Sitio Web),
+              El presente aviso legal regula el uso del sitio web codeconnectsl.com (en adelante, el Sitio Web),
               del que es titular CodeConnect.
             </p>
             <p>

@@ -23,7 +23,7 @@ La web estará disponible en `http://localhost:3000`. La ruta raíz redirige al 
 Crear `.env.local` sin versionarlo:
 
 ```text
-NEXT_PUBLIC_SITE_URL=https://codeconnect.es
+NEXT_PUBLIC_SITE_URL=https://www.codeconnectsl.com
 NEXT_PUBLIC_SUPABASE_URL=
 NEXT_PUBLIC_SUPABASE_ANON_KEY=
 SUPABASE_SERVICE_ROLE_KEY=

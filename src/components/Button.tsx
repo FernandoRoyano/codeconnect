@@ -14,7 +14,7 @@ interface ButtonProps {
 export default function Button({ children, href, variant = "primary", size = "md", className = "", onClick, type = "button", disabled = false }: ButtonProps) {
   const baseStyles = "inline-flex items-center justify-center font-medium rounded-full transition-all duration-200 hover:shadow-lg hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100";
   const variants = {
-    primary: "bg-[#71C648] hover:bg-[#5db33a] text-white",
+    primary: "bg-[#71C648] hover:bg-[#5db33a] text-[#12324a]",
     secondary: "bg-[#194973] hover:bg-[#0f3150] text-white",
     outline: "border-2 border-[#194973] text-[#194973] hover:bg-[#194973] hover:text-white",
     "outline-light": "border-2 border-white text-white hover:bg-white hover:text-[#71C648]",

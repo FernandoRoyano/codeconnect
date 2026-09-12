@@ -1,4 +1,5 @@
 "use client";
+/* eslint-disable @next/next/no-img-element */
 
 import { useState } from "react";
 import { PAYMENT_STRUCTURES, PROJECT_TYPES, SIZE_REVISIONS, CONDITIONS, type ProposalFormState, type PaymentStructureKey } from "@/lib/constants/proposal";
@@ -45,7 +46,7 @@ export default function ProposalView({
   const curr = form.currency === "EUR" ? "\u20AC" : "$";
   const total = parseFloat(form.totalPrice) || 0;
   const displayDate = proposalDate || new Date().toLocaleDateString("es-ES", { day: "numeric", month: "long", year: "numeric" });
-  const displayId = proposalId || `CC-${Date.now().toString(36).toUpperCase().slice(-6)}`;
+  const [displayId] = useState(() => proposalId || `CC-${Date.now().toString(36).toUpperCase().slice(-6)}`);
 
   const handleAccept = () => {
     if (!termsChecked || !signature) return;

@@ -210,6 +210,14 @@ p { line-height: 1.65; }
     radial-gradient(at 100% 0%, rgb(113 198 72 / 0.08) 0, transparent 50%);
 }
 
+.workflow-grid {
+  background-image:
+    linear-gradient(rgb(255 255 255 / 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(255 255 255 / 0.06) 1px, transparent 1px);
+  background-size: 32px 32px;
+  mask-image: linear-gradient(to bottom right, black, transparent 85%);
+}
+
 /* Utilidades de sombra más naturales */
 .shadow-soft  { box-shadow: var(--shadow-md); }
 .shadow-soft-lg { box-shadow: var(--shadow-lg); }
@@ -221,6 +229,21 @@ p { line-height: 1.65; }
   outline-offset: 2px;
   border-radius: var(--r-sm);
 }
+
+.skip-link {
+  position: fixed;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 1000;
+  transform: translateY(-200%);
+  background: white;
+  color: var(--cc-blue);
+  padding: 0.75rem 1rem;
+  border-radius: var(--r-sm);
+  font-weight: 700;
+}
+
+.skip-link:focus { transform: translateY(0); }
 
 html {
   scroll-behavior: smooth;

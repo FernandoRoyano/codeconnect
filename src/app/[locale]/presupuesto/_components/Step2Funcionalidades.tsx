@@ -33,6 +33,7 @@ export default function Step2Funcionalidades({ tipoProyecto, funcionalidades, ot
             <button
               key={func.id}
               onClick={() => onToggle(func.id)}
+              aria-pressed={funcionalidades.includes(func.id)}
               className={`p-5 rounded-xl text-left transition-all duration-200 flex items-start gap-3 bg-white border ${
                 selected
                   ? "border-[#71C648] bg-[#71C648]/5 ring-2 ring-[#71C648]/20"

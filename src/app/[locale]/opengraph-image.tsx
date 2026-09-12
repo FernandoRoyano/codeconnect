@@ -62,7 +62,7 @@ export default async function OpengraphImage({ params }: { params: Promise<{ loc
           <div style={{ display: "flex", flexDirection: "column" }}>
             <span style={{ fontSize: 32, fontWeight: 700, letterSpacing: -0.5 }}>CodeConnect</span>
             <span style={{ fontSize: 16, color: "rgba(255,255,255,0.5)", marginTop: -4 }}>
-              codeconnect.es
+              codeconnectsl.com
             </span>
           </div>
         </div>
@@ -122,7 +122,7 @@ export default async function OpengraphImage({ params }: { params: Promise<{ loc
             <span style={{ width: 8, height: 8, borderRadius: 4, background: "#71C648" }} />
             <span>Web · CRM · Facturación · Aplicaciones</span>
           </div>
-          <span style={{ fontSize: 18, color: "rgba(255,255,255,0.4)" }}>codeconnect.es</span>
+          <span style={{ fontSize: 18, color: "rgba(255,255,255,0.4)" }}>codeconnectsl.com</span>
         </div>
       </div>
     ),

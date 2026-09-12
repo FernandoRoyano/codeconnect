@@ -1,6 +1,5 @@
 import type { MetadataRoute } from "next";
-
-const BASE_URL = "https://codeconnect.es";
+import { SITE_URL } from "@/lib/seo";
 
 // Fecha real de la última edición de contenido conocida por este repo — no
 // "new Date()" en cada request, que haría creer a los buscadores que todo
@@ -9,7 +8,7 @@ const BASE_URL = "https://codeconnect.es";
 const LAST_MODIFIED = new Date("2026-08-10");
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const locales = ["es", "en", "fr"];
+  const locales = ["es"];
   const pages = [
     "",
     "/servicios",
@@ -28,7 +27,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   for (const page of pages) {
     for (const locale of locales) {
       entries.push({
-        url: `${BASE_URL}/${locale}${page}`,
+        url: `${SITE_URL}/${locale}${page}`,
         lastModified: LAST_MODIFIED,
         changeFrequency: page === "" ? "weekly" : "monthly",
         priority: page === "" ? 1 : 0.8,

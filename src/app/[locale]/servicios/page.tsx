@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import Button from "@/components/Button";
-import { buildAlternates } from "@/lib/seo";
+import { buildAlternates, SITE_URL } from "@/lib/seo";
 
 const TITLES: Record<string, string> = {
   es: "Servicios: Web, CRM y Facturación para Clínicas y Gimnasios",
@@ -251,7 +251,7 @@ export default async function ServiciosPage() {
     "@type": "Service",
     name: service.title,
     description: service.description,
-    provider: { "@type": "Organization", name: "CodeConnect", url: "https://codeconnect.es" },
+    provider: { "@type": "Organization", name: "CodeConnect", url: SITE_URL },
     areaServed: "ES",
     audience: {
       "@type": "Audience",

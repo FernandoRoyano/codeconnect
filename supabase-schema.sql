@@ -10,6 +10,7 @@ CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 -- ============================================================
 CREATE TABLE clients (
   id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  user_id UUID NOT NULL REFERENCES auth.users(id) ON DELETE CASCADE,
   name TEXT NOT NULL,
   email TEXT NOT NULL,
   company TEXT,
@@ -21,6 +22,7 @@ CREATE TABLE clients (
 
 CREATE INDEX idx_clients_email ON clients(email);
 CREATE INDEX idx_clients_name ON clients(name);
+CREATE INDEX idx_clients_user ON clients(user_id);
 
 -- ============================================================
 -- ENUM: proposal_status
@@ -142,10 +144,10 @@ ALTER TABLE payments ENABLE ROW LEVEL SECURITY;
 ALTER TABLE proposal_views ENABLE ROW LEVEL SECURITY;
 
 -- Clients: admin autenticado puede gestionar
-CREATE POLICY "Admin can manage clients"
+CREATE POLICY "Users can manage own clients"
   ON clients FOR ALL
-  USING (auth.role() = 'authenticated')
-  WITH CHECK (auth.role() = 'authenticated');
+  USING (auth.uid() = user_id)
+  WITH CHECK (auth.uid() = user_id);
 
 -- Proposals: admin ve solo las suyas
 CREATE POLICY "Admin can manage own proposals"

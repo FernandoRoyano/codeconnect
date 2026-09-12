@@ -33,7 +33,7 @@ export default function HeroMockup({ className = "" }: { className?: string }) {
         </aside>
 
         {/* Main */}
-        <main className="flex-1 p-4 sm:p-5 flex flex-col gap-3 overflow-hidden">
+        <div className="flex-1 p-4 sm:p-5 flex flex-col gap-3 overflow-hidden">
           {/* Top bar */}
           <div className="flex items-center justify-between">
             <div>
@@ -46,22 +46,16 @@ export default function HeroMockup({ className = "" }: { className?: string }) {
             </div>
           </div>
 
-          {/* KPIs */}
+          {/* Áreas del sistema — contenido conceptual, sin métricas atribuidas */}
           <div className="grid grid-cols-3 gap-2 sm:gap-3">
             {[
-              { label: "Clientes", value: "248", delta: "+12%", up: true },
-              { label: "Ingresos", value: "€18.4k", delta: "+24%", up: true },
-              { label: "Activos", value: "92%", delta: "+3%", up: true },
+              { label: "Clientes", value: "CRM" },
+              { label: "Reservas", value: "Agenda" },
+              { label: "Cobros", value: "Facturas" },
             ].map((kpi, i) => (
               <div key={i} className="rounded-xl border border-[#e7e5e4] bg-white p-2 sm:p-3">
                 <div className="text-[9px] sm:text-[10px] text-[#57534e] uppercase tracking-wider mb-0.5">{kpi.label}</div>
                 <div className="text-sm sm:text-lg font-bold text-[#194973] leading-tight">{kpi.value}</div>
-                <div className="mt-0.5 text-[9px] sm:text-[10px] text-[#71C648] font-semibold flex items-center gap-0.5">
-                  <svg className="w-2.5 h-2.5" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M5.22 14.78a.75.75 0 001.06 0L14 7.06v2.69a.75.75 0 001.5 0v-4.5a.75.75 0 00-.75-.75h-4.5a.75.75 0 000 1.5h2.69L5.22 13.72a.75.75 0 000 1.06z" clipRule="evenodd" />
-                  </svg>
-                  {kpi.delta}
-                </div>
               </div>
             ))}
           </div>
@@ -94,7 +88,7 @@ export default function HeroMockup({ className = "" }: { className?: string }) {
               ))}
             </div>
           </div>
-        </main>
+        </div>
       </div>
     </div>
   );

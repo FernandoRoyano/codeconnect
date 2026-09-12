@@ -4,7 +4,7 @@ import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { routing } from "@/i18n/routing";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import CookieBanner from "@/components/CookieBanner";
+import { SITE_URL } from "@/lib/seo";
 
 const TITLES: Record<string, string> = {
   es: "CodeConnect | Desarrollo de Software a Medida para Salud",
@@ -32,7 +32,7 @@ export async function generateMetadata({
   };
 
   return {
-    metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://codeconnect-ten.vercel.app"),
+    metadataBase: new URL(SITE_URL),
     title: {
       default: TITLES[locale] || TITLES.es,
       template: "%s | CodeConnect",
@@ -88,47 +88,30 @@ export default async function LocaleLayout({
     "@context": "https://schema.org",
     "@type": "Organization",
     name: "CodeConnect",
-    url: "https://codeconnect.es",
-    logo: "https://codeconnect.es/favicon.svg",
+    url: SITE_URL,
+    logo: `${SITE_URL}/favicon.svg`,
     description: DESCRIPTIONS[locale] || DESCRIPTIONS.es,
     contactPoint: {
       "@type": "ContactPoint",
       email: "codeconnectsl@gmail.com",
       contactType: "customer service",
-      availableLanguage: ["Spanish", "English", "French"],
+      availableLanguage: ["Spanish"],
     },
     sameAs: [],
   };
 
   // Dirección completa no publicada hoy (solo "Madrid, España" en el footer) —
   // no se inventan calle/código postal; se declara solo lo verificable.
-  const localBusinessJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    name: "CodeConnect",
-    url: "https://codeconnect.es",
-    email: "codeconnectsl@gmail.com",
-    address: {
-      "@type": "PostalAddress",
-      addressLocality: "Madrid",
-      addressCountry: "ES",
-    },
-  };
-
   return (
     <NextIntlClientProvider locale={locale} messages={messages}>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd) }}
-      />
+      <a href="#contenido" className="skip-link">Saltar al contenido</a>
       <Header />
-      <main>{children}</main>
+      <main id="contenido" tabIndex={-1}>{children}</main>
       <Footer />
-      <CookieBanner />
     </NextIntlClientProvider>
   );
 }

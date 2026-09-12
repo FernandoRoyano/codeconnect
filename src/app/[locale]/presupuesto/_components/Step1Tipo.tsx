@@ -23,6 +23,7 @@ export default function Step1Tipo({ tipoProyecto, onSelect }: Props) {
             <button
               key={tipo.id}
               onClick={() => onSelect(tipo.id)}
+              aria-pressed={tipoProyecto === tipo.id}
               className={`relative p-6 rounded-2xl text-left transition-all duration-300 group overflow-hidden bg-white border ${
                 selected
                   ? "border-[#71C648] shadow-soft-lg ring-4 ring-[#71C648]/15"

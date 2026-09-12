@@ -5,7 +5,6 @@ import { Link } from "@/i18n/navigation";
 import { usePathname } from "next/navigation";
 import { useTranslations } from "next-intl";
 import Logo from "./Logo";
-import LanguageSwitcher from "./LanguageSwitcher";
 
 export default function Header() {
   const t = useTranslations("header");
@@ -95,11 +94,9 @@ export default function Header() {
                 </Link>
               );
             })}
-            <div className="mx-2 h-5 w-px bg-white/20 data-[scrolled=true]:bg-[#e7e5e4]" data-scrolled={scrolled} />
-            <LanguageSwitcher scrolled={scrolled} />
             <Link
               href="/presupuesto"
-              className="ml-3 inline-flex items-center gap-1.5 bg-[#71C648] hover:bg-[#5fb039] text-white px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-200 shadow-soft hover:shadow-soft-lg"
+              className="ml-3 inline-flex items-center gap-1.5 bg-[#71C648] hover:bg-[#5fb039] text-[#12324a] px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-200 shadow-soft hover:shadow-soft-lg"
             >
               {t("budget")}
               <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor">
@@ -109,7 +106,6 @@ export default function Header() {
           </div>
 
           <div className="flex items-center gap-2 md:hidden">
-            <LanguageSwitcher scrolled={scrolled} />
             <button
               type="button"
               aria-expanded={mobileMenuOpen}
@@ -163,7 +159,7 @@ export default function Header() {
             })}
             <Link
               href="/presupuesto"
-              className="block mx-2 mt-4 text-center bg-[#71C648] hover:bg-[#5fb039] text-white px-6 py-3.5 rounded-full font-semibold transition-all text-base shadow-soft"
+              className="block mx-2 mt-4 text-center bg-[#71C648] hover:bg-[#5fb039] text-[#12324a] px-6 py-3.5 rounded-full font-semibold transition-all text-base shadow-soft"
               onClick={() => setMobileMenuOpen(false)}
             >
               {t("budget")}

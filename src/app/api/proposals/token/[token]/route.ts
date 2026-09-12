@@ -20,6 +20,7 @@ export async function GET(
   }
 
   // Strip sensitive fields
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { user_id, ...safeData } = data;
   return NextResponse.json(safeData);
 }

@@ -12,6 +12,7 @@ export async function GET(request: NextRequest) {
   let query = supabase
     .from("clients")
     .select("*, proposals(id, status, total_price, currency, created_at)")
+    .eq("user_id", user.id)
     .order("created_at", { ascending: false });
 
   if (search) {
@@ -33,6 +34,7 @@ export async function POST(request: NextRequest) {
   const { data, error } = await supabase
     .from("clients")
     .insert({
+      user_id: user.id,
       name: body.name,
       email: body.email,
       company: body.company || null,

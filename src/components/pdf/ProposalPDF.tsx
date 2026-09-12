@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text -- Image is @react-pdf/renderer, not an HTML image. */
 import { Document, Page, View, Text, Image, StyleSheet, Font } from "@react-pdf/renderer";
 import type { ProposalDisplayData } from "@/lib/utils/proposalData";
 
@@ -298,7 +299,7 @@ export default function ProposalPDF({ data }: Props) {
 
         {/* Footer */}
         <View style={s.footer} fixed>
-          <Text style={s.footerText}>CodeConnect - Desarrollo de software a medida | codeconnect.es</Text>
+          <Text style={s.footerText}>CodeConnect - Desarrollo de software a medida | codeconnectsl.com</Text>
         </View>
       </Page>
     </Document>

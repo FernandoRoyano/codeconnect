@@ -8,7 +8,7 @@ function getResend() {
   return _resend;
 }
 
-const FROM_EMAIL = "CodeConnect <propuestas@codeconnect.es>";
+const FROM_EMAIL = process.env.CONTACT_EMAIL_FROM ?? "CodeConnect <onboarding@resend.dev>";
 
 function emailLayout(content: string): string {
   return `<!DOCTYPE html>
@@ -27,7 +27,7 @@ function emailLayout(content: string): string {
         </td></tr>
         <tr><td style="padding:24px 40px;text-align:center;">
           <p style="margin:0;font-size:12px;color:#9ca3af;">CodeConnect - Desarrollo de software a medida</p>
-          <p style="margin:4px 0 0;font-size:12px;color:#9ca3af;">Este email fue enviado desde codeconnect.es</p>
+          <p style="margin:4px 0 0;font-size:12px;color:#9ca3af;">Este email fue enviado desde codeconnectsl.com</p>
         </td></tr>
       </table>
     </td></tr>

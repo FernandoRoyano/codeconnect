@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { routing } from "@/i18n/routing";
 
-const BASE_URL = "https://codeconnect.es";
+export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.codeconnectsl.com";
 
 /**
  * Canonical + hreflang para una ruta dada. `path` es la parte tras el locale,
@@ -10,12 +10,12 @@ const BASE_URL = "https://codeconnect.es";
 export function buildAlternates(locale: string, path: string): Metadata["alternates"] {
   const languages: Record<string, string> = {};
   for (const l of routing.locales) {
-    languages[l] = `${BASE_URL}/${l}${path}`;
+    languages[l] = `${SITE_URL}/${l}${path}`;
   }
-  languages["x-default"] = `${BASE_URL}/${routing.defaultLocale}${path}`;
+  languages["x-default"] = `${SITE_URL}/${routing.defaultLocale}${path}`;
 
   return {
-    canonical: `${BASE_URL}/${locale}${path}`,
+    canonical: `${SITE_URL}/${locale}${path}`,
     languages,
   };
 }

@@ -32,15 +32,6 @@ interface DashboardStats {
   }[];
 }
 
-const STATUS_LABELS: Record<string, string> = {
-  borrador: "Borrador",
-  enviada: "Enviada",
-  vista: "Vista",
-  aceptada: "Aceptada",
-  rechazada: "Rechazada",
-  descartada: "Descartada",
-};
-
 export default function DashboardPage() {
   const [stats, setStats] = useState<DashboardStats | null>(null);
   const [loading, setLoading] = useState(true);

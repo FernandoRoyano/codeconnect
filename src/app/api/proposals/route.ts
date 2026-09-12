@@ -47,6 +47,7 @@ export async function POST(request: NextRequest) {
         .from("clients")
         .select("id")
         .eq("email", body.clientEmail)
+        .eq("user_id", user.id)
         .single();
 
       if (existing) {
@@ -54,9 +55,10 @@ export async function POST(request: NextRequest) {
         await supabase.from("clients").update({
           name: body.clientName,
           company: body.clientCompany || null,
-        }).eq("id", clientId);
+        }).eq("id", clientId).eq("user_id", user.id);
       } else {
         const { data: newClient } = await supabase.from("clients").insert({
+          user_id: user.id,
           name: body.clientName,
           email: body.clientEmail,
           company: body.clientCompany || null,
@@ -65,6 +67,7 @@ export async function POST(request: NextRequest) {
       }
     } else {
       const { data: newClient } = await supabase.from("clients").insert({
+        user_id: user.id,
         name: body.clientName,
         company: body.clientCompany || null,
       }).select("id").single();

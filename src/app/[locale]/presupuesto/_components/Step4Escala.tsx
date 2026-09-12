@@ -23,6 +23,7 @@ export default function Step4Escala({ numeroUsuarios, necesitaApp, onSelectUsuar
             <button
               key={option.id}
               onClick={() => onSelectUsuarios(option.value)}
+              aria-pressed={numeroUsuarios === option.value}
               className={`p-6 rounded-2xl text-left transition-all duration-200 bg-white border ${
                 selected
                   ? "border-[#71C648] bg-[#71C648]/5 ring-2 ring-[#71C648]/20"

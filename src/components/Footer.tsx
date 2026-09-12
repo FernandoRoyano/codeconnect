@@ -48,7 +48,7 @@ export default function Footer() {
             </div>
             <Link
               href="/presupuesto"
-              className="flex-shrink-0 inline-flex items-center gap-2 bg-[#71C648] hover:bg-[#5fb039] text-white px-6 py-3 rounded-full text-sm font-semibold transition-all shadow-soft hover:shadow-soft-lg"
+              className="flex-shrink-0 inline-flex items-center gap-2 bg-[#71C648] hover:bg-[#5fb039] text-[#12324a] px-6 py-3 rounded-full text-sm font-semibold transition-all shadow-soft hover:shadow-soft-lg"
             >
               Solicitar presupuesto
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor">

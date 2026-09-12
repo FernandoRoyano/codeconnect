@@ -14,6 +14,7 @@ export async function GET(
     .from("clients")
     .select("*, proposals(*, payments(*))")
     .eq("id", id)
+    .eq("user_id", user.id)
     .single();
 
   if (error) return NextResponse.json({ error: error.message }, { status: 404 });
@@ -30,11 +31,19 @@ export async function PUT(
   if (!user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
   const body = await request.json();
+  const allowed = {
+    name: body.name,
+    email: body.email,
+    company: body.company || null,
+    phone: body.phone || null,
+    notes: body.notes || null,
+  };
 
   const { data, error } = await supabase
     .from("clients")
-    .update(body)
+    .update(allowed)
     .eq("id", id)
+    .eq("user_id", user.id)
     .select()
     .single();
 

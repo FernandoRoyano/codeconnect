@@ -202,6 +202,7 @@ export default function ContactoContent() {
                         type="text"
                         id="nombre"
                         name="nombre"
+                        autoComplete="name"
                         required
                         value={formData.nombre}
                         onChange={handleChange}
@@ -217,6 +218,8 @@ export default function ContactoContent() {
                         type="email"
                         id="email"
                         name="email"
+                        autoComplete="email"
+                        spellCheck={false}
                         required
                         value={formData.email}
                         onChange={handleChange}
@@ -235,6 +238,7 @@ export default function ContactoContent() {
                         type="tel"
                         id="telefono"
                         name="telefono"
+                        autoComplete="tel"
                         value={formData.telefono}
                         onChange={handleChange}
                         className="w-full px-4 py-3 rounded-xl border border-[#e7e5e4] bg-[#fafaf9] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#71C648]/40 focus:border-[#71C648] transition-all"
@@ -249,6 +253,7 @@ export default function ContactoContent() {
                         type="text"
                         id="empresa"
                         name="empresa"
+                        autoComplete="organization"
                         value={formData.empresa}
                         onChange={handleChange}
                         className="w-full px-4 py-3 rounded-xl border border-[#e7e5e4] bg-[#fafaf9] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#71C648]/40 focus:border-[#71C648] transition-all"
@@ -264,6 +269,7 @@ export default function ContactoContent() {
                     <select
                       id="servicio"
                       name="servicio"
+                      autoComplete="off"
                       value={formData.servicio}
                       onChange={handleChange}
                       className="w-full px-4 py-3 rounded-xl border border-[#e7e5e4] bg-[#fafaf9] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#71C648]/40 focus:border-[#71C648] transition-all"
@@ -284,6 +290,7 @@ export default function ContactoContent() {
                     <textarea
                       id="mensaje"
                       name="mensaje"
+                      autoComplete="off"
                       required
                       rows={5}
                       value={formData.mensaje}
