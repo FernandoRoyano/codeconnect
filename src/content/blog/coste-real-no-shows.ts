@@ -7,7 +7,7 @@ export const article: Article = {
   excerpt:
     "Esa es la media de una clínica española. Pero la tuya no es la media: aquí está el método para medirlo con tu propia agenda antes de comprar ninguna solución.",
   category: "Tendencias",
-  date: "2026-09-13",
+  date: "2026-07-16",
   readMinutes: 7,
   metaDescription:
     "Una clínica española media pierde entre 15.000 y 30.000 € al año por citas no asistidas. Cómo calcular tu cifra real con tu propia agenda, y qué hacer con ella antes de contratar nada.",

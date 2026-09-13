@@ -7,7 +7,7 @@ export const article: Article = {
   excerpt:
     "El negocio medio que usa IA maneja ya cinco herramientas distintas. Cuando ninguna se habla con las demás, acabas copiando los mismos datos a mano en cinco sitios en vez de en tres.",
   category: "Tendencias",
-  date: "2026-09-13",
+  date: "2026-06-25",
   readMinutes: 7,
   metaDescription:
     "La pyme que usa IA maneja ya una mediana de cinco herramientas. Por qué adoptar IA por piezas sueltas multiplica el trabajo manual en lugar de reducirlo, y cómo salir de ahí.",

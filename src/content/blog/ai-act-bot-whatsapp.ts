@@ -7,7 +7,7 @@ export const article: Article = {
   excerpt:
     "El artículo 50 del reglamento europeo de IA entró en vigor el 2 de agosto de 2026. El aplazamiento del que habla todo el mundo no te cubre: afecta a los sistemas de alto riesgo, no a esto.",
   category: "Legal",
-  date: "2026-09-13",
+  date: "2026-09-10",
   readMinutes: 9,
   metaDescription:
     "Desde el 2 de agosto de 2026 el artículo 50 del AI Act obliga a avisar de que se está hablando con una IA. Qué significa para una clínica o un gimnasio con bot de WhatsApp, y por qué el aplazamiento del Digital Omnibus no te libra.",

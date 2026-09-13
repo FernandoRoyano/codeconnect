@@ -7,7 +7,7 @@ export const article: Article = {
   excerpt:
     "Simplificar el proceso, automatizar, integrar lo que ya tienes, desarrollar, o no hacer nada. Cinco conclusiones posibles y cómo distinguir cuál es la tuya.",
   category: "Guías",
-  date: "2026-09-13",
+  date: "2026-05-28",
   readMinutes: 8,
   metaDescription:
     "Desarrollar a medida es la respuesta correcta menos veces de lo que parece. Las cinco conclusiones posibles ante un proceso que no funciona y cómo saber cuál te toca antes de gastar dinero.",

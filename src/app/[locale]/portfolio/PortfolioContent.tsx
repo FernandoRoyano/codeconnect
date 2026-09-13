@@ -1,65 +1,10 @@
 "use client";
 
+import Image from "next/image";
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 import Button from "@/components/Button";
 import SectionHeading from "@/components/SectionHeading";
-
-/* Visual abstracto por categoría — sin imágenes, 100% CSS/SVG */
-function ProjectVisual({ index, title, category }: { index: number; title: string; category: string }) {
-  const patterns = [
-    // 1 - Web
-    { bg: "from-[#194973] to-[#1f5a8f]", accent: "#71C648" },
-    // 2 - CRM / Software
-    { bg: "from-[#0f3150] to-[#194973]", accent: "#71C648" },
-    // 3 - Facturación
-    { bg: "from-[#111A1D] via-[#2A3639] to-[#20DCC2]", accent: "#f7f8f7" },
-    // 4 - App
-    { bg: "from-[#0B0F10] to-[#20DCC2]", accent: "#fff" },
-  ];
-  const p = patterns[Math.min(index - 1, patterns.length - 1)] ?? patterns[0];
-  const initial = title.charAt(0).toUpperCase();
-
-  return (
-    <div className={`relative h-44 bg-gradient-to-br ${p.bg} overflow-hidden`}>
-      {/* mesh pattern */}
-      <div
-        aria-hidden
-        className="absolute inset-0 opacity-40"
-        style={{
-          backgroundImage:
-            "radial-gradient(at 20% 20%, rgb(113 198 72 / 0.35) 0, transparent 45%), radial-gradient(at 80% 80%, rgb(255 255 255 / 0.12) 0, transparent 50%)",
-        }}
-      />
-      {/* grid lines */}
-      <div
-        aria-hidden
-        className="absolute inset-0 opacity-[0.08]"
-        style={{
-          backgroundImage:
-            "linear-gradient(to right, #fff 1px, transparent 1px), linear-gradient(to bottom, #fff 1px, transparent 1px)",
-          backgroundSize: "32px 32px",
-        }}
-      />
-      {/* initial as monogram */}
-      <div className="absolute inset-0 flex items-center justify-center">
-        <span
-          className="text-[120px] font-bold text-white/10 leading-none select-none"
-          aria-hidden
-          style={{ letterSpacing: "-0.05em" }}
-        >
-          {initial}
-        </span>
-      </div>
-      {/* category badge */}
-      <div className="absolute bottom-4 left-4">
-        <span className="bg-white/90 backdrop-blur text-[#194973] px-3 py-1 rounded-full text-xs font-semibold tracking-wide">
-          {category}
-        </span>
-      </div>
-    </div>
-  );
-}
 
 export default function PortfolioContent() {
   const t = useTranslations("portfolio");
@@ -72,6 +17,7 @@ export default function PortfolioContent() {
       title: t("p1Title"),
       category: t("p1Cat"),
       catIndex: 2,
+      image: "/images/portfolio/home-care-crm.webp",
       description: t("p1Desc"),
       technologies: ["Next.js", "Node.js", "PostgreSQL", "Stripe"],
     },
@@ -80,6 +26,7 @@ export default function PortfolioContent() {
       title: t("p2Title"),
       category: t("p2Cat"),
       catIndex: 2,
+      image: "/images/portfolio/gym-crm.webp",
       description: t("p2Desc"),
       technologies: ["React", "Node.js", "MongoDB", "Redsys"],
     },
@@ -88,6 +35,7 @@ export default function PortfolioContent() {
       title: t("p3Title"),
       category: t("p3Cat"),
       catIndex: 1,
+      image: "/images/portfolio/yoga-pilates-web.webp",
       description: t("p3Desc"),
       technologies: ["Next.js", "Tailwind CSS", "Vercel", "Google Analytics"],
     },
@@ -96,6 +44,7 @@ export default function PortfolioContent() {
       title: t("p4Title"),
       category: t("p4Cat"),
       catIndex: 1,
+      image: "/images/portfolio/nutrition-lead-web.webp",
       description: t("p4Desc"),
       technologies: ["Next.js", "Node.js", "Brevo", "Calendly"],
     },
@@ -104,6 +53,7 @@ export default function PortfolioContent() {
       title: t("p5Title"),
       category: t("p5Cat"),
       catIndex: 3,
+      image: "/images/portfolio/invoicing-app.webp",
       description: t("p5Desc"),
       technologies: ["React", "Node.js", "PostgreSQL", "PDF Generator"],
     },
@@ -112,6 +62,7 @@ export default function PortfolioContent() {
       title: t("p6Title"),
       category: t("p6Cat"),
       catIndex: 4,
+      image: "/images/portfolio/home-training-app.webp",
       description: t("p6Desc"),
       technologies: ["React Native", "Firebase", "Node.js", "RevenueCat"],
     },
@@ -180,8 +131,22 @@ export default function PortfolioContent() {
                 key={project.id}
                 className="bg-white rounded-2xl overflow-hidden shadow-soft hover:shadow-soft-lg transition-all duration-300 hover:-translate-y-1 border border-[#e7e5e4] hover:border-[#71C648]/40 group"
               >
-                {/* Visual — abstract pattern por categoría */}
-                <ProjectVisual index={project.catIndex} title={project.title} category={project.category} />
+                <div className="relative h-52 overflow-hidden bg-[#111A1D]">
+                  <Image
+                    src={project.image}
+                    alt=""
+                    fill
+                    priority={project.id === 1}
+                    sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.035]"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0B0F10]/55 via-transparent to-transparent" />
+                  <div className="absolute bottom-4 left-4">
+                    <span className="bg-white/90 backdrop-blur text-[#111A1D] px-3 py-1 rounded-full text-xs font-semibold tracking-wide shadow-sm">
+                      {project.category}
+                    </span>
+                  </div>
+                </div>
 
                 {/* Content */}
                 <div className="p-6">

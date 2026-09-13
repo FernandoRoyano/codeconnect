@@ -7,7 +7,7 @@ export const article: Article = {
   excerpt:
     "La categoría de IA entró en el catálogo en abril. Qué cubre exactamente cada una de las tres denominaciones oficiales, y por qué la fecha límite ya no es lo que decide.",
   category: "Guías",
-  date: "2026-09-13",
+  date: "2026-08-06",
   readMinutes: 8,
   metaDescription:
     "El Kit Digital incorporó la categoría de inteligencia artificial en abril de 2026. Importes por segmento, las tres denominaciones oficiales, requisitos de acceso y qué tener listo antes de solicitarlo.",

@@ -7,7 +7,7 @@ export const article: Article = {
   excerpt:
     "Sociedades el 1 de enero de 2027, autónomos el 1 de julio. La factura electrónica B2B, en octubre de 2027. Lo que llevas oyendo desde hace un año no cuadra con el BOE.",
   category: "Legal",
-  date: "2026-09-13",
+  date: "2026-08-27",
   readMinutes: 8,
   metaDescription:
     "El calendario real de Verifactu tras el RDL 15/2025: 1 de enero de 2027 para sociedades y 1 de julio para autónomos. Qué exige de verdad al software de facturación y cómo distinguir una urgencia real de una comercial.",
