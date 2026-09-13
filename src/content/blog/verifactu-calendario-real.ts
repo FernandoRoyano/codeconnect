@@ -2,6 +2,7 @@ import type { Article } from "./types";
 
 export const article: Article = {
   slug: "verifactu-calendario-real-2027",
+  image: "/images/blog/verifactu-calendario-real.webp",
   title: "Verifactu no entra en 2026: el calendario real y por qué te lo venden con prisa",
   excerpt:
     "Sociedades el 1 de enero de 2027, autónomos el 1 de julio. La factura electrónica B2B, en octubre de 2027. Lo que llevas oyendo desde hace un año no cuadra con el BOE.",

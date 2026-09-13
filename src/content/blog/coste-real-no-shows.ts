@@ -2,6 +2,7 @@ import type { Article } from "./types";
 
 export const article: Article = {
   slug: "coste-real-no-shows-clinica",
+  image: "/images/blog/coste-real-no-shows.webp",
   title: "Los no-shows te cuestan entre 15.000 y 30.000 € al año: cómo calcular tu cifra",
   excerpt:
     "Esa es la media de una clínica española. Pero la tuya no es la media: aquí está el método para medirlo con tu propia agenda antes de comprar ninguna solución.",

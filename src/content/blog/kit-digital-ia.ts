@@ -2,6 +2,7 @@ import type { Article } from "./types";
 
 export const article: Article = {
   slug: "kit-digital-ia-6000-euros",
+  image: "/images/blog/kit-digital-ia.webp",
   title: "El Kit Digital ya paga inteligencia artificial: 6.000 € y en qué puedes gastarlos",
   excerpt:
     "La categoría de IA entró en el catálogo en abril. Qué cubre exactamente cada una de las tres denominaciones oficiales, y por qué la fecha límite ya no es lo que decide.",

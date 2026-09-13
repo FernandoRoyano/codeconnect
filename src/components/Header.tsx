@@ -16,6 +16,7 @@ export default function Header() {
     { name: t("home"), href: "/" as const },
     { name: t("services"), href: "/servicios" as const },
     { name: t("portfolio"), href: "/portfolio" as const },
+    { name: t("blog"), href: "/blog" as const },
     { name: t("contact"), href: "/contacto" as const },
   ];
 
@@ -65,7 +66,7 @@ export default function Header() {
             <Logo showTagline={false} variant={scrolled ? "default" : "on-dark"} className="h-10" />
           </Link>
 
-          <div className="hidden md:flex md:items-center md:gap-1">
+          <div className="hidden lg:flex lg:items-center lg:gap-1">
             {navigation.map((item) => {
               const active = isActive(item.href);
               return (
@@ -105,7 +106,7 @@ export default function Header() {
             </Link>
           </div>
 
-          <div className="flex items-center gap-2 md:hidden">
+          <div className="flex items-center gap-2 lg:hidden">
             <button
               type="button"
               aria-expanded={mobileMenuOpen}
@@ -131,7 +132,7 @@ export default function Header() {
 
         <div
           id="mobile-menu"
-          className={`md:hidden transition-all duration-300 overflow-hidden ${
+          className={`lg:hidden transition-all duration-300 overflow-hidden ${
             mobileMenuOpen ? "max-h-[calc(100vh-5rem)] pb-4" : "max-h-0"
           } ${mobileMenuOpen ? (scrolled ? "bg-white/95 backdrop-blur-xl" : "bg-[#0f3150]/95 backdrop-blur-xl rounded-b-2xl") : ""}`}
         >

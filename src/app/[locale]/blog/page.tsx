@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { articles, categoryCounts } from "@/content/blog";
@@ -13,9 +14,7 @@ export async function generateMetadata({
   return {
     title: "Blog",
     alternates: buildAlternates(locale, "/blog"),
-    // Los textos existen pero están pendientes de revisión antes de publicarse.
-    // Al levantar esto hay que añadir /blog y sus artículos a src/app/sitemap.ts.
-    robots: { index: false, follow: false },
+    robots: { index: true, follow: true },
   };
 }
 
@@ -59,7 +58,16 @@ export default async function BlogPage() {
           </h2>
           <Link href={`/blog/${featured.slug}` as never} className="group block">
             <article className="grid lg:grid-cols-2 gap-0 lg:gap-8 items-center bg-[#f8f9fa] rounded-2xl sm:rounded-3xl overflow-hidden hover:shadow-xl transition-all duration-300">
-              <div className="h-40 sm:h-64 lg:h-full lg:min-h-[300px] bg-gradient-to-br from-[#194973] to-[#71C648] relative">
+              <div className="relative h-52 overflow-hidden sm:h-72 lg:h-full lg:min-h-[360px]">
+                <Image
+                  src={featured.image}
+                  alt=""
+                  fill
+                  priority
+                  sizes="(min-width: 1024px) 50vw, 100vw"
+                  className="object-cover transition-transform duration-700 group-hover:scale-[1.025]"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0B0F10]/65 via-transparent to-transparent" />
                 <div className="absolute bottom-6 left-6">
                   <span className="bg-white/95 text-[#194973] px-3 py-1 rounded-full text-sm font-semibold">
                     {featured.category}
@@ -106,7 +114,15 @@ export default async function BlogPage() {
                 {rest.map((post) => (
                   <Link key={post.slug} href={`/blog/${post.slug}` as never} className="group">
                     <article className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 h-full flex flex-col">
-                      <div className="h-28 bg-gradient-to-br from-[#194973]/90 to-[#71C648]/80 relative">
+                      <div className="relative h-44 overflow-hidden sm:h-48">
+                        <Image
+                          src={post.image}
+                          alt=""
+                          fill
+                          sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                          className="object-cover transition-transform duration-700 group-hover:scale-[1.035]"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-[#0B0F10]/60 via-transparent to-transparent" />
                         <div className="absolute bottom-4 left-4">
                           <span className="bg-white/95 text-[#194973] px-3 py-1 rounded-full text-sm font-semibold">
                             {post.category}

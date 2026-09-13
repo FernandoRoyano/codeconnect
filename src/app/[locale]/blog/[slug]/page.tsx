@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import { Link } from "@/i18n/navigation";
 import ArticleBody from "@/components/blog/ArticleBody";
@@ -25,14 +26,21 @@ export async function generateMetadata({
     title: article.title,
     description: article.metaDescription,
     alternates: buildAlternates(locale, `/blog/${article.slug}`),
-    // Se levanta junto con el listado cuando los textos estén revisados.
-    robots: { index: false, follow: false },
+    robots: { index: true, follow: true },
     openGraph: {
       type: "article",
       title: article.title,
       description: article.metaDescription,
       url: `${SITE_URL}/${locale}/blog/${article.slug}`,
       publishedTime: article.date,
+      images: [
+        {
+          url: `${SITE_URL}${article.image}`,
+          width: 1536,
+          height: 960,
+          alt: article.title,
+        },
+      ],
     },
   };
 }
@@ -85,6 +93,18 @@ export default async function ArticlePage({
                 {article.readMinutes} min de lectura
               </div>
             </div>
+          </div>
+        </div>
+        <div className="mx-auto mt-10 max-w-5xl px-4 sm:px-6 lg:px-8">
+          <div className="relative aspect-[16/10] overflow-hidden rounded-2xl border border-white/10 shadow-2xl sm:rounded-3xl">
+            <Image
+              src={article.image}
+              alt=""
+              fill
+              priority
+              sizes="(min-width: 1024px) 1024px, 100vw"
+              className="object-cover"
+            />
           </div>
         </div>
       </section>

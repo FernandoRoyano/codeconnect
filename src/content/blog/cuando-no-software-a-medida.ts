@@ -2,6 +2,7 @@ import type { Article } from "./types";
 
 export const article: Article = {
   slug: "cuando-no-merece-la-pena-software-a-medida",
+  image: "/images/blog/cuando-no-software-a-medida.webp",
   title: "Cuándo NO merece la pena desarrollar software a medida",
   excerpt:
     "Simplificar el proceso, automatizar, integrar lo que ya tienes, desarrollar, o no hacer nada. Cinco conclusiones posibles y cómo distinguir cuál es la tuya.",

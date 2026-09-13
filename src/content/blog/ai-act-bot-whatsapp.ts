@@ -2,6 +2,7 @@ import type { Article } from "./types";
 
 export const article: Article = {
   slug: "ai-act-bot-whatsapp-aviso-ia",
+  image: "/images/blog/ai-act-bot-whatsapp.webp",
   title: "Tienes un bot de WhatsApp: desde agosto estás obligado a avisar de que es una IA",
   excerpt:
     "El artículo 50 del reglamento europeo de IA entró en vigor el 2 de agosto de 2026. El aplazamiento del que habla todo el mundo no te cubre: afecta a los sistemas de alto riesgo, no a esto.",

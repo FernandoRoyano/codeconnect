@@ -2,6 +2,7 @@ import type { Article } from "./types";
 
 export const article: Article = {
   slug: "cinco-herramientas-ia-no-son-operativa",
+  image: "/images/blog/cinco-herramientas-ia.webp",
   title: "Cinco herramientas de IA sueltas no son una operativa",
   excerpt:
     "El negocio medio que usa IA maneja ya cinco herramientas distintas. Cuando ninguna se habla con las demás, acabas copiando los mismos datos a mano en cinco sitios en vez de en tres.",

@@ -16,6 +16,7 @@ export default function Footer() {
     empresa: [
       { name: t("aboutUs"), href: "/#nosotros" as const },
       { name: t("portfolio"), href: "/portfolio" as const },
+      { name: t("blog"), href: "/blog" as const },
       { name: t("contact"), href: "/contacto" as const },
     ],
     legal: [

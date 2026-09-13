@@ -21,6 +21,8 @@ export type Source = { label: string; url: string };
 export type Article = {
   slug: string;
   title: string;
+  /** Portada editorial compartida por el listado, el articulo y Open Graph. */
+  image: string;
   /** Titulo corto para la tarjeta del listado, si el largo no cabe bien. */
   cardTitle?: string;
   excerpt: string;
