@@ -1,8 +1,8 @@
 "use client";
-/* eslint-disable react-hooks/immutability, react-hooks/exhaustive-deps */
+/* eslint-disable react-hooks/exhaustive-deps */
 
 import { useEffect, useState } from "react";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import ProposalStatusBadge from "@/components/dashboard/ProposalStatusBadge";
 import { formatCurrency } from "@/lib/utils/currency";
@@ -30,10 +30,13 @@ interface ClientDetail {
 
 export default function ClientDetailPage() {
   const { id } = useParams();
+  const router = useRouter();
   const [client, setClient] = useState<ClientDetail | null>(null);
   const [loading, setLoading] = useState(true);
   const [notes, setNotes] = useState("");
   const [savingNotes, setSavingNotes] = useState(false);
+  const [deleting, setDeleting] = useState(false);
+  const [deleteError, setDeleteError] = useState("");
 
   useEffect(() => {
     fetchClient();
@@ -57,6 +60,24 @@ export default function ClientDetailPage() {
       body: JSON.stringify({ notes }),
     });
     setSavingNotes(false);
+  };
+
+  const handleDelete = async () => {
+    if (!confirm("¿Seguro que quieres eliminar este cliente? Sus propuestas se conservarán sin cliente asociado.")) return;
+    setDeleting(true);
+    setDeleteError("");
+    try {
+      const res = await fetch(`/api/clients/${id}`, { method: "DELETE" });
+      if (!res.ok) {
+        const payload = await res.json().catch(() => ({}));
+        throw new Error(payload.error || "No se pudo eliminar el cliente");
+      }
+      router.push("/dashboard/clientes");
+      router.refresh();
+    } catch (err) {
+      setDeleteError(err instanceof Error ? err.message : "Error inesperado");
+      setDeleting(false);
+    }
   };
 
   if (loading) return <div className="p-12 text-center text-[#5A6D6D]">Cargando...</div>;
@@ -190,6 +211,22 @@ export default function ClientDetailPage() {
             )}
           </div>
         </div>
+      </div>
+
+      <div className="mt-6 rounded-2xl border border-red-200 bg-red-50/60 p-5">
+        <h2 className="text-sm font-bold text-red-700">Eliminar cliente</h2>
+        <p className="mt-1 text-sm text-red-700/80">
+          El cliente se eliminará definitivamente. Sus propuestas y pagos se conservarán.
+        </p>
+        {deleteError && <p role="alert" className="mt-3 text-sm font-medium text-red-700">{deleteError}</p>}
+        <button
+          type="button"
+          onClick={handleDelete}
+          disabled={deleting}
+          className="mt-4 rounded-xl bg-red-600 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-red-700 disabled:cursor-not-allowed disabled:opacity-50"
+        >
+          {deleting ? "Eliminando…" : "Eliminar cliente"}
+        </button>
       </div>
     </div>
   );

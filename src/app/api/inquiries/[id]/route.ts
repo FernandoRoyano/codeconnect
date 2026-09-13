@@ -77,3 +77,29 @@ export async function PATCH(
   }
   return NextResponse.json(data);
 }
+
+export async function DELETE(
+  request: NextRequest,
+  { params }: { params: Promise<{ id: string }> }
+) {
+  if (!(await requireSession())) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
+  const { id } = await params;
+  const supabase = createServiceRoleClient();
+  const { data, error } = await supabase
+    .from("inquiries")
+    .delete()
+    .eq("id", id)
+    .select("id")
+    .maybeSingle();
+
+  if (error) {
+    console.error("[inquiries] Error al eliminar:", error);
+    return NextResponse.json({ error: "No se pudo eliminar" }, { status: 500 });
+  }
+  if (!data) return NextResponse.json({ error: "Not found" }, { status: 404 });
+
+  return NextResponse.json({ ok: true });
+}

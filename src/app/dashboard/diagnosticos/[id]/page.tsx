@@ -2,6 +2,7 @@
 
 import { use, useCallback, useEffect, useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import {
   INQUIRY_SECTIONS,
   INQUIRY_STATUSES,
@@ -38,11 +39,13 @@ const formatDateTime = (value: string) =>
 
 export default function DiagnosticoDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = use(params);
+  const router = useRouter();
   const [inquiry, setInquiry] = useState<Inquiry | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [notes, setNotes] = useState("");
   const [saving, setSaving] = useState(false);
+  const [deleting, setDeleting] = useState(false);
   const [saved, setSaved] = useState("");
 
   const load = useCallback(async () => {
@@ -84,6 +87,24 @@ export default function DiagnosticoDetailPage({ params }: { params: Promise<{ id
       setError(err instanceof Error ? err.message : "Error inesperado");
     } finally {
       setSaving(false);
+    }
+  };
+
+  const handleDelete = async () => {
+    if (!confirm("¿Seguro que quieres eliminar este diagnóstico? Esta acción no se puede deshacer.")) return;
+    setDeleting(true);
+    setError("");
+    try {
+      const res = await fetch(`/api/inquiries/${id}`, { method: "DELETE" });
+      if (!res.ok) {
+        const payload = await res.json().catch(() => ({}));
+        throw new Error(payload.error || "No se pudo eliminar");
+      }
+      router.push("/dashboard/diagnosticos");
+      router.refresh();
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Error inesperado");
+      setDeleting(false);
     }
   };
 
@@ -218,6 +239,21 @@ export default function DiagnosticoDetailPage({ params }: { params: Promise<{ id
           className="mt-3 px-4 py-2 rounded-xl bg-[#194973] text-white text-sm font-medium hover:bg-[#0f3150] transition-colors disabled:opacity-50"
         >
           {saving ? "Guardando…" : "Guardar notas"}
+        </button>
+      </div>
+
+      <div className="mt-6 rounded-2xl border border-red-200 bg-red-50/60 p-5">
+        <h2 className="text-sm font-bold text-red-700">Eliminar diagnóstico</h2>
+        <p className="mt-1 text-sm text-red-700/80">
+          El formulario y sus notas internas se eliminarán definitivamente.
+        </p>
+        <button
+          type="button"
+          onClick={handleDelete}
+          disabled={deleting}
+          className="mt-4 rounded-xl bg-red-600 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-red-700 disabled:cursor-not-allowed disabled:opacity-50"
+        >
+          {deleting ? "Eliminando…" : "Eliminar diagnóstico"}
         </button>
       </div>
     </div>
