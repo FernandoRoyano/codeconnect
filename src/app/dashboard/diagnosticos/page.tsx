@@ -45,6 +45,7 @@ export default function DiagnosticosPage() {
   const [tab, setTab] = useState("all");
   const [search, setSearch] = useState("");
   const [query, setQuery] = useState("");
+  const [deletingId, setDeletingId] = useState<string | null>(null);
 
   const load = useCallback(async () => {
     setLoading(true);
@@ -66,6 +67,25 @@ export default function DiagnosticosPage() {
   useEffect(() => {
     load();
   }, [load]);
+
+  const handleDelete = async (row: InquiryRow) => {
+    if (!confirm(`¿Eliminar el diagnóstico de ${row.name}? Esta acción no se puede deshacer.`)) return;
+
+    setDeletingId(row.id);
+    setError("");
+    try {
+      const res = await fetch(`/api/inquiries/${row.id}`, { method: "DELETE" });
+      if (!res.ok) {
+        const payload = await res.json().catch(() => ({}));
+        throw new Error(payload.error || "No se pudo eliminar el diagnóstico");
+      }
+      setRows((current) => current.filter((item) => item.id !== row.id));
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Error inesperado");
+    } finally {
+      setDeletingId(null);
+    }
+  };
 
   const counts = rows.reduce<Record<string, number>>((acc, row) => {
     acc[row.status] = (acc[row.status] || 0) + 1;
@@ -161,6 +181,7 @@ export default function DiagnosticosPage() {
                       <th scope="col" className="text-left font-semibold px-5 py-3 whitespace-nowrap">Origen</th>
                       <th scope="col" className="text-left font-semibold px-5 py-3 whitespace-nowrap">Fecha</th>
                       <th scope="col" className="text-left font-semibold px-5 py-3">Estado</th>
+                      <th scope="col" className="text-right font-semibold px-5 py-3">Acciones</th>
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-[#f1f1f0]">
@@ -186,6 +207,17 @@ export default function DiagnosticosPage() {
                             <span className={`inline-block px-2.5 py-1 rounded-full text-xs font-semibold ${badge.bg} ${badge.text}`}>
                               {badge.label}
                             </span>
+                          </td>
+                          <td className="px-5 py-4 align-top text-right">
+                            <button
+                              type="button"
+                              onClick={() => handleDelete(row)}
+                              disabled={deletingId !== null}
+                              aria-label={`Eliminar diagnóstico de ${row.name}`}
+                              className="rounded-lg px-3 py-1.5 text-xs font-semibold text-red-600 transition-colors hover:bg-red-50 disabled:cursor-not-allowed disabled:opacity-50"
+                            >
+                              {deletingId === row.id ? "Eliminando…" : "Eliminar"}
+                            </button>
                           </td>
                         </tr>
                       );
