@@ -9,66 +9,87 @@ import SectionHeading from "@/components/SectionHeading";
 export default function PortfolioContent() {
   const t = useTranslations("portfolio");
   const [activeFilter, setActiveFilter] = useState(0);
-  const demoLabel = t("demoLabel");
 
   const projects = [
     {
-      id: 1,
-      title: t("p1Title"),
-      category: t("p1Cat"),
-      catIndex: 2,
-      image: "/images/portfolio/home-care-crm.webp",
-      description: t("p1Desc"),
-      technologies: ["Next.js", "Node.js", "PostgreSQL", "Stripe"],
-    },
-    {
-      id: 2,
-      title: t("p2Title"),
-      category: t("p2Cat"),
-      catIndex: 2,
-      image: "/images/portfolio/gym-crm.webp",
-      description: t("p2Desc"),
-      technologies: ["React", "Node.js", "MongoDB", "Redsys"],
-    },
-    {
-      id: 3,
-      title: t("p3Title"),
-      category: t("p3Cat"),
-      catIndex: 1,
-      image: "/images/portfolio/yoga-pilates-web.webp",
-      description: t("p3Desc"),
-      technologies: ["Next.js", "Tailwind CSS", "Vercel", "Google Analytics"],
-    },
-    {
-      id: 4,
-      title: t("p4Title"),
-      category: t("p4Cat"),
-      catIndex: 1,
-      image: "/images/portfolio/nutrition-lead-web.webp",
-      description: t("p4Desc"),
-      technologies: ["Next.js", "Node.js", "Brevo", "Calendly"],
-    },
-    {
-      id: 5,
-      title: t("p5Title"),
-      category: t("p5Cat"),
+      id: 9,
+      title: "TrainHub",
+      category: t("p9Cat"),
       catIndex: 3,
-      image: "/images/portfolio/invoicing-app.webp",
-      description: t("p5Desc"),
-      technologies: ["React", "Node.js", "PostgreSQL", "PDF Generator"],
+      image: "/images/portfolio/trainhub-product.webp",
+      description: t("p9Desc"),
+      technologies: ["Next.js", "React", "TypeScript", "Stripe"],
+      kind: "own" as const,
+      badge: t("commercialProductLabel"),
+      url: "https://train-hub-five.vercel.app/",
     },
     {
-      id: 6,
-      title: t("p6Title"),
-      category: t("p6Cat"),
-      catIndex: 4,
-      image: "/images/portfolio/home-training-app.webp",
-      description: t("p6Desc"),
-      technologies: ["React Native", "Firebase", "Node.js", "RevenueCat"],
+      id: 10,
+      title: "WellnessReal",
+      category: t("p10Cat"),
+      catIndex: 1,
+      image: "/images/portfolio/wellnessreal-project.webp",
+      description: t("p10Desc"),
+      technologies: ["Next.js", "React", "TypeScript", "Tailwind CSS"],
+      kind: "own" as const,
+      badge: t("ownProjectLabel"),
+      url: "https://wellnessreal.es/",
+    },
+    {
+      id: 11,
+      title: "Diego Royano Nutricionista",
+      category: t("p11Cat"),
+      catIndex: 1,
+      image: "/images/portfolio/diego-royano-client.webp",
+      description: t("p11Desc"),
+      technologies: ["Next.js", "React", "TypeScript", "CSS"],
+      kind: "client" as const,
+      badge: t("clientLabel"),
+      url: "https://patologia-digestiva.vercel.app/",
+    },
+    {
+      id: 12,
+      title: "Antea Salud",
+      category: t("p12Cat"),
+      catIndex: 1,
+      image: "/images/portfolio/antea-salud-project.webp",
+      description: t("p12Desc"),
+      technologies: ["Next.js", "React", "TypeScript", "CSS Modules"],
+      kind: "own" as const,
+      badge: t("ownLiveProjectLabel"),
+      url: "https://anteasalud.com/",
+    },
+    {
+      id: 7,
+      title: t("p7Title"),
+      category: t("p7Cat"),
+      catIndex: 1,
+      image: "/images/portfolio/escapa-cantabria-client.webp",
+      description: t("p7Desc"),
+      technologies: ["Next.js", "React", "TypeScript"],
+      kind: "client" as const,
+      badge: t("clientLabel"),
+      url: "https://autocaravanasescapacantabria.com/",
+    },
+    {
+      id: 8,
+      title: t("p8Title"),
+      category: t("p8Cat"),
+      catIndex: 1,
+      image: "/images/portfolio/caniches-con-amor-client.webp",
+      description: t("p8Desc"),
+      technologies: ["Next.js", "React", "TypeScript"],
+      kind: "client" as const,
+      badge: t("clientLabel"),
+      url: "https://canichesconamor.com/",
     },
   ];
 
-  const categories = [t("cat0"), t("cat1"), t("cat2"), t("cat3"), t("cat4")];
+  const categories = [
+    { index: 0, label: t("cat0") },
+    { index: 1, label: t("cat1") },
+    { index: 3, label: t("cat3") },
+  ];
 
   const filteredProjects = activeFilter === 0
     ? projects
@@ -104,18 +125,18 @@ export default function PortfolioContent() {
       <section className="sticky top-16 z-30 py-4 bg-white/80 backdrop-blur-xl border-b border-[#e7e5e4]">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex flex-wrap justify-center gap-2" role="group" aria-label={t("filterLabel")}>
-            {categories.map((category, index) => (
+            {categories.map((category) => (
               <button
-                key={index}
-                onClick={() => setActiveFilter(index)}
-                aria-pressed={activeFilter === index}
+                key={category.index}
+                onClick={() => setActiveFilter(category.index)}
+                aria-pressed={activeFilter === category.index}
                 className={`px-4 sm:px-5 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
-                  activeFilter === index
+                  activeFilter === category.index
                     ? "bg-[#194973] text-white shadow-soft"
                     : "text-[#57534e] hover:text-[#194973] hover:bg-[#fafaf9]"
                 }`}
               >
-                {category}
+                {category.label}
               </button>
             ))}
           </div>
@@ -126,7 +147,7 @@ export default function PortfolioContent() {
       <section className="py-20 sm:py-28 bg-[#fafaf9]">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 reveal">
-            {filteredProjects.map((project) => (
+            {filteredProjects.map((project, index) => (
               <article
                 key={project.id}
                 className="bg-white rounded-2xl overflow-hidden shadow-soft hover:shadow-soft-lg transition-all duration-300 hover:-translate-y-1 border border-[#e7e5e4] hover:border-[#71C648]/40 group"
@@ -136,7 +157,7 @@ export default function PortfolioContent() {
                     src={project.image}
                     alt=""
                     fill
-                    priority={project.id === 1}
+                    priority={index === 0}
                     sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
                     className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.035]"
                   />
@@ -154,8 +175,12 @@ export default function PortfolioContent() {
                     <h3 className="text-lg font-bold text-[#194973] tracking-tight group-hover:text-[#71C648] transition-colors">
                       {project.title}
                     </h3>
-                    <span className="flex-shrink-0 bg-[#194973]/5 text-[#194973]/70 border border-[#194973]/10 px-2 py-0.5 rounded-full text-[10px] font-semibold tracking-wide uppercase">
-                      {demoLabel}
+                    <span className={`flex-shrink-0 border px-2 py-0.5 rounded-full text-[10px] font-semibold tracking-wide uppercase ${
+                      project.kind === "client"
+                        ? "bg-[#71C648]/10 text-[#39751f] border-[#71C648]/25"
+                        : "bg-[#20DCC2]/10 text-[#13766d] border-[#20DCC2]/25"
+                    }`}>
+                      {project.badge}
                     </span>
                   </div>
                   <p className="text-sm text-[#57534e] mb-5 line-clamp-2 leading-relaxed">
@@ -174,6 +199,15 @@ export default function PortfolioContent() {
                     ))}
                   </div>
 
+                  <a
+                    href={project.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#194973] hover:text-[#39751f] transition-colors"
+                  >
+                    {t("visitProject")}
+                    <span aria-hidden>↗</span>
+                  </a>
                 </div>
               </article>
             ))}

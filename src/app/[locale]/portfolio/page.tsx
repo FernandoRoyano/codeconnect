@@ -9,9 +9,9 @@ const TITLES: Record<string, string> = {
 };
 
 const DESCRIPTIONS: Record<string, string> = {
-  es: "Demos conceptuales de CRM, webs y aplicaciones para clínicas, gimnasios y centros de bienestar.",
-  en: "Concept demos of CRMs, websites and applications for clinics, gyms and wellness centers.",
-  fr: "Démonstrations conceptuelles de CRM, sites web et applications pour cliniques, salles de sport et centres de bien-être.",
+  es: "Proyectos reales de webs y software para clientes y productos propios: TrainHub, Antea Salud, WellnessReal y más.",
+  en: "Real website and software projects for clients and our own products: TrainHub, Antea Salud, WellnessReal and more.",
+  fr: "Projets réels de sites web et logiciels pour nos clients et nos propres produits : TrainHub, Antea Salud, WellnessReal et plus.",
 };
 
 export async function generateMetadata({
