@@ -22,7 +22,7 @@ export default function PoliticaPrivacidadPage() {
               <strong>Identidad:</strong> CodeConnect<br />
               <strong>NIF:</strong> [NIF/CIF a completar]<br />
               <strong>Dirección:</strong> [Dirección a completar]<br />
-              <strong>Email:</strong> codeconnectsl@gmail.com
+              <strong>Contacto:</strong> mediante el formulario disponible en esta web
             </p>
 
             <h2>2. Datos que recopilamos</h2>
@@ -67,7 +67,7 @@ export default function PoliticaPrivacidadPage() {
             </ul>
 
             <h2>7. Tus derechos</h2>
-            <p>Puedes ejercer los siguientes derechos enviando un email a codeconnectsl@gmail.com:</p>
+            <p>Puedes ejercer los siguientes derechos mediante el formulario de contacto de esta web:</p>
             <ul>
               <li><strong>Acceso:</strong> saber qué datos tenemos sobre ti.</li>
               <li><strong>Rectificación:</strong> corregir datos inexactos.</li>

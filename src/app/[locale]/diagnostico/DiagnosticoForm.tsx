@@ -202,7 +202,7 @@ export default function DiagnosticoForm() {
       setError(
         err instanceof Error && err.message
           ? err.message
-          : "No se pudo enviar. Inténtalo de nuevo o escríbeme a codeconnectsl@gmail.com."
+          : "No se pudo enviar. Inténtalo de nuevo dentro de unos minutos."
       );
     } finally {
       setSending(false);

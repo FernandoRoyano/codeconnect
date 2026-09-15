@@ -37,7 +37,7 @@ export default function CookiesPage() {
       <h2>5. Contacto</h2>
       <p>
         Si tienes dudas sobre esta política, escribe a{" "}
-        <a href="mailto:codeconnectsl@gmail.com">codeconnectsl@gmail.com</a>.
+        el formulario de contacto de esta web.
       </p>
     </LegalLayout>
   );

@@ -119,7 +119,7 @@ export default function PresupuestoWizard() {
       if (!res.ok) throw new Error("send failed");
       setSubmitted(true);
     } catch {
-      setSubmitError("No se pudo enviar. Inténtalo de nuevo o escríbenos a codeconnectsl@gmail.com.");
+      setSubmitError("No se pudo enviar. Inténtalo de nuevo dentro de unos minutos.");
     } finally {
       setIsSubmitting(false);
     }

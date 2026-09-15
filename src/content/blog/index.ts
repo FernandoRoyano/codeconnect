@@ -1,4 +1,7 @@
 import type { Article } from "./types";
+import { article as tareasAdministrativas } from "./automatizar-tareas-administrativas";
+import { article as softwareVertical } from "./software-vertical-o-medida";
+import { article as whatsappAgenda } from "./whatsapp-agenda-clinica";
 import { article as aiAct } from "./ai-act-bot-whatsapp";
 import { article as verifactu } from "./verifactu-calendario-real";
 import { article as kitDigital } from "./kit-digital-ia";
@@ -12,6 +15,9 @@ import { article as cuandoNo } from "./cuando-no-software-a-medida";
  * El primero es el destacado.
  */
 export const articles: Article[] = [
+  tareasAdministrativas,
+  softwareVertical,
+  whatsappAgenda,
   aiAct,
   verifactu,
   kitDigital,

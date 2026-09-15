@@ -174,11 +174,11 @@ export default async function Home() {
                 {t("heroBadge")}
               </span>
               <h1
-                className="font-bold text-white tracking-tight mb-6"
-                style={{ fontSize: "var(--fs-hero)", lineHeight: 1.02, letterSpacing: "-0.03em" }}
+                className="font-bold text-white tracking-tight mb-8 [text-wrap:balance]"
+                style={{ fontSize: "var(--fs-hero)", lineHeight: 1.08, letterSpacing: "-0.03em" }}
               >
                 {t("heroTitle")}
-                <span className="block bg-gradient-to-r from-[#20DCC2] to-[#8AF4E9] bg-clip-text text-transparent">
+                <span className="block mt-1 bg-gradient-to-r from-[#20DCC2] to-[#8AF4E9] bg-clip-text text-transparent">
                   {t("heroHighlight")}
                 </span>
               </h1>

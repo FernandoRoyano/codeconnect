@@ -241,7 +241,7 @@ export default function ResultScreen({ formData, llamadaStatus, onSolicitarLlama
                 </button>
                 {llamadaStatus === "error" && (
                   <p role="alert" className="mt-3 text-sm text-red-600">
-                    No se pudo enviar. Inténtalo de nuevo o escríbenos a codeconnectsl@gmail.com.
+                    No se pudo enviar. Inténtalo de nuevo dentro de unos minutos.
                   </p>
                 )}
               </>

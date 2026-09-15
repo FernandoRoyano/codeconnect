@@ -39,13 +39,7 @@ export default function Footer() {
               >
                 {t("description")}
               </h2>
-              <p className="text-white/60 text-sm">
-                <a href="mailto:codeconnectsl@gmail.com" className="hover:text-[#20DCC2] transition-colors">
-                  codeconnectsl@gmail.com
-                </a>
-                <span className="mx-2">·</span>
-                <span>{t("location")}</span>
-              </p>
+              <p className="text-white/60 text-sm">{t("location")}</p>
             </div>
             <Link
               href="/diagnostico"
@@ -88,12 +82,12 @@ export default function Footer() {
           <div>
             <h3 className="text-xs uppercase tracking-widest font-semibold text-[#20DCC2] mb-4">{t("contactTitle")}</h3>
             <ul className="space-y-2.5 text-sm">
-              <li>
-                <a href="mailto:codeconnectsl@gmail.com" className="text-white/70 hover:text-white transition-colors break-all">
-                  codeconnectsl@gmail.com
-                </a>
-              </li>
               <li className="text-white/70">{t("location")}</li>
+              <li>
+                <Link href="/contacto" className="text-white/70 hover:text-white transition-colors">
+                  {t("contact")}
+                </Link>
+              </li>
             </ul>
           </div>
         </div>

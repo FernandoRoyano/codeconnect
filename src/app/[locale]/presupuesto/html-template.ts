@@ -181,7 +181,7 @@ export function generarHTMLPresupuesto(formData: FormData): string {
 
       <div class="footer">
         <p>CodeConnect - Conectando ideas, creando soluciones</p>
-        <p><a href="mailto:codeconnectsl@gmail.com">codeconnectsl@gmail.com</a> | <a href="https://www.codeconnectsl.com">codeconnectsl.com</a></p>
+        <p><a href="https://www.codeconnectsl.com/contacto">codeconnectsl.com/contacto</a></p>
       </div>
     </div>
   </div>
