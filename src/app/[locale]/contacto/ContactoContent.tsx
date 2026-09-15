@@ -113,22 +113,22 @@ export default function ContactoContent() {
 
       {/* Contact Info - tarjetas superpuestas al hero */}
       <section className="relative -mt-14 mb-8 sm:mb-12">
-        <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-sm px-4 sm:px-6">
           <div className="grid gap-4 reveal">
             {contactInfo.map((info, index) => {
               const Inner = (
                 <>
-                  <div className="w-12 h-12 bg-[#71C648]/10 rounded-xl flex items-center justify-center text-[#71C648] flex-shrink-0">
+                  <div className="w-11 h-11 bg-[#71C648]/10 rounded-xl flex items-center justify-center text-[#71C648] flex-shrink-0">
                     {info.icon}
                   </div>
-                  <div className="min-w-0">
-                    <div className="text-xs uppercase tracking-wider text-[#71C648] font-medium mb-0.5">{info.title}</div>
-                    <div className="text-base font-semibold text-[#194973] truncate">{info.value}</div>
+                  <div className="min-w-0 text-center">
+                    <div className="text-[11px] uppercase tracking-[0.16em] text-[#71C648] font-semibold mb-1">{info.title}</div>
+                    <div className="text-sm font-semibold text-[#194973]">{info.value}</div>
                   </div>
                 </>
               );
               const baseCls =
-                "flex items-center gap-4 bg-white rounded-2xl p-5 shadow-soft border border-[#e7e5e4] transition-all duration-300";
+                "flex flex-col items-center justify-center gap-3 bg-white rounded-2xl px-5 py-4 shadow-soft border border-[#e7e5e4] transition-all duration-300";
               return info.href ? (
                 <a
                   key={index}
