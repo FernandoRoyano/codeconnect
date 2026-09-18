@@ -4,6 +4,7 @@ export const article: Article = {
   slug: "whatsapp-agenda-clinica-automatizacion",
   image: "/images/blog/whatsapp-agenda-clinica.webp",
   title: "Tu clínica no necesita otro chatbot: necesita que WhatsApp y la agenda se entiendan",
+  seoTitle: "WhatsApp y la agenda de tu clínica, unidos",
   excerpt:
     "Responder mensajes más rápido no arregla una operativa rota. El ahorro aparece cuando citas, recordatorios y cambios dejan de depender de copiar datos a mano.",
   category: "Automatización",
@@ -19,7 +20,7 @@ export const article: Article = {
     },
     {
       type: "p",
-      text: "Poner un chatbot delante puede acelerar la primera respuesta. Pero si detrás una persona sigue copiando cada dato, no has automatizado la gestión: solo has puesto una puerta más bonita.",
+      text: "Poner un chatbot delante puede acelerar la primera respuesta. Pero si detrás una persona sigue copiando cada dato, [no has automatizado la gestión](/blog/cinco-herramientas-ia-no-son-operativa): solo has puesto una puerta más bonita.",
     },
     { type: "h2", text: "La diferencia entre responder y resolver" },
     {

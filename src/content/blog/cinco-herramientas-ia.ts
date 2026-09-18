@@ -4,6 +4,7 @@ export const article: Article = {
   slug: "cinco-herramientas-ia-no-son-operativa",
   image: "/images/blog/cinco-herramientas-ia.webp",
   title: "Cinco herramientas de IA sueltas no son una operativa",
+  seoTitle: "Cinco herramientas de IA no son operativa",
   excerpt:
     "El negocio medio que usa IA maneja ya cinco herramientas distintas. Cuando ninguna se habla con las demás, acabas copiando los mismos datos a mano en cinco sitios en vez de en tres.",
   category: "Tendencias",
@@ -62,7 +63,7 @@ export const article: Article = {
     {
       type: "callout",
       title: "La señal de alarma",
-      text: "Si al implantar una herramienta nueva tu equipo tiene que **copiar datos de una pantalla a otra**, no has automatizado un proceso. Has añadido una pieza a una cadena que sigue siendo manual en las junturas.",
+      text: "Si al implantar una herramienta nueva tu equipo tiene que **copiar datos de una pantalla a otra**, no has automatizado un proceso. Has añadido una pieza a [una cadena que sigue siendo manual en las junturas](/servicios).",
     },
     { type: "h2", text: "Los tres síntomas" },
     { type: "h3", text: "1. La misma persona existe cinco veces" },

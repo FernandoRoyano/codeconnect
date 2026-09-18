@@ -4,6 +4,7 @@ export const article: Article = {
   slug: "automatizar-tareas-administrativas-pyme",
   image: "/images/blog/automatizar-tareas-administrativas.webp",
   title: "Siete tareas administrativas que una pyme puede automatizar sin cambiarlo todo",
+  seoTitle: "7 tareas administrativas automatizables",
   excerpt:
     "No hace falta sustituir el programa central para recuperar horas. Empieza por tareas repetitivas, con reglas claras y un resultado fácil de comprobar.",
   category: "Automatización",
@@ -15,7 +16,7 @@ export const article: Article = {
   body: [
     {
       type: "p",
-      text: "Automatizar no significa cambiar todos los programas ni poner inteligencia artificial en cada pantalla. Muchas veces consiste en conseguir que un dato que ya existe llegue al siguiente sitio sin que una persona lo copie.",
+      text: "Automatizar no significa cambiar todos los programas ni poner inteligencia artificial en cada pantalla. Muchas veces consiste en conseguir que un dato que ya existe llegue al siguiente sitio [sin que una persona lo copie](/blog/cinco-herramientas-ia-no-son-operativa).",
     },
     {
       type: "p",

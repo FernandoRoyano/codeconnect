@@ -4,6 +4,7 @@ export const article: Article = {
   slug: "software-vertical-o-medida-como-elegir",
   image: "/images/blog/software-vertical-o-medida.webp",
   title: "Software vertical o a medida: cómo elegir sin pagar dos veces",
+  seoTitle: "Software vertical o a medida: cómo elegir",
   excerpt:
     "El programa especializado suele ser la mejor primera opción. El desarrollo a medida empieza a tener sentido cuando tu proceso aporta valor y la herramienta te obliga a deformarlo.",
   category: "Guías",
@@ -19,7 +20,7 @@ export const article: Article = {
     },
     {
       type: "p",
-      text: "Mi punto de partida es poco espectacular: si una herramienta existente resuelve bien el problema, úsala. El software a medida no es una medalla; es una inversión que tiene que justificar su mantenimiento.",
+      text: "Mi punto de partida es poco espectacular: si una herramienta existente resuelve bien el problema, úsala. El [software a medida](/blog/cuando-no-merece-la-pena-software-a-medida) no es una medalla; es una inversión que tiene que justificar su mantenimiento.",
     },
     { type: "h2", text: "Qué estás comprando en cada caso" },
     {
@@ -86,7 +87,7 @@ export const article: Article = {
     },
     {
       type: "p",
-      text: "Con esos datos puedes comparar alternativas sin enamorarte de una interfaz ni aceptar un presupuesto basado en intuiciones. Y quizá descubras que no necesitas software nuevo, sino conectar mejor lo que ya tienes.",
+      text: "Con esos datos puedes comparar alternativas sin enamorarte de una interfaz ni aceptar un [presupuesto basado en intuiciones](/presupuesto). Y quizá descubras que no necesitas software nuevo, sino conectar mejor lo que ya tienes.",
     },
     {
       type: "p",

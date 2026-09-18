@@ -4,6 +4,7 @@ export const article: Article = {
   slug: "kit-digital-ia-6000-euros",
   image: "/images/blog/kit-digital-ia.webp",
   title: "El Kit Digital ya paga inteligencia artificial: 6.000 € y en qué puedes gastarlos",
+  seoTitle: "Kit Digital con IA: 6.000 € en qué gastarlos",
   excerpt:
     "La categoría de IA entró en el catálogo en abril. Qué cubre exactamente cada una de las tres denominaciones oficiales, y por qué la fecha límite ya no es lo que decide.",
   category: "Guías",
@@ -29,7 +30,7 @@ export const article: Article = {
     },
     {
       type: "p",
-      text: "Esto es relevante por un motivo concreto: hasta ahora, automatizar la agenda o la atención de un centro salía íntegramente del bolsillo. Ahora una parte puede no salir de ahí.",
+      text: "Esto es relevante por un motivo concreto: hasta ahora, [automatizar la agenda o la atención de un centro](/servicios) salía íntegramente del bolsillo. Ahora una parte puede no salir de ahí.",
     },
     { type: "h2", text: "Cuánto te toca" },
     {

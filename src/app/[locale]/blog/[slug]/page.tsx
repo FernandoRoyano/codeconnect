@@ -24,7 +24,7 @@ export async function generateMetadata({
   if (!article) return { title: "Artículo no encontrado" };
 
   return {
-    title: article.title,
+    title: article.seoTitle ?? article.title,
     description: article.metaDescription,
     alternates: buildAlternates(locale, `/blog/${article.slug}`),
     robots: { index: true, follow: true },

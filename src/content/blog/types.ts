@@ -21,6 +21,12 @@ export type Source = { label: string; url: string };
 export type Article = {
   slug: string;
   title: string;
+  /**
+   * Titulo para el <title> del buscador. Google corta sobre los 60 caracteres
+   * contando " | CodeConnect", asi que aqui va la version corta con lo que
+   * importa delante. El titular largo sigue siendo el H1 del articulo.
+   */
+  seoTitle?: string;
   /** Portada editorial compartida por el listado, el articulo y Open Graph. */
   image: string;
   /** Titulo corto para la tarjeta del listado, si el largo no cabe bien. */

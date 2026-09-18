@@ -4,6 +4,7 @@ export const article: Article = {
   slug: "cuando-no-merece-la-pena-software-a-medida",
   image: "/images/blog/cuando-no-software-a-medida.webp",
   title: "Cuándo NO merece la pena desarrollar software a medida",
+  seoTitle: "Cuándo NO conviene software a medida",
   excerpt:
     "Simplificar el proceso, automatizar, integrar lo que ya tienes, desarrollar, o no hacer nada. Cinco conclusiones posibles y cómo distinguir cuál es la tuya.",
   category: "Guías",
@@ -14,7 +15,7 @@ export const article: Article = {
   body: [
     {
       type: "p",
-      text: "Vivo de desarrollar software a medida, así que este artículo juega en mi contra. Lo escribo igualmente, porque los peores proyectos en los que he estado tenían todos el mismo origen: alguien decidió que necesitaba software antes de entender qué le estaba pasando.",
+      text: "Vivo de [desarrollar software a medida](/servicios), así que este artículo juega en mi contra. Lo escribo igualmente, porque los peores proyectos en los que he estado tenían todos el mismo origen: alguien decidió que necesitaba software antes de entender qué le estaba pasando.",
     },
     {
       type: "p",

@@ -4,6 +4,7 @@ export const article: Article = {
   slug: "verifactu-calendario-real-2027",
   image: "/images/blog/verifactu-calendario-real.webp",
   title: "Verifactu no entra en 2026: el calendario real y por qué te lo venden con prisa",
+  seoTitle: "Verifactu: el calendario real de entrada",
   excerpt:
     "Sociedades el 1 de enero de 2027, autónomos el 1 de julio. La factura electrónica B2B, en octubre de 2027. Lo que llevas oyendo desde hace un año no cuadra con el BOE.",
   category: "Legal",
@@ -40,7 +41,7 @@ export const article: Article = {
     },
     {
       type: "p",
-      text: "El aplazamiento lo trajo el Real Decreto-ley 15/2025, publicado a finales de 2025. El motivo que se dio es razonable: hacer que Verifactu y la factura electrónica obligatoria no cayeran con meses de diferencia, para que un autónomo no tuviera que cambiar de sistema dos veces en el mismo año.",
+      text: "El aplazamiento lo trajo el Real Decreto-ley 15/2025, publicado a finales de 2025. El motivo que se dio es razonable: hacer que Verifactu y la [factura electrónica obligatoria](/servicios) no cayeran con meses de diferencia, para que un autónomo no tuviera que cambiar de sistema dos veces en el mismo año.",
     },
     {
       type: "callout",

@@ -4,6 +4,7 @@ export const article: Article = {
   slug: "ai-act-bot-whatsapp-aviso-ia",
   image: "/images/blog/ai-act-bot-whatsapp.webp",
   title: "Tienes un bot de WhatsApp: desde agosto estás obligado a avisar de que es una IA",
+  seoTitle: "Bot de WhatsApp: aviso obligatorio de IA",
   excerpt:
     "El artículo 50 del reglamento europeo de IA entró en vigor el 2 de agosto de 2026. El aplazamiento del que habla todo el mundo no te cubre: afecta a los sistemas de alto riesgo, no a esto.",
   category: "Legal",
@@ -28,7 +29,7 @@ export const article: Article = {
   body: [
     {
       type: "p",
-      text: "Si en tu centro hay un bot que responde por WhatsApp, un chat en la web que contesta dudas o un asistente que gestiona reservas fuera de horario, desde el **2 de agosto de 2026** tienes una obligación legal nueva: la persona que está al otro lado tiene que saber que habla con una máquina.",
+      text: "Si en tu centro hay un [bot que responde por WhatsApp](/blog/whatsapp-agenda-clinica-automatizacion), un chat en la web que contesta dudas o un asistente que gestiona reservas fuera de horario, desde el **2 de agosto de 2026** tienes una obligación legal nueva: la persona que está al otro lado tiene que saber que habla con una máquina.",
     },
     {
       type: "p",

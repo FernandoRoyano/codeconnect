@@ -4,6 +4,7 @@ export const article: Article = {
   slug: "coste-real-no-shows-clinica",
   image: "/images/blog/coste-real-no-shows.webp",
   title: "Los no-shows te cuestan entre 15.000 y 30.000 € al año: cómo calcular tu cifra",
+  seoTitle: "Cuánto te cuestan los no-shows al año",
   excerpt:
     "Esa es la media de una clínica española. Pero la tuya no es la media: aquí está el método para medirlo con tu propia agenda antes de comprar ninguna solución.",
   category: "Tendencias",
@@ -32,7 +33,7 @@ export const article: Article = {
     },
     {
       type: "p",
-      text: "Este artículo no vende nada. Es el método para calcularlo con lo que ya tienes en la agenda, en una tarde.",
+      text: "Este artículo no vende nada. Es el método para calcularlo con lo que ya tienes en [la agenda](/blog/whatsapp-agenda-clinica-automatizacion), en una tarde.",
     },
     { type: "h2", text: "Los cuatro números que necesitas" },
     {
