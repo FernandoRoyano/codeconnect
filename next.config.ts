@@ -6,10 +6,12 @@ const withNextIntl = createNextIntlPlugin();
 const nextConfig: NextConfig = {
   images: {
     formats: ["image/avif", "image/webp"],
-    // Las portadas viven en /public con nombre fijo y se sustituyen a mano, así
-    // que el navegador puede quedarse la version optimizada un ano. Por defecto
-    // Next manda max-age=0 y revalidaba en cada navegacion.
-    minimumCacheTTL: 31536000,
+    // Cuanto guarda el servidor cada imagen optimizada. No se puede invalidar
+    // esta cache, asi que 31 dias (el valor que sugiere la documentacion) en
+    // lugar de un ano: si hay que sustituir una portada antes, basta con
+    // renombrarla. El Max-Age que acaba viendo el navegador es el mayor entre
+    // este valor y el Cache-Control del fichero de origen, que se fija abajo.
+    minimumCacheTTL: 2678400,
   },
   // /en y /fr estuvieron publicados y hoy devuelven 200. Al dejar el sitio en
   // solo espanol, redirigirlos conserva los enlaces en circulacion y lo que
@@ -24,6 +26,16 @@ const nextConfig: NextConfig = {
   },
   async headers() {
     return [
+      {
+        // Los ficheros de /public salian con max-age=0, must-revalidate, y ese
+        // valor se propaga a la version optimizada: el navegador volvia a
+        // preguntar por cada imagen en cada navegacion. La cabecera hay que
+        // ponerla en el fichero de origen, no en /_next/image.
+        source: "/images/:path*",
+        headers: [
+          { key: "Cache-Control", value: "public, max-age=86400, stale-while-revalidate=2592000" },
+        ],
+      },
       {
         source: "/(.*)",
         headers: [
