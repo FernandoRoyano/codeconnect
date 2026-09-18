@@ -5,6 +5,8 @@ import { setRequestLocale } from "next-intl/server";
 import { routing } from "@/i18n/routing";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import CookieBanner from "@/components/CookieBanner";
+import Analytics from "@/components/Analytics";
 import { SITE_URL } from "@/lib/seo";
 
 const TITLES: Record<string, string> = {
@@ -23,10 +25,16 @@ const OG_LOCALES: Record<string, string> = {
  * Namespaces que necesitan los componentes cliente. El resto de textos
  * (`home`, `services`, `blog`) se resuelven en servidor con `getTranslations`,
  * así que no tienen por qué viajar en el HTML de cada página.
- *
- * Si vuelve a montarse el banner de cookies, hay que añadir "cookieBanner".
  */
-const CLIENT_NAMESPACES = ["header", "footer", "logo", "serviceCard", "contact", "portfolio"] as const;
+const CLIENT_NAMESPACES = [
+  "header",
+  "footer",
+  "logo",
+  "serviceCard",
+  "contact",
+  "portfolio",
+  "cookieBanner",
+] as const;
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -116,6 +124,8 @@ export default async function LocaleLayout({
       <Header />
       <main id="contenido" tabIndex={-1}>{children}</main>
       <Footer />
+      <CookieBanner />
+      <Analytics />
     </NextIntlClientProvider>
   );
 }

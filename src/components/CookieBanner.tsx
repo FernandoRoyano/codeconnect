@@ -3,32 +3,37 @@
 import { useState, useEffect } from "react";
 import { Link } from "@/i18n/navigation";
 import { useTranslations } from "next-intl";
-
-type Consent = { necessary: true; analytics: boolean; marketing: boolean; timestamp: string };
+import { CONSENT_EVENT, readConsent, writeConsent } from "@/lib/consent";
 
 export default function CookieBanner() {
   const t = useTranslations("cookieBanner");
   const [showBanner, setShowBanner] = useState(false);
   const [showConfig, setShowConfig] = useState(false);
-  const [preferences, setPreferences] = useState({ necessary: true, analytics: false, marketing: false });
+  const [preferences, setPreferences] = useState({ analytics: false, marketing: false });
 
   useEffect(() => {
-    const consent = localStorage.getItem("cookie_consent");
-    if (!consent) {
-      const timer = setTimeout(() => setShowBanner(true), 800);
-      return () => clearTimeout(timer);
-    }
+    // Se pregunta si no hay eleccion guardada, o si la que hay es de una
+    // version anterior a las finalidades actuales.
+    const ask = () => setShowBanner(!readConsent());
+    const timer = setTimeout(ask, readConsent() ? 0 : 800);
+
+    // Si se revoca desde la pagina de cookies, el banner vuelve a aparecer.
+    window.addEventListener(CONSENT_EVENT, ask);
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener(CONSENT_EVENT, ask);
+    };
   }, []);
 
-  const persist = (c: Omit<Consent, "timestamp">) => {
-    localStorage.setItem("cookie_consent", JSON.stringify({ ...c, timestamp: new Date().toISOString() }));
+  const persist = (choice: { analytics: boolean; marketing: boolean }) => {
+    writeConsent(choice);
     setShowBanner(false);
     setShowConfig(false);
   };
 
-  const acceptAll = () => persist({ necessary: true, analytics: true, marketing: true });
-  const rejectAll = () => persist({ necessary: true, analytics: false, marketing: false });
-  const savePreferences = () => persist({ ...preferences, necessary: true });
+  const acceptAll = () => persist({ analytics: true, marketing: true });
+  const rejectAll = () => persist({ analytics: false, marketing: false });
+  const savePreferences = () => persist(preferences);
 
   if (!showBanner) return null;
 

@@ -38,7 +38,7 @@
   },
   "cookieBanner": {
     "title": "Utilizamos cookies",
-    "description": "Usamos cookies propias y de terceros para mejorar tu experiencia, analizar el tráfico y mostrarte contenido personalizado. Puedes aceptar todas, rechazarlas o configurar tus preferencias.",
+    "description": "Usamos cookies técnicas para que la web funcione y, solo si lo aceptas, Google Analytics para saber qué páginas se visitan. Puedes aceptar, rechazar o configurar tus preferencias.",
     "moreInfo": "Más información",
     "acceptAll": "Aceptar todas",
     "reject": "Rechazar",
@@ -49,7 +49,7 @@
     "analyticsTitle": "Cookies analíticas",
     "analyticsDesc": "Nos ayudan a entender cómo usas el sitio para mejorarlo.",
     "marketingTitle": "Cookies de marketing",
-    "marketingDesc": "Permiten mostrarte anuncios relevantes y medir su efectividad.",
+    "marketingDesc": "Hoy no usamos publicidad. Guardamos tu elección por si algún día la incorporamos.",
     "savePreferences": "Guardar preferencias"
   },
   "home": {
