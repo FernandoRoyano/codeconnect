@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
+import { setRequestLocale } from "next-intl/server";
 import { routing } from "@/i18n/routing";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -8,15 +9,28 @@ import { SITE_URL } from "@/lib/seo";
 
 const TITLES: Record<string, string> = {
   es: "CodeConnect | Desarrollo de Software a Medida para Salud",
-  en: "CodeConnect | Custom Software Development for Healthcare",
-  fr: "CodeConnect | Developpement de Logiciels sur Mesure pour la Sante",
 };
 
 const DESCRIPTIONS: Record<string, string> = {
   es: "Desarrollo de aplicaciones web y software a medida para clínicas, gimnasios y centros de bienestar.",
-  en: "Custom web application and software development for clinics, gyms and wellness centers.",
-  fr: "Développement d'applications web et de logiciels sur mesure pour cliniques, salles de sport et centres de bien-être.",
 };
+
+const OG_LOCALES: Record<string, string> = {
+  es: "es_ES",
+};
+
+/**
+ * Namespaces que necesitan los componentes cliente. El resto de textos
+ * (`home`, `services`, `blog`) se resuelven en servidor con `getTranslations`,
+ * así que no tienen por qué viajar en el HTML de cada página.
+ *
+ * Si vuelve a montarse el banner de cookies, hay que añadir "cookieBanner".
+ */
+const CLIENT_NAMESPACES = ["header", "footer", "logo", "serviceCard", "contact", "portfolio"] as const;
+
+export function generateStaticParams() {
+  return routing.locales.map((locale) => ({ locale }));
+}
 
 export async function generateMetadata({
   params,
@@ -25,12 +39,6 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
 
-  const ogLocales: Record<string, string> = {
-    es: "es_ES",
-    en: "en_US",
-    fr: "fr_FR",
-  };
-
   return {
     metadataBase: new URL(SITE_URL),
     title: {
@@ -38,14 +46,6 @@ export async function generateMetadata({
       template: "%s | CodeConnect",
     },
     description: DESCRIPTIONS[locale] || DESCRIPTIONS.es,
-    keywords: [
-      "desarrollo web",
-      "software a medida",
-      "salud",
-      "aplicaciones medicas",
-      "tecnologia sanitaria",
-      "codeconnect",
-    ],
     authors: [{ name: "CodeConnect" }],
     icons: {
       icon: "/favicon.svg",
@@ -54,7 +54,7 @@ export async function generateMetadata({
       title: TITLES[locale] || TITLES.es,
       description: DESCRIPTIONS[locale] || DESCRIPTIONS.es,
       type: "website",
-      locale: ogLocales[locale] || ogLocales.es,
+      locale: OG_LOCALES[locale] || OG_LOCALES.es,
       siteName: "CodeConnect",
     },
     twitter: {
@@ -82,7 +82,12 @@ export default async function LocaleLayout({
     notFound();
   }
 
-  const messages = (await import(`../../../messages/${locale}.json`)).default;
+  setRequestLocale(locale);
+
+  const messages: Record<string, unknown> = (await import(`../../../messages/${locale}.json`)).default;
+  const clientMessages = Object.fromEntries(
+    CLIENT_NAMESPACES.map((namespace) => [namespace, messages[namespace]]),
+  );
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -102,7 +107,7 @@ export default async function LocaleLayout({
   // Dirección completa no publicada hoy (solo "Madrid, España" en el footer) —
   // no se inventan calle/código postal; se declara solo lo verificable.
   return (
-    <NextIntlClientProvider locale={locale} messages={messages}>
+    <NextIntlClientProvider locale={locale} messages={clientMessages}>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

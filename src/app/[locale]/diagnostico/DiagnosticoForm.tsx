@@ -70,10 +70,10 @@ function Steps({ current }: { current: number }) {
               <div
                 className={`w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm transition-all duration-300 flex-shrink-0 ${
                   step < current
-                    ? "bg-[#71C648] text-white"
+                    ? "bg-[#71C648] text-[#0b0f10]"
                     : step === current
                       ? "bg-white text-[#194973] ring-4 ring-white/20"
-                      : "bg-white/5 text-white/40 border border-white/10"
+                      : "bg-white/5 text-white/60 border border-white/10"
                 }`}
               >
                 {step < current ? (
@@ -598,7 +598,7 @@ export default function DiagnosticoForm() {
         <p className="text-center text-white/50 text-sm mt-6">
           No te va a llamar un comercial. Lo reviso yo y te contesto por email.
         </p>
-        <p className="text-center text-white/40 text-sm mt-3">
+        <p className="text-center text-white/70 text-sm mt-3">
           ¿Solo buscas una orientación de precio?{" "}
           <Link href="/presupuesto" className="text-white/70 underline hover:text-white transition-colors">
             Calcula un rango aproximado

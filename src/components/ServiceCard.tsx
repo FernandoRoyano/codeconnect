@@ -25,13 +25,13 @@ export default function ServiceCard({ title, description, icon, href, features, 
           </div>
           {label && <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#39751f]">{label}</span>}
         </div>
-        <h3 className="text-xl font-bold text-[#194973] mb-3 tracking-tight group-hover:text-[#71C648] transition-colors">{title}</h3>
+        <h3 className="text-xl font-bold text-[#194973] mb-3 tracking-tight group-hover:text-[#39751f] transition-colors">{title}</h3>
         <p className="text-[#5A6D6D] mb-4 leading-relaxed">{description}</p>
         {features && features.length > 0 && (
           <ul className="space-y-2 mb-4">
             {features.map((feature, index) => (
               <li key={index} className="flex items-center text-sm text-[#5A6D6D]">
-                <svg className="w-4 h-4 mr-2 text-[#71C648]" fill="currentColor" viewBox="0 0 20 20">
+                <svg className="w-4 h-4 mr-2 text-[#39751f]" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                 </svg>
                 {feature}

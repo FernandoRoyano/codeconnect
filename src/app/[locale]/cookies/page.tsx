@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { setRequestLocale } from "next-intl/server";
 import LegalLayout from "@/components/LegalLayout";
 import { buildAlternates } from "@/lib/seo";
 
@@ -7,7 +8,14 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   return { title: "Política de cookies", alternates: buildAlternates(locale, "/cookies") };
 }
 
-export default function CookiesPage() {
+export default async function CookiesPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+
   return (
     <LegalLayout title="Política de cookies">
       <h2>1. Cookies utilizadas</h2>

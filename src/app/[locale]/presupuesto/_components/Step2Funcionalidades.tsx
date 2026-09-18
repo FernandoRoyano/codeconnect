@@ -21,7 +21,7 @@ export default function Step2Funcionalidades({ tipoProyecto, funcionalidades, ot
       </h2>
       <p className="text-[#57534e] mb-10 text-center" style={{ fontSize: "var(--fs-base)" }}>
         {esWeb ? (
-          <>Selecciona las que apliquen a tu <span className="font-semibold text-[#71C648]">{tipoTitle}</span></>
+          <>Selecciona las que apliquen a tu <span className="font-semibold text-[#39751f]">{tipoTitle}</span></>
         ) : (
           "Marca lo que te suene — nosotros lo traducimos en las funciones que lo resuelven"
         )}
@@ -42,7 +42,7 @@ export default function Step2Funcionalidades({ tipoProyecto, funcionalidades, ot
             >
               <div
                 className={`w-5 h-5 rounded-md flex items-center justify-center flex-shrink-0 transition-all mt-0.5 ${
-                  selected ? "bg-[#71C648] text-white" : "border-2 border-[#e7e5e4]"
+                  selected ? "bg-[#71C648] text-[#0b0f10]" : "border-2 border-[#e7e5e4]"
                 }`}
               >
                 {selected && (
@@ -63,7 +63,7 @@ export default function Step2Funcionalidades({ tipoProyecto, funcionalidades, ot
       <div className="mt-6 bg-white rounded-2xl p-6 border border-[#e7e5e4]">
         <label className="block mb-3">
           <span className="font-semibold text-[#194973] flex items-center gap-2">
-            <svg className="w-5 h-5 text-[#71C648]" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
+            <svg className="w-5 h-5 text-[#39751f]" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
             </svg>
             ¿Necesitas algo más?

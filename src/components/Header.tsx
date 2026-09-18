@@ -21,7 +21,9 @@ export default function Header() {
   ];
 
   const isActive = (href: string) => {
-    const clean = pathname.replace(/^\/(es|en|fr)(?=\/|$)/, "") || "/";
+    // Solo hay un idioma publicado (ver src/i18n/routing.ts). /en y /fr
+    // redirigen a /es desde next.config.ts, asi que nunca llegan aqui.
+    const clean = pathname.replace(/^\/es(?=\/|$)/, "") || "/";
     if (href === "/") return clean === "/";
     return clean === href || clean.startsWith(`${href}/`);
   };
@@ -111,7 +113,7 @@ export default function Header() {
               type="button"
               aria-expanded={mobileMenuOpen}
               aria-controls="mobile-menu"
-              aria-label={t("openMenu")}
+              aria-label={mobileMenuOpen ? t("closeMenu") : t("openMenu")}
               className={`inline-flex items-center justify-center p-2 rounded-lg transition-colors ${
                 scrolled ? "text-[#194973] hover:bg-[#f5f5f4]" : "text-white hover:bg-white/10"
               }`}
@@ -132,6 +134,9 @@ export default function Header() {
 
         <div
           id="mobile-menu"
+          // Cerrado no solo se oculta: deja de recibir foco. Con `max-h-0` los
+          // enlaces seguian siendo tabulables siendo invisibles.
+          inert={!mobileMenuOpen}
           className={`lg:hidden transition-all duration-300 overflow-hidden ${
             mobileMenuOpen ? "max-h-[calc(100vh-5rem)] pb-4" : "max-h-0"
           } ${mobileMenuOpen ? (scrolled ? "bg-white/95 backdrop-blur-xl" : "bg-[#0f3150]/95 backdrop-blur-xl rounded-b-2xl") : ""}`}

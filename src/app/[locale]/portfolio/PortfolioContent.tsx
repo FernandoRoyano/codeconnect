@@ -172,7 +172,7 @@ export default function PortfolioContent() {
                 {/* Content */}
                 <div className="p-6">
                   <div className="flex items-start justify-between gap-2 mb-2">
-                    <h3 className="text-lg font-bold text-[#194973] tracking-tight group-hover:text-[#71C648] transition-colors">
+                    <h3 className="text-lg font-bold text-[#194973] tracking-tight group-hover:text-[#39751f] transition-colors">
                       {project.title}
                     </h3>
                     <span className={`flex-shrink-0 border px-2 py-0.5 rounded-full text-[10px] font-semibold tracking-wide uppercase ${

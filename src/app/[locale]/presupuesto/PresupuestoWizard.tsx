@@ -278,15 +278,15 @@ export default function PresupuestoWizard() {
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-3 gap-4 sm:gap-8 text-center">
             <div>
-              <div className="text-2xl sm:text-3xl font-bold text-[#71C648] mb-1">Directo</div>
+              <div className="text-2xl sm:text-3xl font-bold text-[#39751f] mb-1">Directo</div>
               <div className="text-xs sm:text-sm text-[#5A6D6D]">Contacto con quien desarrolla</div>
             </div>
             <div>
-              <div className="text-2xl sm:text-3xl font-bold text-[#71C648] mb-1">Claro</div>
+              <div className="text-2xl sm:text-3xl font-bold text-[#39751f] mb-1">Claro</div>
               <div className="text-xs sm:text-sm text-[#5A6D6D]">Alcance antes de empezar</div>
             </div>
             <div>
-              <div className="text-2xl sm:text-3xl font-bold text-[#71C648] mb-1">Gratis</div>
+              <div className="text-2xl sm:text-3xl font-bold text-[#39751f] mb-1">Gratis</div>
               <div className="text-xs sm:text-sm text-[#5A6D6D]">Presupuesto detallado</div>
             </div>
           </div>

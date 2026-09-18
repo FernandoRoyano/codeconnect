@@ -44,7 +44,7 @@ export default function CookieBanner() {
             <div className="p-5 sm:p-6">
               <div className="flex items-start gap-4">
                 <div className="hidden sm:flex w-10 h-10 bg-[#71C648]/10 rounded-full items-center justify-center flex-shrink-0">
-                  <svg className="w-5 h-5 text-[#71C648]" fill="none" viewBox="0 0 24 24" strokeWidth={1.75} stroke="currentColor">
+                  <svg className="w-5 h-5 text-[#39751f]" fill="none" viewBox="0 0 24 24" strokeWidth={1.75} stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M21 11.25c0 4.97-4.03 9-9 9s-9-4.03-9-9 4.03-9 9-9c.47 0 .93.04 1.38.11a3.751 3.751 0 004.57 4.57c.07.45.11.91.11 1.32z" />
                     <path strokeLinecap="round" strokeLinejoin="round" d="M9 9.75h.008v.008H9V9.75zM15 15h.008v.008H15V15zM10.5 14.25h.008v.008H10.5v-.008z" />
                   </svg>
@@ -53,14 +53,14 @@ export default function CookieBanner() {
                   <h3 className="text-base font-bold text-[#194973] tracking-tight mb-1">{t("title")}</h3>
                   <p className="text-sm text-[#57534e] leading-relaxed mb-4">
                     {t("description")}{" "}
-                    <Link href="/cookies" className="text-[#71C648] font-medium hover:underline">
+                    <Link href="/cookies" className="text-[#39751f] font-medium hover:underline">
                       {t("moreInfo")}
                     </Link>
                   </p>
                   <div className="flex flex-wrap gap-2">
                     <button
                       onClick={acceptAll}
-                      className="inline-flex items-center gap-1.5 px-5 py-2 bg-[#71C648] text-white text-sm font-semibold rounded-full hover:bg-[#5fb039] transition-all shadow-soft hover:shadow-soft-lg"
+                      className="inline-flex items-center gap-1.5 px-5 py-2 bg-[#71C648] text-[#0b0f10] text-sm font-semibold rounded-full hover:bg-[#5fb039] transition-all shadow-soft hover:shadow-soft-lg"
                     >
                       {t("acceptAll")}
                     </button>
@@ -125,7 +125,7 @@ export default function CookieBanner() {
                 </button>
                 <button
                   onClick={acceptAll}
-                  className="flex-1 px-5 py-2.5 bg-[#71C648] text-white text-sm font-semibold rounded-full hover:bg-[#5fb039] transition-all shadow-soft"
+                  className="flex-1 px-5 py-2.5 bg-[#71C648] text-[#0b0f10] text-sm font-semibold rounded-full hover:bg-[#5fb039] transition-all shadow-soft"
                 >
                   {t("acceptAll")}
                 </button>

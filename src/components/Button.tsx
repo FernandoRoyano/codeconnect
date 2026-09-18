@@ -17,7 +17,7 @@ export default function Button({ children, href, variant = "primary", size = "md
     primary: "bg-[#71C648] hover:bg-[#5db33a] text-[#12324a]",
     secondary: "bg-[#194973] hover:bg-[#0f3150] text-white",
     outline: "border-2 border-[#194973] text-[#194973] hover:bg-[#194973] hover:text-white",
-    "outline-light": "border-2 border-white text-white hover:bg-white hover:text-[#71C648]",
+    "outline-light": "border-2 border-white text-white hover:bg-white hover:text-[#39751f]",
     white: "bg-white text-[#194973] hover:bg-gray-100",
   };
   const sizes = { sm: "px-4 py-2 text-sm", md: "px-6 py-2.5 text-base", lg: "px-8 py-3.5 text-lg" };

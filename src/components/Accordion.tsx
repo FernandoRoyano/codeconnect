@@ -12,7 +12,7 @@ export function AccordionItem({ question, children, defaultOpen = false }: Accor
     >
       <summary className="flex justify-between items-center cursor-pointer p-5 sm:p-6 gap-4">
         <h3 className="font-semibold text-[#194973] tracking-tight">{question}</h3>
-        <span className="acc-chevron flex-shrink-0 w-8 h-8 rounded-full bg-[#71C648]/10 text-[#71C648] flex items-center justify-center group-open:bg-[#71C648] group-open:text-white">
+        <span className="acc-chevron flex-shrink-0 w-8 h-8 rounded-full bg-[#71C648]/10 text-[#39751f] flex items-center justify-center group-open:bg-[#71C648] group-open:text-[#0b0f10]">
           <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
           </svg>

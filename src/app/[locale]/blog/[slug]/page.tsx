@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
+import { setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import ArticleBody from "@/components/blog/ArticleBody";
 import { articles, getArticle } from "@/content/blog";
@@ -51,16 +52,58 @@ const formatDate = (iso: string) =>
 export default async function ArticlePage({
   params,
 }: {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ locale: string; slug: string }>;
 }) {
-  const { slug } = await params;
+  const { locale, slug } = await params;
+  setRequestLocale(locale);
   const article = getArticle(slug);
   if (!article) notFound();
 
   const related = articles.filter((a) => a.slug !== article.slug).slice(0, 2);
 
+  // Datos estructurados del articulo. El autor y la fecha son los mismos que ve
+  // el lector en la cabecera, no metadatos aparte.
+  const articleJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: article.title,
+    description: article.metaDescription,
+    image: `${SITE_URL}${article.image}`,
+    datePublished: article.date,
+    dateModified: article.date,
+    inLanguage: "es",
+    author: { "@type": "Person", name: "Fernando Royano" },
+    publisher: {
+      "@type": "Organization",
+      name: "CodeConnect",
+      logo: { "@type": "ImageObject", url: `${SITE_URL}/brand/codeconnect-logo.svg` },
+    },
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": `${SITE_URL}/${locale}/blog/${article.slug}`,
+    },
+  };
+
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Inicio", item: `${SITE_URL}/${locale}` },
+      { "@type": "ListItem", position: 2, name: "Blog", item: `${SITE_URL}/${locale}/blog` },
+      { "@type": "ListItem", position: 3, name: article.title },
+    ],
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
       <section className="pt-28 sm:pt-32 pb-12 bg-gradient-to-br from-[#194973] to-[#0f3150]">
         <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
           <Link
@@ -69,7 +112,7 @@ export default async function ArticlePage({
           >
             <span aria-hidden>←</span> Blog
           </Link>
-          <span className="inline-block bg-[#71C648]/20 text-[#71C648] px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider mb-5">
+          <span className="inline-block bg-[#71C648]/20 text-white px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider mb-5">
             {article.category}
           </span>
           <h1
@@ -87,7 +130,7 @@ export default async function ArticlePage({
             </div>
             <div className="text-sm">
               <div className="font-medium text-white">Fernando Royano</div>
-              <div className="text-white/50">
+              <div className="text-white/70">
                 <time dateTime={article.date}>{formatDate(article.date)}</time>
                 {" · "}
                 {article.readMinutes} min de lectura
@@ -169,7 +212,7 @@ export default async function ArticlePage({
                     <span className="text-[11px] uppercase tracking-wider text-[#39751f] font-bold">
                       {item.category}
                     </span>
-                    <p className="font-bold text-[#194973] mt-2 leading-snug group-hover:text-[#71C648] transition-colors">
+                    <p className="font-bold text-[#194973] mt-2 leading-snug group-hover:text-[#39751f] transition-colors">
                       {item.title}
                     </p>
                   </Link>

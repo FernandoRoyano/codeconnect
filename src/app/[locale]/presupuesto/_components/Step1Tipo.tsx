@@ -33,7 +33,7 @@ export default function Step1Tipo({ tipoProyecto, onSelect }: Props) {
               {tipo.badge && (
                 <span
                   className={`absolute top-3 right-3 px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider ${
-                    tipo.badge === "Recomendado" ? "bg-[#71C648] text-white" : "bg-[#194973] text-white"
+                    tipo.badge === "Recomendado" ? "bg-[#71C648] text-[#0b0f10]" : "bg-[#194973] text-white"
                   }`}
                 >
                   {tipo.badge}
@@ -44,7 +44,7 @@ export default function Step1Tipo({ tipoProyecto, onSelect }: Props) {
                 {tipo.icon}
               </div>
 
-              <span className="inline-block text-[10px] font-semibold uppercase tracking-widest text-[#71C648] mb-2">
+              <span className="inline-block text-[10px] font-semibold uppercase tracking-widest text-[#39751f] mb-2">
                 {tipo.benefit}
               </span>
 
@@ -59,7 +59,7 @@ export default function Step1Tipo({ tipoProyecto, onSelect }: Props) {
                     <span className="text-xl font-bold text-[#194973] tracking-tight">{fmt.format(tipo.precio)}</span>
                   </>
                 ) : (
-                  <span className="text-sm font-semibold text-[#71C648]">A consultar</span>
+                  <span className="text-sm font-semibold text-[#39751f]">A consultar</span>
                 )}
               </div>
 
@@ -81,7 +81,7 @@ export default function Step1Tipo({ tipoProyecto, onSelect }: Props) {
 
               <div
                 className={`absolute top-4 left-4 w-6 h-6 rounded-full flex items-center justify-center transition-all ${
-                  selected ? "bg-[#71C648] text-white scale-100" : "bg-transparent text-transparent scale-0"
+                  selected ? "bg-[#71C648] text-[#0b0f10] scale-100" : "bg-transparent text-transparent scale-0"
                 }`}
               >
                 <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" strokeWidth={3} stroke="currentColor">

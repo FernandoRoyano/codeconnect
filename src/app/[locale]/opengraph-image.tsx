@@ -1,6 +1,13 @@
 import { ImageResponse } from "next/og";
+import { routing } from "@/i18n/routing";
 
-export const runtime = "edge";
+// Sin `runtime = "edge"`: en edge esta ruta no se podia generar en build y se
+// volvia a dibujar el PNG en cada peticion (3,4 s al compartir un enlace).
+// Con `generateStaticParams` el PNG se genera una vez, al desplegar.
+export function generateStaticParams() {
+  return routing.locales.map((locale) => ({ locale }));
+}
+
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 export const alt = "CodeConnect — Tecnología que elimina trabajo de tu negocio";
@@ -9,14 +16,6 @@ const TAGLINES: Record<string, { headline: string; sub: string }> = {
   es: {
     headline: "Tecnología que elimina trabajo de tu negocio.",
     sub: "Software, automatización e integraciones diseñados desde el problema.",
-  },
-  en: {
-    headline: "Your business online, without the agency in between.",
-    sub: "Custom web, CRM and apps for clinics, gyms and wellness centers.",
-  },
-  fr: {
-    headline: "Votre entreprise en ligne, sans agence intermédiaire.",
-    sub: "Sites, CRM et apps sur mesure pour cliniques, salles de sport et centres bien-être.",
   },
 };
 

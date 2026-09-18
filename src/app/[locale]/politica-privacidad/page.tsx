@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { setRequestLocale } from "next-intl/server";
 import LegalLayout from "@/components/LegalLayout";
 import { buildAlternates } from "@/lib/seo";
 
@@ -14,7 +15,14 @@ export async function generateMetadata({
   };
 }
 
-export default function PoliticaPrivacidadPage() {
+export default async function PoliticaPrivacidadPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+
   return (
     <LegalLayout title="Política de Privacidad">
             <h2>1. Responsable del tratamiento</h2>

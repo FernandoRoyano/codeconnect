@@ -21,7 +21,7 @@ export default function Step3Integraciones({ tipoProyecto, integraciones, otraIn
       </h2>
       <p className="text-[#57534e] mb-10 text-center" style={{ fontSize: "var(--fs-base)" }}>
         {esWeb ? (
-          <>Conecta tu <span className="font-semibold text-[#71C648]">{tipoTitle}</span> con otras herramientas</>
+          <>Conecta tu <span className="font-semibold text-[#39751f]">{tipoTitle}</span> con otras herramientas</>
         ) : (
           "Así lo conectamos con las herramientas que ya usas, sin que tengas que cambiar de costumbres"
         )}
@@ -42,7 +42,7 @@ export default function Step3Integraciones({ tipoProyecto, integraciones, otraIn
             >
               <div
                 className={`w-5 h-5 rounded-md flex items-center justify-center flex-shrink-0 transition-all mt-0.5 ${
-                  selected ? "bg-[#71C648] text-white" : "border-2 border-[#e7e5e4]"
+                  selected ? "bg-[#71C648] text-[#0b0f10]" : "border-2 border-[#e7e5e4]"
                 }`}
               >
                 {selected && (
@@ -63,7 +63,7 @@ export default function Step3Integraciones({ tipoProyecto, integraciones, otraIn
       <div className="mt-6 bg-white rounded-2xl p-6 border border-[#e7e5e4]">
         <label className="block mb-3">
           <span className="font-semibold text-[#194973] flex items-center gap-2">
-            <svg className="w-5 h-5 text-[#71C648]" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
+            <svg className="w-5 h-5 text-[#39751f]" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244" />
             </svg>
             ¿Otra integración?

@@ -7,7 +7,7 @@ export const article: Article = {
   excerpt:
     "No hace falta sustituir el programa central para recuperar horas. Empieza por tareas repetitivas, con reglas claras y un resultado fácil de comprobar.",
   category: "Automatización",
-  date: "2026-09-25",
+  date: "2026-09-15",
   readMinutes: 8,
   metaDescription:
     "Siete automatizaciones prácticas para una pyme: facturas, documentos, citas, cobros y seguimiento, con criterios para empezar sin asumir demasiado riesgo.",

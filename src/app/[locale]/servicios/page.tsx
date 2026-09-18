@@ -1,18 +1,14 @@
 import type { Metadata } from "next";
-import { getTranslations } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import Button from "@/components/Button";
 import { buildAlternates, SITE_URL } from "@/lib/seo";
 
 const TITLES: Record<string, string> = {
   es: "Servicios: Web, CRM y Facturación para Clínicas y Gimnasios",
-  en: "Services: Websites, CRM and Billing for Clinics and Gyms",
-  fr: "Services : Sites Web, CRM et Facturation pour Cliniques et Salles de Sport",
 };
 
 const DESCRIPTIONS: Record<string, string> = {
   es: "Webs a medida, sistemas de gestión de clientes y facturación para clínicas, gimnasios y centros de bienestar. Sin plantillas, con código en propiedad.",
-  en: "Custom websites, client management systems and billing for clinics, gyms and wellness centers. No templates, code you own.",
-  fr: "Sites web sur mesure, systèmes de gestion clients et facturation pour cliniques, salles de sport et centres de bien-être.",
 };
 
 export async function generateMetadata({
@@ -95,7 +91,7 @@ function CrmMockup() {
         </div>
         <div className="flex gap-2 items-center">
           <div className="w-20 h-5 rounded bg-white/10 border border-white/20" />
-          <div className="w-6 h-6 rounded-full bg-[#71C648] flex items-center justify-center text-[8px] text-white font-bold">MG</div>
+          <div className="w-6 h-6 rounded-full bg-[#71C648] flex items-center justify-center text-[8px] text-[#0b0f10] font-bold">MG</div>
         </div>
       </div>
       {/* Body */}
@@ -114,7 +110,7 @@ function CrmMockup() {
           <div className="grid grid-cols-3 gap-2">
             {[
               { label: "Clientes", val: "124", color: "text-[#194973]" },
-              { label: "Pipeline", val: "€34k", color: "text-[#71C648]" },
+              { label: "Pipeline", val: "€34k", color: "text-[#39751f]" },
               { label: "Cerrados", val: "89%", color: "text-[#194973]" },
             ].map((s, i) => (
               <div key={i} className="bg-gray-50 rounded-lg p-2 text-center">
@@ -152,7 +148,7 @@ function BillingMockup() {
           </div>
           <span className="text-white text-xs sm:text-sm font-semibold">Factura #2024-087</span>
         </div>
-        <span className="text-[10px] sm:text-xs bg-[#71C648] text-white px-2.5 py-0.5 rounded-full font-medium">Pagada</span>
+        <span className="text-[10px] sm:text-xs bg-[#71C648] text-[#0b0f10] px-2.5 py-0.5 rounded-full font-medium">Pagada</span>
       </div>
       {/* Invoice body */}
       <div className="flex-1 p-4 sm:p-5 flex flex-col gap-3">
@@ -196,7 +192,14 @@ function BillingMockup() {
   );
 }
 
-export default async function ServiciosPage() {
+export default async function ServiciosPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+
   const t = await getTranslations("services");
 
   const services = [
@@ -307,7 +310,7 @@ export default async function ServiciosPage() {
                   >
                     0{index + 1}
                   </span>
-                  <span className="text-sm font-medium text-[#71C648] uppercase tracking-widest">
+                  <span className="text-sm font-medium text-[#39751f] uppercase tracking-widest">
                     {service.subtitle}
                   </span>
                 </div>
@@ -330,7 +333,7 @@ export default async function ServiciosPage() {
                     <div key={idx} className="flex gap-3">
                       <div className="flex-shrink-0 w-8 h-8 bg-[#71C648]/10 rounded-lg flex items-center justify-center mt-0.5">
                         <svg
-                          className="w-4 h-4 text-[#71C648]"
+                          className="w-4 h-4 text-[#39751f]"
                           fill="currentColor"
                           viewBox="0 0 20 20"
                         >
@@ -400,7 +403,7 @@ export default async function ServiciosPage() {
                 className="group p-6 rounded-2xl border border-[#e7e5e4] bg-white hover:border-[#71C648]/40 hover:shadow-soft transition-all duration-300"
               >
                 <div className="w-10 h-10 rounded-lg bg-[#71C648]/10 flex items-center justify-center mb-4 group-hover:bg-[#71C648]/15 transition-colors">
-                  <span className="text-[#71C648] font-bold text-sm">{String(index + 1).padStart(2, "0")}</span>
+                  <span className="text-[#39751f] font-bold text-sm">{String(index + 1).padStart(2, "0")}</span>
                 </div>
                 <h3 className="font-semibold text-[#194973] mb-2 tracking-tight">{extra.title}</h3>
                 <p className="text-sm text-[#57534e] leading-relaxed">{extra.description}</p>

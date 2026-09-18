@@ -7,7 +7,7 @@ export const article: Article = {
   excerpt:
     "El programa especializado suele ser la mejor primera opción. El desarrollo a medida empieza a tener sentido cuando tu proceso aporta valor y la herramienta te obliga a deformarlo.",
   category: "Guías",
-  date: "2026-09-22",
+  date: "2026-09-15",
   readMinutes: 8,
   metaDescription:
     "Comparativa práctica entre software vertical y desarrollo a medida: costes ocultos, señales para elegir y una prueba sencilla antes de invertir.",

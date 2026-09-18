@@ -118,11 +118,11 @@ export default function ContactoContent() {
             {contactInfo.map((info, index) => {
               const Inner = (
                 <>
-                  <div className="w-11 h-11 bg-[#71C648]/10 rounded-xl flex items-center justify-center text-[#71C648] flex-shrink-0">
+                  <div className="w-11 h-11 bg-[#71C648]/10 rounded-xl flex items-center justify-center text-[#39751f] flex-shrink-0">
                     {info.icon}
                   </div>
                   <div className="min-w-0 text-center">
-                    <div className="text-[11px] uppercase tracking-[0.16em] text-[#71C648] font-semibold mb-1">{info.title}</div>
+                    <div className="text-[11px] uppercase tracking-[0.16em] text-[#39751f] font-semibold mb-1">{info.title}</div>
                     <div className="text-sm font-semibold text-[#194973]">{info.value}</div>
                   </div>
                 </>
@@ -308,7 +308,7 @@ export default function ContactoContent() {
 
                   <p className="text-sm text-[#5A6D6D] text-center">
                     {t("privacyNote")}{" "}
-                    <Link href={"/politica-privacidad" as never} className="text-[#71C648] hover:underline">
+                    <Link href={"/politica-privacidad" as never} className="text-[#39751f] hover:underline">
                       {t("privacyLink")}
                     </Link>
                   </p>

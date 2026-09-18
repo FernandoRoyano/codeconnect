@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { getTranslations } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import Button from "@/components/Button";
 import SectionHeading from "@/components/SectionHeading";
 import ServiceCard from "@/components/ServiceCard";
@@ -11,14 +11,10 @@ import { Link } from "@/i18n/navigation";
 
 const TITLES: Record<string, string> = {
   es: "Software, Automatización y Desarrollo Web a Medida",
-  en: "Custom Web Development and CRM for Clinics, Gyms and Wellness Centers",
-  fr: "Développement Web et CRM sur Mesure pour Cliniques, Salles de Sport et Bien-être",
 };
 
 const DESCRIPTIONS: Record<string, string> = {
   es: "Consultoría tecnológica, automatización, integraciones y software a medida para mejorar procesos empresariales, con especialización en salud y bienestar.",
-  en: "Custom websites, CRMs and applications for clinics, gyms and wellness centers, with direct contact throughout the project.",
-  fr: "Sites web, CRM et applications sur mesure pour les cliniques, salles de sport et centres de bien-être, avec un contact direct pendant le projet.",
 };
 
 export async function generateMetadata({
@@ -34,7 +30,14 @@ export async function generateMetadata({
   };
 }
 
-export default async function Home() {
+export default async function Home({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+
   const t = await getTranslations("home");
   const tContact = await getTranslations("contact");
 
@@ -191,7 +194,7 @@ export default async function Home() {
 
               {/* Industrias pills */}
               <div className="flex flex-wrap items-center gap-2 mb-10 max-w-xl">
-                <span className="text-xs uppercase tracking-widest text-white/40 font-medium mr-1">
+                <span className="text-xs uppercase tracking-widest text-white/60 font-medium mr-1">
                   {t("industriesLabel")}
                 </span>
                 {[1, 2, 3, 4, 5].map((i) => (
@@ -337,7 +340,7 @@ export default async function Home() {
                 key={index}
                 className="group relative bg-white p-7 sm:p-8 hover:bg-[#fafaf9] transition-colors duration-300"
               >
-                <div className="w-11 h-11 bg-[#71C648]/10 rounded-xl flex items-center justify-center text-[#71C648] mb-5 group-hover:bg-[#71C648]/15 transition-colors">
+                <div className="w-11 h-11 bg-[#71C648]/10 rounded-xl flex items-center justify-center text-[#39751f] mb-5 group-hover:bg-[#71C648]/15 transition-colors">
                   {benefit.icon}
                 </div>
                 <h3

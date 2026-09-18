@@ -9,10 +9,10 @@ export default function ProgressBar({ currentStep }: { currentStep: number }) {
             <div
               className={`w-8 h-8 sm:w-9 sm:h-9 rounded-full flex items-center justify-center font-bold text-sm transition-all duration-300 flex-shrink-0 ${
                 step < currentStep
-                  ? "bg-[#71C648] text-white shadow-soft"
+                  ? "bg-[#71C648] text-[#0b0f10] shadow-soft"
                   : step === currentStep
                     ? "bg-white text-[#194973] shadow-soft ring-4 ring-white/20"
-                    : "bg-white/5 text-white/40 border border-white/10"
+                    : "bg-white/5 text-white/60 border border-white/10"
               }`}
             >
               {step < currentStep ? (

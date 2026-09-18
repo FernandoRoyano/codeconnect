@@ -80,12 +80,12 @@ export default function ResultScreen({ formData, llamadaStatus, onSolicitarLlama
           <div className="p-6">
             {funcionalidadesSeleccionadas.length > 0 && (
               <div className="mb-6">
-                <h3 className="text-sm font-semibold text-[#71C648] uppercase tracking-wide mb-3">Funcionalidades</h3>
+                <h3 className="text-sm font-semibold text-[#39751f] uppercase tracking-wide mb-3">Funcionalidades</h3>
                 <div className="space-y-2">
                   {funcionalidadesSeleccionadas.map((func) => (
                     <div key={func?.id} className="flex justify-between text-sm">
                       <span className="text-[#5A6D6D]">{func?.label}</span>
-                      <span className={func?.precio ? "font-medium text-[#194973]" : "text-[#71C648]"}>
+                      <span className={func?.precio ? "font-medium text-[#194973]" : "text-[#39751f]"}>
                         {func?.precio ? `+${formatearPrecio(func.precio)}` : "Incluido"}
                       </span>
                     </div>
@@ -96,14 +96,14 @@ export default function ResultScreen({ formData, llamadaStatus, onSolicitarLlama
 
             {integracionesSeleccionadas.length > 0 && !integracionesSeleccionadas.every((i) => i?.id === "ninguna") && (
               <div className="mb-6">
-                <h3 className="text-sm font-semibold text-[#71C648] uppercase tracking-wide mb-3">Integraciones</h3>
+                <h3 className="text-sm font-semibold text-[#39751f] uppercase tracking-wide mb-3">Integraciones</h3>
                 <div className="space-y-2">
                   {integracionesSeleccionadas
                     .filter((i) => i?.id !== "ninguna")
                     .map((integ) => (
                       <div key={integ?.id} className="flex justify-between text-sm">
                         <span className="text-[#5A6D6D]">{integ?.label}</span>
-                        <span className={integ?.precio ? "font-medium text-[#194973]" : "text-[#71C648]"}>
+                        <span className={integ?.precio ? "font-medium text-[#194973]" : "text-[#39751f]"}>
                           {integ?.precio ? `+${formatearPrecio(integ.precio)}` : "Incluido"}
                         </span>
                       </div>
@@ -114,7 +114,7 @@ export default function ResultScreen({ formData, llamadaStatus, onSolicitarLlama
 
             {(presupuesto.multiplicador > 1 || presupuesto.precioApp > 0) && (
               <div className="mb-6">
-                <h3 className="text-sm font-semibold text-[#71C648] uppercase tracking-wide mb-3">Ajustes</h3>
+                <h3 className="text-sm font-semibold text-[#39751f] uppercase tracking-wide mb-3">Ajustes</h3>
                 <div className="space-y-2">
                   {presupuesto.multiplicador > 1 && (
                     <div className="flex justify-between text-sm">
@@ -156,7 +156,7 @@ export default function ResultScreen({ formData, llamadaStatus, onSolicitarLlama
             <div className="border-t-2 border-[#194973] pt-4 mt-6">
               <div className="flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-1">
                 <div>
-                  <span className="block text-xs text-[#71C648] font-semibold uppercase tracking-wider">Rango estimado</span>
+                  <span className="block text-xs text-[#39751f] font-semibold uppercase tracking-wider">Rango estimado</span>
                   <span className="text-base sm:text-lg font-bold text-[#194973]">Precio orientativo</span>
                 </div>
                 <span className="text-xl sm:text-2xl font-bold text-[#194973]">
@@ -197,7 +197,7 @@ export default function ResultScreen({ formData, llamadaStatus, onSolicitarLlama
 
         {/* Solicitar llamada */}
         <div className="mt-8 bg-white rounded-3xl shadow-soft-xl overflow-hidden">
-          <div className="bg-[#71C648] p-6 sm:p-8 text-white">
+          <div className="bg-[#71C648] p-6 sm:p-8 text-[#0b0f10]">
             <div className="flex items-start gap-4">
               <div className="flex-shrink-0 w-12 h-12 rounded-full bg-white/15 backdrop-blur flex items-center justify-center">
                 <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">

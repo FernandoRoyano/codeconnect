@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import { getLocale } from "next-intl/server";
+import { routing } from "@/i18n/routing";
 import "./globals.css";
 
 const inter = Inter({
@@ -21,14 +21,16 @@ export const metadata: Metadata = {
   },
 };
 
-export default async function RootLayout({
+// El idioma se toma de la configuración de rutas, no de la request: `getLocale()`
+// leía la cabecera que pone el proxy y eso obligaba a renderizar cada página en
+// cada visita. Con un valor estático, todo el árbol puede prerrenderizarse.
+export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const locale = await getLocale();
   return (
-    <html lang={locale}>
+    <html lang={routing.defaultLocale}>
       <body
         className={`${inter.variable} antialiased`}
       >
