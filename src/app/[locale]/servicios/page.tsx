@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import Button from "@/components/Button";
+import { Link } from "@/i18n/navigation";
+import { sectors } from "@/content/sectors";
 import { buildAlternates, SITE_URL } from "@/lib/seo";
 
 const TITLES: Record<string, string> = {
@@ -201,6 +203,8 @@ export default async function ServiciosPage({
   setRequestLocale(locale);
 
   const t = await getTranslations("services");
+
+  const tSectors = await getTranslations("sectors");
 
   const services = [
     {
@@ -408,6 +412,32 @@ export default async function ServiciosPage({
                 <h3 className="font-semibold text-[#194973] mb-2 tracking-tight">{extra.title}</h3>
                 <p className="text-sm text-[#57534e] leading-relaxed">{extra.description}</p>
               </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Por sector */}
+      <section className="py-20 sm:py-28 bg-[#fafaf9]">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="max-w-2xl mb-10">
+            <h2 className="text-3xl sm:text-4xl font-bold text-[#194973] tracking-tight mb-4">{tSectors("servicesTitle")}</h2>
+            <p className="text-lg text-[#57534e]">{tSectors("servicesSubtitle")}</p>
+          </div>
+          <div className="grid md:grid-cols-3 gap-6">
+            {sectors.map((sector) => (
+              <Link
+                key={sector.slug}
+                href={`/soluciones/${sector.slug}`}
+                className="group rounded-2xl border border-[#e7e5e4] bg-white p-7 hover:border-[#71C648]/40 shadow-soft hover:shadow-soft-lg transition-all"
+              >
+                <h3 className="text-xl font-bold text-[#194973] tracking-tight mb-2">{sector.name}</h3>
+                <p className="text-sm text-[#57534e] mb-5">{sector.audience.join(" · ")}</p>
+                <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#39751f] group-hover:text-[#194973] transition-colors">
+                  {tSectors("hubCardCta")}
+                  <span aria-hidden>→</span>
+                </span>
+              </Link>
             ))}
           </div>
         </div>

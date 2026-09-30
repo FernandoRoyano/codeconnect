@@ -35,6 +35,8 @@ export type Article = {
   category: string;
   /** ISO. Es la fecha real de publicacion, no una inventada para aparentar. */
   date: string;
+  /** ISO. Solo si el texto se ha revisado de verdad despues de publicarlo. */
+  updated?: string;
   readMinutes: number;
   /** Resumen en una frase para la metadata de buscadores. */
   metaDescription: string;

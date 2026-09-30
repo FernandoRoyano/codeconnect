@@ -3,6 +3,13 @@ import { routing } from "@/i18n/routing";
 
 export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.codeconnectsl.com";
 
+/** `@id` de los datos estructurados, para que todas las páginas apunten a la misma entidad. */
+export const ORGANIZATION_ID = `${SITE_URL}/#organization`;
+export const PERSON_ID = `${SITE_URL}/#fernando-royano`;
+
+export const AUTHOR_IMAGE = "/images/team/fernando-royano.webp";
+export const AUTHOR_LINKEDIN = "https://www.linkedin.com/in/fernando-royano-cabrero-dev";
+
 /**
  * Canonical + hreflang para una ruta dada. `path` es la parte tras el locale,
  * con la barra inicial incluida (p.ej. "/servicios", "" para home).

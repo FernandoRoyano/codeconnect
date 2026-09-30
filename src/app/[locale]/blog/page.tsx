@@ -4,6 +4,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { articles, categoryCounts } from "@/content/blog";
 import { buildAlternates } from "@/lib/seo";
+import AuthorAvatar from "@/components/AuthorAvatar";
 
 export async function generateMetadata({
   params,
@@ -100,9 +101,7 @@ export default async function BlogPage({
                   {featured.excerpt}
                 </p>
                 <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 bg-[#194973] rounded-full flex items-center justify-center text-white font-bold">
-                    FR
-                  </div>
+                  <AuthorAvatar size={48} />
                   <div>
                     <div className="font-medium text-[#194973]">Fernando Royano</div>
                     <div className="text-sm text-[#5A6D6D]">Fundador de CodeConnect</div>
@@ -150,9 +149,7 @@ export default async function BlogPage({
                         </h3>
                         <p className="text-[#5A6D6D] mb-4 flex-grow leading-relaxed">{post.excerpt}</p>
                         <div className="flex items-center gap-3 pt-4 border-t border-[#f1f1f0]">
-                          <div className="w-8 h-8 bg-[#194973] rounded-full flex items-center justify-center text-white text-sm font-medium">
-                            FR
-                          </div>
+                          <AuthorAvatar size={32} />
                           <span className="text-sm text-[#5A6D6D]">Fernando Royano</span>
                         </div>
                       </div>

@@ -3,6 +3,13 @@
 import { Link } from "@/i18n/navigation";
 import { useTranslations } from "next-intl";
 import Logo from "./Logo";
+import { AUTHOR_LINKEDIN } from "@/lib/seo";
+
+const COLUMN_TITLES = {
+  servicios: "servicesTitle",
+  sectores: "sectorsTitle",
+  empresa: "companyTitle",
+} as const;
 
 export default function Footer() {
   const t = useTranslations("footer");
@@ -13,8 +20,13 @@ export default function Footer() {
       { name: t("management"), href: "/servicios#crm" as const },
       { name: t("billing"), href: "/servicios#facturacion" as const },
     ],
+    sectores: [
+      { name: t("sectorClinics"), href: "/soluciones/clinicas" as const },
+      { name: t("sectorGyms"), href: "/soluciones/gimnasios" as const },
+      { name: t("sectorWellness"), href: "/soluciones/bienestar" as const },
+    ],
     empresa: [
-      { name: t("aboutUs"), href: "/#nosotros" as const },
+      { name: t("aboutUs"), href: "/sobre-nosotros" as const },
       { name: t("portfolio"), href: "/portfolio" as const },
       { name: t("blog"), href: "/blog" as const },
       { name: t("contact"), href: "/contacto" as const },
@@ -54,15 +66,15 @@ export default function Footer() {
         </div>
 
         {/* Main columns */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr] gap-10 lg:gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr_1fr] gap-10 lg:gap-12">
           <div>
             <Logo variant="on-dark" showTagline={true} />
           </div>
 
-          {(["servicios", "empresa"] as const).map((key) => (
+          {(["servicios", "sectores", "empresa"] as const).map((key) => (
             <div key={key}>
               <h3 className="text-xs uppercase tracking-widest font-semibold text-[#20DCC2] mb-4">
-                {key === "servicios" ? t("servicesTitle") : t("companyTitle")}
+                {t(COLUMN_TITLES[key])}
               </h3>
               <ul className="space-y-2.5">
                 {footerNavigation[key].map((item) => (
@@ -87,6 +99,17 @@ export default function Footer() {
                 <Link href="/contacto" className="text-white/70 hover:text-white transition-colors">
                   {t("contact")}
                 </Link>
+              </li>
+              <li>
+                <a
+                  href={AUTHOR_LINKEDIN}
+                  target="_blank"
+                  rel="noopener noreferrer me"
+                  aria-label={t("linkedin")}
+                  className="text-white/70 hover:text-white transition-colors"
+                >
+                  LinkedIn
+                </a>
               </li>
             </ul>
           </div>

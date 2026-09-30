@@ -4,8 +4,10 @@ import { notFound } from "next/navigation";
 import { setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import ArticleBody from "@/components/blog/ArticleBody";
+import AuthorAvatar from "@/components/AuthorAvatar";
 import { articles, getArticle } from "@/content/blog";
-import { buildAlternates, SITE_URL } from "@/lib/seo";
+import { AUTHOR_IMAGE, AUTHOR_LINKEDIN, buildAlternates, ORGANIZATION_ID, PERSON_ID, SITE_URL } from "@/lib/seo";
+import { sectorForArticle } from "@/content/sectors";
 import { routing } from "@/i18n/routing";
 
 export function generateStaticParams() {
@@ -34,6 +36,8 @@ export async function generateMetadata({
       description: article.metaDescription,
       url: `${SITE_URL}/${locale}/blog/${article.slug}`,
       publishedTime: article.date,
+      modifiedTime: article.updated ?? article.date,
+      authors: [`${SITE_URL}/${locale}/sobre-nosotros`],
       images: [
         {
           url: `${SITE_URL}${article.image}`,
@@ -59,7 +63,15 @@ export default async function ArticlePage({
   const article = getArticle(slug);
   if (!article) notFound();
 
-  const related = articles.filter((a) => a.slug !== article.slug).slice(0, 2);
+  // Primero los de la misma categoria; si no llegan a dos, los mas recientes.
+  const others = articles
+    .filter((a) => a.slug !== article.slug)
+    .sort((a, b) => b.date.localeCompare(a.date));
+  const related = [
+    ...others.filter((a) => a.category === article.category),
+    ...others.filter((a) => a.category !== article.category),
+  ].slice(0, 2);
+  const sector = sectorForArticle(article.slug);
 
   // Datos estructurados del articulo. El autor y la fecha son los mismos que ve
   // el lector en la cabecera, no metadatos aparte.
@@ -70,11 +82,19 @@ export default async function ArticlePage({
     description: article.metaDescription,
     image: `${SITE_URL}${article.image}`,
     datePublished: article.date,
-    dateModified: article.date,
+    dateModified: article.updated ?? article.date,
     inLanguage: "es",
-    author: { "@type": "Person", name: "Fernando Royano" },
+    author: {
+      "@type": "Person",
+      "@id": PERSON_ID,
+      name: "Fernando Royano",
+      url: `${SITE_URL}/${locale}/sobre-nosotros`,
+      image: `${SITE_URL}${AUTHOR_IMAGE}`,
+      sameAs: [AUTHOR_LINKEDIN],
+    },
     publisher: {
       "@type": "Organization",
+      "@id": ORGANIZATION_ID,
       name: "CodeConnect",
       logo: { "@type": "ImageObject", url: `${SITE_URL}/brand/codeconnect-logo.svg` },
     },
@@ -108,7 +128,7 @@ export default async function ArticlePage({
         <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
           <Link
             href="/blog"
-            className="inline-flex items-center gap-1.5 text-white/60 hover:text-white text-sm transition-colors mb-6"
+            className="flex w-fit items-center gap-1.5 text-white/60 hover:text-white text-sm transition-colors mb-6"
           >
             <span aria-hidden>←</span> Blog
           </Link>
@@ -125,15 +145,21 @@ export default async function ArticlePage({
             {article.excerpt}
           </p>
           <div className="flex items-center gap-3">
-            <div className="w-11 h-11 rounded-full bg-[#71C648] text-[#12324a] font-bold flex items-center justify-center">
-              FR
-            </div>
+            <AuthorAvatar size={44} className="ring-2 ring-white/20" />
             <div className="text-sm">
-              <div className="font-medium text-white">Fernando Royano</div>
+              <Link href="/sobre-nosotros" className="font-medium text-white hover:underline" rel="author">
+                Fernando Royano
+              </Link>
               <div className="text-white/70">
                 <time dateTime={article.date}>{formatDate(article.date)}</time>
                 {" · "}
                 {article.readMinutes} min de lectura
+                {article.updated && (
+                  <>
+                    {" · Actualizado el "}
+                    <time dateTime={article.updated}>{formatDate(article.updated)}</time>
+                  </>
+                )}
               </div>
             </div>
           </div>
@@ -197,6 +223,15 @@ export default async function ArticlePage({
                 <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
               </svg>
             </Link>
+            {sector && (
+              <Link
+                href={`/soluciones/${sector.slug}`}
+                className="mt-4 ml-1 sm:ml-4 inline-flex items-center gap-1.5 text-sm font-semibold text-white/80 hover:text-white transition-colors"
+              >
+                Soluciones para {sector.name.toLowerCase()}
+                <span aria-hidden>→</span>
+              </Link>
+            )}
           </aside>
 
           {related.length > 0 && (

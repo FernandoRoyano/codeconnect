@@ -5,95 +5,22 @@ import { useState } from "react";
 import { useTranslations } from "next-intl";
 import Button from "@/components/Button";
 import SectionHeading from "@/components/SectionHeading";
+import { Link } from "@/i18n/navigation";
+import { CATEGORY_LABELS, projects, type ProjectCategory } from "@/content/portfolio";
 
 export default function PortfolioContent() {
   const t = useTranslations("portfolio");
-  const [activeFilter, setActiveFilter] = useState(0);
+  const [activeFilter, setActiveFilter] = useState<ProjectCategory | "all">("all");
 
-  const projects = [
-    {
-      id: 9,
-      title: "TrainHub",
-      category: t("p9Cat"),
-      catIndex: 3,
-      image: "/images/portfolio/trainhub-product.webp",
-      description: t("p9Desc"),
-      technologies: ["Next.js", "React", "TypeScript", "Stripe"],
-      kind: "own" as const,
-      badge: t("commercialProductLabel"),
-      url: "https://train-hub-five.vercel.app/",
-    },
-    {
-      id: 10,
-      title: "WellnessReal",
-      category: t("p10Cat"),
-      catIndex: 1,
-      image: "/images/portfolio/wellnessreal-project.webp",
-      description: t("p10Desc"),
-      technologies: ["Next.js", "React", "TypeScript", "Tailwind CSS"],
-      kind: "own" as const,
-      badge: t("ownProjectLabel"),
-      url: "https://wellnessreal.es/",
-    },
-    {
-      id: 11,
-      title: "Diego Royano Nutricionista",
-      category: t("p11Cat"),
-      catIndex: 1,
-      image: "/images/portfolio/diego-royano-client.webp",
-      description: t("p11Desc"),
-      technologies: ["Next.js", "React", "TypeScript", "CSS"],
-      kind: "client" as const,
-      badge: t("clientLabel"),
-      url: "https://patologia-digestiva.vercel.app/",
-    },
-    {
-      id: 12,
-      title: "Antea Salud",
-      category: t("p12Cat"),
-      catIndex: 1,
-      image: "/images/portfolio/antea-salud-project.webp",
-      description: t("p12Desc"),
-      technologies: ["Next.js", "React", "TypeScript", "CSS Modules"],
-      kind: "own" as const,
-      badge: t("ownLiveProjectLabel"),
-      url: "https://anteasalud.com/",
-    },
-    {
-      id: 7,
-      title: t("p7Title"),
-      category: t("p7Cat"),
-      catIndex: 1,
-      image: "/images/portfolio/escapa-cantabria-client.webp",
-      description: t("p7Desc"),
-      technologies: ["Next.js", "React", "TypeScript"],
-      kind: "client" as const,
-      badge: t("clientLabel"),
-      url: "https://autocaravanasescapacantabria.com/",
-    },
-    {
-      id: 8,
-      title: t("p8Title"),
-      category: t("p8Cat"),
-      catIndex: 1,
-      image: "/images/portfolio/caniches-con-amor-client.webp",
-      description: t("p8Desc"),
-      technologies: ["Next.js", "React", "TypeScript"],
-      kind: "client" as const,
-      badge: t("clientLabel"),
-      url: "https://canichesconamor.com/",
-    },
+  const filters: { value: ProjectCategory | "all"; label: string }[] = [
+    { value: "all", label: t("cat0") },
+    { value: "web", label: CATEGORY_LABELS.web },
+    { value: "software", label: CATEGORY_LABELS.software },
   ];
 
-  const categories = [
-    { index: 0, label: t("cat0") },
-    { index: 1, label: t("cat1") },
-    { index: 3, label: t("cat3") },
-  ];
-
-  const filteredProjects = activeFilter === 0
+  const filteredProjects = activeFilter === "all"
     ? projects
-    : projects.filter((p) => p.catIndex === activeFilter);
+    : projects.filter((p) => p.category === activeFilter);
 
   return (
     <>
@@ -125,18 +52,18 @@ export default function PortfolioContent() {
       <section className="sticky top-16 z-30 py-4 bg-white/80 backdrop-blur-xl border-b border-[#e7e5e4]">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex flex-wrap justify-center gap-2" role="group" aria-label={t("filterLabel")}>
-            {categories.map((category) => (
+            {filters.map((filter) => (
               <button
-                key={category.index}
-                onClick={() => setActiveFilter(category.index)}
-                aria-pressed={activeFilter === category.index}
+                key={filter.value}
+                onClick={() => setActiveFilter(filter.value)}
+                aria-pressed={activeFilter === filter.value}
                 className={`px-4 sm:px-5 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
-                  activeFilter === category.index
+                  activeFilter === filter.value
                     ? "bg-[#194973] text-white shadow-soft"
                     : "text-[#57534e] hover:text-[#194973] hover:bg-[#fafaf9]"
                 }`}
               >
-                {category.label}
+                {filter.label}
               </button>
             ))}
           </div>
@@ -149,8 +76,8 @@ export default function PortfolioContent() {
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 reveal">
             {filteredProjects.map((project, index) => (
               <article
-                key={project.id}
-                className="bg-white rounded-2xl overflow-hidden shadow-soft hover:shadow-soft-lg transition-all duration-300 hover:-translate-y-1 border border-[#e7e5e4] hover:border-[#71C648]/40 group"
+                key={project.slug}
+                className="relative bg-white rounded-2xl overflow-hidden shadow-soft hover:shadow-soft-lg transition-all duration-300 hover:-translate-y-1 border border-[#e7e5e4] hover:border-[#71C648]/40 group"
               >
                 <div className="relative h-52 overflow-hidden bg-[#111A1D]">
                   <Image
@@ -164,7 +91,7 @@ export default function PortfolioContent() {
                   <div className="absolute inset-0 bg-gradient-to-t from-[#0B0F10]/55 via-transparent to-transparent" />
                   <div className="absolute bottom-4 left-4">
                     <span className="bg-white/90 backdrop-blur text-[#111A1D] px-3 py-1 rounded-full text-xs font-semibold tracking-wide shadow-sm">
-                      {project.category}
+                      {project.sector}
                     </span>
                   </div>
                 </div>
@@ -172,9 +99,11 @@ export default function PortfolioContent() {
                 {/* Content */}
                 <div className="p-6">
                   <div className="flex items-start justify-between gap-2 mb-2">
-                    <h3 className="text-lg font-bold text-[#194973] tracking-tight group-hover:text-[#39751f] transition-colors">
-                      {project.title}
-                    </h3>
+                    <h2 className="text-lg font-bold text-[#194973] tracking-tight group-hover:text-[#39751f] transition-colors">
+                      <Link href={`/portfolio/${project.slug}`} className="after:absolute after:inset-0">
+                        {project.title}
+                      </Link>
+                    </h2>
                     <span className={`flex-shrink-0 border px-2 py-0.5 rounded-full text-[10px] font-semibold tracking-wide uppercase ${
                       project.kind === "client"
                         ? "bg-[#71C648]/10 text-[#39751f] border-[#71C648]/25"
@@ -184,7 +113,7 @@ export default function PortfolioContent() {
                     </span>
                   </div>
                   <p className="text-sm text-[#57534e] mb-5 line-clamp-2 leading-relaxed">
-                    {project.description}
+                    {project.summary}
                   </p>
 
                   {/* Technologies */}
@@ -199,15 +128,10 @@ export default function PortfolioContent() {
                     ))}
                   </div>
 
-                  <a
-                    href={project.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#194973] hover:text-[#39751f] transition-colors"
-                  >
-                    {t("visitProject")}
-                    <span aria-hidden>↗</span>
-                  </a>
+                  <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#194973] group-hover:text-[#39751f] transition-colors">
+                    {t("viewCase")}
+                    <span aria-hidden>→</span>
+                  </span>
                 </div>
               </article>
             ))}

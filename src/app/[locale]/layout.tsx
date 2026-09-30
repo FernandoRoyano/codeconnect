@@ -7,14 +7,14 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import CookieBanner from "@/components/CookieBanner";
 import Analytics from "@/components/Analytics";
-import { SITE_URL } from "@/lib/seo";
+import { AUTHOR_IMAGE, AUTHOR_LINKEDIN, ORGANIZATION_ID, PERSON_ID, SITE_URL } from "@/lib/seo";
 
 const TITLES: Record<string, string> = {
-  es: "CodeConnect | Desarrollo de Software a Medida para Salud",
+  es: "CodeConnect | Software a medida para clínicas, gimnasios y bienestar",
 };
 
 const DESCRIPTIONS: Record<string, string> = {
-  es: "Desarrollo de aplicaciones web y software a medida para clínicas, gimnasios y centros de bienestar.",
+  es: "Webs, automatizaciones y software a medida para clínicas, gimnasios y centros de bienestar. Menos tareas manuales y procesos conectados, de la reserva al cobro.",
 };
 
 const OG_LOCALES: Record<string, string> = {
@@ -97,23 +97,46 @@ export default async function LocaleLayout({
     CLIENT_NAMESPACES.map((namespace) => [namespace, messages[namespace]]),
   );
 
+  // Dirección completa no publicada hoy (solo "Madrid, España" en el footer) —
+  // no se inventan calle/código postal; se declara solo lo verificable.
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "Organization",
+    "@type": "ProfessionalService",
+    "@id": ORGANIZATION_ID,
     name: "CodeConnect",
     url: SITE_URL,
     logo: `${SITE_URL}/brand/codeconnect-logo.svg`,
+    image: `${SITE_URL}/brand/codeconnect-logo.svg`,
     description: DESCRIPTIONS[locale] || DESCRIPTIONS.es,
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Madrid",
+      addressCountry: "ES",
+    },
+    areaServed: { "@type": "Country", name: "España" },
+    founder: {
+      "@type": "Person",
+      "@id": PERSON_ID,
+      name: "Fernando Royano",
+      url: `${SITE_URL}/es/sobre-nosotros`,
+      image: `${SITE_URL}${AUTHOR_IMAGE}`,
+      sameAs: [AUTHOR_LINKEDIN],
+    },
+    knowsAbout: [
+      "Software a medida",
+      "Automatización de procesos",
+      "Desarrollo web",
+      "Integraciones",
+      "Software para clínicas",
+      "Software para gimnasios",
+    ],
     contactPoint: {
       "@type": "ContactPoint",
       contactType: "customer service",
+      url: `${SITE_URL}/es/contacto`,
       availableLanguage: ["Spanish"],
     },
-    sameAs: [],
   };
-
-  // Dirección completa no publicada hoy (solo "Madrid, España" en el footer) —
-  // no se inventan calle/código postal; se declara solo lo verificable.
   return (
     <NextIntlClientProvider locale={locale} messages={clientMessages}>
       <script

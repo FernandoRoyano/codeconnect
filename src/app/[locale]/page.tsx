@@ -7,14 +7,17 @@ import HeroMockup from "@/components/HeroMockup";
 import BrandVisual from "@/components/BrandVisual";
 import Accordion, { AccordionItem } from "@/components/Accordion";
 import { buildAlternates } from "@/lib/seo";
+import Image from "next/image";
 import { Link } from "@/i18n/navigation";
+import { featuredProjects } from "@/content/portfolio";
+import { sectors } from "@/content/sectors";
 
 const TITLES: Record<string, string> = {
-  es: "Software, Automatización y Desarrollo Web a Medida",
+  es: "Software a medida para clínicas y gimnasios",
 };
 
 const DESCRIPTIONS: Record<string, string> = {
-  es: "Consultoría tecnológica, automatización, integraciones y software a medida para mejorar procesos empresariales, con especialización en salud y bienestar.",
+  es: "Webs, automatizaciones y software a medida para clínicas, gimnasios y centros de bienestar. Menos tareas manuales y procesos conectados, de la reserva al cobro.",
 };
 
 export async function generateMetadata({
@@ -24,7 +27,9 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   return {
-    title: TITLES[locale] || TITLES.es,
+    // La plantilla "%s | CodeConnect" del layout no alcanza a la página de su
+    // mismo segmento, así que la marca se añade aquí.
+    title: { absolute: `${TITLES[locale] || TITLES.es} | CodeConnect` },
     description: DESCRIPTIONS[locale] || DESCRIPTIONS.es,
     alternates: buildAlternates(locale, ""),
   };
@@ -40,6 +45,8 @@ export default async function Home({
 
   const t = await getTranslations("home");
   const tContact = await getTranslations("contact");
+  const tSectors = await getTranslations("sectors");
+  const tAbout = await getTranslations("about");
 
   const homeFaqs = [0, 1, 2, 3].map((i) => ({
     question: tContact(`faq${i}Q`),
@@ -67,7 +74,7 @@ export default async function Home({
         </svg>
       ),
       features: [t("svcWebF0"), t("svcWebF1"), t("svcWebF2")],
-      label: "Producto",
+      label: t("svcWebLabel"),
     },
     {
       title: t("svcCrmTitle"),
@@ -79,7 +86,7 @@ export default async function Home({
         </svg>
       ),
       features: [t("svcCrmF0"), t("svcCrmF1"), t("svcCrmF2")],
-      label: "Sistemas",
+      label: t("svcCrmLabel"),
     },
     {
       title: t("svcBillingTitle"),
@@ -91,7 +98,7 @@ export default async function Home({
         </svg>
       ),
       features: [t("svcBillingF0"), t("svcBillingF1"), t("svcBillingF2")],
-      label: "Procesos",
+      label: t("svcBillingLabel"),
     },
   ];
 
@@ -192,8 +199,8 @@ export default async function Home({
                 {t("heroDesc1")}
               </p>
 
-              {/* Industrias pills */}
-              <div className="flex flex-wrap items-center gap-2 mb-10 max-w-xl">
+              {/* Capacidades */}
+              <div className="flex flex-wrap items-center gap-2 mb-4 max-w-xl">
                 <span className="text-xs uppercase tracking-widest text-white/60 font-medium mr-1">
                   {t("industriesLabel")}
                 </span>
@@ -204,6 +211,22 @@ export default async function Home({
                   >
                     {t(`industry${i}`)}
                   </span>
+                ))}
+              </div>
+
+              {/* Sectores: enlazan a sus landings */}
+              <div className="flex flex-wrap items-center gap-2 mb-10 max-w-xl">
+                <span className="text-xs uppercase tracking-widest text-white/60 font-medium mr-1">
+                  {tSectors("homeLabel")}
+                </span>
+                {sectors.map((sector) => (
+                  <Link
+                    key={sector.slug}
+                    href={`/soluciones/${sector.slug}`}
+                    className="text-xs font-semibold text-[#0b202f] bg-[#9de377] hover:bg-white px-3 py-1 rounded-full transition-colors"
+                  >
+                    {sector.name}
+                  </Link>
                 ))}
               </div>
 
@@ -266,11 +289,11 @@ export default async function Home({
             <div className="relative rounded-[1.75rem] bg-[#0f3150] p-6 sm:p-8 overflow-hidden shadow-soft-xl">
               <div className="absolute inset-0 workflow-grid opacity-30" aria-hidden />
               <div className="relative">
-                <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#9de377] mb-3">Una operativa conectada</p>
-                <h3 className="text-2xl sm:text-3xl font-bold text-white max-w-md mb-8">De la primera visita al cobro, sin perder el hilo.</h3>
+                <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#9de377] mb-3">{t("flowEyebrow")}</p>
+                <h3 className="text-2xl sm:text-3xl font-bold text-white max-w-md mb-8">{t("flowTitle")}</h3>
                 <div className="relative grid grid-cols-2 gap-3 sm:gap-4">
                   <div className="absolute left-[25%] right-[25%] top-1/2 h-px bg-[#71C648]/40 hidden sm:block" aria-hidden />
-                  {["Captación", "Reserva", "Atención", "Cobro"].map((item, index) => (
+                  {[t("flow0"), t("flow1"), t("flow2"), t("flow3")].map((item, index) => (
                     <div key={item} className="relative z-10 rounded-2xl border border-white/10 bg-white/[0.07] backdrop-blur-sm p-4 sm:p-5">
                       <span className="mb-7 flex h-8 w-8 items-center justify-center rounded-full bg-[#71C648] text-xs font-extrabold text-[#12324a]">
                         {index + 1}
@@ -294,7 +317,7 @@ export default async function Home({
       <section id="servicios" className="py-20 sm:py-28 bg-[#fafaf9]">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionHeading
-            eyebrow="Soluciones conectables"
+            eyebrow={t("servicesEyebrow")}
             title={t("servicesTitle")}
             subtitle={t("servicesSubtitle")}
           />
@@ -317,10 +340,10 @@ export default async function Home({
 
       <section className="bg-[#0b202f] py-24 sm:py-32 overflow-hidden">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-[#9de377] mb-7">Nuestro criterio</p>
+          <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-[#9de377] mb-7">{t("manifestoEyebrow")}</p>
           <h2 className="max-w-5xl text-4xl sm:text-6xl lg:text-7xl font-black tracking-[-0.045em] text-white leading-[0.98]">
-            No vendemos código.
-            <span className="block text-[#20DCC2]">Resolvemos problemas con tecnología.</span>
+            {t("manifestoTitle")}
+            <span className="block text-[#20DCC2]">{t("manifestoHighlight")}</span>
           </h2>
         </div>
       </section>
@@ -329,7 +352,7 @@ export default async function Home({
       <section className="py-20 sm:py-28 bg-white">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionHeading
-            eyebrow="Nuestra forma de trabajar"
+            eyebrow={t("benefitsEyebrow")}
             title={t("benefitsTitle")}
             subtitle={t("benefitsSubtitle")}
           />
@@ -357,12 +380,12 @@ export default async function Home({
             {/* Cell vacía para que la cuadrícula 3xN no quede coja con 5 ítems */}
             <div className="hidden lg:flex bg-[#eff8ea] p-8 items-center justify-center">
               <div className="text-center">
-                <div className="text-3xl font-bold text-[#194973] tracking-tight mb-2">¿Encajamos?</div>
+                <div className="text-3xl font-bold text-[#194973] tracking-tight mb-2">{t("fitTitle")}</div>
                 <Link
                   href="/diagnostico"
                   className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#39751f] hover:text-[#194973] transition-colors"
                 >
-                  Cuéntanos tu caso
+                  {t("fitCta")}
                   <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
                   </svg>
@@ -377,7 +400,7 @@ export default async function Home({
       <section className="py-20 sm:py-28 bg-mesh relative overflow-hidden">
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionHeading
-            eyebrow="Un proceso visible"
+            eyebrow={t("howEyebrow")}
             title={t("howTitle")}
             subtitle={t("howSubtitle")}
             light
@@ -399,18 +422,45 @@ export default async function Home({
         </div>
       </section>
 
+      {/* Casos reales — prueba antes de las objeciones */}
       <section className="py-20 sm:py-28 bg-white">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-[0.8fr_1.2fr] gap-10 lg:gap-16 items-center">
-            <div>
-              <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#39751f] mb-4">Demo conceptual</p>
-              <h2 className="text-3xl sm:text-5xl font-bold text-[#194973] mb-6">Una operativa completa, visible en una sola interfaz.</h2>
-              <p className="text-lg text-[#57534e] mb-8">Una muestra de cómo clientes, reservas, cobros y seguimiento pueden convivir sin duplicar información.</p>
-              <Button href="/portfolio" variant="outline" size="lg">Ver proyectos</Button>
+          <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 mb-12">
+            <div className="max-w-2xl">
+              <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#39751f] mb-4">{t("casesEyebrow")}</p>
+              <h2 className="text-3xl sm:text-5xl font-bold text-[#194973]">{t("casesTitle")}</h2>
             </div>
-            <div className="relative rounded-[1.75rem] border border-[#dfe8dc] bg-[#f6faf4] p-3 sm:p-5 shadow-soft-lg">
-              <HeroMockup />
-            </div>
+            <Link
+              href="/portfolio"
+              className="inline-flex items-center gap-1.5 font-semibold text-[#194973] hover:text-[#39751f] transition-colors"
+            >
+              {t("casesAll")}
+              <span aria-hidden>→</span>
+            </Link>
+          </div>
+          <div className="grid md:grid-cols-3 gap-6 reveal">
+            {featuredProjects.map((project) => (
+              <Link
+                key={project.slug}
+                href={`/portfolio/${project.slug}`}
+                className="group block rounded-2xl overflow-hidden border border-[#e7e5e4] bg-[#fafaf9] hover:border-[#71C648]/40 shadow-soft hover:shadow-soft-lg transition-all"
+              >
+                <div className="relative aspect-[1440/1000] overflow-hidden bg-[#111A1D]">
+                  <Image
+                    src={project.captures.desktop}
+                    alt=""
+                    fill
+                    sizes="(min-width: 768px) 33vw, 100vw"
+                    className="object-cover object-top transition-transform duration-700 group-hover:scale-[1.035]"
+                  />
+                </div>
+                <div className="p-6">
+                  <p className="text-xs font-semibold uppercase tracking-wider text-[#39751f] mb-2">{project.sector}</p>
+                  <h3 className="text-xl font-bold text-[#194973] tracking-tight mb-2">{project.title}</h3>
+                  <p className="text-sm text-[#57534e] leading-relaxed line-clamp-2">{project.summary}</p>
+                </div>
+              </Link>
+            ))}
           </div>
         </div>
       </section>
@@ -419,7 +469,7 @@ export default async function Home({
       <section id="preguntas" className="py-20 sm:py-28 bg-[#fafaf9]">
         <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
           <SectionHeading
-            eyebrow="Antes de empezar"
+            eyebrow={t("faqEyebrow")}
             title={t("homeFaqTitle")}
             subtitle={t("homeFaqSubtitle")}
           />
@@ -439,19 +489,19 @@ export default async function Home({
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             <div>
-              <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#066B63] mb-4">IA aplicada</p>
-              <h2 className="text-3xl sm:text-5xl font-bold text-[#194973] mb-6">IA cuando tiene sentido.</h2>
-              <p className="text-lg text-[#57534e] leading-relaxed">La utilizamos cuando puede clasificar información, mejorar búsquedas, generar reporting o reducir trabajo dentro de un proceso concreto. Nunca como reclamo vacío.</p>
+              <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#066B63] mb-4">{t("aiEyebrow")}</p>
+              <h2 className="text-3xl sm:text-5xl font-bold text-[#194973] mb-6">{t("aiTitle")}</h2>
+              <p className="text-lg text-[#57534e] leading-relaxed">{t("aiDesc")}</p>
             </div>
             <div className="rounded-[1.75rem] border border-[#dfe8dc] bg-white p-6 sm:p-8">
               <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-3 text-center">
-                <div className="rounded-2xl bg-[#f3f7f1] p-5"><span className="text-xs font-bold uppercase tracking-widest text-[#194973]">Datos</span></div>
+                <div className="rounded-2xl bg-[#f3f7f1] p-5"><span className="text-xs font-bold uppercase tracking-widest text-[#194973]">{t("aiStep0")}</span></div>
                 <span className="text-[#39751f]" aria-hidden>→</span>
-                <div className="rounded-2xl bg-[#194973] p-5"><span className="text-xs font-bold uppercase tracking-widest text-white">Análisis</span></div>
+                <div className="rounded-2xl bg-[#194973] p-5"><span className="text-xs font-bold uppercase tracking-widest text-white">{t("aiStep1")}</span></div>
                 <div className="col-span-3 flex justify-center text-[#39751f]" aria-hidden>↓</div>
-                <div className="rounded-2xl bg-[#f3f7f1] p-5"><span className="text-xs font-bold uppercase tracking-widest text-[#194973]">Resumen</span></div>
+                <div className="rounded-2xl bg-[#f3f7f1] p-5"><span className="text-xs font-bold uppercase tracking-widest text-[#194973]">{t("aiStep2")}</span></div>
                 <span className="text-[#39751f]" aria-hidden>→</span>
-                <div className="rounded-2xl bg-[#71C648] p-5"><span className="text-xs font-bold uppercase tracking-widest text-[#12324a]">Acción</span></div>
+                <div className="rounded-2xl bg-[#71C648] p-5"><span className="text-xs font-bold uppercase tracking-widest text-[#12324a]">{t("aiStep3")}</span></div>
               </div>
             </div>
           </div>
@@ -475,6 +525,9 @@ export default async function Home({
               <p className="text-lg text-[#5A6D6D] mb-8 leading-relaxed">
                 {t("aboutP2")}
               </p>
+              <Button href="/sobre-nosotros" variant="outline" size="md">
+                {tAbout("homeLink")}
+              </Button>
             </div>
             {/* Visual - Ecosistema de productos conectados */}
             <div className="relative">
@@ -503,7 +556,7 @@ export default async function Home({
           <div className="relative overflow-hidden rounded-[2rem] bg-mesh px-6 py-12 text-center shadow-soft-xl sm:px-12 sm:py-16">
           <div className="absolute -right-16 -top-24 h-64 w-64 rounded-full border border-white/10" aria-hidden />
           <div className="absolute -right-4 -top-12 h-40 w-40 rounded-full border border-[#71C648]/30" aria-hidden />
-          <p className="mb-4 text-xs font-bold uppercase tracking-[0.2em] text-[#9de377]">Primer paso, sin compromiso</p>
+          <p className="mb-4 text-xs font-bold uppercase tracking-[0.2em] text-[#9de377]">{t("ctaEyebrow")}</p>
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-6">
             {t("ctaTitle")}
           </h2>

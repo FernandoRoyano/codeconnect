@@ -9,16 +9,14 @@ const inter = Inter({
   display: "swap",
 });
 
+// Metadata mínima para lo que queda fuera de [locale] (panel, login, propuestas
+// privadas): no se indexa. Las páginas públicas la sobrescriben en su layout.
 export const metadata: Metadata = {
-  title: {
-    default: "CodeConnect | Desarrollo de Software a Medida para Salud",
-    template: "%s | CodeConnect",
-  },
-  description:
-    "Conectando ideas, creando soluciones. Desarrollo de aplicaciones web y software a medida para el sector salud.",
+  title: "CodeConnect",
   icons: {
     icon: "/favicon.svg",
   },
+  robots: { index: false, follow: false },
 };
 
 // El idioma se toma de la configuración de rutas, no de la request: `getLocale()`

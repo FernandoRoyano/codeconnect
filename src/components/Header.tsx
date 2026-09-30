@@ -15,6 +15,7 @@ export default function Header() {
   const navigation = [
     { name: t("home"), href: "/" as const },
     { name: t("services"), href: "/servicios" as const },
+    { name: t("sectors"), href: "/soluciones" as const },
     { name: t("portfolio"), href: "/portfolio" as const },
     { name: t("blog"), href: "/blog" as const },
     { name: t("contact"), href: "/contacto" as const },
@@ -99,7 +100,7 @@ export default function Header() {
             })}
             <Link
               href="/diagnostico"
-              className="ml-3 inline-flex items-center gap-1.5 bg-[#71C648] hover:bg-[#5fb039] text-[#12324a] px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-200 shadow-soft hover:shadow-soft-lg"
+              className="ml-3 inline-flex items-center gap-1.5 whitespace-nowrap flex-shrink-0 bg-[#71C648] hover:bg-[#5fb039] text-[#12324a] px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-200 shadow-soft hover:shadow-soft-lg"
             >
               {t("diagnosis")}
               <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor">

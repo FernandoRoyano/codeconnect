@@ -1,12 +1,14 @@
 import type { MetadataRoute } from "next";
 import { articles } from "@/content/blog";
+import { projects } from "@/content/portfolio";
+import { sectors } from "@/content/sectors";
 import { SITE_URL } from "@/lib/seo";
 
 // Fecha real de la última edición de contenido conocida por este repo — no
 // "new Date()" en cada request, que haría creer a los buscadores que todo
 // cambia constantemente. Actualizar a mano cuando se publiquen cambios de
 // contenido reales (o sustituir por la fecha del último commit relevante).
-const LAST_MODIFIED = new Date("2026-09-18");
+const LAST_MODIFIED = new Date("2026-09-30");
 
 // El listado del blog cambia cuando se publica un articulo, asi que su fecha
 // sale del contenido en vez de la constante de arriba.
@@ -19,11 +21,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const pages = [
     "",
     "/servicios",
+    "/soluciones",
     "/diagnostico",
     "/contacto",
     "/presupuesto",
     "/portfolio",
     "/blog",
+    "/sobre-nosotros",
     "/politica-privacidad",
     "/aviso-legal",
     "/cookies",
@@ -45,6 +49,24 @@ export default function sitemap(): MetadataRoute.Sitemap {
     entries.push({
       url: `${SITE_URL}/es/blog/${article.slug}`,
       lastModified: new Date(article.date),
+      changeFrequency: "monthly",
+      priority: 0.7,
+    });
+  }
+
+  for (const sector of sectors) {
+    entries.push({
+      url: `${SITE_URL}/es/soluciones/${sector.slug}`,
+      lastModified: LAST_MODIFIED,
+      changeFrequency: "monthly",
+      priority: 0.9,
+    });
+  }
+
+  for (const project of projects) {
+    entries.push({
+      url: `${SITE_URL}/es/portfolio/${project.slug}`,
+      lastModified: LAST_MODIFIED,
       changeFrequency: "monthly",
       priority: 0.7,
     });
