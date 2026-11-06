@@ -85,6 +85,9 @@ npm run build
 dos publicaciones preparadas y los cinco centros investigados. Los centros se
 muestran como investigación inicial, sin marcar conversaciones o publicaciones
 como realizadas. El catálogo vive en `src/content/promotion/`.
+La pestaña **Emails** incluye cinco borradores personalizados, fuentes de contexto
+y las direcciones públicas verificadas. Las direcciones sin verificar quedan
+pendientes; los botones solo copian el texto y no envían mensajes.
 
 El progreso y las notas se guardan en el bucket **privado** `promotion-progress`
 de Supabase Storage, un objeto JSON por acción, bajo

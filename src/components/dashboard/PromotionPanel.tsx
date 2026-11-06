@@ -5,10 +5,11 @@ import Link from "next/link";
 import ArticleBody from "@/components/blog/ArticleBody";
 import type { Block } from "@/content/blog";
 import { PROMOTION_STATUSES, STATUS_LABELS, promotionTasks, researchAccounts, type PromotionStatus, type TaskProgress } from "@/content/promotion";
+import { outreachEmails } from "@/content/promotion/emails";
 
 type Guide = { id: string; title: string; raw: string; blocks: Block[] };
 type Publication = { title: string; date: string; text: string };
-type Tab = "acciones" | "materiales" | "centros";
+type Tab = "acciones" | "materiales" | "centros" | "emails";
 const dateLabel = (value: string) => new Intl.DateTimeFormat("es-ES", { day: "numeric", month: "short", timeZone: "Europe/Madrid" }).format(new Date(`${value}T12:00:00Z`));
 const statusClass: Record<PromotionStatus, string> = {
   pending: "bg-stone-100 text-stone-700", in_progress: "bg-blue-50 text-blue-800", done: "bg-emerald-50 text-emerald-800", skipped: "bg-stone-100 text-stone-600",
@@ -127,7 +128,7 @@ export default function PromotionPanel({ today, guides, publications }: { today:
       </div>}
 
       <nav aria-label="Secciones de promoción" className="flex flex-wrap gap-2 border-b border-[#d8e1de] pb-4">
-        {([['acciones', 'Acciones y progreso'], ['materiales', 'Textos y guías'], ['centros', 'Centros investigados']] as const).map(([id, label]) => (
+        {([['acciones', 'Acciones y progreso'], ['materiales', 'Textos y guías'], ['centros', 'Centros investigados'], ['emails', 'Emails']] as const).map(([id, label]) => (
           <button key={id} type="button" aria-pressed={tab === id} onClick={() => setTab(id)} className={`${buttonCls} ${tab === id ? "border-[#075f58] bg-[#e8f7f4] text-[#075f58]" : ""}`}>{label}</button>
         ))}
       </nav>
@@ -218,6 +219,34 @@ export default function PromotionPanel({ today, guides, publications }: { today:
           <a href={account.url} target="_blank" rel="noopener noreferrer" className="mt-3 inline-flex min-h-11 items-center text-sm font-semibold text-[#075f58] underline">Ver fuente pública<span className="sr-only"> de {account.name} (nueva pestaña)</span></a>
         </article>)}
         <button type="button" onClick={() => showResource("arranque")} className={buttonCls}>Ver cómo iniciar las conversaciones</button>
+      </section>}
+
+      {tab === "emails" && <section className="space-y-5">
+        <h2 className="text-2xl font-bold">Cinco emails personalizados</h2>
+        <p className="max-w-3xl text-sm leading-relaxed text-[#46575a]">Borradores para revisar y adaptar. Confirma el destinatario y el contexto que permite el contacto comercial antes de utilizarlos; una dirección publicada no equivale a autorización. Registra el contacto real y su resultado en Prospectos.</p>
+        <p className="text-sm text-[#46575a]">Preparados el 6 de noviembre de 2026. Copiar un texto no envía el correo ni cambia el estado de ningún centro.</p>
+        {outreachEmails.map((email) => <article key={email.account} className="min-w-0 rounded-2xl border border-[#d8e1de] bg-white p-5 sm:p-6">
+          <div className="flex flex-wrap items-center justify-between gap-3">
+            <h3 className="text-xl font-semibold">{email.account}</h3>
+            <span className="rounded-full bg-stone-100 px-3 py-1 text-xs font-semibold text-stone-700">Borrador preparado</span>
+          </div>
+          <div className="mt-4 rounded-xl bg-[#fafaf9] p-4 text-sm [overflow-wrap:anywhere]">
+            <p><strong>Destinatario:</strong> {email.recipient ?? "Dirección de email pendiente de confirmar"}</p>
+            <p className="mt-2 text-[#46575a]">{email.context}</p>
+            <div className="mt-2 flex flex-wrap gap-x-4">
+              <a href={email.recipientSource} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center font-semibold text-[#075f58] underline">Revisar contacto público<span className="sr-only"> de {email.account} (nueva pestaña)</span></a>
+              <a href={email.contextSource} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center font-semibold text-[#075f58] underline">Ver contexto del borrador<span className="sr-only"> de {email.account} (nueva pestaña)</span></a>
+            </div>
+          </div>
+          <p className="mt-5 text-sm font-semibold">Asunto</p>
+          <p className="mt-1 text-sm [overflow-wrap:anywhere]">{email.subject}</p>
+          <p className="mt-5 whitespace-pre-wrap text-sm leading-relaxed [overflow-wrap:anywhere]">{email.body}</p>
+          <div className="mt-5 flex flex-wrap gap-2">
+            {email.recipient && <button type="button" onClick={() => void copy(email.recipient!)} className={buttonCls}>Copiar dirección</button>}
+            <button type="button" onClick={() => void copy(email.subject)} className={buttonCls}>Copiar asunto</button>
+            <button type="button" onClick={() => void copy(email.body)} className={buttonCls}>Copiar email</button>
+          </div>
+        </article>)}
       </section>}
     </div>
   );
