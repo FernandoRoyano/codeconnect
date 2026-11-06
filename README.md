@@ -79,6 +79,25 @@ npm run build
 
 ## Contenido comercial
 
+### Plan de promoción en el panel
+
+`/dashboard/promocion` incluye las acciones de seis semanas, las guías completas,
+dos publicaciones preparadas y los cinco centros investigados. Los centros se
+muestran como investigación inicial, sin marcar conversaciones o publicaciones
+como realizadas. El catálogo vive en `src/content/promotion/`.
+
+El progreso y las notas se guardan en el bucket **privado** `promotion-progress`
+de Supabase Storage, un objeto JSON por acción, bajo
+`<user.id>/clinicas-2026-11/<task.id>.json`. El servidor comprueba la sesión en cada
+GET/PATCH de `/api/promocion`, construye la ruta a partir del usuario autenticado
+y valida la acción, el estado y el límite de notas. No acepta identificadores de
+usuario ni rutas del navegador. El bucket requiere `public: false`, MIME
+`application/json` y un límite de 32 KiB por objeto. No requiere cambiar el esquema
+de tablas ni sus políticas. Las credenciales de administración permanecen en servidor.
+
+Marcar una acción no publica contenido ni envía mensajes. Los borradores se copian
+desde el panel para revisarlos y utilizarlos en el canal correspondiente.
+
 Un portfolio solo puede presentarse como cliente real cuando existe autorización para publicar nombre, cita, logo y resultados. En ausencia de evidencia debe etiquetarse como demo, prototipo o proyecto propio y no incluir testimonios ni métricas atribuidas.
 
 ## Despliegue

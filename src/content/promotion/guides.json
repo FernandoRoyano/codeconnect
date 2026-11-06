@@ -1,0 +1,1574 @@
+{
+  "guides": [
+    {
+      "id": "plan",
+      "title": "Plan de seis semanas",
+      "raw": "# Plan de promoción de CodeConnect\n\nPreparado el 6 de noviembre de 2026. Periodo propuesto: del 9 de noviembre al 20 de diciembre de 2026.\n\nEstado: plan preparado para ejecutar. No se han publicado contenidos, enviado mensajes, comprado anuncios ni creado automatizaciones de calendario.\n\n## Objetivo y recursos\n\nValidar una forma repetible de conseguir proyectos para CodeConnect mediante relaciones profesionales, demostraciones y contenido útil.\n\nSupuestos de planificación: Fernando como responsable, cinco horas por semana —30 horas en total— y 0 € de inversión publicitaria. El tiempo de trabajo y las herramientas existentes tienen coste aunque no haya gasto en anuncios. Las cifras siguientes son objetivos de trabajo propuestos, no previsiones basadas en conversiones históricas.\n\n| Indicador al terminar las seis semanas | Objetivo |\n|---|---:|\n| Interacciones profesionales pertinentes para construir relaciones | 30 |\n| Posibles colaboradores con los que explorar encaje | 10–12 |\n| Publicaciones en el perfil personal de LinkedIn | 12 |\n| Conversaciones comerciales cualificadas | 8 |\n| Propuestas con alcance concreto | 3 |\n| Nuevo proyecto contratado | 1 |\n\nUna conversación es cualificada cuando hay un negocio que encaja, un problema concreto, acceso a quien decide y disposición a explorar un siguiente paso. Una respuesta a una publicación no cuenta por sí sola como oportunidad.\n\n## Público inicial\n\nDurante estas seis semanas, priorizar responsables de consultas de nutrición, fisioterapia y centros sanitarios pequeños en España. Fernando ha confirmado que todavía no tiene una red clara. Las primeras dos semanas se dedican a investigar el segmento, publicar contenido útil y participar en conversaciones profesionales públicas; continuar individualmente cuando exista un contexto pertinente y aceptación. Madrid es una zona inicial de investigación, sin limitar la oferta remota.\n\nSituación que interesa: una web que no facilita el contacto, reservas repartidas entre mensajes y agenda, información duplicada o seguimiento manual de cobros. No presuponer que todo centro necesita software propio. Preguntar por el problema antes de proponer una solución.\n\nGimnasios y entrenadores quedan como segmento de contraste si al terminar la tercera semana no aparece interés suficiente en consultas, o si la red actual de Fernando aporta oportunidades más claras en fitness. No ejecutar dos campañas completas simultáneamente con cinco horas semanales.\n\n## Mensaje y oferta de entrada\n\nMensaje propuesto:\n\n> Ayudo a clínicas y consultas a conectar su web, las reservas y los cobros para reducir tareas manuales. Primero reviso cómo trabajan y qué herramientas tienen para decidir qué merece la pena mejorar.\n\nOferta de entrada propuesta: una conversación inicial de hasta 20 minutos sobre un proceso concreto. Resultado: identificar el problema, valorar si CodeConnect puede ayudar y acordar un siguiente paso. Si hace falta analizar herramientas o integraciones en profundidad, definir ese alcance antes de ofrecer un proyecto.\n\nCTA principal: «Cuéntame qué quieres mejorar». Destino: [formulario breve](https://www.codeconnectsl.com/es/diagnostico).\n\nRecorrido: publicación, recomendación o conversación → contenido o página relevante → formulario breve o conversación acordada → valoración → propuesta → decisión.\n\n## Preparación de la primera semana\n\nResponsable: Fernando. Reservar una hora; reducir esa semana el tiempo de preparación de contenido reutilizando lo publicado en la web.\n\n1. Confirmar el guardado de una solicitud controlada en el panel y su recepción por email, identificándola como prueba. Acordar el alcance antes de crear datos de prueba en producción.\n2. Comprobar el remitente de producción. La prueba local utilizó el remitente de pruebas de Resend; verificar el dominio necesario para confirmar correos a destinatarios externos.\n3. Configurar GA4 si se quiere medir el embudo consentido. No estaba configurado en la revisión de producción. Revisar que no se dupliquen eventos de formularios por la medición automática.\n4. Actualizar el titular y el enlace destacado del perfil de LinkedIn. Propuesta: «Web, automatización y software a medida para clínicas y consultas | CodeConnect».\n5. Preparar una lista inicial de diez cuentas para investigar y dos posibles colaboradores. Las cinco primeras cuentas y el método están en la [guía de arranque sin red](arranque-sin-red-codeconnect.md). Investigar no equivale a contar con permiso para enviar publicidad.\n\nEl canal de respuesta debe estar probado antes de distribuir los enlaces de campaña. La falta de GA4 se puede suplir inicialmente con el registro manual de conversaciones y origen declarado.\n\n## Canales y función\n\n| Canal | Acción | Destino | Medida principal |\n|---|---|---|---|\n| Red profesional | Conversaciones pertinentes y solicitudes de presentación | Conversación acordada o página de clínicas | Conversaciones cualificadas |\n| LinkedIn personal | Dos publicaciones semanales: problema y demostración | Artículo, caso o página sectorial según el contenido | Consultas y conversaciones atribuibles |\n| Colaboradores | Explorar proyectos complementarios con diseñadores, consultores y pequeñas agencias | Ejemplo relevante y conversación de encaje | Presentaciones y oportunidades compartidas |\n| Web y artículos existentes | Reutilizar explicaciones sobre procesos reales | Artículo → página sectorial o formulario | Consultas cualificadas por contenido |\n\nLinkedIn permite crear una página de servicios gratuita. Es una tarea opcional de la primera o segunda semana, aprovechando su modalidad básica; no se presupone que las funciones premium o las solicitudes de servicio generen clientes. [Ayuda oficial de LinkedIn](https://www.linkedin.com/help/linkedin/answer/a569535).\n\nNo se asigna presupuesto a anuncios en esta fase. Al terminar el periodo, valorar una prueba de pago con presupuesto separado solo si el formulario funciona, hay medición suficiente y algún mensaje ha generado conversaciones cualificadas.\n\n## Calendario de ejecución\n\n| Semana | Fechas | Objetivo | Acciones prioritarias | Entregable |\n|---|---|---|---|---|\n| 1 | 9–15 noviembre | Preparar el canal y presentar la propuesta | Comprobar recepción; ajustar perfil; investigar cinco cuentas; participar en conversaciones públicas pertinentes; publicar presentación y problema habitual | Perfil actualizado, seguimiento preparado y primeras interacciones |\n| 2 | 16–22 noviembre | Construir las primeras relaciones | Investigar cinco cuentas adicionales; identificar dos colaboradores; mostrar una demostración; continuar las conversaciones que susciten interés | Primeras respuestas y necesidades expresadas, si aparecen |\n| 3 | 23–29 noviembre | Evaluar el encaje | Cinco interacciones pertinentes; explorar colaboradores; enseñar un caso relevante; revisar respuestas y consultas | Elegir el problema y el mensaje con mayor interés observado |\n| 4 | 30 noviembre–6 diciembre | Convertir interés en alcance | Cinco interacciones pertinentes; trabajar colaboraciones; publicar cómo se aborda el problema elegido; preparar propuestas solo para oportunidades cualificadas | Primeras propuestas concretas cuando exista encaje |\n| 5 | 7–13 diciembre | Resolver dudas y facilitar decisiones | Cinco interacciones pertinentes; publicar sobre alcance, costes y herramientas existentes; seguir las propuestas abiertas | Próximo paso y fecha acordados para cada oportunidad activa |\n| 6 | 14–20 diciembre | Revisar resultados y organizar enero | Cinco interacciones pertinentes; continuar colaboraciones; resolver propuestas; revisar el origen de oportunidades; acordar continuidad tras las fiestas | Balance de campaña y decisión de continuidad |\n\nLa última semana puede cerrar con acuerdos de siguiente paso para enero si el interlocutor tiene menor disponibilidad. No compensar el calendario festivo aumentando la insistencia.\n\n## Rutina semanal: cinco horas\n\n| Bloque | Dedicación | Trabajo |\n|---|---:|---|\n| Contenido | 90 min | Preparar y publicar dos piezas reutilizando un artículo, un caso o una demostración |\n| Relaciones | 60 min | Investigar perfiles y preparar hasta cinco interacciones pertinentes; continuar individualmente cuando exista interés |\n| Colaboradores | 30 min | Explorar hasta dos relaciones de colaboración |\n| Conversaciones | 60 min | Dos conversaciones de 20 minutos y notas; si no hay citas, escuchar y responder en espacios sectoriales |\n| Seguimiento | 45 min | Responder consultas y avanzar las oportunidades existentes |\n| Medición | 15 min | Actualizar cifras, aprendizajes y próximos pasos |\n\nSi una oportunidad necesita más tiempo, desplazar contenido nuevo antes de retrasar una respuesta comercial. El calendario es una guía de capacidad, no una obligación de producir piezas sin información útil.\n\n## Calendario de contenidos\n\nPublicar desde el perfil personal de Fernando. Propuesta de días: martes y jueves, a una hora que pueda mantener y con disponibilidad para responder. No se presupone una «mejor hora» universal.\n\n| Fecha | Tema | Formato y material | CTA y destino |\n|---|---|---|---|\n| 10 noviembre | Qué problema ayuda a resolver CodeConnect | Presentación personal con una captura del portfolio | «¿Qué tarea repites a mano?» → página de clínicas |\n| 12 noviembre | Cuando WhatsApp se convierte en la agenda | Texto y esquema basados en el artículo existente | Leer el artículo y contar el proceso actual |\n| 17 noviembre | De una consulta a una reserva: qué debe facilitar una web | Vídeo de 45–90 segundos con navegación de ejemplo y datos ficticios | Ver la página de clínicas |\n| 19 noviembre | Cuándo conviene aprovechar un programa existente | Texto basado en el artículo sobre software vertical o a medida | Comentar qué herramientas utilizan |\n| 24 noviembre | Una web centrada en una especialidad concreta | Caso de Diego Royano según el alcance documentado y la autorización de uso | Ver la ficha del caso |\n| 26 noviembre | Medir el coste de una cita que no se presenta | Ejemplo de cálculo claramente hipotético, basado en el artículo existente | Leer el artículo; calcular con datos del propio centro |\n| 1 diciembre | Una consulta entra una vez y sigue un recorrido claro | Demostración del flujo de consultas de CodeConnect como herramienta propia | Contar dónde se pierde el seguimiento |\n| 3 diciembre | Cuándo no compensa desarrollar software a medida | Texto basado en el artículo existente | Solicitar una primera valoración |\n| 8 diciembre | Qué hay que conocer antes de dar un presupuesto | Lista breve: proceso, herramientas, usuarios y límites | Explicar una necesidad en el formulario breve |\n| 10 diciembre | Cómo mejorar una parte del negocio sin cambiarlo todo | Esquema de un proceso de ejemplo, sin prometer integraciones no verificadas | Ver soluciones para clínicas |\n| 15 diciembre | Cómo ordenar una mejora tecnológica para enero | Tres preguntas para escoger una prioridad | Proponer una conversación para enero |\n| 17 diciembre | Qué hemos aprendido sobre tareas manuales | Aprendizajes realmente recogidos; si no los hay, explicar un criterio técnico propio | Contar una prioridad del próximo trimestre |\n\nAntes de reutilizar contenido normativo o plazos legales —por ejemplo, Verifactu o IA—, verificar su vigencia. No forman parte del calendario base. Google recomienda contenido útil para una audiencia real y respaldado por experiencia; este plan prioriza las preguntas recogidas en conversaciones. [Guía de Google](https://developers.google.com/search/docs/fundamentals/creating-helpful-content).\n\n## Uso del portfolio\n\nClasificación según los datos actuales del repositorio, pendiente de respetar las autorizaciones de cada pieza al reutilizarla fuera de la web:\n\n| Proyecto | Clasificación | Uso en esta campaña |\n|---|---|---|\n| Diego Royano Nutricionista | Cliente real | Caso relacionado con consultas: especialidad, presentación del servicio y recorrido de reserva |\n| Antea Salud | Proyecto propio | Ejemplo de claridad de servicios y solicitud de valoración; identificarlo como propio |\n| TrainHub | Producto propio | Ejemplo complementario si se explora fitness; identificarlo como propio |\n| WellnessReal | Proyecto propio | Ejemplo complementario de servicios y contenido; identificarlo como propio |\n\nLos proyectos de turismo y asesoría especializada del portfolio pueden apoyar conversaciones con colaboradores. No son la evidencia principal para la campaña de clínicas. No añadir testimonios, ahorros, ventas o mejoras de conversión sin evidencia y autorización.\n\n## Conversaciones y seguimiento\n\nPriorizar relaciones existentes, presentaciones y personas que hayan mostrado interés. Para comunicaciones comerciales por email, usar solicitudes o autorizaciones previas y respetar las excepciones aplicables; el plan no contempla campañas masivas a direcciones recopiladas. [Información oficial sobre publicidad por medios electrónicos](https://lssi.digital.gob.es/lssi/la-ley/aspectos-basicos/publicidad-en-internet).\n\nGuion de una conversación inicial:\n\n1. Qué quiere mejorar la persona y por qué ahora.\n2. Cómo se hace hoy y qué herramientas participan.\n3. Frecuencia, tiempo dedicado y consecuencias, usando sus datos.\n4. Quién decide y qué límites de tiempo o presupuesto hay.\n5. Acordar un siguiente paso: otra información, una valoración de alcance, una propuesta o cerrar el caso.\n\nAtender las consultas en el siguiente bloque de trabajo disponible. Cuando haya interés, acordar una fecha de seguimiento. Si no se responde, hacer como máximo un recordatorio pertinente tras unos cinco días laborables y dejar abierta la puerta sin insistencia repetida. Registrar cualquier negativa y respetarla.\n\nLa respuesta a una consulta no suscribe a la persona a una newsletter. Una lista de correo recurrente no forma parte de esta campaña inicial.\n\n## Medición\n\nEl viernes, registrar actividad y resultados. Utilizar el panel de Consultas para los contactos entrantes y las notas existentes para el próximo paso; los contactos salientes pertenecen al seguimiento de prospectos. No crear otra aplicación para este plan.\n\n| Semana | Nuevas conversaciones iniciadas | Colaboradores contactados | Publicaciones | Llamadas cualificadas | Propuestas | Contratos | Aprendizaje y siguiente cambio |\n|---|---:|---:|---:|---:|---:|---:|---|\n| 1 | | | | | | | |\n| 2 | | | | | | | |\n| 3 | | | | | | | |\n| 4 | | | | | | | |\n| 5 | | | | | | | |\n| 6 | | | | | | | |\n\nPara cada oportunidad: tipo de negocio, problema expresado, origen conocido o declarado, fecha de última interacción, próximo paso, responsable, estado y valor de la propuesta si existe. No registrar información clínica o datos de pacientes.\n\nUTM de ejemplo para el enlace de la presentación:\n\n`https://www.codeconnectsl.com/es/soluciones/clinicas?utm_source=linkedin&utm_medium=organic_social&utm_campaign=clinicas_2026_11&utm_content=sem1_presentacion`\n\nPara colaboradores, usar `utm_source=colaborador`, `utm_medium=referral` y un código de pieza sin nombres o correos de personas. Mantener la misma campaña y variar `utm_content` por publicación. El registro de atribución de la web depende del consentimiento; una ausencia de UTM no demuestra tráfico directo ni falta de interés. El origen que una persona indique voluntariamente en conversación puede anotarse como «origen declarado».\n\nMedir los eventos propios solo cuando GA4 esté configurado y validado: `cta_click`, `form_start`, `form_step`, `form_error`, `generate_lead` y `request_call`. El evento `generate_lead` acredita una recepción correcta por al menos una vía del servidor; no equivale a oportunidad cualificada ni a venta.\n\n## Decisiones de las semanas 3 y 6\n\nAl terminar la semana 3:\n\n- Si hay conversaciones y se repite un problema, concentrar las siguientes demostraciones en ese problema.\n- Si hay respuestas pero no encaje, revisar el público y el alcance de la oferta antes de producir más contenido.\n- Si apenas hay respuestas tras unas 15 aproximaciones pertinentes, revisar con quién se habla, cómo se obtiene la presentación y si el mensaje es comprensible. La muestra es orientativa; no permite conclusiones estadísticas.\n- Si la red de fitness ofrece mejores oportunidades observadas, trasladar el foco a gimnasios y entrenadores reutilizando la landing y TrainHub, sin duplicar la carga semanal.\n\nAl terminar la semana 6, elegir una de tres opciones: repetir el enfoque que haya producido oportunidades; ajustar oferta y público con lo aprendido; o preparar una prueba de publicidad con presupuesto y condiciones definidos aparte. No aumentar gasto por alcanzar un número de impresiones.\n\n## Primeras tres acciones\n\n1. Comprobar el recorrido de recepción y preparar el registro de seguimiento.\n2. Investigar las primeras diez cuentas y localizar espacios profesionales adecuados para participar.\n3. Preparar las publicaciones del 10 y 12 de noviembre con una captura real y el artículo existente sobre WhatsApp y agenda.\n\n## Material preparado para ejecutar\n\n- [Arranque sin red previa](arranque-sin-red-codeconnect.md): cinco centros con fuentes públicas, observaciones verificadas y rutina de diez días laborables.\n- [Kit de conversaciones](kit-conversaciones-codeconnect.md): aperturas por canal, respuestas, propuesta de llamada, guion de 20 minutos, seguimiento y registro en el panel existente.\n- [Primeras publicaciones y perfil](publicaciones-iniciales-codeconnect.md): dos publicaciones completas para LinkedIn, presentación de perfil, respuestas a comentarios y alternativa para un estado de WhatsApp.\n\nLos materiales son borradores. No se han enviado mensajes, publicado contenidos,\ncreado contactos ni programado acciones externas.\n",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Preparado el 6 de noviembre de 2026. Periodo propuesto: del 9 de noviembre al 20 de diciembre de 2026."
+        },
+        {
+          "type": "p",
+          "text": "Estado: plan preparado para ejecutar. No se han publicado contenidos, enviado mensajes, comprado anuncios ni creado automatizaciones de calendario."
+        },
+        {
+          "type": "h2",
+          "text": "Objetivo y recursos"
+        },
+        {
+          "type": "p",
+          "text": "Validar una forma repetible de conseguir proyectos para CodeConnect mediante relaciones profesionales, demostraciones y contenido útil."
+        },
+        {
+          "type": "p",
+          "text": "Supuestos de planificación: Fernando como responsable, cinco horas por semana —30 horas en total— y 0 € de inversión publicitaria. El tiempo de trabajo y las herramientas existentes tienen coste aunque no haya gasto en anuncios. Las cifras siguientes son objetivos de trabajo propuestos, no previsiones basadas en conversiones históricas."
+        },
+        {
+          "type": "table",
+          "head": [
+            "Indicador al terminar las seis semanas",
+            "Objetivo"
+          ],
+          "rows": [
+            [
+              "Interacciones profesionales pertinentes para construir relaciones",
+              "30"
+            ],
+            [
+              "Posibles colaboradores con los que explorar encaje",
+              "10–12"
+            ],
+            [
+              "Publicaciones en el perfil personal de LinkedIn",
+              "12"
+            ],
+            [
+              "Conversaciones comerciales cualificadas",
+              "8"
+            ],
+            [
+              "Propuestas con alcance concreto",
+              "3"
+            ],
+            [
+              "Nuevo proyecto contratado",
+              "1"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Una conversación es cualificada cuando hay un negocio que encaja, un problema concreto, acceso a quien decide y disposición a explorar un siguiente paso. Una respuesta a una publicación no cuenta por sí sola como oportunidad."
+        },
+        {
+          "type": "h2",
+          "text": "Público inicial"
+        },
+        {
+          "type": "p",
+          "text": "Durante estas seis semanas, priorizar responsables de consultas de nutrición, fisioterapia y centros sanitarios pequeños en España. Fernando ha confirmado que todavía no tiene una red clara. Las primeras dos semanas se dedican a investigar el segmento, publicar contenido útil y participar en conversaciones profesionales públicas; continuar individualmente cuando exista un contexto pertinente y aceptación. Madrid es una zona inicial de investigación, sin limitar la oferta remota."
+        },
+        {
+          "type": "p",
+          "text": "Situación que interesa: una web que no facilita el contacto, reservas repartidas entre mensajes y agenda, información duplicada o seguimiento manual de cobros. No presuponer que todo centro necesita software propio. Preguntar por el problema antes de proponer una solución."
+        },
+        {
+          "type": "p",
+          "text": "Gimnasios y entrenadores quedan como segmento de contraste si al terminar la tercera semana no aparece interés suficiente en consultas, o si la red actual de Fernando aporta oportunidades más claras en fitness. No ejecutar dos campañas completas simultáneamente con cinco horas semanales."
+        },
+        {
+          "type": "h2",
+          "text": "Mensaje y oferta de entrada"
+        },
+        {
+          "type": "p",
+          "text": "Mensaje propuesto:"
+        },
+        {
+          "type": "quote",
+          "text": "Ayudo a clínicas y consultas a conectar su web, las reservas y los cobros para reducir tareas manuales. Primero reviso cómo trabajan y qué herramientas tienen para decidir qué merece la pena mejorar."
+        },
+        {
+          "type": "p",
+          "text": "Oferta de entrada propuesta: una conversación inicial de hasta 20 minutos sobre un proceso concreto. Resultado: identificar el problema, valorar si CodeConnect puede ayudar y acordar un siguiente paso. Si hace falta analizar herramientas o integraciones en profundidad, definir ese alcance antes de ofrecer un proyecto."
+        },
+        {
+          "type": "p",
+          "text": "CTA principal: «Cuéntame qué quieres mejorar». Destino: [formulario breve](https://www.codeconnectsl.com/es/diagnostico)."
+        },
+        {
+          "type": "p",
+          "text": "Recorrido: publicación, recomendación o conversación → contenido o página relevante → formulario breve o conversación acordada → valoración → propuesta → decisión."
+        },
+        {
+          "type": "h2",
+          "text": "Preparación de la primera semana"
+        },
+        {
+          "type": "p",
+          "text": "Responsable: Fernando. Reservar una hora; reducir esa semana el tiempo de preparación de contenido reutilizando lo publicado en la web."
+        },
+        {
+          "type": "ol",
+          "items": [
+            "Confirmar el guardado de una solicitud controlada en el panel y su recepción por email, identificándola como prueba. Acordar el alcance antes de crear datos de prueba en producción.",
+            "Comprobar el remitente de producción. La prueba local utilizó el remitente de pruebas de Resend; verificar el dominio necesario para confirmar correos a destinatarios externos.",
+            "Configurar GA4 si se quiere medir el embudo consentido. No estaba configurado en la revisión de producción. Revisar que no se dupliquen eventos de formularios por la medición automática.",
+            "Actualizar el titular y el enlace destacado del perfil de LinkedIn. Propuesta: «Web, automatización y software a medida para clínicas y consultas | CodeConnect».",
+            "Preparar una lista inicial de diez cuentas para investigar y dos posibles colaboradores. Las cinco primeras cuentas y el método están en la guía de arranque sin red. Investigar no equivale a contar con permiso para enviar publicidad."
+          ]
+        },
+        {
+          "type": "p",
+          "text": "El canal de respuesta debe estar probado antes de distribuir los enlaces de campaña. La falta de GA4 se puede suplir inicialmente con el registro manual de conversaciones y origen declarado."
+        },
+        {
+          "type": "h2",
+          "text": "Canales y función"
+        },
+        {
+          "type": "table",
+          "head": [
+            "Canal",
+            "Acción",
+            "Destino",
+            "Medida principal"
+          ],
+          "rows": [
+            [
+              "Red profesional",
+              "Conversaciones pertinentes y solicitudes de presentación",
+              "Conversación acordada o página de clínicas",
+              "Conversaciones cualificadas"
+            ],
+            [
+              "LinkedIn personal",
+              "Dos publicaciones semanales: problema y demostración",
+              "Artículo, caso o página sectorial según el contenido",
+              "Consultas y conversaciones atribuibles"
+            ],
+            [
+              "Colaboradores",
+              "Explorar proyectos complementarios con diseñadores, consultores y pequeñas agencias",
+              "Ejemplo relevante y conversación de encaje",
+              "Presentaciones y oportunidades compartidas"
+            ],
+            [
+              "Web y artículos existentes",
+              "Reutilizar explicaciones sobre procesos reales",
+              "Artículo → página sectorial o formulario",
+              "Consultas cualificadas por contenido"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "LinkedIn permite crear una página de servicios gratuita. Es una tarea opcional de la primera o segunda semana, aprovechando su modalidad básica; no se presupone que las funciones premium o las solicitudes de servicio generen clientes. [Ayuda oficial de LinkedIn](https://www.linkedin.com/help/linkedin/answer/a569535)."
+        },
+        {
+          "type": "p",
+          "text": "No se asigna presupuesto a anuncios en esta fase. Al terminar el periodo, valorar una prueba de pago con presupuesto separado solo si el formulario funciona, hay medición suficiente y algún mensaje ha generado conversaciones cualificadas."
+        },
+        {
+          "type": "h2",
+          "text": "Calendario de ejecución"
+        },
+        {
+          "type": "table",
+          "head": [
+            "Semana",
+            "Fechas",
+            "Objetivo",
+            "Acciones prioritarias",
+            "Entregable"
+          ],
+          "rows": [
+            [
+              "1",
+              "9–15 noviembre",
+              "Preparar el canal y presentar la propuesta",
+              "Comprobar recepción; ajustar perfil; investigar cinco cuentas; participar en conversaciones públicas pertinentes; publicar presentación y problema habitual",
+              "Perfil actualizado, seguimiento preparado y primeras interacciones"
+            ],
+            [
+              "2",
+              "16–22 noviembre",
+              "Construir las primeras relaciones",
+              "Investigar cinco cuentas adicionales; identificar dos colaboradores; mostrar una demostración; continuar las conversaciones que susciten interés",
+              "Primeras respuestas y necesidades expresadas, si aparecen"
+            ],
+            [
+              "3",
+              "23–29 noviembre",
+              "Evaluar el encaje",
+              "Cinco interacciones pertinentes; explorar colaboradores; enseñar un caso relevante; revisar respuestas y consultas",
+              "Elegir el problema y el mensaje con mayor interés observado"
+            ],
+            [
+              "4",
+              "30 noviembre–6 diciembre",
+              "Convertir interés en alcance",
+              "Cinco interacciones pertinentes; trabajar colaboraciones; publicar cómo se aborda el problema elegido; preparar propuestas solo para oportunidades cualificadas",
+              "Primeras propuestas concretas cuando exista encaje"
+            ],
+            [
+              "5",
+              "7–13 diciembre",
+              "Resolver dudas y facilitar decisiones",
+              "Cinco interacciones pertinentes; publicar sobre alcance, costes y herramientas existentes; seguir las propuestas abiertas",
+              "Próximo paso y fecha acordados para cada oportunidad activa"
+            ],
+            [
+              "6",
+              "14–20 diciembre",
+              "Revisar resultados y organizar enero",
+              "Cinco interacciones pertinentes; continuar colaboraciones; resolver propuestas; revisar el origen de oportunidades; acordar continuidad tras las fiestas",
+              "Balance de campaña y decisión de continuidad"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "La última semana puede cerrar con acuerdos de siguiente paso para enero si el interlocutor tiene menor disponibilidad. No compensar el calendario festivo aumentando la insistencia."
+        },
+        {
+          "type": "h2",
+          "text": "Rutina semanal: cinco horas"
+        },
+        {
+          "type": "table",
+          "head": [
+            "Bloque",
+            "Dedicación",
+            "Trabajo"
+          ],
+          "rows": [
+            [
+              "Contenido",
+              "90 min",
+              "Preparar y publicar dos piezas reutilizando un artículo, un caso o una demostración"
+            ],
+            [
+              "Relaciones",
+              "60 min",
+              "Investigar perfiles y preparar hasta cinco interacciones pertinentes; continuar individualmente cuando exista interés"
+            ],
+            [
+              "Colaboradores",
+              "30 min",
+              "Explorar hasta dos relaciones de colaboración"
+            ],
+            [
+              "Conversaciones",
+              "60 min",
+              "Dos conversaciones de 20 minutos y notas; si no hay citas, escuchar y responder en espacios sectoriales"
+            ],
+            [
+              "Seguimiento",
+              "45 min",
+              "Responder consultas y avanzar las oportunidades existentes"
+            ],
+            [
+              "Medición",
+              "15 min",
+              "Actualizar cifras, aprendizajes y próximos pasos"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Si una oportunidad necesita más tiempo, desplazar contenido nuevo antes de retrasar una respuesta comercial. El calendario es una guía de capacidad, no una obligación de producir piezas sin información útil."
+        },
+        {
+          "type": "h2",
+          "text": "Calendario de contenidos"
+        },
+        {
+          "type": "p",
+          "text": "Publicar desde el perfil personal de Fernando. Propuesta de días: martes y jueves, a una hora que pueda mantener y con disponibilidad para responder. No se presupone una «mejor hora» universal."
+        },
+        {
+          "type": "table",
+          "head": [
+            "Fecha",
+            "Tema",
+            "Formato y material",
+            "CTA y destino"
+          ],
+          "rows": [
+            [
+              "10 noviembre",
+              "Qué problema ayuda a resolver CodeConnect",
+              "Presentación personal con una captura del portfolio",
+              "«¿Qué tarea repites a mano?» → página de clínicas"
+            ],
+            [
+              "12 noviembre",
+              "Cuando WhatsApp se convierte en la agenda",
+              "Texto y esquema basados en el artículo existente",
+              "Leer el artículo y contar el proceso actual"
+            ],
+            [
+              "17 noviembre",
+              "De una consulta a una reserva: qué debe facilitar una web",
+              "Vídeo de 45–90 segundos con navegación de ejemplo y datos ficticios",
+              "Ver la página de clínicas"
+            ],
+            [
+              "19 noviembre",
+              "Cuándo conviene aprovechar un programa existente",
+              "Texto basado en el artículo sobre software vertical o a medida",
+              "Comentar qué herramientas utilizan"
+            ],
+            [
+              "24 noviembre",
+              "Una web centrada en una especialidad concreta",
+              "Caso de Diego Royano según el alcance documentado y la autorización de uso",
+              "Ver la ficha del caso"
+            ],
+            [
+              "26 noviembre",
+              "Medir el coste de una cita que no se presenta",
+              "Ejemplo de cálculo claramente hipotético, basado en el artículo existente",
+              "Leer el artículo; calcular con datos del propio centro"
+            ],
+            [
+              "1 diciembre",
+              "Una consulta entra una vez y sigue un recorrido claro",
+              "Demostración del flujo de consultas de CodeConnect como herramienta propia",
+              "Contar dónde se pierde el seguimiento"
+            ],
+            [
+              "3 diciembre",
+              "Cuándo no compensa desarrollar software a medida",
+              "Texto basado en el artículo existente",
+              "Solicitar una primera valoración"
+            ],
+            [
+              "8 diciembre",
+              "Qué hay que conocer antes de dar un presupuesto",
+              "Lista breve: proceso, herramientas, usuarios y límites",
+              "Explicar una necesidad en el formulario breve"
+            ],
+            [
+              "10 diciembre",
+              "Cómo mejorar una parte del negocio sin cambiarlo todo",
+              "Esquema de un proceso de ejemplo, sin prometer integraciones no verificadas",
+              "Ver soluciones para clínicas"
+            ],
+            [
+              "15 diciembre",
+              "Cómo ordenar una mejora tecnológica para enero",
+              "Tres preguntas para escoger una prioridad",
+              "Proponer una conversación para enero"
+            ],
+            [
+              "17 diciembre",
+              "Qué hemos aprendido sobre tareas manuales",
+              "Aprendizajes realmente recogidos; si no los hay, explicar un criterio técnico propio",
+              "Contar una prioridad del próximo trimestre"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Antes de reutilizar contenido normativo o plazos legales —por ejemplo, Verifactu o IA—, verificar su vigencia. No forman parte del calendario base. Google recomienda contenido útil para una audiencia real y respaldado por experiencia; este plan prioriza las preguntas recogidas en conversaciones. [Guía de Google](https://developers.google.com/search/docs/fundamentals/creating-helpful-content)."
+        },
+        {
+          "type": "h2",
+          "text": "Uso del portfolio"
+        },
+        {
+          "type": "p",
+          "text": "Clasificación según los datos actuales del repositorio, pendiente de respetar las autorizaciones de cada pieza al reutilizarla fuera de la web:"
+        },
+        {
+          "type": "table",
+          "head": [
+            "Proyecto",
+            "Clasificación",
+            "Uso en esta campaña"
+          ],
+          "rows": [
+            [
+              "Diego Royano Nutricionista",
+              "Cliente real",
+              "Caso relacionado con consultas: especialidad, presentación del servicio y recorrido de reserva"
+            ],
+            [
+              "Antea Salud",
+              "Proyecto propio",
+              "Ejemplo de claridad de servicios y solicitud de valoración; identificarlo como propio"
+            ],
+            [
+              "TrainHub",
+              "Producto propio",
+              "Ejemplo complementario si se explora fitness; identificarlo como propio"
+            ],
+            [
+              "WellnessReal",
+              "Proyecto propio",
+              "Ejemplo complementario de servicios y contenido; identificarlo como propio"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Los proyectos de turismo y asesoría especializada del portfolio pueden apoyar conversaciones con colaboradores. No son la evidencia principal para la campaña de clínicas. No añadir testimonios, ahorros, ventas o mejoras de conversión sin evidencia y autorización."
+        },
+        {
+          "type": "h2",
+          "text": "Conversaciones y seguimiento"
+        },
+        {
+          "type": "p",
+          "text": "Priorizar relaciones existentes, presentaciones y personas que hayan mostrado interés. Para comunicaciones comerciales por email, usar solicitudes o autorizaciones previas y respetar las excepciones aplicables; el plan no contempla campañas masivas a direcciones recopiladas. [Información oficial sobre publicidad por medios electrónicos](https://lssi.digital.gob.es/lssi/la-ley/aspectos-basicos/publicidad-en-internet)."
+        },
+        {
+          "type": "p",
+          "text": "Guion de una conversación inicial:"
+        },
+        {
+          "type": "ol",
+          "items": [
+            "Qué quiere mejorar la persona y por qué ahora.",
+            "Cómo se hace hoy y qué herramientas participan.",
+            "Frecuencia, tiempo dedicado y consecuencias, usando sus datos.",
+            "Quién decide y qué límites de tiempo o presupuesto hay.",
+            "Acordar un siguiente paso: otra información, una valoración de alcance, una propuesta o cerrar el caso."
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Atender las consultas en el siguiente bloque de trabajo disponible. Cuando haya interés, acordar una fecha de seguimiento. Si no se responde, hacer como máximo un recordatorio pertinente tras unos cinco días laborables y dejar abierta la puerta sin insistencia repetida. Registrar cualquier negativa y respetarla."
+        },
+        {
+          "type": "p",
+          "text": "La respuesta a una consulta no suscribe a la persona a una newsletter. Una lista de correo recurrente no forma parte de esta campaña inicial."
+        },
+        {
+          "type": "h2",
+          "text": "Medición"
+        },
+        {
+          "type": "p",
+          "text": "El viernes, registrar actividad y resultados. Utilizar el panel de Consultas para los contactos entrantes y las notas existentes para el próximo paso; los contactos salientes pertenecen al seguimiento de prospectos. No crear otra aplicación para este plan."
+        },
+        {
+          "type": "table",
+          "head": [
+            "Semana",
+            "Nuevas conversaciones iniciadas",
+            "Colaboradores contactados",
+            "Publicaciones",
+            "Llamadas cualificadas",
+            "Propuestas",
+            "Contratos",
+            "Aprendizaje y siguiente cambio"
+          ],
+          "rows": [
+            [
+              "1",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              ""
+            ],
+            [
+              "2",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              ""
+            ],
+            [
+              "3",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              ""
+            ],
+            [
+              "4",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              ""
+            ],
+            [
+              "5",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              ""
+            ],
+            [
+              "6",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              ""
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Para cada oportunidad: tipo de negocio, problema expresado, origen conocido o declarado, fecha de última interacción, próximo paso, responsable, estado y valor de la propuesta si existe. No registrar información clínica o datos de pacientes."
+        },
+        {
+          "type": "p",
+          "text": "UTM de ejemplo para el enlace de la presentación:"
+        },
+        {
+          "type": "p",
+          "text": "https://www.codeconnectsl.com/es/soluciones/clinicas?utm_source=linkedin&utm_medium=organic_social&utm_campaign=clinicas_2026_11&utm_content=sem1_presentacion"
+        },
+        {
+          "type": "p",
+          "text": "Para colaboradores, usar utm_source=colaborador, utm_medium=referral y un código de pieza sin nombres o correos de personas. Mantener la misma campaña y variar utm_content por publicación. El registro de atribución de la web depende del consentimiento; una ausencia de UTM no demuestra tráfico directo ni falta de interés. El origen que una persona indique voluntariamente en conversación puede anotarse como «origen declarado»."
+        },
+        {
+          "type": "p",
+          "text": "Medir los eventos propios solo cuando GA4 esté configurado y validado: cta_click, form_start, form_step, form_error, generate_lead y request_call. El evento generate_lead acredita una recepción correcta por al menos una vía del servidor; no equivale a oportunidad cualificada ni a venta."
+        },
+        {
+          "type": "h2",
+          "text": "Decisiones de las semanas 3 y 6"
+        },
+        {
+          "type": "p",
+          "text": "Al terminar la semana 3:"
+        },
+        {
+          "type": "ul",
+          "items": [
+            "Si hay conversaciones y se repite un problema, concentrar las siguientes demostraciones en ese problema.",
+            "Si hay respuestas pero no encaje, revisar el público y el alcance de la oferta antes de producir más contenido.",
+            "Si apenas hay respuestas tras unas 15 aproximaciones pertinentes, revisar con quién se habla, cómo se obtiene la presentación y si el mensaje es comprensible. La muestra es orientativa; no permite conclusiones estadísticas.",
+            "Si la red de fitness ofrece mejores oportunidades observadas, trasladar el foco a gimnasios y entrenadores reutilizando la landing y TrainHub, sin duplicar la carga semanal."
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Al terminar la semana 6, elegir una de tres opciones: repetir el enfoque que haya producido oportunidades; ajustar oferta y público con lo aprendido; o preparar una prueba de publicidad con presupuesto y condiciones definidos aparte. No aumentar gasto por alcanzar un número de impresiones."
+        },
+        {
+          "type": "h2",
+          "text": "Primeras tres acciones"
+        },
+        {
+          "type": "ol",
+          "items": [
+            "Comprobar el recorrido de recepción y preparar el registro de seguimiento.",
+            "Investigar las primeras diez cuentas y localizar espacios profesionales adecuados para participar.",
+            "Preparar las publicaciones del 10 y 12 de noviembre con una captura real y el artículo existente sobre WhatsApp y agenda."
+          ]
+        },
+        {
+          "type": "h2",
+          "text": "Material preparado para ejecutar"
+        },
+        {
+          "type": "ul",
+          "items": [
+            "Arranque sin red previa: cinco centros con fuentes públicas, observaciones verificadas y rutina de diez días laborables.",
+            "Kit de conversaciones: aperturas por canal, respuestas, propuesta de llamada, guion de 20 minutos, seguimiento y registro en el panel existente.",
+            "Primeras publicaciones y perfil: dos publicaciones completas para LinkedIn, presentación de perfil, respuestas a comentarios y alternativa para un estado de WhatsApp."
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Los materiales son borradores. No se han enviado mensajes, publicado contenidos, creado contactos ni programado acciones externas."
+        }
+      ]
+    },
+    {
+      "id": "arranque",
+      "title": "Empezar sin una red previa",
+      "raw": "# CodeConnect: empezar las conversaciones sin una red previa\n\nPreparado el 6 de noviembre de 2026. Fernando ha indicado que todavía no tiene una red clara de contactos del sector. Este documento adapta el arranque del plan a esa situación.\n\nEstado: investigación y borradores preparados. No se han enviado mensajes, solicitado conexiones, publicado comentarios ni creado registros en producción.\n\n## Objetivo de las primeras dos semanas\n\nCrear las primeras relaciones profesionales y escuchar necesidades. Objetivos de actividad propuestos:\n\n- Publicar cuatro piezas útiles en el perfil personal.\n- Investigar diez centros o profesionales mediante información pública.\n- Participar con aportaciones concretas en seis conversaciones profesionales públicas.\n- Identificar dos posibles colaboradores con una actividad complementaria.\n- Intentar conseguir dos conversaciones voluntarias sobre procesos. Esta última cifra es una meta, no una previsión de respuestas.\n\nMadrid es la zona inicial de investigación por el contexto de CodeConnect; se puede cambiar si Fernando tiene más acceso a otra zona. No se ha confirmado el tamaño, presupuesto o interés de los centros siguientes.\n\n## Cinco centros para investigar\n\nFuentes: páginas oficiales consultadas el 6 de noviembre de 2026. Son ejemplos de negocios del segmento, no oportunidades cualificadas. No existe una relación acreditada con CodeConnect.\n\n| Centro | Observación pública | Qué habría que entender en una conversación aceptada | Estado |\n|---|---|---|---|\n| [Massalud](https://massalud.org/contacto/) | La página de contacto de esta clínica de fisioterapia en Madrid presenta atención por teléfono y formulario. | Cómo se gestiona una solicitud hasta confirmar una cita; si existe alguna tarea que el equipo quiera mejorar. | Investigado superficialmente; no contactado |\n| [EstudioFisio](https://estudiofisio.es/pedir-cita/) | Su página presenta distintas clínicas y una reserva en la que se eligen profesional, día y hora. | Si hay alguna necesidad adicional entre la reserva y la operativa de las sedes. La existencia de reserva online es un punto de partida, no un defecto. | Investigado superficialmente; no contactado |\n| [Mi Fisio En Madrid](https://www.mifisioenmadrid.es/contacto) | Publica una vía de cita online y describe confirmaciones por WhatsApp o email. | Qué parte del recorrido ya está resuelta y si queda alguna necesidad relevante. | Investigado superficialmente; no contactado |\n| [María Pastor Nutrición](https://nutricionmpastor.es/pide-tu-cita/) | Diferencia consultas iniciales y de revisión, y presenta WhatsApp para concertar cita presencial en Madrid. | Cómo coordinan modalidades y tipos de consulta; si desean cambiar algo de ese funcionamiento. | Investigado superficialmente; no contactado |\n| [Holvia](https://holvia.es/nutricionista-madrid/) | Su página de nutrición en Madrid presenta una solicitud de primera consulta con llamada posterior. | Cómo siguen las solicitudes recibidas y si tienen una prioridad de mejora. | Investigado superficialmente; no contactado |\n\nNo se ha probado ninguna reserva, enviado formularios, accedido a agendas privadas ni evaluado su software interno. Tener varios canales no demuestra trabajo duplicado ni una necesidad de desarrollo. Los formularios y teléfonos de citas no se convierten automáticamente en canales adecuados para propuestas comerciales.\n\n## Método para pasar de investigar a conversar\n\n### Paso 1. Elegir tres cuentas para observar\n\nRevisar su actividad pública profesional y buscar una persona o espacio donde se hable de gestión, experiencia del cliente o digitalización. Registrar la fuente y la fecha. Si solo hay contenido asistencial o dirigido a pacientes, buscar otro espacio para participar.\n\nLa tarea inicial con los cinco centros es comprobar si existe ese contexto pertinente, no enviarles una oferta. Si no aparece, dejarlos en investigación y priorizar otros perfiles.\n\n### Paso 2. Publicar algo que haga comprensible tu trabajo\n\nUtilizar los dos primeros borradores de [publicaciones iniciales](publicaciones-iniciales-codeconnect.md). El perfil debe explicar a quién ayudas y enlazar una página que permita entender tu propuesta.\n\n### Paso 3. Aportar algo concreto en una conversación pública\n\nLeer primero la publicación. Evitar elogios genéricos, enlaces repetidos o una oferta comercial fuera de contexto.\n\nEjemplo adaptable únicamente a una conversación real sobre gestión de citas:\n\n> Una parte que me parece útil revisar es dónde queda confirmada la cita. Cuando intervienen varios canales, tener claro qué agenda manda ayuda a ordenar el proceso. ¿Cómo resolvéis esa coordinación?\n\nEjemplo para una conversación real sobre herramientas:\n\n> Antes de añadir otra herramienta, yo dibujaría qué dato se introduce en cada una y quién lo comprueba. Puede ayudar a localizar una repetición concreta que sí merezca revisar.\n\nSon borradores de aportación, no comentarios para pegar sin leer la publicación. No participar con finalidad comercial en conversaciones sobre casos personales de pacientes.\n\n### Paso 4. Continuar cuando la otra persona muestre interés\n\nSi responde y hay un tema concreto:\n\n> Gracias por explicarlo. ¿Te parece que lo comentemos por privado? Así podemos concretar el proceso sin llenar este hilo de detalles.\n\nSi acepta, usar una apertura del [kit de conversaciones](kit-conversaciones-codeconnect.md):\n\n> Por lo que comentabas sobre [tema real], ¿cómo lo estáis haciendo ahora, paso a paso?\n\nUna reacción aislada no acredita interés comercial. Si no hay respuesta, seguir con otras conversaciones y contenido útil.\n\n### Paso 5. Proponer una llamada solo cuando haya una necesidad\n\n> Si queréis revisar [dificultad que haya expresado], podemos dedicarle 20 minutos. Vemos las herramientas y te digo si puedo ayudar. ¿Te interesa?\n\nDespués, acordar horarios reales. No diagnosticar un problema ni proponer una integración por el simple hecho de haber visto su web.\n\n## Agenda de diez días laborables\n\n| Día | Acción | Resultado que registrar |\n|---|---|---|\n| 1 | Ajustar titular, presentación y enlace del perfil; elegir tres cuentas para investigar | Perfil preparado y tres fuentes públicas |\n| 2 | Publicar la presentación de CodeConnect; leer actividad profesional pertinente | Publicación preparada o publicada por Fernando y temas observados |\n| 3 | Preparar dos aportaciones específicas a conversaciones públicas; investigar dos cuentas adicionales | Dos aportaciones contextualizadas y cinco cuentas investigadas |\n| 4 | Publicar la pieza sobre agenda y mensajes; responder a quien participe | Preguntas reales y respuestas |\n| 5 | Revisar lo aprendido y preparar un ejemplo de proceso con datos ficticios | Un ejemplo reutilizable y próximos pasos |\n| 6 | Ampliar la investigación a cinco cuentas adicionales y un posible colaborador | Diez cuentas, diferenciando hechos e hipótesis |\n| 7 | Publicar una explicación de cómo se analiza una tarea repetida | Una pieza útil sin promesas de ahorro |\n| 8 | Participar en dos conversaciones pertinentes y seguir las respuestas existentes | Contexto y permiso para continuar, si lo hay |\n| 9 | Publicar una demostración o esquema sencillo; investigar un segundo colaborador | Cuarta pieza y segundo colaborador |\n| 10 | Hacer otras dos aportaciones pertinentes y revisar la actividad de las dos semanas | Balance de relaciones, respuestas y siguientes pasos |\n\nSi no aparecen conversaciones apropiadas, ampliar la búsqueda a publicaciones sobre gestión de centros o encuentros profesionales. No forzar comentarios en cuentas que solo se dirigen a pacientes.\n\n## Cómo registrar los avances\n\nEn las notas del prospecto existente, cuando proceda crearlo:\n\n```text\nFuente pública y fecha:\nActividad relevante observada:\nHecho comprobado:\nHipótesis pendiente de confirmar:\nContexto de la conversación:\nInteracción realizada y fecha:\nInterés o permiso expresado:\nSiguiente paso:\n```\n\nUna cuenta investigada sigue como «Identificado». No marcarla «Contactado» por visitar su web o seguir su perfil, ni «Interesado» por recibir una reacción. No añadir datos sensibles ni inventar nombres de responsables.\n\n## Decisión al terminar dos semanas\n\n- Si aparecen conversaciones útiles, trabajar el problema que se repita y preparar un ejemplo específico.\n- Si hay respuestas sin encaje comercial, seguir aprendiendo y ajustar el público.\n- Si no hay interacción, revisar la claridad del perfil, la pertinencia de los espacios elegidos y la utilidad de las aportaciones. Dos semanas sin resultados no demuestran que no haya mercado.\n\nEste arranque sustituye la suposición de que ya existe una red. Los objetivos de ocho conversaciones y un proyecto del plan de seis semanas se mantienen únicamente como aspiraciones a revisar tras esta fase; no se dan por probables.\n",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Preparado el 6 de noviembre de 2026. Fernando ha indicado que todavía no tiene una red clara de contactos del sector. Este documento adapta el arranque del plan a esa situación."
+        },
+        {
+          "type": "p",
+          "text": "Estado: investigación y borradores preparados. No se han enviado mensajes, solicitado conexiones, publicado comentarios ni creado registros en producción."
+        },
+        {
+          "type": "h2",
+          "text": "Objetivo de las primeras dos semanas"
+        },
+        {
+          "type": "p",
+          "text": "Crear las primeras relaciones profesionales y escuchar necesidades. Objetivos de actividad propuestos:"
+        },
+        {
+          "type": "ul",
+          "items": [
+            "Publicar cuatro piezas útiles en el perfil personal.",
+            "Investigar diez centros o profesionales mediante información pública.",
+            "Participar con aportaciones concretas en seis conversaciones profesionales públicas.",
+            "Identificar dos posibles colaboradores con una actividad complementaria.",
+            "Intentar conseguir dos conversaciones voluntarias sobre procesos. Esta última cifra es una meta, no una previsión de respuestas."
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Madrid es la zona inicial de investigación por el contexto de CodeConnect; se puede cambiar si Fernando tiene más acceso a otra zona. No se ha confirmado el tamaño, presupuesto o interés de los centros siguientes."
+        },
+        {
+          "type": "h2",
+          "text": "Cinco centros para investigar"
+        },
+        {
+          "type": "p",
+          "text": "Fuentes: páginas oficiales consultadas el 6 de noviembre de 2026. Son ejemplos de negocios del segmento, no oportunidades cualificadas. No existe una relación acreditada con CodeConnect."
+        },
+        {
+          "type": "table",
+          "head": [
+            "Centro",
+            "Observación pública",
+            "Qué habría que entender en una conversación aceptada",
+            "Estado"
+          ],
+          "rows": [
+            [
+              "[Massalud](https://massalud.org/contacto/)",
+              "La página de contacto de esta clínica de fisioterapia en Madrid presenta atención por teléfono y formulario.",
+              "Cómo se gestiona una solicitud hasta confirmar una cita; si existe alguna tarea que el equipo quiera mejorar.",
+              "Investigado superficialmente; no contactado"
+            ],
+            [
+              "[EstudioFisio](https://estudiofisio.es/pedir-cita/)",
+              "Su página presenta distintas clínicas y una reserva en la que se eligen profesional, día y hora.",
+              "Si hay alguna necesidad adicional entre la reserva y la operativa de las sedes. La existencia de reserva online es un punto de partida, no un defecto.",
+              "Investigado superficialmente; no contactado"
+            ],
+            [
+              "[Mi Fisio En Madrid](https://www.mifisioenmadrid.es/contacto)",
+              "Publica una vía de cita online y describe confirmaciones por WhatsApp o email.",
+              "Qué parte del recorrido ya está resuelta y si queda alguna necesidad relevante.",
+              "Investigado superficialmente; no contactado"
+            ],
+            [
+              "[María Pastor Nutrición](https://nutricionmpastor.es/pide-tu-cita/)",
+              "Diferencia consultas iniciales y de revisión, y presenta WhatsApp para concertar cita presencial en Madrid.",
+              "Cómo coordinan modalidades y tipos de consulta; si desean cambiar algo de ese funcionamiento.",
+              "Investigado superficialmente; no contactado"
+            ],
+            [
+              "[Holvia](https://holvia.es/nutricionista-madrid/)",
+              "Su página de nutrición en Madrid presenta una solicitud de primera consulta con llamada posterior.",
+              "Cómo siguen las solicitudes recibidas y si tienen una prioridad de mejora.",
+              "Investigado superficialmente; no contactado"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "No se ha probado ninguna reserva, enviado formularios, accedido a agendas privadas ni evaluado su software interno. Tener varios canales no demuestra trabajo duplicado ni una necesidad de desarrollo. Los formularios y teléfonos de citas no se convierten automáticamente en canales adecuados para propuestas comerciales."
+        },
+        {
+          "type": "h2",
+          "text": "Método para pasar de investigar a conversar"
+        },
+        {
+          "type": "h3",
+          "text": "Paso 1. Elegir tres cuentas para observar"
+        },
+        {
+          "type": "p",
+          "text": "Revisar su actividad pública profesional y buscar una persona o espacio donde se hable de gestión, experiencia del cliente o digitalización. Registrar la fuente y la fecha. Si solo hay contenido asistencial o dirigido a pacientes, buscar otro espacio para participar."
+        },
+        {
+          "type": "p",
+          "text": "La tarea inicial con los cinco centros es comprobar si existe ese contexto pertinente, no enviarles una oferta. Si no aparece, dejarlos en investigación y priorizar otros perfiles."
+        },
+        {
+          "type": "h3",
+          "text": "Paso 2. Publicar algo que haga comprensible tu trabajo"
+        },
+        {
+          "type": "p",
+          "text": "Utilizar los dos primeros borradores de publicaciones iniciales. El perfil debe explicar a quién ayudas y enlazar una página que permita entender tu propuesta."
+        },
+        {
+          "type": "h3",
+          "text": "Paso 3. Aportar algo concreto en una conversación pública"
+        },
+        {
+          "type": "p",
+          "text": "Leer primero la publicación. Evitar elogios genéricos, enlaces repetidos o una oferta comercial fuera de contexto."
+        },
+        {
+          "type": "p",
+          "text": "Ejemplo adaptable únicamente a una conversación real sobre gestión de citas:"
+        },
+        {
+          "type": "quote",
+          "text": "Una parte que me parece útil revisar es dónde queda confirmada la cita. Cuando intervienen varios canales, tener claro qué agenda manda ayuda a ordenar el proceso. ¿Cómo resolvéis esa coordinación?"
+        },
+        {
+          "type": "p",
+          "text": "Ejemplo para una conversación real sobre herramientas:"
+        },
+        {
+          "type": "quote",
+          "text": "Antes de añadir otra herramienta, yo dibujaría qué dato se introduce en cada una y quién lo comprueba. Puede ayudar a localizar una repetición concreta que sí merezca revisar."
+        },
+        {
+          "type": "p",
+          "text": "Son borradores de aportación, no comentarios para pegar sin leer la publicación. No participar con finalidad comercial en conversaciones sobre casos personales de pacientes."
+        },
+        {
+          "type": "h3",
+          "text": "Paso 4. Continuar cuando la otra persona muestre interés"
+        },
+        {
+          "type": "p",
+          "text": "Si responde y hay un tema concreto:"
+        },
+        {
+          "type": "quote",
+          "text": "Gracias por explicarlo. ¿Te parece que lo comentemos por privado? Así podemos concretar el proceso sin llenar este hilo de detalles."
+        },
+        {
+          "type": "p",
+          "text": "Si acepta, usar una apertura del kit de conversaciones:"
+        },
+        {
+          "type": "quote",
+          "text": "Por lo que comentabas sobre [tema real], ¿cómo lo estáis haciendo ahora, paso a paso?"
+        },
+        {
+          "type": "p",
+          "text": "Una reacción aislada no acredita interés comercial. Si no hay respuesta, seguir con otras conversaciones y contenido útil."
+        },
+        {
+          "type": "h3",
+          "text": "Paso 5. Proponer una llamada solo cuando haya una necesidad"
+        },
+        {
+          "type": "quote",
+          "text": "Si queréis revisar [dificultad que haya expresado], podemos dedicarle 20 minutos. Vemos las herramientas y te digo si puedo ayudar. ¿Te interesa?"
+        },
+        {
+          "type": "p",
+          "text": "Después, acordar horarios reales. No diagnosticar un problema ni proponer una integración por el simple hecho de haber visto su web."
+        },
+        {
+          "type": "h2",
+          "text": "Agenda de diez días laborables"
+        },
+        {
+          "type": "table",
+          "head": [
+            "Día",
+            "Acción",
+            "Resultado que registrar"
+          ],
+          "rows": [
+            [
+              "1",
+              "Ajustar titular, presentación y enlace del perfil; elegir tres cuentas para investigar",
+              "Perfil preparado y tres fuentes públicas"
+            ],
+            [
+              "2",
+              "Publicar la presentación de CodeConnect; leer actividad profesional pertinente",
+              "Publicación preparada o publicada por Fernando y temas observados"
+            ],
+            [
+              "3",
+              "Preparar dos aportaciones específicas a conversaciones públicas; investigar dos cuentas adicionales",
+              "Dos aportaciones contextualizadas y cinco cuentas investigadas"
+            ],
+            [
+              "4",
+              "Publicar la pieza sobre agenda y mensajes; responder a quien participe",
+              "Preguntas reales y respuestas"
+            ],
+            [
+              "5",
+              "Revisar lo aprendido y preparar un ejemplo de proceso con datos ficticios",
+              "Un ejemplo reutilizable y próximos pasos"
+            ],
+            [
+              "6",
+              "Ampliar la investigación a cinco cuentas adicionales y un posible colaborador",
+              "Diez cuentas, diferenciando hechos e hipótesis"
+            ],
+            [
+              "7",
+              "Publicar una explicación de cómo se analiza una tarea repetida",
+              "Una pieza útil sin promesas de ahorro"
+            ],
+            [
+              "8",
+              "Participar en dos conversaciones pertinentes y seguir las respuestas existentes",
+              "Contexto y permiso para continuar, si lo hay"
+            ],
+            [
+              "9",
+              "Publicar una demostración o esquema sencillo; investigar un segundo colaborador",
+              "Cuarta pieza y segundo colaborador"
+            ],
+            [
+              "10",
+              "Hacer otras dos aportaciones pertinentes y revisar la actividad de las dos semanas",
+              "Balance de relaciones, respuestas y siguientes pasos"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Si no aparecen conversaciones apropiadas, ampliar la búsqueda a publicaciones sobre gestión de centros o encuentros profesionales. No forzar comentarios en cuentas que solo se dirigen a pacientes."
+        },
+        {
+          "type": "h2",
+          "text": "Cómo registrar los avances"
+        },
+        {
+          "type": "p",
+          "text": "En las notas del prospecto existente, cuando proceda crearlo:"
+        },
+        {
+          "type": "ul",
+          "items": [
+            "Fuente pública y fecha:",
+            "Actividad relevante observada:",
+            "Hecho comprobado:",
+            "Hipótesis pendiente de confirmar:",
+            "Contexto de la conversación:",
+            "Interacción realizada y fecha:",
+            "Interés o permiso expresado:",
+            "Siguiente paso:"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Una cuenta investigada sigue como «Identificado». No marcarla «Contactado» por visitar su web o seguir su perfil, ni «Interesado» por recibir una reacción. No añadir datos sensibles ni inventar nombres de responsables."
+        },
+        {
+          "type": "h2",
+          "text": "Decisión al terminar dos semanas"
+        },
+        {
+          "type": "ul",
+          "items": [
+            "Si aparecen conversaciones útiles, trabajar el problema que se repita y preparar un ejemplo específico.",
+            "Si hay respuestas sin encaje comercial, seguir aprendiendo y ajustar el público.",
+            "Si no hay interacción, revisar la claridad del perfil, la pertinencia de los espacios elegidos y la utilidad de las aportaciones. Dos semanas sin resultados no demuestran que no haya mercado."
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Este arranque sustituye la suposición de que ya existe una red. Los objetivos de ocho conversaciones y un proyecto del plan de seis semanas se mantienen únicamente como aspiraciones a revisar tras esta fase; no se dan por probables."
+        }
+      ]
+    },
+    {
+      "id": "conversaciones",
+      "title": "Guion de conversaciones",
+      "raw": "# CodeConnect: kit para iniciar conversaciones\n\nPreparado el 6 de noviembre de 2026. Borradores para Fernando; no se han enviado mensajes ni creado contactos en producción.\n\nFernando ha indicado que aún no tiene una red clara. Empezar por la [guía de arranque sin red](arranque-sin-red-codeconnect.md), que incluye cinco centros investigados mediante fuentes públicas y una rutina de dos semanas. Las aperturas de este kit se utilizan cuando exista el contexto indicado en cada caso.\n\n## Qué buscamos en la primera conversación\n\nEntender si existe una dificultad que CodeConnect pueda resolver y acordar un siguiente paso. Una buena primera respuesta puede ser «eso ya lo tenemos resuelto»: también permite descartar una oportunidad sin encaje.\n\nSecuencia: contexto real → una pregunta sobre el proceso → escuchar → concretar el problema → proponer el siguiente paso si hay interés.\n\nUsar las plantillas individuales cuando la persona haya pedido información, exista una conversación comercial abierta o haya aceptado una presentación. Ser un contacto conocido o publicar un correo no equivale por sí solo a autorizar publicidad. Para llegar a personas nuevas, empezar por publicaciones públicas, espacios profesionales pertinentes y presentaciones aceptadas. [Referencia oficial sobre comunicaciones comerciales](https://lssi.digital.gob.es/lssi/la-ley/aspectos-basicos/publicidad-en-internet).\n\nSustituir todos los campos entre corchetes antes de usar un borrador. Mantener solo lo que sea cierto: no afirmar que hemos analizado una clínica, recibido una recomendación o detectado un fallo si no ha ocurrido.\n\n## 1. Preparar cinco primeras conversaciones\n\nElegir personas a las que se pueda llegar mediante una relación o presentación concreta. Escribir nombre, contexto real y un motivo de encaje observable. Una dificultad supuesta debe quedar marcada como hipótesis, no como diagnóstico.\n\n| Prioridad | Persona y centro | Relación o presentación disponible | Motivo de encaje observable | Siguiente acción |\n|---|---|---|---|---|\n| 1 | Por completar | | | |\n| 2 | Por completar | | | |\n| 3 | Por completar | | | |\n| 4 | Por completar | | | |\n| 5 | Por completar | | | |\n\nEmpezar con tres conversaciones individuales bien contextualizadas. Leer las respuestas antes de preparar las siguientes. No pegar el mismo texto a una lista de desconocidos.\n\n## 2. Aperturas por canal y contexto\n\n### Respuesta a una persona que pregunta por CodeConnect\n\n> Hola, [Nombre]. Gracias por preguntarme. Con CodeConnect ayudo a clínicas y consultas a mejorar su web y conectar tareas como las reservas, la gestión y los cobros. Para situarme: ¿hay alguna parte de vuestro trabajo que ahora dependa de copiar datos o hacer comprobaciones a mano?\n\nSi quien pregunta es un entrenador, cambiar «clínicas y consultas» por «entrenadores y centros»; mantener el resto solo si describe su necesidad.\n\n### WhatsApp, después de que un contacto acepte que le expliques el proyecto\n\n> Te cuento, [Nombre]: estoy dando a conocer CodeConnect. Trabajo en webs, automatización y software para negocios de salud y entrenamiento. Empiezo por entender cómo trabajan. En vuestro caso, ¿qué tarea de gestión os gustaría simplificar?\n\nNo adjuntar una presentación larga ni varios enlaces. La primera respuesta es más útil que enviar todo el portfolio.\n\n### LinkedIn, después de una pregunta o una conversación sobre el tema\n\n> Gracias por lo que comentabas sobre [tema real], [Nombre]. Llevo CodeConnect y trabajo precisamente en mejorar estos procesos. ¿Cómo resolvéis hoy [paso concreto que haya mencionado]?\n\nNo interpretar un «me gusta» aislado como una petición de información comercial. Si la persona conversa públicamente, responder al tema y ofrecer continuar por privado cuando resulte útil.\n\n### Presentación aceptada por una persona en común\n\n> Hola, [Nombre]. Soy Fernando, de CodeConnect. Gracias por aceptar la presentación de [Persona]. Me comentó que querías explorar [necesidad que la persona haya autorizado compartir]. ¿Cómo lo estáis haciendo ahora?\n\n### Conversación presencial en un encuentro profesional\n\n> Trabajo en webs y herramientas para clínicas y centros de entrenamiento. Últimamente estoy centrando CodeConnect en las tareas de gestión. ¿Qué parte de la vuestra os da más trabajo?\n\nExplicar brevemente a qué te dedicas y dejar espacio para que la otra persona responda. Si quiere continuar, acordar el canal por el que prefiere recibir información.\n\n## 3. Qué contestar según la respuesta\n\n| Si te dicen… | Respuesta sugerida | Qué averiguar |\n|---|---|---|\n| «Las reservas nos llevan tiempo» | «¿Qué ocurre desde que alguien pide cita hasta que queda confirmada?» | Los pasos y las herramientas reales |\n| «Usamos WhatsApp y una agenda» | «¿Qué parte tenéis que pasar a mano de uno a otro?» | Dónde se duplica el trabajo |\n| «Tenemos muchos programas» | «¿Qué dato tenéis que escribir en más de uno?» | Una repetición concreta |\n| «Nos falta una web mejor» | «¿Qué te gustaría que pudiera hacer una persona al entrar?» | La acción principal que hoy resulta difícil |\n| «Ya tenemos un programa» | «Perfecto. ¿Os resuelve el proceso completo o queda alguna parte manual?» | Si existe un límite relevante, sin presuponerlo |\n| «No tenemos un problema claro» | «Entendido. Si aparece alguno, ya sabes a qué me dedico.» | Cerrar con naturalidad |\n| «Me interesa, pero no ahora» | «De acuerdo. ¿Prefieres que lo dejemos aquí o retomarlo en una fecha concreta?» | Si quiere seguimiento y cuándo |\n| «¿Cuánto cuesta?» | «Depende de si basta con ajustar una herramienta, conectar dos sistemas o construir algo. Si me explicas qué necesitas, puedo acotar el alcance antes de darte un presupuesto.» | Alcance antes de precio |\n| «Mándame información» | «Claro. ¿Te interesa más la web, la gestión de reservas o automatizar una tarea? Así te paso un ejemplo que encaje.» | Elegir una sola pieza relevante |\n| «No me interesa» | «Gracias por decírmelo. Lo dejamos aquí.» | Cerrar y registrar la negativa |\n\nHacer una pregunta cada vez. Cuando la persona explique el problema, resumirlo antes de sugerir tecnología:\n\n> Entonces, si te he entendido bien, ahora [proceso que ha contado] y lo que más os cuesta es [dificultad concreta]. ¿Es así?\n\n## 4. Pasar a una llamada\n\nCuando haya una necesidad concreta y la persona quiera explorarla:\n\n> Por lo que cuentas, merece la pena revisar [proceso] con algo más de detalle. ¿Te viene bien una conversación de 20 minutos? Vemos cómo lo hacéis y te digo si puedo ayudaros. Puedo [opción real 1] o [opción real 2].\n\nProponer solo horarios disponibles. Si todavía no se ha acordado un hueco, mantener el registro como «interesado»; no anotarlo como reunión confirmada.\n\nSi prefiere escribir:\n\n> Puedes contarme lo esencial aquí: https://www.codeconnectsl.com/es/diagnostico. Con qué quieres mejorar, tu nombre y tu email basta para empezar; el resto es opcional.\n\n## 5. Guion para una llamada de 20 minutos\n\n| Minutos | Qué hacer | Pregunta posible |\n|---|---|---|\n| 0–3 | Confirmar objetivo | «¿Qué te gustaría que cambiara al resolver esto?» |\n| 3–9 | Recorrer el proceso actual | «Ponme un ejemplo reciente: ¿qué hicisteis, paso a paso?» |\n| 9–13 | Entender frecuencia e impacto | «¿Cuántas veces ocurre y qué pasa cuando falla?» |\n| 13–17 | Aclarar herramientas, decisión y límites | «¿Qué habría que conservar? ¿Quién tendría que participar para decidir? ¿Tenéis un plazo o una inversión orientativa?» |\n| 17–20 | Resumir y acordar un paso | «Veo que el punto principal es [X]. El siguiente paso que propongo es [Y]. ¿Te encaja?» |\n\nPedir ejemplos del proceso sin datos identificables de pacientes. Una primera llamada puede acabar en una recomendación, una revisión de alcance, una propuesta o la conclusión de que no hay encaje.\n\n## 6. Resumen después de la llamada\n\nEnviar por el canal acordado:\n\n> Gracias por la conversación, [Nombre]. Me quedo con esto:\n>\n> — Queréis mejorar [objetivo].\n> — Ahora lo hacéis con [herramientas y pasos].\n> — La dificultad principal es [problema confirmado].\n>\n> Hemos acordado que [siguiente acción concreta]. Por mi parte, [entregable acordado] para [fecha acordada]. Para prepararlo necesito [información necesaria, si procede].\n>\n> Si he entendido algo mal, corrígeme.\n\nNo prometer una integración sin comprobar que las herramientas permiten realizarla. Un presupuesto debe aclarar entregables, límites, dependencias y costes recurrentes.\n\n## 7. Seguimiento\n\nSi se acordó una fecha:\n\n> Hola, [Nombre]. Retomo lo que hablamos para [fecha acordada]. ¿Sigue teniendo sentido revisar [problema] o han cambiado las prioridades?\n\nSi pidió información y no respondió, se puede preparar un único recordatorio pertinente tras unos cinco días laborables:\n\n> Hola, [Nombre]. Te escribo una última vez por la información que me pediste sobre [tema]. Si quieres retomarlo, sigo disponible; si ahora no encaja, lo dejamos aquí.\n\nSi hay negativa o no desea seguimiento, cerrar. No programar secuencias automáticas con estos borradores.\n\n## 8. Pedir una presentación y explorar colaboradores\n\nDurante una conversación con alguien que conozca tu trabajo:\n\n> Estoy centrando CodeConnect en ayudar a clínicas y consultas con su web y sus procesos de gestión. Si conoces a alguien que esté buscando ayuda con eso, ¿le preguntarías si le interesa que nos presentes? Puedes pasarle este enlace para que vea qué hago: https://www.codeconnectsl.com/es/soluciones/clinicas.\n\nPara un diseñador o agencia que haya aceptado hablar de colaboración:\n\n> Mi parte es el desarrollo y la conexión de herramientas: webs, sistemas internos e integraciones. Si en alguno de vuestros proyectos surge una necesidad técnica que prefiráis trabajar con apoyo externo, podemos revisar juntos el alcance y ver si encajamos.\n\nNo comprometer comisiones, exclusividad, precios ni plazos sin acordarlos expresamente.\n\n## 9. Registrar cada conversación en el panel existente\n\n[Prospectos](https://www.codeconnectsl.com/dashboard/prospectos) sirve para las relaciones comerciales que se trabajan de salida. [Consultas](https://www.codeconnectsl.com/dashboard/diagnosticos) reúne las entradas recibidas desde los formularios. Requieren iniciar sesión.\n\n| Estado de Prospectos | Cuándo usarlo |\n|---|---|\n| Identificado | Hay un posible encaje y una forma pertinente de llegar a la persona |\n| Contactado | Se ha producido la aproximación acordada o pertinente; todavía no hay respuesta |\n| Respondido | Ha contestado, pero todavía no se ha confirmado una necesidad |\n| Interesado | Hay una dificultad concreta y quiere explorar una solución |\n| Negociando | Se está revisando una propuesta o su alcance |\n| Convertido | Se ha confirmado la contratación; no basta con una respuesta positiva |\n| Descartado | No hay encaje, no hay interés o se decide cerrar |\n\nPlantilla para «Notas de contacto»:\n\n```text\nFecha:\nContexto real de la relación o presentación:\nCanal acordado:\nNecesidad expresada:\nCómo se hace hoy:\nFrecuencia e impacto declarados:\nHerramientas actuales:\nQuién participa en la decisión:\nSiguiente acción:\nResponsable de esa acción:\nFecha acordada:\nSeguimiento permitido / no desea más contacto:\n```\n\nUna respuesta no se transforma en una solicitud recibida por formulario. Registrar solo hechos, separar hipótesis y mantener una acción siguiente por oportunidad activa.\n\n## 10. Ejemplo de intercambio — ficticio\n\nEste diálogo ilustra el método; no corresponde a un cliente ni acredita resultados.\n\n**Profesional:** «He visto tu publicación. Nosotros perdemos bastante tiempo con los cambios de cita».\n\n**Fernando:** «¿Cómo hacéis un cambio desde que os llega el mensaje hasta que queda actualizado?».\n\n**Profesional:** «Miramos el calendario, proponemos un hueco y después volvemos a cambiarlo allí».\n\n**Fernando:** «Entonces el trabajo está en coordinar el mensaje con la agenda. ¿Qué parte se os queda más veces pendiente?».\n\n**Profesional:** «Confirmarlo y avisar a recepción».\n\n**Fernando:** «Entiendo. Si quieres, vemos ese recorrido durante 20 minutos y comprobamos qué permite vuestra agenda. Después te digo si veo una forma razonable de mejorarlo».\n\n## Primera sesión de trabajo: 45 minutos\n\n1. Diez minutos: completar las primeras cinco personas y su contexto real.\n2. Quince minutos: personalizar tres aperturas según una solicitud, conversación o presentación aceptada.\n3. Diez minutos: preparar el registro de cada caso en el panel, sin marcar acciones aún no realizadas.\n4. Diez minutos: revisar respuestas existentes o preparar el ejemplo que pediría cada persona.\n\nLos envíos y las presentaciones reales dependen de elegir destinatarios y de la autorización de Fernando. Este documento deja los textos y el proceso preparados.\n",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Preparado el 6 de noviembre de 2026. Borradores para Fernando; no se han enviado mensajes ni creado contactos en producción."
+        },
+        {
+          "type": "p",
+          "text": "Fernando ha indicado que aún no tiene una red clara. Empezar por la guía de arranque sin red, que incluye cinco centros investigados mediante fuentes públicas y una rutina de dos semanas. Las aperturas de este kit se utilizan cuando exista el contexto indicado en cada caso."
+        },
+        {
+          "type": "h2",
+          "text": "Qué buscamos en la primera conversación"
+        },
+        {
+          "type": "p",
+          "text": "Entender si existe una dificultad que CodeConnect pueda resolver y acordar un siguiente paso. Una buena primera respuesta puede ser «eso ya lo tenemos resuelto»: también permite descartar una oportunidad sin encaje."
+        },
+        {
+          "type": "p",
+          "text": "Secuencia: contexto real → una pregunta sobre el proceso → escuchar → concretar el problema → proponer el siguiente paso si hay interés."
+        },
+        {
+          "type": "p",
+          "text": "Usar las plantillas individuales cuando la persona haya pedido información, exista una conversación comercial abierta o haya aceptado una presentación. Ser un contacto conocido o publicar un correo no equivale por sí solo a autorizar publicidad. Para llegar a personas nuevas, empezar por publicaciones públicas, espacios profesionales pertinentes y presentaciones aceptadas. [Referencia oficial sobre comunicaciones comerciales](https://lssi.digital.gob.es/lssi/la-ley/aspectos-basicos/publicidad-en-internet)."
+        },
+        {
+          "type": "p",
+          "text": "Sustituir todos los campos entre corchetes antes de usar un borrador. Mantener solo lo que sea cierto: no afirmar que hemos analizado una clínica, recibido una recomendación o detectado un fallo si no ha ocurrido."
+        },
+        {
+          "type": "h2",
+          "text": "1. Preparar cinco primeras conversaciones"
+        },
+        {
+          "type": "p",
+          "text": "Elegir personas a las que se pueda llegar mediante una relación o presentación concreta. Escribir nombre, contexto real y un motivo de encaje observable. Una dificultad supuesta debe quedar marcada como hipótesis, no como diagnóstico."
+        },
+        {
+          "type": "table",
+          "head": [
+            "Prioridad",
+            "Persona y centro",
+            "Relación o presentación disponible",
+            "Motivo de encaje observable",
+            "Siguiente acción"
+          ],
+          "rows": [
+            [
+              "1",
+              "Por completar",
+              "",
+              "",
+              ""
+            ],
+            [
+              "2",
+              "Por completar",
+              "",
+              "",
+              ""
+            ],
+            [
+              "3",
+              "Por completar",
+              "",
+              "",
+              ""
+            ],
+            [
+              "4",
+              "Por completar",
+              "",
+              "",
+              ""
+            ],
+            [
+              "5",
+              "Por completar",
+              "",
+              "",
+              ""
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Empezar con tres conversaciones individuales bien contextualizadas. Leer las respuestas antes de preparar las siguientes. No pegar el mismo texto a una lista de desconocidos."
+        },
+        {
+          "type": "h2",
+          "text": "2. Aperturas por canal y contexto"
+        },
+        {
+          "type": "h3",
+          "text": "Respuesta a una persona que pregunta por CodeConnect"
+        },
+        {
+          "type": "quote",
+          "text": "Hola, [Nombre]. Gracias por preguntarme. Con CodeConnect ayudo a clínicas y consultas a mejorar su web y conectar tareas como las reservas, la gestión y los cobros. Para situarme: ¿hay alguna parte de vuestro trabajo que ahora dependa de copiar datos o hacer comprobaciones a mano?"
+        },
+        {
+          "type": "p",
+          "text": "Si quien pregunta es un entrenador, cambiar «clínicas y consultas» por «entrenadores y centros»; mantener el resto solo si describe su necesidad."
+        },
+        {
+          "type": "h3",
+          "text": "WhatsApp, después de que un contacto acepte que le expliques el proyecto"
+        },
+        {
+          "type": "quote",
+          "text": "Te cuento, [Nombre]: estoy dando a conocer CodeConnect. Trabajo en webs, automatización y software para negocios de salud y entrenamiento. Empiezo por entender cómo trabajan. En vuestro caso, ¿qué tarea de gestión os gustaría simplificar?"
+        },
+        {
+          "type": "p",
+          "text": "No adjuntar una presentación larga ni varios enlaces. La primera respuesta es más útil que enviar todo el portfolio."
+        },
+        {
+          "type": "h3",
+          "text": "LinkedIn, después de una pregunta o una conversación sobre el tema"
+        },
+        {
+          "type": "quote",
+          "text": "Gracias por lo que comentabas sobre [tema real], [Nombre]. Llevo CodeConnect y trabajo precisamente en mejorar estos procesos. ¿Cómo resolvéis hoy [paso concreto que haya mencionado]?"
+        },
+        {
+          "type": "p",
+          "text": "No interpretar un «me gusta» aislado como una petición de información comercial. Si la persona conversa públicamente, responder al tema y ofrecer continuar por privado cuando resulte útil."
+        },
+        {
+          "type": "h3",
+          "text": "Presentación aceptada por una persona en común"
+        },
+        {
+          "type": "quote",
+          "text": "Hola, [Nombre]. Soy Fernando, de CodeConnect. Gracias por aceptar la presentación de [Persona]. Me comentó que querías explorar [necesidad que la persona haya autorizado compartir]. ¿Cómo lo estáis haciendo ahora?"
+        },
+        {
+          "type": "h3",
+          "text": "Conversación presencial en un encuentro profesional"
+        },
+        {
+          "type": "quote",
+          "text": "Trabajo en webs y herramientas para clínicas y centros de entrenamiento. Últimamente estoy centrando CodeConnect en las tareas de gestión. ¿Qué parte de la vuestra os da más trabajo?"
+        },
+        {
+          "type": "p",
+          "text": "Explicar brevemente a qué te dedicas y dejar espacio para que la otra persona responda. Si quiere continuar, acordar el canal por el que prefiere recibir información."
+        },
+        {
+          "type": "h2",
+          "text": "3. Qué contestar según la respuesta"
+        },
+        {
+          "type": "table",
+          "head": [
+            "Si te dicen…",
+            "Respuesta sugerida",
+            "Qué averiguar"
+          ],
+          "rows": [
+            [
+              "«Las reservas nos llevan tiempo»",
+              "«¿Qué ocurre desde que alguien pide cita hasta que queda confirmada?»",
+              "Los pasos y las herramientas reales"
+            ],
+            [
+              "«Usamos WhatsApp y una agenda»",
+              "«¿Qué parte tenéis que pasar a mano de uno a otro?»",
+              "Dónde se duplica el trabajo"
+            ],
+            [
+              "«Tenemos muchos programas»",
+              "«¿Qué dato tenéis que escribir en más de uno?»",
+              "Una repetición concreta"
+            ],
+            [
+              "«Nos falta una web mejor»",
+              "«¿Qué te gustaría que pudiera hacer una persona al entrar?»",
+              "La acción principal que hoy resulta difícil"
+            ],
+            [
+              "«Ya tenemos un programa»",
+              "«Perfecto. ¿Os resuelve el proceso completo o queda alguna parte manual?»",
+              "Si existe un límite relevante, sin presuponerlo"
+            ],
+            [
+              "«No tenemos un problema claro»",
+              "«Entendido. Si aparece alguno, ya sabes a qué me dedico.»",
+              "Cerrar con naturalidad"
+            ],
+            [
+              "«Me interesa, pero no ahora»",
+              "«De acuerdo. ¿Prefieres que lo dejemos aquí o retomarlo en una fecha concreta?»",
+              "Si quiere seguimiento y cuándo"
+            ],
+            [
+              "«¿Cuánto cuesta?»",
+              "«Depende de si basta con ajustar una herramienta, conectar dos sistemas o construir algo. Si me explicas qué necesitas, puedo acotar el alcance antes de darte un presupuesto.»",
+              "Alcance antes de precio"
+            ],
+            [
+              "«Mándame información»",
+              "«Claro. ¿Te interesa más la web, la gestión de reservas o automatizar una tarea? Así te paso un ejemplo que encaje.»",
+              "Elegir una sola pieza relevante"
+            ],
+            [
+              "«No me interesa»",
+              "«Gracias por decírmelo. Lo dejamos aquí.»",
+              "Cerrar y registrar la negativa"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Hacer una pregunta cada vez. Cuando la persona explique el problema, resumirlo antes de sugerir tecnología:"
+        },
+        {
+          "type": "quote",
+          "text": "Entonces, si te he entendido bien, ahora [proceso que ha contado] y lo que más os cuesta es [dificultad concreta]. ¿Es así?"
+        },
+        {
+          "type": "h2",
+          "text": "4. Pasar a una llamada"
+        },
+        {
+          "type": "p",
+          "text": "Cuando haya una necesidad concreta y la persona quiera explorarla:"
+        },
+        {
+          "type": "quote",
+          "text": "Por lo que cuentas, merece la pena revisar [proceso] con algo más de detalle. ¿Te viene bien una conversación de 20 minutos? Vemos cómo lo hacéis y te digo si puedo ayudaros. Puedo [opción real 1] o [opción real 2]."
+        },
+        {
+          "type": "p",
+          "text": "Proponer solo horarios disponibles. Si todavía no se ha acordado un hueco, mantener el registro como «interesado»; no anotarlo como reunión confirmada."
+        },
+        {
+          "type": "p",
+          "text": "Si prefiere escribir:"
+        },
+        {
+          "type": "quote",
+          "text": "Puedes contarme lo esencial aquí: https://www.codeconnectsl.com/es/diagnostico. Con qué quieres mejorar, tu nombre y tu email basta para empezar; el resto es opcional."
+        },
+        {
+          "type": "h2",
+          "text": "5. Guion para una llamada de 20 minutos"
+        },
+        {
+          "type": "table",
+          "head": [
+            "Minutos",
+            "Qué hacer",
+            "Pregunta posible"
+          ],
+          "rows": [
+            [
+              "0–3",
+              "Confirmar objetivo",
+              "«¿Qué te gustaría que cambiara al resolver esto?»"
+            ],
+            [
+              "3–9",
+              "Recorrer el proceso actual",
+              "«Ponme un ejemplo reciente: ¿qué hicisteis, paso a paso?»"
+            ],
+            [
+              "9–13",
+              "Entender frecuencia e impacto",
+              "«¿Cuántas veces ocurre y qué pasa cuando falla?»"
+            ],
+            [
+              "13–17",
+              "Aclarar herramientas, decisión y límites",
+              "«¿Qué habría que conservar? ¿Quién tendría que participar para decidir? ¿Tenéis un plazo o una inversión orientativa?»"
+            ],
+            [
+              "17–20",
+              "Resumir y acordar un paso",
+              "«Veo que el punto principal es [X]. El siguiente paso que propongo es [Y]. ¿Te encaja?»"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Pedir ejemplos del proceso sin datos identificables de pacientes. Una primera llamada puede acabar en una recomendación, una revisión de alcance, una propuesta o la conclusión de que no hay encaje."
+        },
+        {
+          "type": "h2",
+          "text": "6. Resumen después de la llamada"
+        },
+        {
+          "type": "p",
+          "text": "Enviar por el canal acordado:"
+        },
+        {
+          "type": "quote",
+          "text": "Gracias por la conversación, [Nombre]. Me quedo con esto:  — Queréis mejorar [objetivo]. — Ahora lo hacéis con [herramientas y pasos]. — La dificultad principal es [problema confirmado].  Hemos acordado que [siguiente acción concreta]. Por mi parte, [entregable acordado] para [fecha acordada]. Para prepararlo necesito [información necesaria, si procede].  Si he entendido algo mal, corrígeme."
+        },
+        {
+          "type": "p",
+          "text": "No prometer una integración sin comprobar que las herramientas permiten realizarla. Un presupuesto debe aclarar entregables, límites, dependencias y costes recurrentes."
+        },
+        {
+          "type": "h2",
+          "text": "7. Seguimiento"
+        },
+        {
+          "type": "p",
+          "text": "Si se acordó una fecha:"
+        },
+        {
+          "type": "quote",
+          "text": "Hola, [Nombre]. Retomo lo que hablamos para [fecha acordada]. ¿Sigue teniendo sentido revisar [problema] o han cambiado las prioridades?"
+        },
+        {
+          "type": "p",
+          "text": "Si pidió información y no respondió, se puede preparar un único recordatorio pertinente tras unos cinco días laborables:"
+        },
+        {
+          "type": "quote",
+          "text": "Hola, [Nombre]. Te escribo una última vez por la información que me pediste sobre [tema]. Si quieres retomarlo, sigo disponible; si ahora no encaja, lo dejamos aquí."
+        },
+        {
+          "type": "p",
+          "text": "Si hay negativa o no desea seguimiento, cerrar. No programar secuencias automáticas con estos borradores."
+        },
+        {
+          "type": "h2",
+          "text": "8. Pedir una presentación y explorar colaboradores"
+        },
+        {
+          "type": "p",
+          "text": "Durante una conversación con alguien que conozca tu trabajo:"
+        },
+        {
+          "type": "quote",
+          "text": "Estoy centrando CodeConnect en ayudar a clínicas y consultas con su web y sus procesos de gestión. Si conoces a alguien que esté buscando ayuda con eso, ¿le preguntarías si le interesa que nos presentes? Puedes pasarle este enlace para que vea qué hago: https://www.codeconnectsl.com/es/soluciones/clinicas."
+        },
+        {
+          "type": "p",
+          "text": "Para un diseñador o agencia que haya aceptado hablar de colaboración:"
+        },
+        {
+          "type": "quote",
+          "text": "Mi parte es el desarrollo y la conexión de herramientas: webs, sistemas internos e integraciones. Si en alguno de vuestros proyectos surge una necesidad técnica que prefiráis trabajar con apoyo externo, podemos revisar juntos el alcance y ver si encajamos."
+        },
+        {
+          "type": "p",
+          "text": "No comprometer comisiones, exclusividad, precios ni plazos sin acordarlos expresamente."
+        },
+        {
+          "type": "h2",
+          "text": "9. Registrar cada conversación en el panel existente"
+        },
+        {
+          "type": "p",
+          "text": "[Prospectos](https://www.codeconnectsl.com/dashboard/prospectos) sirve para las relaciones comerciales que se trabajan de salida. [Consultas](https://www.codeconnectsl.com/dashboard/diagnosticos) reúne las entradas recibidas desde los formularios. Requieren iniciar sesión."
+        },
+        {
+          "type": "table",
+          "head": [
+            "Estado de Prospectos",
+            "Cuándo usarlo"
+          ],
+          "rows": [
+            [
+              "Identificado",
+              "Hay un posible encaje y una forma pertinente de llegar a la persona"
+            ],
+            [
+              "Contactado",
+              "Se ha producido la aproximación acordada o pertinente; todavía no hay respuesta"
+            ],
+            [
+              "Respondido",
+              "Ha contestado, pero todavía no se ha confirmado una necesidad"
+            ],
+            [
+              "Interesado",
+              "Hay una dificultad concreta y quiere explorar una solución"
+            ],
+            [
+              "Negociando",
+              "Se está revisando una propuesta o su alcance"
+            ],
+            [
+              "Convertido",
+              "Se ha confirmado la contratación; no basta con una respuesta positiva"
+            ],
+            [
+              "Descartado",
+              "No hay encaje, no hay interés o se decide cerrar"
+            ]
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Plantilla para «Notas de contacto»:"
+        },
+        {
+          "type": "ul",
+          "items": [
+            "Fecha:",
+            "Contexto real de la relación o presentación:",
+            "Canal acordado:",
+            "Necesidad expresada:",
+            "Cómo se hace hoy:",
+            "Frecuencia e impacto declarados:",
+            "Herramientas actuales:",
+            "Quién participa en la decisión:",
+            "Siguiente acción:",
+            "Responsable de esa acción:",
+            "Fecha acordada:",
+            "Seguimiento permitido / no desea más contacto:"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Una respuesta no se transforma en una solicitud recibida por formulario. Registrar solo hechos, separar hipótesis y mantener una acción siguiente por oportunidad activa."
+        },
+        {
+          "type": "h2",
+          "text": "10. Ejemplo de intercambio — ficticio"
+        },
+        {
+          "type": "p",
+          "text": "Este diálogo ilustra el método; no corresponde a un cliente ni acredita resultados."
+        },
+        {
+          "type": "p",
+          "text": "**Profesional:** «He visto tu publicación. Nosotros perdemos bastante tiempo con los cambios de cita»."
+        },
+        {
+          "type": "p",
+          "text": "**Fernando:** «¿Cómo hacéis un cambio desde que os llega el mensaje hasta que queda actualizado?»."
+        },
+        {
+          "type": "p",
+          "text": "**Profesional:** «Miramos el calendario, proponemos un hueco y después volvemos a cambiarlo allí»."
+        },
+        {
+          "type": "p",
+          "text": "**Fernando:** «Entonces el trabajo está en coordinar el mensaje con la agenda. ¿Qué parte se os queda más veces pendiente?»."
+        },
+        {
+          "type": "p",
+          "text": "**Profesional:** «Confirmarlo y avisar a recepción»."
+        },
+        {
+          "type": "p",
+          "text": "**Fernando:** «Entiendo. Si quieres, vemos ese recorrido durante 20 minutos y comprobamos qué permite vuestra agenda. Después te digo si veo una forma razonable de mejorarlo»."
+        },
+        {
+          "type": "h2",
+          "text": "Primera sesión de trabajo: 45 minutos"
+        },
+        {
+          "type": "ol",
+          "items": [
+            "Diez minutos: completar las primeras cinco personas y su contexto real.",
+            "Quince minutos: personalizar tres aperturas según una solicitud, conversación o presentación aceptada.",
+            "Diez minutos: preparar el registro de cada caso en el panel, sin marcar acciones aún no realizadas.",
+            "Diez minutos: revisar respuestas existentes o preparar el ejemplo que pediría cada persona."
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Los envíos y las presentaciones reales dependen de elegir destinatarios y de la autorización de Fernando. Este documento deja los textos y el proceso preparados."
+        }
+      ]
+    },
+    {
+      "id": "publicaciones",
+      "title": "Publicaciones y perfil",
+      "raw": "# CodeConnect: primeras publicaciones y perfil\n\nPreparado el 6 de noviembre de 2026. Estado: borradores listos para revisión; no publicados ni programados en redes.\n\n## Perfil personal de LinkedIn\n\nTitular propuesto:\n\n> Desarrollo web, automatización y software a medida para clínicas y centros de entrenamiento | CodeConnect\n\nPresentación breve propuesta:\n\n> Soy Fernando Royano, desarrollador full stack y fundador de CodeConnect. Trabajo en webs, herramientas internas y automatizaciones para negocios de salud y entrenamiento.\n>\n> Empiezo por entender cómo funciona el negocio: qué herramientas utiliza, dónde se repiten tareas y qué necesita mejorar. A partir de ahí valoro si conviene ajustar lo que ya hay, conectar sistemas o construir algo a medida.\n>\n> Puedes contarme tu caso en codeconnectsl.com/es/diagnostico.\n\nEnlace destacado: https://www.codeconnectsl.com/es/soluciones/clinicas?utm_source=linkedin&utm_medium=organic_social&utm_campaign=clinicas_2026_11&utm_content=perfil\n\n## Publicación 1: presentar CodeConnect\n\nFecha propuesta: martes 10 de noviembre de 2026. Canal: perfil personal de Fernando en LinkedIn. Objetivo: que las personas entiendan a quién puede ayudar CodeConnect y cuenten una dificultad concreta.\n\nTexto para copiar:\n\n---\n\nUna reserva llega por mensaje. La cita se apunta en la agenda. El cobro se comprueba en otra herramienta.\n\nEn cada paso puede haber alguien pasando información a mano.\n\nCon CodeConnect trabajo en esa conexión: webs, automatizaciones y software a medida para clínicas, consultas y centros de entrenamiento.\n\nPrimero reviso cómo funciona el proceso y qué herramientas se están utilizando. A veces basta con ajustar una parte. Otras veces merece la pena conectar sistemas o construir una herramienta específica.\n\nEl objetivo es que el negocio pueda trabajar con menos tareas repetidas y un recorrido más claro.\n\nSi llevas una consulta o un centro, ¿qué tarea de gestión te gustaría simplificar?\n\nAquí explico cómo lo planteo:\nhttps://www.codeconnectsl.com/es/soluciones/clinicas?utm_source=linkedin&utm_medium=organic_social&utm_campaign=clinicas_2026_11&utm_content=sem1_presentacion\n\n---\n\nVisual propuesto: captura de la home pública de CodeConnect, mostrando titular y CTA. Alternativa: publicar solo el texto y el enlace. No necesita una captura del panel ni datos de clientes.\n\n## Publicación 2: abrir una conversación sobre agenda y mensajes\n\nFecha propuesta: jueves 12 de noviembre de 2026. Canal: perfil personal de Fernando en LinkedIn. Objetivo: entender en qué paso aparece trabajo manual y llevar a un artículo existente.\n\nTexto para copiar:\n\n---\n\n¿Qué pasa después de que alguien pide cambiar una cita por WhatsApp?\n\nHay que consultar la agenda, proponer un hueco, esperar la respuesta y actualizar la reserva. A veces también hay que avisar a otra persona del equipo.\n\nAntes de elegir una automatización, dibujaría ese recorrido:\n\n— Dónde entra la solicitud.\n— Qué agenda contiene la información que se utiliza.\n— Qué datos se copian a mano.\n— Qué ocurre cuando cambia la cita o falta una confirmación.\n\nEse mapa ayuda a decidir qué se puede mejorar con las herramientas actuales y qué conexiones habría que comprobar.\n\nHe explicado este enfoque con más detalle aquí:\nhttps://www.codeconnectsl.com/es/blog/whatsapp-agenda-clinica-automatizacion?utm_source=linkedin&utm_medium=organic_social&utm_campaign=clinicas_2026_11&utm_content=sem1_agenda\n\nSi gestionas citas, ¿en qué paso se os suele acumular más trabajo?\n\n---\n\nVisual propuesto: utilizar el enlace con su vista previa. Si se prepara un esquema adicional, identificarlo como ejemplo de proceso y usar datos ficticios. No presentar como disponible una integración concreta sin haberla verificado.\n\n## Respuestas preparadas para comentarios\n\nSi explican una dificultad:\n\n> Gracias por contarlo. ¿Cómo lo resolvéis ahora, paso a paso?\n\nSi mencionan una herramienta:\n\n> ¿Os permite completar ese recorrido dentro de la herramienta o queda alguna parte que pasáis a mano?\n\nSi solicitan ayuda para su caso:\n\n> Claro. Si te parece, lo vemos por privado para concretar qué necesitáis. También puedes dejarme lo esencial aquí: https://www.codeconnectsl.com/es/diagnostico.\n\nSi les interesa el enfoque pero no necesitan ayuda:\n\n> Gracias por leerlo. Si os sirve para revisar algún proceso, ya tiene utilidad.\n\nNo usar una reacción o visita al perfil como motivo automático para enviar mensajes comerciales.\n\n## Estado de WhatsApp — alternativa para la red personal\n\nPublicar como estado es una opción para presentar la actividad a la red sin enviar una campaña individual a todos los contactos. Confirmar antes qué audiencia puede verlo.\n\nTexto propuesto:\n\n> Estoy dando a conocer CodeConnect: webs, automatización y software para clínicas y centros de entrenamiento. Si hay una tarea de gestión que te gustaría simplificar, puedes contarme tu caso aquí: https://www.codeconnectsl.com/es/diagnostico?utm_source=whatsapp&utm_medium=organic_social&utm_campaign=clinicas_2026_11&utm_content=estado_presentacion\n\n## Preparación y uso\n\n- Los textos están redactados sin métricas, testimonios ni resultados atribuidos.\n- Los destinos son páginas y un artículo existentes del proyecto.\n- No contienen afirmaciones de rendimiento de LinkedIn ni una hora de publicación supuestamente óptima.\n- Reservar tiempo después de publicar para responder a las personas que participen.\n- Aplicar el [kit de conversaciones](kit-conversaciones-codeconnect.md) cuando alguien pida información o acepte continuar la conversación.\n",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Preparado el 6 de noviembre de 2026. Estado: borradores listos para revisión; no publicados ni programados en redes."
+        },
+        {
+          "type": "h2",
+          "text": "Perfil personal de LinkedIn"
+        },
+        {
+          "type": "p",
+          "text": "Titular propuesto:"
+        },
+        {
+          "type": "quote",
+          "text": "Desarrollo web, automatización y software a medida para clínicas y centros de entrenamiento | CodeConnect"
+        },
+        {
+          "type": "p",
+          "text": "Presentación breve propuesta:"
+        },
+        {
+          "type": "quote",
+          "text": "Soy Fernando Royano, desarrollador full stack y fundador de CodeConnect. Trabajo en webs, herramientas internas y automatizaciones para negocios de salud y entrenamiento.  Empiezo por entender cómo funciona el negocio: qué herramientas utiliza, dónde se repiten tareas y qué necesita mejorar. A partir de ahí valoro si conviene ajustar lo que ya hay, conectar sistemas o construir algo a medida.  Puedes contarme tu caso en codeconnectsl.com/es/diagnostico."
+        },
+        {
+          "type": "p",
+          "text": "Enlace destacado: https://www.codeconnectsl.com/es/soluciones/clinicas?utm_source=linkedin&utm_medium=organic_social&utm_campaign=clinicas_2026_11&utm_content=perfil"
+        },
+        {
+          "type": "h2",
+          "text": "Publicación 1: presentar CodeConnect"
+        },
+        {
+          "type": "p",
+          "text": "Fecha propuesta: martes 10 de noviembre de 2026. Canal: perfil personal de Fernando en LinkedIn. Objetivo: que las personas entiendan a quién puede ayudar CodeConnect y cuenten una dificultad concreta."
+        },
+        {
+          "type": "p",
+          "text": "Texto para copiar:"
+        },
+        {
+          "type": "p",
+          "text": "Una reserva llega por mensaje. La cita se apunta en la agenda. El cobro se comprueba en otra herramienta."
+        },
+        {
+          "type": "p",
+          "text": "En cada paso puede haber alguien pasando información a mano."
+        },
+        {
+          "type": "p",
+          "text": "Con CodeConnect trabajo en esa conexión: webs, automatizaciones y software a medida para clínicas, consultas y centros de entrenamiento."
+        },
+        {
+          "type": "p",
+          "text": "Primero reviso cómo funciona el proceso y qué herramientas se están utilizando. A veces basta con ajustar una parte. Otras veces merece la pena conectar sistemas o construir una herramienta específica."
+        },
+        {
+          "type": "p",
+          "text": "El objetivo es que el negocio pueda trabajar con menos tareas repetidas y un recorrido más claro."
+        },
+        {
+          "type": "p",
+          "text": "Si llevas una consulta o un centro, ¿qué tarea de gestión te gustaría simplificar?"
+        },
+        {
+          "type": "p",
+          "text": "Aquí explico cómo lo planteo: https://www.codeconnectsl.com/es/soluciones/clinicas?utm_source=linkedin&utm_medium=organic_social&utm_campaign=clinicas_2026_11&utm_content=sem1_presentacion"
+        },
+        {
+          "type": "p",
+          "text": "Visual propuesto: captura de la home pública de CodeConnect, mostrando titular y CTA. Alternativa: publicar solo el texto y el enlace. No necesita una captura del panel ni datos de clientes."
+        },
+        {
+          "type": "h2",
+          "text": "Publicación 2: abrir una conversación sobre agenda y mensajes"
+        },
+        {
+          "type": "p",
+          "text": "Fecha propuesta: jueves 12 de noviembre de 2026. Canal: perfil personal de Fernando en LinkedIn. Objetivo: entender en qué paso aparece trabajo manual y llevar a un artículo existente."
+        },
+        {
+          "type": "p",
+          "text": "Texto para copiar:"
+        },
+        {
+          "type": "p",
+          "text": "¿Qué pasa después de que alguien pide cambiar una cita por WhatsApp?"
+        },
+        {
+          "type": "p",
+          "text": "Hay que consultar la agenda, proponer un hueco, esperar la respuesta y actualizar la reserva. A veces también hay que avisar a otra persona del equipo."
+        },
+        {
+          "type": "p",
+          "text": "Antes de elegir una automatización, dibujaría ese recorrido:"
+        },
+        {
+          "type": "p",
+          "text": "— Dónde entra la solicitud. — Qué agenda contiene la información que se utiliza. — Qué datos se copian a mano. — Qué ocurre cuando cambia la cita o falta una confirmación."
+        },
+        {
+          "type": "p",
+          "text": "Ese mapa ayuda a decidir qué se puede mejorar con las herramientas actuales y qué conexiones habría que comprobar."
+        },
+        {
+          "type": "p",
+          "text": "He explicado este enfoque con más detalle aquí: https://www.codeconnectsl.com/es/blog/whatsapp-agenda-clinica-automatizacion?utm_source=linkedin&utm_medium=organic_social&utm_campaign=clinicas_2026_11&utm_content=sem1_agenda"
+        },
+        {
+          "type": "p",
+          "text": "Si gestionas citas, ¿en qué paso se os suele acumular más trabajo?"
+        },
+        {
+          "type": "p",
+          "text": "Visual propuesto: utilizar el enlace con su vista previa. Si se prepara un esquema adicional, identificarlo como ejemplo de proceso y usar datos ficticios. No presentar como disponible una integración concreta sin haberla verificado."
+        },
+        {
+          "type": "h2",
+          "text": "Respuestas preparadas para comentarios"
+        },
+        {
+          "type": "p",
+          "text": "Si explican una dificultad:"
+        },
+        {
+          "type": "quote",
+          "text": "Gracias por contarlo. ¿Cómo lo resolvéis ahora, paso a paso?"
+        },
+        {
+          "type": "p",
+          "text": "Si mencionan una herramienta:"
+        },
+        {
+          "type": "quote",
+          "text": "¿Os permite completar ese recorrido dentro de la herramienta o queda alguna parte que pasáis a mano?"
+        },
+        {
+          "type": "p",
+          "text": "Si solicitan ayuda para su caso:"
+        },
+        {
+          "type": "quote",
+          "text": "Claro. Si te parece, lo vemos por privado para concretar qué necesitáis. También puedes dejarme lo esencial aquí: https://www.codeconnectsl.com/es/diagnostico."
+        },
+        {
+          "type": "p",
+          "text": "Si les interesa el enfoque pero no necesitan ayuda:"
+        },
+        {
+          "type": "quote",
+          "text": "Gracias por leerlo. Si os sirve para revisar algún proceso, ya tiene utilidad."
+        },
+        {
+          "type": "p",
+          "text": "No usar una reacción o visita al perfil como motivo automático para enviar mensajes comerciales."
+        },
+        {
+          "type": "h2",
+          "text": "Estado de WhatsApp — alternativa para la red personal"
+        },
+        {
+          "type": "p",
+          "text": "Publicar como estado es una opción para presentar la actividad a la red sin enviar una campaña individual a todos los contactos. Confirmar antes qué audiencia puede verlo."
+        },
+        {
+          "type": "p",
+          "text": "Texto propuesto:"
+        },
+        {
+          "type": "quote",
+          "text": "Estoy dando a conocer CodeConnect: webs, automatización y software para clínicas y centros de entrenamiento. Si hay una tarea de gestión que te gustaría simplificar, puedes contarme tu caso aquí: https://www.codeconnectsl.com/es/diagnostico?utm_source=whatsapp&utm_medium=organic_social&utm_campaign=clinicas_2026_11&utm_content=estado_presentacion"
+        },
+        {
+          "type": "h2",
+          "text": "Preparación y uso"
+        },
+        {
+          "type": "ul",
+          "items": [
+            "Los textos están redactados sin métricas, testimonios ni resultados atribuidos.",
+            "Los destinos son páginas y un artículo existentes del proyecto.",
+            "No contienen afirmaciones de rendimiento de LinkedIn ni una hora de publicación supuestamente óptima.",
+            "Reservar tiempo después de publicar para responder a las personas que participen.",
+            "Aplicar el kit de conversaciones cuando alguien pida información o acepte continuar la conversación."
+          ]
+        }
+      ]
+    }
+  ],
+  "publications": [
+    {
+      "title": "Presentacion de CodeConnect",
+      "date": "2026-11-10",
+      "text": "Una reserva llega por mensaje. La cita se apunta en la agenda. El cobro se comprueba en otra herramienta.\n\nEn cada paso puede haber alguien pasando información a mano.\n\nCon CodeConnect trabajo en esa conexión: webs, automatizaciones y software a medida para clínicas, consultas y centros de entrenamiento.\n\nPrimero reviso cómo funciona el proceso y qué herramientas se están utilizando. A veces basta con ajustar una parte. Otras veces merece la pena conectar sistemas o construir una herramienta específica.\n\nEl objetivo es que el negocio pueda trabajar con menos tareas repetidas y un recorrido más claro.\n\nSi llevas una consulta o un centro, ¿qué tarea de gestión te gustaría simplificar?\n\nAquí explico cómo lo planteo:\nhttps://www.codeconnectsl.com/es/soluciones/clinicas?utm_source=linkedin&utm_medium=organic_social&utm_campaign=clinicas_2026_11&utm_content=sem1_presentacion"
+    },
+    {
+      "title": "WhatsApp y la agenda",
+      "date": "2026-11-12",
+      "text": "¿Qué pasa después de que alguien pide cambiar una cita por WhatsApp?\n\nHay que consultar la agenda, proponer un hueco, esperar la respuesta y actualizar la reserva. A veces también hay que avisar a otra persona del equipo.\n\nAntes de elegir una automatización, dibujaría ese recorrido:\n\n— Dónde entra la solicitud.\n— Qué agenda contiene la información que se utiliza.\n— Qué datos se copian a mano.\n— Qué ocurre cuando cambia la cita o falta una confirmación.\n\nEse mapa ayuda a decidir qué se puede mejorar con las herramientas actuales y qué conexiones habría que comprobar.\n\nHe explicado este enfoque con más detalle aquí:\nhttps://www.codeconnectsl.com/es/blog/whatsapp-agenda-clinica-automatizacion?utm_source=linkedin&utm_medium=organic_social&utm_campaign=clinicas_2026_11&utm_content=sem1_agenda\n\nSi gestionas citas, ¿en qué paso se os suele acumular más trabajo?"
+    }
+  ]
+}

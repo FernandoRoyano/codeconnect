@@ -64,6 +64,10 @@ export default function DashboardPage() {
       </div>
 
       {/* KPIs */}
+      <Link href="/dashboard/promocion" className="mb-6 flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-[#abd8ce] bg-[#e8f7f4] p-5 text-[#111a1d] transition-colors hover:bg-white">
+        <span><span className="block font-bold">Tu plan de promoción</span><span className="mt-1 block text-sm text-[#46575a]">Acciones por semana, progreso, publicaciones y guiones de conversación.</span></span>
+        <span className="font-semibold text-[#075f58]">Abrir plan <span aria-hidden="true">→</span></span>
+      </Link>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
         <div className="bg-white rounded-2xl p-5 border border-gray-200">
           <div className="flex items-center gap-3 mb-3">

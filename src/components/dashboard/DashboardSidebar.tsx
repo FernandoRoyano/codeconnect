@@ -15,6 +15,15 @@ const navigation = [
     ),
   },
   {
+    name: "Promoción",
+    href: "/dashboard/promocion",
+    icon: (
+      <svg aria-hidden="true" className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H5a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2v-4M9 5V3h6v2M9 5v2h6V5m-7 8l2 2 5-5m3-4h4m-2-2v4" />
+      </svg>
+    ),
+  },
+  {
     name: "Consultas",
     href: "/dashboard/diagnosticos",
     icon: (
@@ -124,6 +133,10 @@ export default function DashboardSidebar() {
     <>
       {/* Mobile toggle */}
       <button
+        type="button"
+        aria-label={mobileOpen ? "Cerrar menú del panel" : "Abrir menú del panel"}
+        aria-expanded={mobileOpen}
+        aria-controls="dashboard-mobile-menu"
         onClick={() => setMobileOpen(!mobileOpen)}
         className="lg:hidden fixed top-4 left-4 z-50 bg-[#194973] text-white p-2 rounded-lg shadow-lg"
       >
@@ -142,7 +155,7 @@ export default function DashboardSidebar() {
       )}
 
       {/* Mobile sidebar */}
-      <aside className={`lg:hidden fixed inset-y-0 left-0 w-64 bg-[#194973] z-40 flex flex-col transition-transform duration-300 ${
+      <aside id="dashboard-mobile-menu" inert={!mobileOpen} className={`lg:hidden fixed inset-y-0 left-0 w-64 bg-[#194973] z-40 flex flex-col transition-transform duration-300 ${
         mobileOpen ? "translate-x-0" : "-translate-x-full"
       }`}>
         {sidebarContent}
