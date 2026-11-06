@@ -6,11 +6,11 @@ import { sectors } from "@/content/sectors";
 import { buildAlternates, SITE_URL } from "@/lib/seo";
 
 const TITLES: Record<string, string> = {
-  es: "Servicios: Web, CRM y Facturación para Clínicas y Gimnasios",
+  es: "Web, software a medida y automatización",
 };
 
 const DESCRIPTIONS: Record<string, string> = {
-  es: "Webs a medida, sistemas de gestión de clientes y facturación para clínicas, gimnasios y centros de bienestar. Sin plantillas, con código en propiedad.",
+  es: "Web y producto digital, software a medida y automatización para clínicas, gimnasios y centros de bienestar. Conectamos captación, gestión y cobros.",
 };
 
 export async function generateMetadata({

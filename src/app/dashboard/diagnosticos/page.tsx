@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
-import { INQUIRY_STATUS_CONFIG, INQUIRY_TABS, type InquiryStatus } from "@/lib/constants/inquiry";
+import { INQUIRY_STATUS_CONFIG, INQUIRY_TABS, inquiryFormLabel, type InquiryStatus } from "@/lib/constants/inquiry";
 
 interface InquiryRow {
   id: string;
@@ -12,6 +12,7 @@ interface InquiryRow {
   company: string | null;
   goal: string;
   pain: string;
+  extra_notes: string | null;
   landing_path: string | null;
   utm_source: string | null;
   referrer: string | null;
@@ -27,11 +28,11 @@ function origin(row: InquiryRow): string {
       return row.referrer.slice(0, 40);
     }
   }
-  return "Directo";
+  return row.landing_path ? "Sin campaña identificada" : "Sin atribución";
 }
 
 function summary(row: InquiryRow): string {
-  const text = (row.goal || row.pain || "").replace(/\s+/g, " ").trim();
+  const text = (inquiryFormLabel(row.extra_notes) === "Contacto" ? row.pain : row.goal || row.pain || "").replace(/\s+/g, " ").trim();
   return text.length > 110 ? `${text.slice(0, 109)}…` : text;
 }
 
@@ -55,7 +56,7 @@ export default function DiagnosticosPage() {
     if (query) params.set("search", query);
     try {
       const res = await fetch(`/api/inquiries?${params}`);
-      if (!res.ok) throw new Error("No se pudieron cargar los diagnosticos");
+      if (!res.ok) throw new Error("No se pudieron cargar las consultas");
       setRows(await res.json());
     } catch (err) {
       setError(err instanceof Error ? err.message : "Error inesperado");
@@ -96,9 +97,9 @@ export default function DiagnosticosPage() {
     <div>
       <div className="flex flex-wrap items-end justify-between gap-4 mb-6">
         <div>
-          <h1 className="text-2xl font-bold text-[#194973]">Diagnosticos</h1>
+          <h1 className="text-2xl font-bold text-[#194973]">Consultas</h1>
           <p className="text-sm text-[#5A6D6D] mt-1">
-            Casos que han llegado desde la web. Revisa antes de recomendar nada.
+            Diagnósticos, mensajes de contacto y solicitudes de presupuesto.
           </p>
         </div>
         <form
@@ -161,16 +162,16 @@ export default function DiagnosticosPage() {
 
         {!loading && !error && rows.length === 0 && (
           <div className="bg-white rounded-2xl border border-[#e5e7eb] p-10 text-center">
-            <p className="text-[#194973] font-semibold">Todavia no hay diagnosticos</p>
+            <p className="text-[#194973] font-semibold">No hay consultas para esta selección</p>
             <p className="text-sm text-[#5A6D6D] mt-1">
-              Apareceran aqui en cuanto alguien rellene el formulario de /diagnostico.
+              Las solicitudes recibidas desde los formularios de la web aparecerán aquí.
             </p>
           </div>
         )}
 
         {!loading && !error && rows.length > 0 && (
           <>
-            <p className="sr-only">{rows.length} diagnosticos</p>
+            <p className="sr-only">{rows.length} consultas</p>
             <div className="bg-white rounded-2xl border border-[#e5e7eb] overflow-hidden">
               <div className="overflow-x-auto">
                 <table className="w-full text-sm">
@@ -198,7 +199,10 @@ export default function DiagnosticosPage() {
                             </Link>
                             <div className="text-xs text-[#5A6D6D] mt-0.5">{row.company || row.email}</div>
                           </td>
-                          <td className="px-5 py-4 align-top text-[#5A6D6D] max-w-md">{summary(row)}</td>
+                          <td className="px-5 py-4 align-top text-[#5A6D6D] max-w-md">
+                            <span className="mb-1 block text-xs font-semibold text-[#194973]">{inquiryFormLabel(row.extra_notes)}</span>
+                            {summary(row)}
+                          </td>
                           <td className="px-5 py-4 align-top text-[#5A6D6D] whitespace-nowrap">{origin(row)}</td>
                           <td className="px-5 py-4 align-top text-[#5A6D6D] whitespace-nowrap">
                             {formatDate(row.created_at)}

@@ -1,6 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { getInquiryOrigin } from "@/lib/attribution";
+import { trackLead } from "@/lib/analytics";
 import dynamic from "next/dynamic";
 import Button from "@/components/Button";
 import { calcularPresupuesto, getFuncionalidades, getIntegraciones } from "./calculo";
@@ -20,6 +22,10 @@ const ResultScreen = dynamic(() => import("./_components/ResultScreen"), { ssr: 
 const TOTAL_STEPS = 5;
 
 export default function PresupuestoWizard() {
+  const started = useRef(false);
+  const submitting = useRef(false);
+  const stepRef = useRef<HTMLDivElement>(null);
+  const [privacidad, setPrivacidad] = useState(false);
   const [currentStep, setCurrentStep] = useState(1);
   const [formData, setFormData] = useState<FormData>({
     tipoProyecto: "",
@@ -40,6 +46,10 @@ export default function PresupuestoWizard() {
   const [submitted, setSubmitted] = useState(false);
   const [submitError, setSubmitError] = useState("");
   const [llamadaStatus, setLlamadaStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
+
+  useEffect(() => {
+    if (currentStep > 1) stepRef.current?.focus();
+  }, [currentStep]);
 
   const buildPayload = (solicitaLlamada: boolean) => {
     const presupuesto = calcularPresupuesto(formData);
@@ -75,6 +85,8 @@ export default function PresupuestoWizard() {
         precioMax: presupuesto.precioMax,
       },
       solicitaLlamada,
+      privacidad,
+      origen: getInquiryOrigin(),
     };
   };
 
@@ -108,6 +120,8 @@ export default function PresupuestoWizard() {
   };
 
   const handleSubmit = async () => {
+    if (submitting.current || !privacidad) return;
+    submitting.current = true;
     setIsSubmitting(true);
     setSubmitError("");
     try {
@@ -117,16 +131,20 @@ export default function PresupuestoWizard() {
         body: JSON.stringify(buildPayload(false)),
       });
       if (!res.ok) throw new Error("send failed");
+      trackLead("generate_lead", "presupuesto");
       setSubmitted(true);
     } catch {
+      trackLead("form_error", "presupuesto", currentStep);
       setSubmitError("No se pudo enviar. Inténtalo de nuevo dentro de unos minutos.");
     } finally {
+      submitting.current = false;
       setIsSubmitting(false);
     }
   };
 
   const solicitarLlamada = async () => {
-    if (llamadaStatus === "sending" || llamadaStatus === "sent") return;
+    if (submitting.current || llamadaStatus === "sending" || llamadaStatus === "sent") return;
+    submitting.current = true;
     setLlamadaStatus("sending");
     try {
       const res = await fetch("/api/presupuesto", {
@@ -135,9 +153,12 @@ export default function PresupuestoWizard() {
         body: JSON.stringify(buildPayload(true)),
       });
       if (!res.ok) throw new Error("send failed");
+      trackLead("request_call", "presupuesto");
       setLlamadaStatus("sent");
     } catch {
       setLlamadaStatus("error");
+    } finally {
+      submitting.current = false;
     }
   };
 
@@ -153,7 +174,7 @@ export default function PresupuestoWizard() {
         if (formData.tipoProyecto === "web" || formData.tipoProyecto === "otro") return true;
         return formData.numeroUsuarios !== "";
       case 5:
-        return formData.nombre !== "" && formData.email !== "";
+        return formData.nombre.trim() !== "" && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email.trim()) && privacidad;
       default:
         return false;
     }
@@ -165,6 +186,7 @@ export default function PresupuestoWizard() {
     if (currentStep < TOTAL_STEPS && canProceed()) {
       let next = currentStep + 1;
       if (next === 4 && !necesitaPasoUsuarios()) next = 5;
+      trackLead("form_step", "presupuesto", next);
       setCurrentStep(next);
     }
   };
@@ -206,8 +228,10 @@ export default function PresupuestoWizard() {
       </section>
 
       {/* Form Steps */}
-      <section className="py-12 sm:py-20 bg-[#fafaf9] min-h-[60vh]">
-        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+      <section className="py-12 sm:py-20 bg-[#fafaf9] min-h-[60vh]" onFocusCapture={() => {
+        if (!started.current) { started.current = true; trackLead("form_start", "presupuesto"); }
+      }}>
+        <div ref={stepRef} tabIndex={-1} aria-label={`Paso ${currentStep}`} className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
           {currentStep === 1 && <Step1Tipo tipoProyecto={formData.tipoProyecto} onSelect={handleTipoProyecto} />}
           {currentStep === 2 && (
             <Step2Funcionalidades
@@ -235,7 +259,7 @@ export default function PresupuestoWizard() {
               onChangeNecesitaApp={(value) => setFormData({ ...formData, necesitaApp: value })}
             />
           )}
-          {currentStep === 5 && <Step5Contacto formData={formData} onChange={handleInputChange} />}
+          {currentStep === 5 && <Step5Contacto formData={formData} onChange={handleInputChange} privacidad={privacidad} onPrivacyChange={setPrivacidad} />}
 
           {submitError && currentStep === TOTAL_STEPS && (
             <div role="alert" className="max-w-xl mx-auto mt-6 bg-red-50 border border-red-200 text-red-700 text-sm font-medium px-4 py-3 rounded-xl">

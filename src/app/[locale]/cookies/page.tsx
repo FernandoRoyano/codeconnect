@@ -50,6 +50,14 @@ export default async function CookiesPage({
         El script de Google <strong>no se descarga hasta que aceptas</strong>. Si lo rechazas, no se carga nada
         de Google y no se envía ningún dato.
       </p>
+      <p>
+        Si aceptas la analítica, guardamos la primera página visitada, la procedencia y los parámetros
+        de campaña en el almacenamiento de sesión del navegador (<code>cc_entry_v1</code>). Se conservan
+        durante esa sesión para identificar el origen de una consulta aunque navegues entre páginas.
+        Al retirar el consentimiento se elimina este registro. También medimos el uso de los botones
+        de contacto y el inicio, los pasos y el resultado de los formularios, sin enviar a Google
+        nombres, emails ni el contenido de los mensajes.
+      </p>
 
       <h2>4. Cookies de marketing</h2>
       <p>

@@ -39,6 +39,7 @@ export default async function PoliticaPrivacidadPage({
               <li><strong>Datos de contacto:</strong> nombre, email, teléfono y empresa cuando rellenas formularios de contacto o presupuesto.</li>
               <li><strong>Datos de navegación:</strong> dirección IP, tipo de navegador, páginas visitadas y tiempo de permanencia mediante cookies.</li>
               <li><strong>Datos de comunicación:</strong> contenido de los mensajes que nos envías.</li>
+              <li><strong>Origen de las solicitudes:</strong> si aceptas la analítica, asociamos a tu consulta la página de entrada, la procedencia y los parámetros de campaña para saber qué contenidos generan consultas.</li>
             </ul>
 
             <h2>3. Finalidad del tratamiento</h2>

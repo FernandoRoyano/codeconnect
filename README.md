@@ -24,6 +24,7 @@ Crear `.env.local` sin versionarlo:
 
 ```text
 NEXT_PUBLIC_SITE_URL=https://www.codeconnectsl.com
+NEXT_PUBLIC_GA_ID=
 NEXT_PUBLIC_SUPABASE_URL=
 NEXT_PUBLIC_SUPABASE_ANON_KEY=
 SUPABASE_SERVICE_ROLE_KEY=
@@ -33,6 +34,31 @@ CONTACT_EMAIL_TO=
 ```
 
 Las variables `NEXT_PUBLIC_*` llegan al navegador. La service-role de Supabase y la clave de Resend son exclusivamente de servidor.
+
+## Consultas y medición
+
+Diagnóstico, contacto y presupuesto registran las solicitudes en la tabla `inquiries`
+existente y mantienen la notificación por email. Si falla una vía, se intenta la otra;
+solo se informa de éxito si alguna recibió la solicitud. El panel las reúne en
+**Consultas** (`/dashboard/diagnosticos`). La tabla y sus políticas están en
+`supabase-migrations/20260913_inquiries.sql`; esta mejora no cambia el esquema.
+
+Los tres formularios requieren aceptación explícita de privacidad. El diagnóstico
+permite enviar solo objetivo, nombre y email; los detalles son opcionales. Una
+solicitud posterior de llamada sobre un presupuesto se registra como una consulta
+adicional identificada como tal.
+
+Con consentimiento analítico, `cc_entry_v1` conserva la entrada y las UTM en
+`sessionStorage` durante la sesión y las incorpora a la solicitud. Al rechazar o
+retirar el consentimiento, no se adjunta esta atribución y se elimina su registro.
+La versión de consentimiento pasa a 3 para informar de la atribución de consultas
+y volver a solicitar la elección a quienes aceptaron una versión anterior.
+GA4 solo se carga si además está configurada `NEXT_PUBLIC_GA_ID`. Los eventos propios
+son `cta_click`, `form_start`, `form_step`, `form_error`, `generate_lead` y
+`request_call`, con formulario, paso y ruta cuando corresponda; no contienen datos
+de contacto ni texto libre. `generate_lead` se emite tras una respuesta de éxito del
+servidor. Revisar en GA4 que la medición mejorada no duplique eventos equivalentes
+antes de usar estas cifras como embudo.
 
 ## Verificación
 

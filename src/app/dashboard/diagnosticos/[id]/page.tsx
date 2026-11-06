@@ -117,7 +117,7 @@ export default function DiagnosticoDetailPage({ params }: { params: Promise<{ id
           {error || "No se encontro el diagnostico"}
         </p>
         <Link href="/dashboard/diagnosticos" className="text-[#194973] text-sm mt-4 inline-block">
-          ← Volver a diagnosticos
+          ← Volver a consultas
         </Link>
       </div>
     );
@@ -131,7 +131,7 @@ export default function DiagnosticoDetailPage({ params }: { params: Promise<{ id
         href="/dashboard/diagnosticos"
         className="text-sm text-[#5A6D6D] hover:text-[#194973] transition-colors inline-block mb-4"
       >
-        ← Diagnosticos
+        ← Consultas
       </Link>
 
       <div className="flex flex-wrap items-start justify-between gap-4 mb-6">
@@ -243,7 +243,7 @@ export default function DiagnosticoDetailPage({ params }: { params: Promise<{ id
       </div>
 
       <div className="mt-6 rounded-2xl border border-red-200 bg-red-50/60 p-5">
-        <h2 className="text-sm font-bold text-red-700">Eliminar diagnóstico</h2>
+        <h2 className="text-sm font-bold text-red-700">Eliminar consulta</h2>
         <p className="mt-1 text-sm text-red-700/80">
           El formulario y sus notas internas se eliminarán definitivamente.
         </p>
@@ -253,7 +253,7 @@ export default function DiagnosticoDetailPage({ params }: { params: Promise<{ id
           disabled={deleting}
           className="mt-4 rounded-xl bg-red-600 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-red-700 disabled:cursor-not-allowed disabled:opacity-50"
         >
-          {deleting ? "Eliminando…" : "Eliminar diagnóstico"}
+          {deleting ? "Eliminando…" : "Eliminar consulta"}
         </button>
       </div>
     </div>

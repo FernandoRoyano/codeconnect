@@ -1,14 +1,17 @@
 import type { FormData } from "../types";
+import { Link } from "@/i18n/navigation";
 
 interface Props {
   formData: FormData;
   onChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
+  privacidad: boolean;
+  onPrivacyChange: (value: boolean) => void;
 }
 
 const inputCls =
   "w-full px-4 py-3 rounded-xl border border-[#e7e5e4] bg-[#fafaf9] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#71C648]/40 focus:border-[#71C648] transition-all";
 
-export default function Step5Contacto({ formData, onChange }: Props) {
+export default function Step5Contacto({ formData, onChange, privacidad, onPrivacyChange }: Props) {
   return (
     <div className="animate-fade-in">
       <h2 className="font-bold text-[#194973] tracking-tight mb-3 text-center" style={{ fontSize: "var(--fs-3xl)", lineHeight: 1.1 }}>
@@ -32,6 +35,7 @@ export default function Step5Contacto({ formData, onChange }: Props) {
               type="text"
               name="nombre"
               autoComplete="name"
+              maxLength={100}
               value={formData.nombre}
               onChange={onChange}
               className={inputCls}
@@ -48,6 +52,7 @@ export default function Step5Contacto({ formData, onChange }: Props) {
               type="email"
               name="email"
               autoComplete="email"
+              maxLength={254}
               spellCheck={false}
               value={formData.email}
               onChange={onChange}
@@ -66,6 +71,7 @@ export default function Step5Contacto({ formData, onChange }: Props) {
                 type="tel"
                 name="telefono"
                 autoComplete="tel"
+                maxLength={40}
                 value={formData.telefono}
                 onChange={onChange}
                 className={inputCls}
@@ -81,6 +87,7 @@ export default function Step5Contacto({ formData, onChange }: Props) {
                 type="text"
                 name="empresa"
                 autoComplete="organization"
+                maxLength={120}
                 value={formData.empresa}
                 onChange={onChange}
                 className={inputCls}
@@ -99,10 +106,15 @@ export default function Step5Contacto({ formData, onChange }: Props) {
               value={formData.comentarios}
               onChange={onChange}
               rows={3}
+              maxLength={5000}
               className={`${inputCls} resize-none`}
               placeholder="Detalles adicionales sobre tu proyecto..."
             />
           </div>
+          <label className="flex cursor-pointer items-start gap-3 text-sm leading-relaxed text-[#57534e]">
+            <input type="checkbox" required checked={privacidad} onChange={(event) => onPrivacyChange(event.target.checked)} className="mt-1 h-5 w-5 shrink-0 accent-[#075f58]" />
+            <span>Acepto que uséis mis datos para responder a esta solicitud. * <Link href="/politica-privacidad" className="text-[#075f58] underline">Política de privacidad</Link></span>
+          </label>
         </div>
       </div>
     </div>

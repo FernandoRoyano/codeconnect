@@ -4,11 +4,11 @@ import { buildAlternates } from "@/lib/seo";
 import DiagnosticoForm from "./DiagnosticoForm";
 
 const TITLES: Record<string, string> = {
-  es: "Diagnóstico gratuito: cuéntame tu proceso y te digo qué haría",
+  es: "Cuéntame tu caso: diagnóstico inicial sin compromiso",
 };
 
 const DESCRIPTIONS: Record<string, string> = {
-  es: "Explícame cómo funciona hoy tu proceso y qué te está costando. Lo reviso y te digo si compensa simplificarlo, automatizarlo, integrarlo, desarrollar algo a medida o no hacer nada.",
+  es: "Cuéntame qué quieres mejorar en tu clínica, gimnasio o centro de bienestar. Con una frase, tu nombre y tu email basta para empezar. Respuesta personal de Fernando Royano.",
 };
 
 export async function generateMetadata({

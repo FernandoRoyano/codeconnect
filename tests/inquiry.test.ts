@@ -16,6 +16,18 @@ const valid = () => ({
 });
 
 describe("parseInquiry", () => {
+  it("acepta el contacto breve sin inventar un problema", () => {
+    const result = parseInquiry({ nombre: "Ana", email: "ana@example.com", objetivo: "Conectar las reservas", privacidad: true, formato: "breve" });
+    assert.equal(result.ok, true);
+    if (result.ok) assert.equal(result.value.pain, "");
+  });
+
+  it("el formato breve mantiene la validación de contenido y privacidad", () => {
+    for (const override of [{ problema: {} }, { problema: "x".repeat(2001) }, { objetivo: " " }, { privacidad: false }, { email: "inválido" }]) {
+      assert.equal(parseInquiry({ ...valid(), formato: "breve", ...override }).ok, false);
+    }
+  });
+
   it("acepta el minimo obligatorio y normaliza espacios", () => {
     const result = parseInquiry(valid());
     assert.equal(result.ok, true);

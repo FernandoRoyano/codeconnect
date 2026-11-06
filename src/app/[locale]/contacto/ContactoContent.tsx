@@ -1,6 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
+import { getInquiryOrigin } from "@/lib/attribution";
+import { trackLead } from "@/lib/analytics";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import Button from "@/components/Button";
@@ -17,6 +19,9 @@ export default function ContactoContent() {
     servicio: "",
     website: "",
   });
+  const started = useRef(false);
+  const submitting = useRef(false);
+  const [privacidad, setPrivacidad] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
@@ -24,6 +29,8 @@ export default function ContactoContent() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (submitting.current) return;
+    submitting.current = true;
     setIsSubmitting(true);
     setSubmitError("");
 
@@ -31,14 +38,20 @@ export default function ContactoContent() {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({ ...formData, privacidad, origen: getInquiryOrigin() }),
       });
 
-      if (!res.ok) throw new Error();
+      if (!res.ok) {
+        const body = await res.json().catch(() => ({}));
+        throw new Error(body.error || t("submitError"));
+      }
+      trackLead("generate_lead", "contacto");
       setSubmitted(true);
-    } catch {
-      setSubmitError(t("submitError"));
+    } catch (cause) {
+      trackLead("form_error", "contacto");
+      setSubmitError(cause instanceof Error ? cause.message : t("submitError"));
     } finally {
+      submitting.current = false;
       setIsSubmitting(false);
     }
   };
@@ -178,7 +191,9 @@ export default function ContactoContent() {
                   </p>
                 </div>
               ) : (
-                <form onSubmit={handleSubmit} className="space-y-5">
+                <form onSubmit={handleSubmit} aria-busy={isSubmitting} onFocusCapture={() => {
+                  if (!started.current) { started.current = true; trackLead("form_start", "contacto"); }
+                }} className="space-y-5">
                   <div className="hidden" aria-hidden="true">
                     <label htmlFor="website">Website</label>
                     <input id="website" name="website" type="text" tabIndex={-1} autoComplete="off" value={formData.website} onChange={handleChange} />
@@ -193,6 +208,7 @@ export default function ContactoContent() {
                         id="nombre"
                         name="nombre"
                         autoComplete="name"
+                        maxLength={100}
                         required
                         value={formData.nombre}
                         onChange={handleChange}
@@ -209,6 +225,7 @@ export default function ContactoContent() {
                         id="email"
                         name="email"
                         autoComplete="email"
+                        maxLength={254}
                         spellCheck={false}
                         required
                         value={formData.email}
@@ -229,6 +246,7 @@ export default function ContactoContent() {
                         id="telefono"
                         name="telefono"
                         autoComplete="tel"
+                        maxLength={40}
                         value={formData.telefono}
                         onChange={handleChange}
                         className="w-full px-4 py-3 rounded-xl border border-[#e7e5e4] bg-[#fafaf9] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#71C648]/40 focus:border-[#71C648] transition-all"
@@ -244,6 +262,7 @@ export default function ContactoContent() {
                         id="empresa"
                         name="empresa"
                         autoComplete="organization"
+                        maxLength={120}
                         value={formData.empresa}
                         onChange={handleChange}
                         className="w-full px-4 py-3 rounded-xl border border-[#e7e5e4] bg-[#fafaf9] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#71C648]/40 focus:border-[#71C648] transition-all"
@@ -267,7 +286,7 @@ export default function ContactoContent() {
                       <option value="">{t("optDefault")}</option>
                       <option value="web">{t("optWeb")}</option>
                       <option value="software">{t("optSoftware")}</option>
-                      <option value="apps">{t("optApps")}</option>
+                      <option value="automatizacion">{t("optAutomation")}</option>
                       <option value="consultoria">{t("optConsulting")}</option>
                       <option value="otro">{t("optOther")}</option>
                     </select>
@@ -283,12 +302,18 @@ export default function ContactoContent() {
                       autoComplete="off"
                       required
                       rows={5}
+                      maxLength={5000}
                       value={formData.mensaje}
                       onChange={handleChange}
                       className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#71C648] focus:border-transparent transition-all resize-none"
                       placeholder={t("phMessage")}
                     />
                   </div>
+
+                  <label className="flex cursor-pointer items-start gap-3 text-sm text-[#57534e]">
+                    <input type="checkbox" required checked={privacidad} onChange={(event) => setPrivacidad(event.target.checked)} className="mt-1 h-5 w-5 shrink-0 accent-[#075f58]" />
+                    <span>{t("privacyConsent")} * <Link href="/politica-privacidad" className="text-[#075f58] underline">{t("privacyLink")}</Link></span>
+                  </label>
 
                   {submitError && (
                     <div role="alert" className="bg-red-50 text-red-600 text-sm font-medium px-4 py-3 rounded-xl">

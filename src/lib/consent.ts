@@ -11,7 +11,7 @@ export const CONSENT_EVENT = "cookie-consent-change";
  * preguntar. Hay que subirla cuando cambian las finalidades: los visitantes
  * que aceptaron cuando la web no tenia analitica no consintieron esto.
  */
-export const CONSENT_VERSION = 2;
+export const CONSENT_VERSION = 3;
 
 export type Consent = {
   version: number;
@@ -27,7 +27,8 @@ export function readConsent(): Consent | null {
     const raw = localStorage.getItem(CONSENT_KEY);
     if (!raw) return null;
     const parsed = JSON.parse(raw) as Partial<Consent>;
-    if (parsed.version !== CONSENT_VERSION) return null;
+    if (parsed.version !== CONSENT_VERSION || parsed.necessary !== true ||
+      typeof parsed.analytics !== "boolean" || typeof parsed.marketing !== "boolean") return null;
     return parsed as Consent;
   } catch {
     // localStorage puede fallar en modo privado o con el almacenamiento bloqueado.

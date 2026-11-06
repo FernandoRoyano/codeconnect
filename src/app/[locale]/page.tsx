@@ -313,6 +313,50 @@ export default async function Home({
         </div>
       </section>
 
+      {/* Proyectos propios y de clientes antes de los servicios */}
+      <section className="py-20 sm:py-28 bg-white">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 mb-12">
+            <div className="max-w-2xl">
+              <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#39751f] mb-4">{t("casesEyebrow")}</p>
+              <h2 className="text-3xl sm:text-5xl font-bold text-[#194973]">{t("casesTitle")}</h2>
+            </div>
+            <Link
+              href="/portfolio"
+              className="inline-flex items-center gap-1.5 font-semibold text-[#194973] hover:text-[#39751f] transition-colors"
+            >
+              {t("casesAll")}
+              <span aria-hidden>→</span>
+            </Link>
+          </div>
+          <div className="grid md:grid-cols-3 gap-6 reveal">
+            {featuredProjects.map((project) => (
+              <Link
+                key={project.slug}
+                href={`/portfolio/${project.slug}`}
+                className="group block rounded-2xl overflow-hidden border border-[#e7e5e4] bg-[#fafaf9] hover:border-[#71C648]/40 shadow-soft hover:shadow-soft-lg transition-all"
+              >
+                <div className="relative aspect-[1440/1000] overflow-hidden bg-[#111A1D]">
+                  <Image
+                    src={project.captures.desktop}
+                    alt=""
+                    fill
+                    sizes="(min-width: 768px) 33vw, 100vw"
+                    className="object-cover object-top transition-transform duration-700 group-hover:scale-[1.035]"
+                  />
+                </div>
+                <div className="p-6">
+                  <p className="text-xs font-semibold uppercase tracking-wider text-[#39751f] mb-2">{project.sector}</p>
+                  <p className="mb-3 text-xs font-semibold text-[#57534e]">{project.badge}</p>
+                  <h3 className="text-xl font-bold text-[#194973] tracking-tight mb-2">{project.title}</h3>
+                  <p className="text-sm text-[#57534e] leading-relaxed line-clamp-2">{project.summary}</p>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Services Section */}
       <section id="servicios" className="py-20 sm:py-28 bg-[#fafaf9]">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -417,49 +461,6 @@ export default async function Home({
                 <h3 className="text-xl font-bold text-white mb-3 tracking-tight">{item.title}</h3>
                 <p className="text-white/70 leading-relaxed">{item.description}</p>
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Casos reales — prueba antes de las objeciones */}
-      <section className="py-20 sm:py-28 bg-white">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 mb-12">
-            <div className="max-w-2xl">
-              <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#39751f] mb-4">{t("casesEyebrow")}</p>
-              <h2 className="text-3xl sm:text-5xl font-bold text-[#194973]">{t("casesTitle")}</h2>
-            </div>
-            <Link
-              href="/portfolio"
-              className="inline-flex items-center gap-1.5 font-semibold text-[#194973] hover:text-[#39751f] transition-colors"
-            >
-              {t("casesAll")}
-              <span aria-hidden>→</span>
-            </Link>
-          </div>
-          <div className="grid md:grid-cols-3 gap-6 reveal">
-            {featuredProjects.map((project) => (
-              <Link
-                key={project.slug}
-                href={`/portfolio/${project.slug}`}
-                className="group block rounded-2xl overflow-hidden border border-[#e7e5e4] bg-[#fafaf9] hover:border-[#71C648]/40 shadow-soft hover:shadow-soft-lg transition-all"
-              >
-                <div className="relative aspect-[1440/1000] overflow-hidden bg-[#111A1D]">
-                  <Image
-                    src={project.captures.desktop}
-                    alt=""
-                    fill
-                    sizes="(min-width: 768px) 33vw, 100vw"
-                    className="object-cover object-top transition-transform duration-700 group-hover:scale-[1.035]"
-                  />
-                </div>
-                <div className="p-6">
-                  <p className="text-xs font-semibold uppercase tracking-wider text-[#39751f] mb-2">{project.sector}</p>
-                  <h3 className="text-xl font-bold text-[#194973] tracking-tight mb-2">{project.title}</h3>
-                  <p className="text-sm text-[#57534e] leading-relaxed line-clamp-2">{project.summary}</p>
-                </div>
-              </Link>
             ))}
           </div>
         </div>

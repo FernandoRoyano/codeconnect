@@ -36,10 +36,16 @@ export function isInquiryStatus(value: unknown): value is InquiryStatus {
   return typeof value === "string" && (INQUIRY_STATUSES as string[]).includes(value);
 }
 
+export function inquiryFormLabel(notes: string | null): string {
+  if (notes?.startsWith("Formulario: Contacto\n")) return "Contacto";
+  if (notes?.startsWith("Formulario: Presupuesto")) return "Presupuesto";
+  return "Diagnóstico";
+}
+
 /** Campos del diagnostico que se muestran agrupados en el detalle del panel. */
 export const INQUIRY_SECTIONS: { title: string; fields: { key: string; label: string }[] }[] = [
   {
-    title: "Proceso actual",
+    title: "Solicitud y proceso",
     fields: [
       { key: "goal", label: "Que quiere mejorar" },
       { key: "current_process", label: "Como lo hace hoy" },
@@ -49,7 +55,7 @@ export const INQUIRY_SECTIONS: { title: string; fields: { key: string; label: st
   {
     title: "Problema",
     fields: [
-      { key: "pain", label: "Que le resulta lento o manual" },
+      { key: "pain", label: "Mensaje o problema" },
       { key: "frequency", label: "Con que frecuencia ocurre" },
       { key: "time_spent", label: "Tiempo que le dedica" },
       { key: "people_involved", label: "Personas implicadas" },

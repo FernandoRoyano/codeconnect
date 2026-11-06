@@ -82,7 +82,8 @@ export function parseInquiry(data: Record<string, unknown>): ParseResult {
   const out = {} as Record<string, unknown>;
 
   for (const spec of FIELDS) {
-    const value = readString(data[spec.from], spec.max, spec.required);
+    const required = spec.required && !(spec.key === "pain" && data.formato === "breve");
+    const value = readString(data[spec.from], spec.max, required);
     if (value === null) {
       return { ok: false, error: `Revisa el campo: ${spec.label}`, field: spec.from };
     }

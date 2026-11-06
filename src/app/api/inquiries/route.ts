@@ -18,7 +18,7 @@ export async function GET(request: NextRequest) {
   const supabase = createServiceRoleClient();
   let query = supabase
     .from("inquiries")
-    .select("id, status, name, email, company, goal, pain, landing_path, utm_source, referrer, created_at")
+    .select("id, status, name, email, company, goal, pain, extra_notes, landing_path, utm_source, referrer, created_at")
     .order("created_at", { ascending: false })
     .limit(MAX_LIMIT);
 

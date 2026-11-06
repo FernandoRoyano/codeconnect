@@ -27,6 +27,7 @@ const OG_LOCALES: Record<string, string> = {
  * así que no tienen por qué viajar en el HTML de cada página.
  */
 const CLIENT_NAMESPACES = [
+  "diagnosis",
   "header",
   "footer",
   "logo",

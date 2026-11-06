@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
+import { parseInquiry } from "@/lib/api/inquiry";
+import { deliverInquiry } from "@/lib/api/inquiry-delivery";
 import {
   escapeHtml,
   getClientIp,
@@ -48,15 +50,19 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "Email no válido" }, { status: 400 });
     }
 
+    const input = parseInquiry({
+      ...data,
+      objetivo: "Contacto desde la web",
+      problema: "Mensaje de contacto",
+      notas: `Formulario: Contacto\nServicio: ${servicio || "Sin especificar"}`,
+    });
+    if (!input.ok) return NextResponse.json({ error: input.error, field: input.field }, { status: 400 });
+    const inquiry = { ...input.value, pain: mensaje };
+
     const apiKey = process.env.RESEND_API_KEY;
     const from = readEmailEnv(process.env.CONTACT_EMAIL_FROM);
     const to = readEmailEnv(process.env.CONTACT_EMAIL_TO);
-    if (!apiKey || !from || !to) {
-      console.error("[contact] Missing email configuration");
-      return NextResponse.json({ error: "Servicio no disponible" }, { status: 503 });
-    }
 
-    const resend = new Resend(apiKey);
     const safe = {
       nombre: escapeHtml(nombre),
       email: escapeHtml(email),
@@ -70,16 +76,20 @@ export async function POST(request: NextRequest) {
       web: "Desarrollo Web",
       software: "Software a Medida",
       apps: "Aplicaciones Moviles",
+      automatizacion: "Automatización e integraciones",
       consultoria: "Consultoria",
       otro: "Otro",
     };
 
-    const { error } = await resend.emails.send({
-      from,
-      to,
-      replyTo: email,
-      subject: `Nuevo contacto: ${nombre}${empresa ? ` - ${empresa}` : ""}`.replace(/[\r\n]/g, " "),
-      html: `<!DOCTYPE html>
+    const delivery = await deliverInquiry(inquiry, async () => {
+      if (!apiKey || !from || !to) throw new Error("Email no disponible");
+      const resend = new Resend(apiKey);
+      const { error } = await resend.emails.send({
+        from,
+        to,
+        replyTo: email,
+        subject: `Nuevo contacto: ${nombre}${empresa ? ` - ${empresa}` : ""}`.replace(/[\r\n]/g, " "),
+        html: `<!DOCTYPE html>
 <html><head><meta charset="utf-8"></head>
 <body style="margin:0;padding:20px;background:#f8f9fa;font-family:sans-serif;">
   <div style="max-width:600px;margin:0 auto;background:#fff;border-radius:12px;overflow:hidden;">
@@ -101,14 +111,12 @@ export async function POST(request: NextRequest) {
     </div>
   </div>
 </body></html>`,
-    });
+      });
 
-    if (error) {
-      console.error("[contact] Resend error:", error);
-      return NextResponse.json(
-        { error: "Error al enviar el mensaje" },
-        { status: 500 }
-      );
+      if (error) throw new Error("No se pudo enviar la notificación");
+    });
+    if (!delivery.received) {
+      return NextResponse.json({ error: "No hemos podido registrar tu solicitud. Inténtalo de nuevo." }, { status: 503 });
     }
 
     return NextResponse.json({ success: true });
